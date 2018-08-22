@@ -1,21 +1,19 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('users', (table) => {
         table.increments();
-        table.string("display_name").notNullable();
-        table.string("username").unique();
-        table.string("password");
+        table.string("display_name").notNullable().unique();
         table.string("email").unique();
+        table.string("password");
         table.integer("phone");
         table.string("facebook_id").unique();
         table.string("access_token");
         table.string("propic_path");
         table.integer("balance").defaultTo(0);
         table.string("role").notNullable();
-        table.string("i_education").defaultTo(null);
-        table.string("i_year_codeExp").defaultTo(null);
-        table.string("i_introduction").defaultTo(null);
-        table.string("i_cert_path").defaultTo(null);
-        table.string("i_spoken_lang").defaultTo(null);
+        table.string("i_education");
+        table.integer("i_year_codeExp");
+        table.string("i_introduction");
+        table.string("i_cert_path");
         table.integer("i_num_rating").defaultTo(0);
         table.integer("i_total_rating").defaultTo(0);
         table.boolean("i_approved").defaultTo(true);
@@ -41,7 +39,7 @@ exports.up = function(knex, Promise) {
             table.foreign("user_id").references('users.id');
             table.string("title");
             table.string("content");
-            table.string("image_path").defaultTo(null);
+            table.string("image_path");
             table.timestamps(false, true);
         });
     })
@@ -54,7 +52,7 @@ exports.up = function(knex, Promise) {
             table.integer("post_id").unsigned();
             table.foreign("post_id").references('forumPosts.id');
             table.string("content");
-            table.string("image_path").defaultTo(null);
+            table.string("image_path");
             table.timestamps(false, true);
         });
     })
@@ -96,7 +94,7 @@ exports.up = function(knex, Promise) {
             table.integer("student_id").unsigned();
             table.foreign("student_id").references('users.id');
             table.string("content");
-            table.string("image_path").defaultTo(null);
+            table.string("image_path");
             table.timestamps(false, true);
         });
     })
@@ -134,8 +132,8 @@ exports.up = function(knex, Promise) {
             table.foreign("question_id").references('questions.id');
             table.integer("duration");
             table.integer("fee");
-            table.integer("s_rating").defaultTo(null);
-            table.string("s_feedback").defaultTo(null);
+            table.integer("s_rating");
+            table.string("s_feedback");
             table.timestamps(false, true);
         });
     })
@@ -145,10 +143,10 @@ exports.up = function(knex, Promise) {
             table.increments();
             table.integer("chatroom_id").unsigned();
             table.foreign("chatroom_id").references('chatrooms.id');
-            table.string("text").defaultTo(null);
-            table.string("voice_msg_url").defaultTo(null);
-            table.string("image_url").defaultTo(null);
-            table.string("video_url").defaultTo(null);
+            table.string("text");
+            table.string("voice_msg_url");
+            table.string("image_url");
+            table.string("video_url");
             table.string("type");
             table.timestamps(false, true);
         });
@@ -162,7 +160,7 @@ exports.up = function(knex, Promise) {
             table.integer("chatroom_id").unsigned();
             table.foreign("chatroom_id").references('chatrooms.id');
             table.boolean("complainInstructor");
-            table.string("image_path").defaultTo(null);
+            table.string("image_path");
             table.string("content");
             table.timestamps(false, true);
         });
