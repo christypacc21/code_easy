@@ -80,7 +80,7 @@ exports.up = function(knex, Promise) {
     })
 
     .then(() => {
-        return knex.schema.createTable('instructors_languguages', (table) => {
+        return knex.schema.createTable('instructors_languages', (table) => {
             table.increments();
             table.integer("instructor_id").unsigned();
             table.foreign("instructor_id").references('users.id');
@@ -113,7 +113,7 @@ exports.up = function(knex, Promise) {
     })
 
     .then(() => {
-        return knex.schema.createTable('questions_languguages', (table) => {
+        return knex.schema.createTable('questions_languages', (table) => {
             table.increments();
             table.integer("question_id").unsigned();
             table.foreign("question_id").references('questions.id');
@@ -178,7 +178,7 @@ exports.down = function(knex, Promise) {
             return knex.schema.dropTable('chatrooms');
         })
         .then(() => {
-            return knex.schema.dropTable('questions_languguages');
+            return knex.schema.dropTable('questions_languages');
         })
         .then(() => {
             return knex.schema.dropTable('instructorBids');
@@ -187,7 +187,7 @@ exports.down = function(knex, Promise) {
             return knex.schema.dropTable('questions');
         })
         .then(() => {
-            return knex.schema.dropTable('instructors_languguages');
+            return knex.schema.dropTable('instructors_languages');
         })
         .then(() => {
             return knex.schema.dropTable('programmingLanguages');
