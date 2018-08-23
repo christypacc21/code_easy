@@ -1,19 +1,15 @@
-import * as React from 'react';
-import './App.css';
-
-import logo from './logo.svg';
+import * as React from "react";
+import "./App.css";
 
 class App extends React.Component {
-  public render() {
+  render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to CodeEasy</h1>
+          <h2 className="App-subtitle">Snap and get live 1-on-1 coding help</h2>
+          <button className="App-intro">Get start now!</button>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
       </div>
     );
   }
