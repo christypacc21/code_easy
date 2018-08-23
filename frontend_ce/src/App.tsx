@@ -7,7 +7,9 @@ import Howitwork from "./components/howitwork";
 
 import AboutUs from "./components/aboutus";
 
-import Commun from "./components/commun";
+import Community from "./components/community";
+
+import Footer from "./components/footer";
 
 class App extends React.Component {
   public render() {
@@ -21,7 +23,8 @@ class App extends React.Component {
         </header>
         <Howitwork />
         <AboutUs />
-        <Commun />
+        <Community />
+        <Footer />
       </div>
     );
   }
