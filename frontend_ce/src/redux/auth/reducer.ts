@@ -1,29 +1,29 @@
-// import { LOGIN_SUCCESS, LoginActions, LOGOUT } from "./actions";
+import { LOGIN_SUCCESS, LoginActions, LOGOUT } from "./actions";
 
-// export interface IAuthState {
-//   isAuthenticated: boolean;
-// }
+export interface IAuthState {
+  isAuthenticated: boolean;
+}
 
-// const initialState = {
-//   isAuthenticated: false
-// };
+const initialState = {
+  isAuthenticated: false
+};
 
-// export function authReducer(
-//   state: IAuthState = initialState,
-//   action: LoginActions
-// ) {
-//   switch (action.type) {
-//     case LOGIN_SUCCESS:
-//       return {
-//         ...state,
-//         isAuthenticated: true
-//       };
-//     case LOGOUT:
-//       return {
-//         ...state,
-//         isAuthenticated: false
-//       };
-//     default:
-//       return state;
-//   }
-// }
+export function authReducer(
+  state: IAuthState = initialState,
+  action: LoginActions
+) {
+  switch (action.type) {
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false
+      };
+    default:
+      return state;
+  }
+}

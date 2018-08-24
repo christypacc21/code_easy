@@ -7,11 +7,11 @@ import {
 } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-// import { authReducer as AuthReducer, IAuthState } from "./auth/reducer";
+import { authReducer as AuthReducer, IAuthState } from "./auth/reducer";
 
-// export interface IRootState {
-//   auth: IAuthState;
-// }
+export interface IRootState {
+  auth: IAuthState;
+}
 
 declare global {
   // tslint:disable-next-line:interface-name
@@ -26,7 +26,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
   combineReducers({
-    // auth: AuthReducer
+    auth: AuthReducer
   }),
   composeEnhancers(applyMiddleware(logger, thunk))
 );

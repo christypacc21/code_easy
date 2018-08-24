@@ -7,10 +7,15 @@ import {
   Switch,
   withRouter
 } from "react-router-dom";
-import { IRootState } from "./redux/store";
 
+import AboutUs from "./components/aboutus";
+import Community from "./components/community";
+import Footer from "./components/footer";
+import Howitwork from "./components/howitwork";
 import { Login } from "./components/Login";
+import Nav from "./components/nav";
 import { logOut } from "./redux/auth/actions";
+import { IRootState } from "./redux/store";
 
 interface IRouterOutletProps extends RouteComponentProps<{}> {
   isAuthenticated: boolean;
@@ -23,68 +28,81 @@ const PureRouterOutlet = ({
 }: IRouterOutletProps) => {
   return (
     <div className="App">
-      <div style={{ textAlign: "center" }}>
-        <h1>React Examples</h1>
-      </div>
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <NavLink
-            exact={true}
-            to="/"
-            className="nav-link"
-            activeClassName="active"
-          >
-            Home
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            exact={true}
-            to="/users"
-            className="nav-link"
-            activeClassName="active"
-          >
-            Users
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            exact={true}
-            to="/groups"
-            className="nav-link"
-            activeClassName="active"
-          >
-            Groups
-          </NavLink>
-        </li>
-        {isAuthenticated ? (
-          <li className="nav-item">
-            <a href="#" onClick={logOutAction} className="nav-link">
-              Logout
-            </a>
-          </li>
-        ) : null}
-      </ul>
-      {isAuthenticated ? (
-        <div>
-          <Switch>
-            <Route path="/users" component={User} />
-            <Route path="/groups" component={Group} />
-            <Route component={Home} />
-          </Switch>
-        </div>
-      ) : (
-        <div>
-          <Route component={Login} />
-        </div>
-      )}
+      <Nav />
+      <header className="App-header">
+        <h1 className="App-title">Welcome to CodeEasy</h1>
+        <h2 className="App-subtitle">Snap and get live 1-on-1 coding help</h2>
+        <button className="App-intro">Get start now!</button>
+      </header>
+      <Howitwork />
+      <AboutUs />
+      <Community />
+      <Footer />
     </div>
+
+    // <div className="App">
+    //   <div style={{ textAlign: "center" }}>
+    //     <h1>React Examples</h1>
+    //   </div>
+    //   <ul className="nav nav-tabs">
+    //     <li className="nav-item">
+    //       <NavLink
+    //         exact={true}
+    //         to="/"
+    //         className="nav-link"
+    //         activeClassName="active"
+    //       >
+    //         Home
+    //       </NavLink>
+    //     </li>
+    //     <li className="nav-item">
+    //       <NavLink
+    //         exact={true}
+    //         to="/users"
+    //         className="nav-link"
+    //         activeClassName="active"
+    //       >
+    //         Users
+    //       </NavLink>
+    //     </li>
+    //     <li className="nav-item">
+    //       <NavLink
+    //         exact={true}
+    //         to="/groups"
+    //         className="nav-link"
+    //         activeClassName="active"
+    //       >
+    //         Groups
+    //       </NavLink>
+    //     </li>
+    //     {isAuthenticated ? (
+    //       <li className="nav-item">
+    //         <a href="#" onClick={logOutAction} className="nav-link">
+    //           Logout
+    //         </a>
+    //       </li>
+    //     ) : null}
+    //   </ul>
+    //   {isAuthenticated ? (
+    //     <div>
+    //       <Switch>
+    //         <Route path="/users" component={User} />
+    //         <Route path="/groups" component={Group} />
+    //         <Route component={Home} />
+    //       </Switch>
+    //     </div>
+    //   ) : (
+    //     <div>
+    //       <Route component={Login} />
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 
 export const RouterOutlet = withRouter(
-  connect<Partial<RouterOutletProps>, {}, RouteComponentProps<{}>>(
-    (state: RootState) => ({
+  connect<Partial<IRouterOutletProps>, {}, RouteComponentProps<{}>>(
+    (state: IRootState) => ({
       isAuthenticated: state.auth.isAuthenticated
     }),
     dispatch => ({
