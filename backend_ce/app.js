@@ -30,7 +30,9 @@ const config = require('./utils/config');
 const app = require('./utils/init-app')(knex);
 
 // app.use('/', new ViewRouter().router());
+
 // // app.use('/api/home/submit', isLoggedIn, (req) => console.log('req.body', req.body));
+
 // app.use('/api/home', isLoggedIn, new HomeRouter(homeService).router());
 // app.use('/api/profile', isLoggedIn, new ProfileRouter(profileService).router());
 // app.use('/api/history', isLoggedIn, new HistoryRouter(historyService).router());

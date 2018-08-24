@@ -28,20 +28,20 @@
 //   | ILoginFailureAction
 //   | ILogOutAction;
 
-// function loginSuccess() {
+// function loginSuccess(): ILoginSuccessAction {
 //   return {
 //     type: LOGIN_SUCCESS
 //   };
 // }
 
-// function loginFailure(message: string) {
+// function loginFailure(message: string): ILoginFailureAction {
 //   return {
 //     message,
 //     type: LOGIN_FAILURE
 //   };
 // }
 
-// function logOutAction() {
+// function logOutAction(): ILogOutAction {
 //   return {
 //     type: LOGOUT
 //   };
@@ -70,8 +70,8 @@
 //           // Dispatch the success action
 //           dispatch(loginSuccess());
 //         }
-//       });
-//     // .catch(err => console.log('Error: ', err));
+//       })
+//       .catch(err => console.log("Error: ", err));
 //   };
 // }
 
@@ -97,8 +97,8 @@
 //           // Dispatch the success action
 //           dispatch(loginSuccess());
 //         }
-//       });
-//     // .catch(err => console.log('Error: ', err));
+//       })
+//       .catch(err => console.log("Error: ", err));
 //   };
 // }
 
