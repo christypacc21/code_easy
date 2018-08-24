@@ -1,19 +1,19 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import {
-  NavLink,
-  Route,
+  // NavLink,
+  // Route,
   RouteComponentProps,
-  Switch,
+  // Switch,
   withRouter
 } from "react-router-dom";
 
-import AboutUs from "./components/aboutus";
-import Community from "./components/community";
-import Footer from "./components/footer";
-import Howitwork from "./components/howitwork";
-import { Login } from "./components/Login";
-import Nav from "./components/nav";
+import AboutUs from "./components/Aboutus";
+import Community from "./components/Community";
+import Footer from "./components/Footer";
+import Howitwork from "./components/Howitwork";
+// import { Login } from "./components/Login";
+import Nav from "./components/Nav";
 import { logOut } from "./redux/auth/actions";
 import { IRootState } from "./redux/store";
 

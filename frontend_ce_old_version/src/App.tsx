@@ -16,7 +16,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "./redux/store";
 // import { RouterOutlet } from "./RouterOutlet";
 
-import Pricing from "./components/Pricing";
+// import Pricing from "./components/Pricing";
 
 class App extends React.Component {
   public render() {
