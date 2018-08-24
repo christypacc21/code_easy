@@ -1,9 +1,5 @@
 import * as React from "react";
 
-// interface INavProps {{}}
-
-// interface INavStates {{}}
-
 class Nav extends React.Component<{}, {}> {
   public render() {
     return (
@@ -30,23 +26,23 @@ class Nav extends React.Component<{}, {}> {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/">
                 Sign Up
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="./components/Pricing">
                 Pricing
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled" href="#">
+              <a className="nav-link " href="">
                 Coding Community
               </a>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link disabled" href="#">
+              <a className="nav-link " href="#">
                 Contact Us
               </a>
             </li>

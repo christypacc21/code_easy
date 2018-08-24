@@ -6,7 +6,6 @@
 // import { IRatingAction, addRating } from '../redux/cr_rating/actions';
 // import { Link } from 'react-router-dom';
 
-
 // class cr_rating extends React.Component<{}, {}> {
 //   public render() {
 

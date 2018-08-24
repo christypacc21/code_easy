@@ -1,20 +1,22 @@
 import * as React from "react";
 import "./App.css";
 
-import Nav from "./components/nav";
+import Nav from "./components/Nav";
 
-import Howitwork from "./components/howitwork";
+import Howitwork from "./components/Howitwork";
 
-import AboutUs from "./components/aboutus";
+import AboutUs from "./components/Aboutus";
 
-import Community from "./components/community";
+import Community from "./components/Community";
 
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "./redux/store";
 // import { RouterOutlet } from "./RouterOutlet";
+
+import Pricing from "./components/Pricing";
 
 class App extends React.Component {
   public render() {
