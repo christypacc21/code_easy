@@ -1,3 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default () => <div>pricing</div>;
+class Pricing extends Component {
+  render() {
+    return <div>pricing</div>;
+  }
+}
+
+export default Pricing;

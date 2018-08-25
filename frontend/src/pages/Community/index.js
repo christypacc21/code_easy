@@ -1,3 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default () => <div>community</div>;
+class Community extends Component {
+  render() {
+    return <div>Community</div>;
+  }
+}
+
+export default Community;
