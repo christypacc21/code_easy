@@ -2,9 +2,21 @@ import React from "react";
 // import FacebookLogin, { ReactFacebookLoginInfo } from "react-facebook-login";
 import FacebookLogin from "react-facebook-login";
 import { connect } from "react-redux";
+
+import * as UserActions from "../../actions/userActions";
+
 // import { loginFacebook } from "../redux/auth/actions";
 
 class PureLogin extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      login: "",
+      password: ""
+    };
+  }
+
   componentClicked() {
     return null;
   }
@@ -19,6 +31,15 @@ class PureLogin extends React.Component {
     return null;
   };
 
+  onEmailLogin = e => {
+    e.preventDefault();
+    console.log("logging in by email/password...");
+    const { email, password } = this.state;
+    console.log("email: ", email);
+    console.log("password: ", password);
+    this.props.loginByEmail(email, password);
+  };
+
   render() {
     return (
       <div>
@@ -27,13 +48,32 @@ class PureLogin extends React.Component {
           <form>
             <div className="form-group">
               <label>Email</label>
-              <input type="text" name="email" className="form-control" />
+              <input
+                type="text"
+                name="email"
+                className="form-control"
+                onChange={e => {
+                  this.setState({ email: e.target.value });
+                }}
+              />
             </div>
             <div className="form-group">
               <label>Password</label>
-              <input type="password" name="password" className="form-control" />
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                onChange={e => {
+                  this.setState({ password: e.target.value });
+                }}
+              />
             </div>
-            <input type="submit" value="Submit" className="btn btn-primary" />
+            <button
+              className="btn btn-primary"
+              onClick={e => this.onEmailLogin(e)}
+            >
+              Login
+            </button>
           </form>
           <h4 className="text-center"> OR </h4>
           <div className="text-center">
@@ -57,5 +97,5 @@ class PureLogin extends React.Component {
 
 export default connect(
   null,
-  null
+  UserActions
 )(PureLogin);
