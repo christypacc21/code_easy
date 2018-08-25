@@ -1,11 +1,11 @@
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
-const config = require('./config');
 const ExtractJwt = passportJWT.ExtractJwt;
+require('dotenv').config();
 
 module.exports = (knex) => {
 	const strategy = new passportJWT.Strategy({
-		secretOrKey: config.jwtSecret,
+		secretOrKey: process.env.JWT_SECRET,
 		jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 	}, async(payload, done) => {
 		const user = await knex('users').where('id', payload.id);
@@ -25,7 +25,7 @@ module.exports = (knex) => {
 			return passport.initialize();
 		},
 		authenticate: function() {
-			return passport.authenticate('jwt', config.jwtSession);
+			return passport.authenticate('jwt', process.env.JWT_SESSION);
 		}
 	};
 };
