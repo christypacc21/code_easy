@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-facebook-login": "^4.0.1",
+    "react-stripe-checkout": "^2.6.3",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   }
