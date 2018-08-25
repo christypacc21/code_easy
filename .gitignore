@@ -2,6 +2,7 @@
 
 # dependencies
 */node_modules
+node_modules/*
 node_modules
 
 # testing
@@ -21,3 +22,11 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+backend_ce/package-lock\.json
+
+backend_ce/yarn\.lock
+
+package\.json
+
+yarn\.lock
