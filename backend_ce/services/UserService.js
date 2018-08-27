@@ -28,13 +28,17 @@ module.exports = class UserService {
 			.where('id', id);
 	}
 
-	facebookSignUp(displayName, facebookId, profilePic, role) {
+	facebookSignUp(displayName, facebookId, email, profilePic, role) {
+		// , profilePic, role) {
 		return this.knex(USERS).insert({
 			display_name: displayName,
 			facebook_id: facebookId,
+			email,
 			propic_path: profilePic,
-			role: role
-		}).returning('id');
+			role: role // role is not nullable
+		}).returning('id').catch(function(error) {
+			console.error(error);
+		});
 	}
 
 	findUserByFacebookId(facebookId) {

@@ -79,16 +79,16 @@ module.exports = class UserRouter {
 		if (req.body.access_token) {
 			const accessToken = req.body.access_token;
 			try {
-				const data = await axios.get(`https://graph.facebook.com/me?access_token=${accessToken}`);
-				console.log(data);
+				const data = await axios.get(`https://graph.facebook.com/me?fields=name,email,picture.width(720).height(720)&access_token=${accessToken}`);
+				// console.log(data.data);
 				if (!data.data.error) {
 					let userId;
 					const user = await this.userService.findUserByFacebookId(data.data.id);
 					if (user[0]) {
 						userId = user[0].id;
 					} else {
-						const newUser = await this.userService.facebookSignUp(data.data.name, data.data.id, data.data.photos[0].value, req.body.role);
-						console.log(newUser);
+						const newUser = await this.userService.facebookSignUp(data.data.name, data.data.id, data.data.email, data.data.picture.data.url, req.body.role);
+						console.log('New User Id: ' + newUser);
 						userId = newUser[0];
 					}
 					const userInfo = await this.userService.getUserInfoById(userId);
@@ -99,10 +99,7 @@ module.exports = class UserRouter {
 
 					// Return the JWT token after checking
 					const token = jwt.encode(payload, process.env.JWT_SECRET);
-					console.log({
-						token,
-						userId
-					});
+					console.log('Facebook Login User Id: ' + userId);
 					res.json({
 						token,
 						role: userInfo[0].role

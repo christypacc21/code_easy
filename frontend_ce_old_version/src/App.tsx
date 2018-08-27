@@ -3,6 +3,8 @@ import "./App.css";
 
 import Nav from "./components/Nav";
 
+import { Login } from "./components/Login";
+
 import Howitwork from "./components/Howitwork";
 
 import AboutUs from "./components/Aboutus";
@@ -32,6 +34,7 @@ class App extends React.Component {
               </h2>
               <button className="App-intro">Get start now!</button>
             </header>
+            <Login />
             <Howitwork />
             <AboutUs />
             <Community />

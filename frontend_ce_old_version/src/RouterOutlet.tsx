@@ -19,13 +19,10 @@ import { IRootState } from "./redux/store";
 
 interface IRouterOutletProps extends RouteComponentProps<{}> {
   isAuthenticated: boolean;
-  logOutAction: () => void;
+  logOutAction: () => any;
 }
 
-const PureRouterOutlet = ({
-  isAuthenticated,
-  logOutAction
-}: IRouterOutletProps) => {
+const PureRouterOutlet = ({ isAuthenticated, logOutAction }: any) => {
   return (
     <div className="App">
       <Nav />

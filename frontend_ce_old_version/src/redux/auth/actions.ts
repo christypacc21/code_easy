@@ -111,7 +111,7 @@ declare global {
   }
 }
 
-export function logOut() {
+export function logOut(): any {
   return (dispatch: Dispatch<LoginActions>) => {
     window.FB.logout(() => {
       localStorage.removeItem("token");
