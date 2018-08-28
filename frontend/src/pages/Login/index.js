@@ -21,10 +21,7 @@ class PureLogin extends React.Component {
 		return null;
 	}
 
-	responseFacebook = (
-		userInfo
-		// userInfo: ReactFacebookLoginInfo & { accessToken: string }
-	) => {
+	responseFacebook = userInfo => {
 		if (userInfo.accessToken) {
 			this.props.loginFacebook(userInfo.accessToken);
 		}
@@ -73,6 +70,13 @@ class PureLogin extends React.Component {
 							onClick={e => this.onEmailLogin(e)}
 						>
 							Login
+						</button>
+
+						<button
+							className="btn btn-primary"
+							onClick={() => this.props.logout()}
+						>
+							Logout
 						</button>
 					</form>
 					<h4 className="text-center"> OR </h4>
