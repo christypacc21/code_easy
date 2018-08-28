@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class InstructorSignup extends Component {
+class UserSignup extends Component {
 	render() {
 		return (
 			<div
@@ -9,7 +9,7 @@ class InstructorSignup extends Component {
 			>
 				<div className="container">
 					<div className="row">
-						<h2 style={{ color: 'white' }}>Hi, Instructor!</h2>
+						<h2 style={{ color: 'white' }}>Hi, User!</h2>
 					</div>
 					<div className="row">
 						<h6 style={{ color: 'white' }}>
@@ -49,11 +49,7 @@ class InstructorSignup extends Component {
 							placeholder="Username"
 						/>
 					</form>
-					<a
-						type="submit"
-						class="btn btn-primary"
-						href="/instructor-profileForm"
-					>
+					<a type="submit" class="btn btn-primary" href="/" a>
 						Submit
 					</a>
 				</div>
@@ -62,4 +58,4 @@ class InstructorSignup extends Component {
 	}
 }
 
-export default InstructorSignup;
+export default UserSignup;

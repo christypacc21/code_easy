@@ -13,6 +13,8 @@ import Community from './pages/Community';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import InstructorSignup from './pages/Signup/instructor-signup';
+import InstructorProfileForm from './pages/Signup/instructor-profileForm';
+import UserSignup from './pages/Signup/user-signup';
 
 class App extends Component {
 	render() {
@@ -27,6 +29,12 @@ class App extends Component {
 						<Route exact path="/community" component={Community} />
 						<Route exact path="/pricing" component={Pricing} />
 						<Route exact path="/contact" component={Contact} />
+						<Route
+							exact
+							path="/instructor-profileForm"
+							component={InstructorProfileForm}
+						/>
+						<Route exact path="/user-signup" component={UserSignup} />
 						<Route
 							exact
 							path="/instuctor-signup"

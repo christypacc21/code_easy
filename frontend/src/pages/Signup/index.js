@@ -28,7 +28,9 @@ class Signup extends Component {
 						<div className="card col-sm-4" style={{}}>
 							<div className="card-body">
 								<h5 className="card-title">User</h5>
-								<button className="btn btn-primary">Sign up now</button>
+								<a className="btn btn-primary " href="/user-signup">
+									Sign up now
+								</a>
 							</div>
 						</div>
 					</div>
