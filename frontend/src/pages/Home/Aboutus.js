@@ -1,5 +1,5 @@
-import React from "react";
-import aboutPhoto from "../../img/asset2.png";
+import React from 'react';
+import aboutPhoto from '../../img/asset2.png';
 
 class AboutUs extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class AboutUs extends React.Component {
           </p>
           <img
             className="about"
-            style={{ width: "35%" }}
+            style={{ width: '35%' }}
             src={aboutPhoto}
             alt="About Us"
           />

@@ -15,9 +15,21 @@ module.exports = class UserRouter {
 		router.post('/login', this.localLogin.bind(this));
 		router.post('/signup', this.localSignUp.bind(this));
 		router.post('/login/facebook', this.facebookLogin.bind(this));
-		router.post('/instructor/signup', auth.authenticate(), this.instructorSignUp.bind(this));
-		router.get('/user/profilePic', auth.authenticate(), this.getProfilePic.bind(this));
-		router.post('/user/profilePic', auth.authenticate(), this.uploadProfilePic.bind(this));
+		router.post(
+			'/instructor/signup',
+			auth.authenticate(),
+			this.instructorSignUp.bind(this)
+		);
+		router.get(
+			'/user/profilePic',
+			auth.authenticate(),
+			this.getProfilePic.bind(this)
+		);
+		router.post(
+			'/user/profilePic',
+			auth.authenticate(),
+			this.uploadProfilePic.bind(this)
+		);
 		return router;
 	}
 
@@ -28,7 +40,6 @@ module.exports = class UserRouter {
 			}
 			const email = req.body.email;
 			const password = req.body.password;
-
 			const result = await this.userService.localLogin(email);
 			if (result[0]) {
 				const passwordMatch = await bcrypt.checkPassword(
@@ -43,8 +54,9 @@ module.exports = class UserRouter {
 					role: result[0].role
 				};
 				const token = jwt.encode(payload, process.env.JWT_SECRET);
-				console.log(`User ${result[0].id}: ` + token);
+
 				return res.json({
+					id: result[0].id,
 					token: token,
 					role: result[0].role
 				});
@@ -79,6 +91,7 @@ module.exports = class UserRouter {
 			const token = jwt.encode(payload, process.env.JWT_SECRET);
 
 			return res.json({
+				id: newUser[0],
 				token,
 				role: userInfo[0].role
 			});
@@ -123,6 +136,7 @@ module.exports = class UserRouter {
 					const token = jwt.encode(payload, process.env.JWT_SECRET);
 					console.log('Facebook Login User Id: ' + userId);
 					return res.json({
+						id: userId,
 						token,
 						role: userInfo[0].role
 					});
@@ -155,16 +169,20 @@ module.exports = class UserRouter {
 	}
 
 	getProfilePic(req, res) {
-		return this.userService.getProfilePic(req.user.id)
-			.then((data) => res.json({
-				profilePic: data[0]
-			}))
-			.catch((err) => res.status(500).json(err));
+		return this.userService
+			.getProfilePic(req.user.id)
+			.then(data =>
+				res.json({
+					profilePic: data[0]
+				})
+			)
+			.catch(err => res.status(500).json(err));
 	}
 
 	uploadProfilePic(req, res) {
-		return this.userService.uploadProfilePic(req.user.id, req.body)
-			.then((data) => res.json(data))
-			.catch((err) => res.status(500).json(err));
+		return this.userService
+			.uploadProfilePic(req.user.id, req.body)
+			.then(data => res.json(data))
+			.catch(err => res.status(500).json(err));
 	}
 };

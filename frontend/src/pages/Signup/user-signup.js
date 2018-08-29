@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import FacebookLogin from 'react-facebook-login';
 import * as UserActions from '../../redux/actions/userActions';
 
 class UserSignup extends Component {
@@ -15,6 +16,17 @@ class UserSignup extends Component {
       this.props.history.push('/profile');
     }
   }
+  componentClicked() {
+    return null;
+  }
+
+  responseFacebook = userInfo => {
+    if (userInfo.accessToken) {
+      console.log('fb response: ', userInfo);
+      this.props.loginByFacebook(userInfo.accessToken, this.state.role);
+    }
+    return null;
+  };
 
   render() {
     const { displayName, email, password, role } = this.state;
@@ -34,26 +46,29 @@ class UserSignup extends Component {
             </h6>
           </div>
           <form>
-            <button type="Facebook" className="btn btn-primary">
-              Facebook Login
-            </button>
+            <FacebookLogin
+              appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+              fields="name,email,picture"
+              onClick={this.componentClicked}
+              callback={this.responseFacebook}
+            />
             <div className="form-group">
-              <label htmlFor="exampleInputUserName">Display Name</label>
+              <label htmlFor="inputDisplay">Display Name</label>
               <input
                 type="name"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="inputDisplay"
                 placeholder="Username"
                 value={displayName}
                 onChange={e => this.setState({ displayName: e.target.value })}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email</label>
+              <label htmlFor="inputEmail">Email</label>
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="inputEmail"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
                 value={email}
@@ -64,11 +79,11 @@ class UserSignup extends Component {
               We'll never share your email with anyone else.
             </small>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword">Password</label>
+              <label htmlFor="inputPassword">Password</label>
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="inputPassword"
                 placeholder="Password"
                 value={password}
                 onChange={e => this.setState({ password: e.target.value })}

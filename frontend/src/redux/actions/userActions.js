@@ -1,7 +1,13 @@
 import axios from 'axios';
 // import { SERVER_URL } from '../config';
 
-import { LOGIN, LOGIN_FAIL, LOGOUT } from '../reducers/constants';
+import {
+  LOGIN,
+  LOGIN_FAIL,
+  LOGOUT,
+  INSTRUCTOR_SIGNUP,
+  INSTRUCTOR_SIGNUP_FAIL
+} from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function localSignup(displayName, email, password, role) {
@@ -15,6 +21,7 @@ export function localSignup(displayName, email, password, role) {
 
     console.log('res', response);
     if (response.data) {
+      localStorage.setItem('token', response.data.token);
       dispatch({
         type: LOGIN,
         payload: response.data
@@ -49,10 +56,11 @@ export function loginByEmail(email, password) {
   };
 }
 
-export function loginByFacebook(access_token) {
+export function loginByFacebook(access_token, role) {
   return async dispatch => {
     const { data } = await axios.post(SERVER_URL + '/api/login/facebook', {
-      access_token
+      access_token,
+      role
     });
 
     console.log('response: ', data);
@@ -76,5 +84,36 @@ export function logout() {
     dispatch({
       type: LOGOUT
     });
+  };
+}
+
+export function updateInstructorProfile(
+  introduction,
+  education,
+  yearCodeExp,
+  filePath,
+  skill
+) {
+  return async dispatch => {
+    const { data } = await axios.post(SERVER_URL + '/instructor/signup', {
+      introduction,
+      education,
+      yearCodeExp,
+      filePath,
+      skill
+    });
+
+    console.log('response: ', data);
+
+    if (data) {
+      dispatch({
+        type: INSTRUCTOR_SIGNUP,
+        payload: data
+      });
+    } else {
+      dispatch({
+        type: INSTRUCTOR_SIGNUP_FAIL
+      });
+    }
   };
 }
