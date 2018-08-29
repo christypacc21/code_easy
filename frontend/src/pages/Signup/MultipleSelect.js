@@ -35,6 +35,7 @@ class MultipleSelect extends React.Component {
 
     return (
       <Select
+        isSearchable
         isMulti
         value={selectedOption}
         onChange={this.handleChange}

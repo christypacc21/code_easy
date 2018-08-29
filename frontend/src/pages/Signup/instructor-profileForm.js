@@ -51,32 +51,6 @@ class InstructorProfileForm extends Component {
             <div className="form-group" />
             <label for="exampleFormControlSelect1">Coding Skills</label>
             <MultipleSelect />
-            {/* <select
-              class="form-control"
-              id="exampleFormControlSelect1"
-              multiple
-            >
-              <optgroup label="Coding Skills" style={{}}>
-                <option value="1">Blockchain</option>
-                <option value="2">Python</option>
-                <option value="3">SQL</option>
-                <option value="4">Machine Learning</option>
-                <option value="5">HTML/CSS</option>
-                <option value="6">JavaScript</option>
-                <option value="7">TypeScript</option>
-                <option value="8">React</option>
-                <option value="9">Angular</option>
-                <option value="10">Node.js</option>
-                <option value="11">Java</option>
-                <option value="12">Linus</option>
-                <option value="13">XML</option>
-                <option value="14">C++</option>
-                <option value="15">C#</option>
-                <option value="16">PHP</option>
-                <option value="17">iOS/Swift</option>
-                <option value="18">Ruby/Rails</option>
-              </optgroup>
-            </select> */}
 
             <div className="form-group" />
             <label for="exampleFormControlFile1">Upload certification</label>
