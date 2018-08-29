@@ -55,7 +55,7 @@ class UserSignup extends Component {
             />
 
             <div className="form-group">
-              <label htmlFor="inputDisplay">Display Name</label>
+              <label htmlFor="inputDisplay">User Name</label>
               <input
                 type="name"
                 className="form-control"
