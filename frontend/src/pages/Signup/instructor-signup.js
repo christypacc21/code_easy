@@ -1,7 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import FacebookLogin from 'react-facebook-login';
+import * as UserActions from '../../redux/actions/userActions';
 
-class InstructorSignup extends Component {
+class UserSignup extends Component {
+  state = {
+    email: '',
+    displayName: '',
+    password: '',
+    role: 'instructor'
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user && this.props.user !== prevProps.user) {
+      this.props.history.push('/instructor-profileForm');
+    }
+  }
+
+  componentClicked() {
+    return null;
+  }
+
+  responseFacebook = userInfo => {
+    if (userInfo.accessToken) {
+      console.log('fb response: ', userInfo);
+      this.props.loginByFacebook(userInfo.accessToken, this.state.role);
+    }
+    return null;
+  };
+
   render() {
+    const { displayName, email, password, role } = this.state;
+
     return (
       <div
         className="jumbotron jumbotron-fluid"
@@ -17,42 +47,59 @@ class InstructorSignup extends Component {
             </h6>
           </div>
           <form>
-            <button type="Facebook" class="btn btn-primary">
-              Facebook Login
-            </button>
-            <div className="form-group" />
-            <label for="exampleInputEmail1">Email address</label>
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
+            <FacebookLogin
+              appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+              fields="name,email,picture"
+              onClick={this.componentClicked}
+              callback={this.responseFacebook}
             />
-            <small id="emailHelp" class="form-text text-muted">
+
+            <div className="form-group">
+              <label htmlFor="inputDisplay">Display Name</label>
+              <input
+                type="name"
+                className="form-control"
+                id="inputDisplay"
+                placeholder="Username"
+                value={displayName}
+                onChange={e => this.setState({ displayName: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputEmail">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="inputEmail"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                value={email}
+                onChange={e => this.setState({ email: e.target.value })}
+              />
+            </div>
+            <small id="emailHelp" className="form-text text-muted">
               We'll never share your email with anyone else.
             </small>
-            <div className="form-group" />
-            <label for="exampleInputPassword">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-            />
-            <div className="form-group" />
-            <label for="exampleInputUserName">Username</label>
-            <input
-              type="name"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Username"
-            />
+            <div className="form-group">
+              <label htmlFor="inputPassword">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="inputPassword"
+                placeholder="Password"
+                value={password}
+                onChange={e => this.setState({ password: e.target.value })}
+              />
+            </div>
           </form>
+
+          <br />
           <a
             type="submit"
-            class="btn btn-primary"
-            href="/instructor-profileForm"
+            className="btn btn-primary"
+            onClick={() =>
+              this.props.localSignup(displayName, email, password, role)
+            }
           >
             Submit
           </a>
@@ -62,4 +109,13 @@ class InstructorSignup extends Component {
   }
 }
 
-export default InstructorSignup;
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  UserActions
+)(UserSignup);

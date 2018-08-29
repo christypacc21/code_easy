@@ -1,6 +1,34 @@
-import React from "react";
+import React from 'react';
+import { connect } from 'react-redux';
+import * as UserAction from '../redux/actions/userActions';
 
 class Nav extends React.Component {
+  loginOrLogout = () => {
+    if (this.props.user && this.props.user.user) {
+      return (
+        <li className="nav-item">
+          <a className="nav-link" onClick={() => this.props.logout()}>
+            Logout
+          </a>
+        </li>
+      );
+    }
+    return (
+      <React.Fragment>
+        <li className="nav-item">
+          <a className="nav-link" href="/login">
+            Login
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/signup">
+            Sign Up
+          </a>
+        </li>
+      </React.Fragment>
+    );
+  };
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{}}>
@@ -21,16 +49,6 @@ class Nav extends React.Component {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/login">
-                Login <span className="sr-only">(current)</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/signup">
-                Sign Up
-              </a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link" href="/pricing">
                 Pricing
               </a>
@@ -46,6 +64,7 @@ class Nav extends React.Component {
                 Contact Us
               </a>
             </li>
+            {this.loginOrLogout()}
           </ul>
         </div>
       </nav>
@@ -53,4 +72,13 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  UserAction
+)(Nav);

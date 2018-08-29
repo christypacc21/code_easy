@@ -1,9 +1,33 @@
 import React, { Component } from 'react';
-import MultipleSelect from './MultipleSelect';
-// import MultipleSelect from './MultipleSelect';
+import { options } from './selectOptions';
+import Select from 'react-select';
+import { connect } from 'react-redux';
+import * as UserActions from '../../redux/actions/userActions';
 
 class InstructorProfileForm extends Component {
+  state = {
+    introduction: '',
+    education: '',
+    yearCodeExp: 0,
+    filePath: '',
+    skill: ''
+  };
+
   render() {
+    const {
+      introduction,
+      education,
+      yearCodeExp,
+      filePath,
+      skill
+    } = this.state;
+
+    // console.log('introduction: ', introduction);
+    // console.log('edu: ', education);
+    // console.log('year: ', yearCodeExp);
+    // console.log('file: ', filePath);
+    // console.log('skill: ', skill);
+
     return (
       <div
         className="jumbotron jumbotron-fluid"
@@ -20,26 +44,39 @@ class InstructorProfileForm extends Component {
           </div>
           <form>
             <div className="form-group" />
-            <label for="exampleFormControlTextarea1">Introduction</label>
+            <label htmlFor="exampleFormControlTextarea1">Introduction</label>
             <textarea
-              class="form-control"
+              className="form-control"
               id="exampleFormControlTextarea1"
               rows="3"
+              value={introduction}
+              onChange={e => {
+                this.setState({ introduction: e.target.value });
+              }}
             />
 
             <div className="form-group" />
-            <label for="exampleFormControlTextarea1">Education</label>
+            <label htmlFor="exampleFormControlTextarea2">Education</label>
             <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
+              className="form-control"
+              id="exampleFormControlTextarea2"
               rows="3"
+              value={education}
+              onChange={e => {
+                this.setState({ education: e.target.value });
+              }}
             />
 
             <div className="form-group" />
-            <label for="exampleFormControlSelect1">
+            <label htmlFor="exampleFormControlSelect1">
               Year of coding experience
             </label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select
+              className="form-control"
+              id="exampleFormControlSelect1"
+              value={yearCodeExp}
+              onChange={e => this.setState({ yearCodeExp: e.target.value })}
+            >
               <option> &lt;1 </option>
               <option>1-3 Years</option>
               <option>4-6 Years</option>
@@ -49,21 +86,40 @@ class InstructorProfileForm extends Component {
             </select>
 
             <div className="form-group" />
-            <label for="exampleFormControlSelect1">Coding Skills</label>
-            <MultipleSelect />
+            <label htmlFor="exampleFormControlSelect2">Coding Skills</label>
+            <Select
+              isSearchable
+              isMulti
+              value={skill}
+              onChange={skill => this.setState({ skill })}
+              options={options}
+            />
 
             <div className="form-group" />
-            <label for="exampleFormControlFile1">Upload certification</label>
+            <label htmlFor="exampleFormControlFile1">
+              Upload certification
+            </label>
             <input
               type="file"
-              class="form-control"
+              className="form-control"
               id="exampleFormControlFile1"
               placeholder="UploadCertification"
             />
           </form>
 
           <br />
-          <button type="submit" class="btn btn-primary" href="/">
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              this.props.updateInstructorProfile(
+                introduction,
+                education,
+                yearCodeExp,
+                filePath,
+                skill
+              )
+            }
+          >
             Confirm
           </button>
         </div>
@@ -72,4 +128,7 @@ class InstructorProfileForm extends Component {
   }
 }
 
-export default InstructorProfileForm;
+export default connect(
+  null,
+  UserActions
+)(InstructorProfileForm);

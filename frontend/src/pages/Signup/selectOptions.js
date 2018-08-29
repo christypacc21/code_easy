@@ -1,7 +1,4 @@
-import React from 'react';
-import Select from 'react-select';
-
-const options = [
+export const options = [
   { value: 'blockchain', label: 'Blockchain' },
   { value: 'python', label: 'Python' },
   { value: 'sql', label: 'SQL' },
@@ -21,28 +18,3 @@ const options = [
   { value: 'iOS/Swift', label: 'iOS/Swift' },
   { value: 'ruby/Rails', label: 'Ruby/Rails' }
 ];
-
-class MultipleSelect extends React.Component {
-  state = {
-    selectedOption: null
-  };
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
-  render() {
-    const { selectedOption } = this.state;
-
-    return (
-      <Select
-        isSearchable
-        isMulti
-        value={selectedOption}
-        onChange={this.handleChange}
-        options={options}
-      />
-    );
-  }
-}
-
-export default MultipleSelect;
