@@ -1,13 +1,13 @@
-import reduxThunk from "redux-thunk";
-import { createLogger } from "redux-logger";
+import reduxThunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
 let middleware = [reduxThunk];
 
 let isDebuggingInChrome = false;
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   isDebuggingInChrome =
-    process.env.NODE_ENV === "development" &&
+    process.env.NODE_ENV === 'development' &&
     window &&
     !!window.navigator.userAgent;
 }
@@ -15,7 +15,7 @@ if (typeof window !== "undefined") {
 // let isDebuggingInChrome = true;
 
 // if(NODE_ENV === 'DEV') {
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === 'development') {
   let logger = createLogger({
     predicate: (getState, action) => isDebuggingInChrome,
     collapsed: true,

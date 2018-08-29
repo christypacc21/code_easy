@@ -1,8 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Contact extends Component {
   render() {
-    return <div>Contact</div>;
+    return (
+      <div
+        className="jumbotron jumbotron-fluid"
+        style={{ margin: 0, background: '#00B0AF' }}
+      >
+        Contact
+      </div>
+    );
   }
 }
 
