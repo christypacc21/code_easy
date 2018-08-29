@@ -15,6 +15,7 @@ import Contact from './pages/Contact';
 import InstructorSignup from './pages/Signup/instructor-signup';
 import InstructorProfileForm from './pages/Signup/instructor-profileForm';
 import UserSignup from './pages/Signup/user-signup';
+import MultipleSelect from './pages/Signup/MultipleSelect';
 
 class App extends Component {
   render() {
@@ -40,6 +41,7 @@ class App extends Component {
               path="/instuctor-signup"
               component={InstructorSignup}
             />
+            <Route exact path="/MultipleSelect" component={MultipleSelect} />
           </Switch>
           <Footer />
         </div>

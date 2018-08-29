@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MultipleSelect from './MultipleSelect';
+// import MultipleSelect from './MultipleSelect';
 
 class InstructorProfileForm extends Component {
   render() {
@@ -17,6 +19,14 @@ class InstructorProfileForm extends Component {
             </h6>
           </div>
           <form>
+            <div className="form-group" />
+            <label for="exampleFormControlTextarea1">Introduction</label>
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            />
+
             <div className="form-group" />
             <label for="exampleFormControlTextarea1">Education</label>
             <textarea
@@ -40,32 +50,7 @@ class InstructorProfileForm extends Component {
 
             <div className="form-group" />
             <label for="exampleFormControlSelect1">Coding Skills</label>
-            <select
-              class="form-control"
-              id="exampleFormControlSelect1"
-              multiple
-            >
-              <optgroup label="Coding Skills" style={{}}>
-                <option value="1">Blockchain</option>
-                <option value="2">Python</option>
-                <option value="3">SQL</option>
-                <option value="4">Machine Learning</option>
-                <option value="5">HTML/CSS</option>
-                <option value="6">JavaScript</option>
-                <option value="7">TypeScript</option>
-                <option value="8">React</option>
-                <option value="9">Angular</option>
-                <option value="10">Node.js</option>
-                <option value="11">Java</option>
-                <option value="12">Linus</option>
-                <option value="13">XML</option>
-                <option value="14">C++</option>
-                <option value="15">C#</option>
-                <option value="16">PHP</option>
-                <option value="17">iOS/Swift</option>
-                <option value="18">Ruby/Rails</option>
-              </optgroup>
-            </select>
+            <MultipleSelect />
 
             <div className="form-group" />
             <label for="exampleFormControlFile1">Upload certification</label>
@@ -76,6 +61,8 @@ class InstructorProfileForm extends Component {
               placeholder="UploadCertification"
             />
           </form>
+
+          <br />
           <button type="submit" class="btn btn-primary" href="/">
             Confirm
           </button>
