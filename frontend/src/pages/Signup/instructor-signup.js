@@ -49,7 +49,6 @@ class InstructorSignup extends Component {
               placeholder="Username"
             />
           </form>
-          <br />
           <a
             type="submit"
             class="btn btn-primary"
