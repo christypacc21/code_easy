@@ -13,8 +13,14 @@ class PureLogin extends React.Component {
 
 		this.state = {
 			login: '',
-			password: ''
+			password: '',
 		};
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.user && this.props.user !== prevProps.user) {
+			this.props.history.push('/profile');
+		}
 	}
 
 	componentClicked() {
@@ -30,14 +36,12 @@ class PureLogin extends React.Component {
 
 	onEmailLogin = e => {
 		e.preventDefault();
-		console.log('logging in by email/password...');
 		const { email, password } = this.state;
-		console.log('email: ', email);
-		console.log('password: ', password);
 		this.props.loginByEmail(email, password);
 	};
 
 	render() {
+		console.log('fb id: ', process.env.REACT_APP_FACEBOOK_APP_ID);
 		return (
 			<div>
 				<h3 className="text-center">Login Form</h3>
@@ -82,8 +86,7 @@ class PureLogin extends React.Component {
 					<h4 className="text-center"> OR </h4>
 					<div className="text-center">
 						<FacebookLogin
-							appId={process.env.REACT_APP_FACEBOOK_APP_ID || ''}
-							autoLoad={true}
+							appId={process.env.REACT_APP_FACEBOOK_APP_ID}
 							fields="name,email,picture"
 							onClick={this.componentClicked}
 							callback={this.responseFacebook}
@@ -95,11 +98,13 @@ class PureLogin extends React.Component {
 	}
 }
 
-// export default connect(dispatch => ({
-//   loginFacebook: accessToken => dispatch(loginFacebook(accessToken))
-// }))(PureLogin);
+function mapStateToProps(state) {
+	return {
+		user: state.user,
+	};
+}
 
 export default connect(
-	null,
-	UserActions
+	mapStateToProps,
+	UserActions,
 )(PureLogin);

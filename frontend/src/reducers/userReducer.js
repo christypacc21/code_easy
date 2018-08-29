@@ -1,17 +1,22 @@
-import { LOGIN } from "./constants";
+import { LOGIN, LOGOUT } from './constants';
 
 const initialState = {
-  user: null
+	user: null,
 };
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case LOGIN:
-      return {
-        ...state,
-        user: action.payload
-      };
-    default:
-      return state;
-  }
+	switch (action.type) {
+	case LOGIN:
+		return {
+			...state,
+			user: action.payload,
+		};
+	case LOGOUT:
+		return {
+			...state,
+			user: null,
+		};
+	default:
+		return state;
+	}
 };
