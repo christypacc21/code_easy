@@ -7,10 +7,9 @@ exports.seed = function(knex, Promise) {
 				id: 1,
 				display_name: 'Test',
 				email: 'test@gmail.com',
-				password: '1234',
+				password: '$2b$10$w6Z6abZ2D7VfdVWzNz2n9e3b3yotH8ioatXrXB24lbwY1fvNDZUpu',
 				phone: '12345678',
-				propic_path: '',
-				balance: 1000,
+				s_questionsCanAsk: 10,
 				role: 'student'
 			}]);
 		});

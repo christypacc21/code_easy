@@ -6,10 +6,10 @@ exports.up = function(knex, Promise) {
 		table.string('password');
 		table.integer('phone');
 		table.string('facebook_id').unique();
-		table.string('access_token');
-		table.string('propic_path');
-		table.integer('balance').defaultTo(0);
+		table.string('profilePic');
 		table.string('role').notNullable();
+		table.integer('s_questionsCanAsk').defaultTo(0);
+		table.integer('i_balance').defaultTo(0);
 		table.string('i_education');
 		table.integer('i_year_codeExp');
 		table.string('i_introduction');
@@ -70,20 +70,20 @@ exports.up = function(knex, Promise) {
 		})
 
 		.then(() => {
-			return knex.schema.createTable('programmingLanguages', (table) => {
+			return knex.schema.createTable('codingSkills', (table) => {
 				table.increments();
-				table.string('language');
+				table.string('skill');
 				table.timestamps(false, true);
 			});
 		})
 
 		.then(() => {
-			return knex.schema.createTable('instructors_languages', (table) => {
+			return knex.schema.createTable('instructors_skills', (table) => {
 				table.increments();
 				table.integer('instructor_id').unsigned();
 				table.foreign('instructor_id').references('users.id');
-				table.integer('programLanguage_id').unsigned();
-				table.foreign('programLanguage_id').references('programmingLanguages.id');
+				table.integer('codingSkill_id').unsigned();
+				table.foreign('codingSkill_id').references('codingSkills.id');
 				table.timestamps(false, true);
 			});
 		})
@@ -111,12 +111,12 @@ exports.up = function(knex, Promise) {
 		})
 
 		.then(() => {
-			return knex.schema.createTable('questions_languages', (table) => {
+			return knex.schema.createTable('questions_skills', (table) => {
 				table.increments();
 				table.integer('question_id').unsigned();
 				table.foreign('question_id').references('questions.id');
-				table.integer('programLanguage_id').unsigned();
-				table.foreign('programLanguage_id').references('programmingLanguages.id');
+				table.integer('codingSkill_id').unsigned();
+				table.foreign('codingSkill_id').references('codingSkills.id');
 				table.timestamps(false, true);
 			});
 		})
@@ -176,7 +176,7 @@ exports.down = function(knex, Promise) {
 			return knex.schema.dropTable('chatrooms');
 		})
 		.then(() => {
-			return knex.schema.dropTable('questions_languages');
+			return knex.schema.dropTable('questions_skills');
 		})
 		.then(() => {
 			return knex.schema.dropTable('instructorBids');
@@ -185,10 +185,10 @@ exports.down = function(knex, Promise) {
 			return knex.schema.dropTable('questions');
 		})
 		.then(() => {
-			return knex.schema.dropTable('instructors_languages');
+			return knex.schema.dropTable('instructors_skills');
 		})
 		.then(() => {
-			return knex.schema.dropTable('programmingLanguages');
+			return knex.schema.dropTable('codingSkills');
 		})
 		.then(() => {
 			return knex.schema.dropTable('purchaseRecords');
