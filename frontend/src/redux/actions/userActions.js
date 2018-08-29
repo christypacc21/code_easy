@@ -95,7 +95,7 @@ export function updateInstructorProfile(
   skill
 ) {
   return async dispatch => {
-    const { data } = await axios.post(SERVER_URL + '/instructor/signup', {
+    const { data } = await axios.post(SERVER_URL + 'api/instructor/signup', {
       introduction,
       education,
       yearCodeExp,
