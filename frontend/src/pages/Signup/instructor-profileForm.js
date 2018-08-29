@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MultipleSelect from './MultipleSelect';
+// import MultipleSelect from './MultipleSelect';
 
 class InstructorProfileForm extends Component {
   render() {
@@ -17,6 +19,14 @@ class InstructorProfileForm extends Component {
             </h6>
           </div>
           <form>
+            <div className="form-group" />
+            <label for="exampleFormControlTextarea1">Introduction</label>
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            />
+
             <div className="form-group" />
             <label for="exampleFormControlTextarea1">Education</label>
             <textarea
@@ -40,7 +50,8 @@ class InstructorProfileForm extends Component {
 
             <div className="form-group" />
             <label for="exampleFormControlSelect1">Coding Skills</label>
-            <select
+            <MultipleSelect />
+            {/* <select
               class="form-control"
               id="exampleFormControlSelect1"
               multiple
@@ -65,7 +76,7 @@ class InstructorProfileForm extends Component {
                 <option value="17">iOS/Swift</option>
                 <option value="18">Ruby/Rails</option>
               </optgroup>
-            </select>
+            </select> */}
 
             <div className="form-group" />
             <label for="exampleFormControlFile1">Upload certification</label>
@@ -76,6 +87,8 @@ class InstructorProfileForm extends Component {
               placeholder="UploadCertification"
             />
           </form>
+
+          <br />
           <button type="submit" class="btn btn-primary" href="/">
             Confirm
           </button>
