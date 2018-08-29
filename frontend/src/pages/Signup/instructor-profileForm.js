@@ -3,14 +3,31 @@ import { options } from './selectOptions';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import * as UserActions from '../../redux/actions/userActions';
+import ImageUploader from 'react-images-upload';
 
 class InstructorProfileForm extends Component {
   state = {
     introduction: '',
     education: '',
     yearCodeExp: 0,
-    filePath: '',
+    filePath: [],
     skill: ''
+  };
+
+  componentDidUpdate(prevProps) {
+    // console.log('current props: ', this.props);
+    if (
+      this.props.instructor &&
+      this.props.instructor !== prevProps.instructor
+    ) {
+      this.props.history.push('/profile');
+    }
+  }
+
+  onDrop = (pictureFiles, pictureDataURLs) => {
+    this.setState({
+      filePath: this.state.filePath.concat(pictureFiles)
+    });
   };
 
   render() {
@@ -25,7 +42,7 @@ class InstructorProfileForm extends Component {
     // console.log('introduction: ', introduction);
     // console.log('edu: ', education);
     // console.log('year: ', yearCodeExp);
-    // console.log('file: ', filePath);
+    console.log('file: ', filePath);
     // console.log('skill: ', skill);
 
     return (
@@ -97,8 +114,17 @@ class InstructorProfileForm extends Component {
 
             <div className="form-group" />
             <label htmlFor="exampleFormControlFile1">
-              Upload certification
+              Upload certification{' '}
             </label>
+            <ImageUploader
+              withPreview
+              withIcon={true}
+              buttonText="Choose images"
+              onChange={this.onDrop}
+              imgExtension={['.jpg', '.gif', '.png', '.gif']}
+              maxFileSize={123242880}
+            />
+
             <input
               type="file"
               className="form-control"
@@ -128,7 +154,13 @@ class InstructorProfileForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    instructor: state.user.instructor
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   UserActions
 )(InstructorProfileForm);

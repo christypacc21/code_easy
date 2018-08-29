@@ -1,7 +1,13 @@
 import axios from 'axios';
 // import { SERVER_URL } from '../config';
 
-import { LOGIN, LOGIN_FAIL, LOGOUT } from '../reducers/constants';
+import {
+  LOGIN,
+  LOGIN_FAIL,
+  LOGOUT,
+  INSTRUCTOR_SIGNUP,
+  INSTRUCTOR_SIGNUP_FAIL
+} from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function localSignup(displayName, email, password, role) {
@@ -88,7 +94,26 @@ export function updateInstructorProfile(
   filePath,
   skill
 ) {
-  return dispatch => {
-    //call server here
+  return async dispatch => {
+    const { data } = await axios.post(SERVER_URL + '/instructor/signup', {
+      introduction,
+      education,
+      yearCodeExp,
+      filePath,
+      skill
+    });
+
+    console.log('response: ', data);
+
+    if (data) {
+      dispatch({
+        type: INSTRUCTOR_SIGNUP,
+        payload: data
+      });
+    } else {
+      dispatch({
+        type: INSTRUCTOR_SIGNUP_FAIL
+      });
+    }
   };
 }
