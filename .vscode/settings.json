@@ -1,8 +1,8 @@
 {
   "prettier.singleQuote": true,
-  // "editor.formatOnSave": true,
+  "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.tabSize": 2,
   "prettier.eslintIntegration": true,
-  // "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true
 }
