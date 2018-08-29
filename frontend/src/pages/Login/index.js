@@ -12,7 +12,7 @@ class PureLogin extends React.Component {
     super(props);
 
     this.state = {
-      login: '',
+      email: '',
       password: ''
     };
   }
@@ -41,58 +41,61 @@ class PureLogin extends React.Component {
   };
 
   render() {
-    console.log('fb id: ', process.env.REACT_APP_FACEBOOK_APP_ID);
+    // console.log('fb id: ', process.env.REACT_APP_FACEBOOK_APP_ID);
     return (
       <div>
-        <h3 className="text-center">Login Form</h3>
+        <h3 className="text-center"> Login Form </h3>{' '}
         <div className="container">
           <form>
             <div className="form-group">
-              <label>Email</label>
+              <label> Email </label>{' '}
               <input
                 type="text"
                 name="email"
                 className="form-control"
                 onChange={e => {
-                  this.setState({ email: e.target.value });
+                  this.setState({
+                    email: e.target.value
+                  });
                 }}
-              />
-            </div>
+              />{' '}
+            </div>{' '}
             <div className="form-group">
-              <label>Password</label>
+              <label> Password </label>{' '}
               <input
                 type="password"
                 name="password"
                 className="form-control"
                 onChange={e => {
-                  this.setState({ password: e.target.value });
+                  this.setState({
+                    password: e.target.value
+                  });
                 }}
-              />
-            </div>
+              />{' '}
+            </div>{' '}
             <button
               className="btn btn-primary"
               onClick={e => this.onEmailLogin(e)}
             >
-              Login
+              Login{' '}
             </button>
-
             <button
               className="btn btn-primary"
               onClick={() => this.props.logout()}
             >
-              Logout
-            </button>
-          </form>
-          <h4 className="text-center"> OR </h4>
+              Logout{' '}
+            </button>{' '}
+          </form>{' '}
+          <h4 className="text-center"> OR </h4>{' '}
           <div className="text-center">
             <FacebookLogin
               appId={process.env.REACT_APP_FACEBOOK_APP_ID}
               fields="name,email,picture"
               onClick={this.componentClicked}
               callback={this.responseFacebook}
-            />
-          </div>
-        </div>
+            />{' '}
+          </div>{' '}
+        </div>{' '}
       </div>
     );
   }

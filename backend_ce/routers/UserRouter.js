@@ -28,6 +28,7 @@ module.exports = class UserRouter {
 			}
 			const email = req.body.email;
 			const password = req.body.password;
+
 			const result = await this.userService.localLogin(email);
 			if (result[0]) {
 				const passwordMatch = await bcrypt.checkPassword(
@@ -42,7 +43,7 @@ module.exports = class UserRouter {
 					role: result[0].role
 				};
 				const token = jwt.encode(payload, process.env.JWT_SECRET);
-
+				console.log(`User ${result[0].id}: ` + token);
 				return res.json({
 					token: token,
 					role: result[0].role
@@ -136,17 +137,16 @@ module.exports = class UserRouter {
 		}
 	}
 
-	async instructorSignUp(req, res) {
-		if (!req.files) return res.status(400).send('No files were uploaded.');
-		let inputFile = req.files.inputFile;
-		if (inputFile != null) {
+	instructorSignUp(req, res) {
+		if (req.files != null) {
+			const inputFile = req.files.inputFile;
 			const filePath = 'images/' + inputFile.name;
-			inputFile.mv(`${__dirname}/public/${filePath}`, function(err) {
+			inputFile.mv(__dirname + '/../' + filePath, (err) => {
 				if (err) return res.status(500).send(err);
-				return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, filePath, req.body.skills, req.user.id)
-					.then((data) => res.json(data))
-					.catch((err) => res.status(500).json(err));
 			});
+			return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, filePath, req.body.skills, req.user.id)
+				.then((data) => res.json(data))
+				.catch((err) => res.status(500).json(err));
 		} else {
 			return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, null, req.body.skills, req.user.id)
 				.then((data) => res.json(data))

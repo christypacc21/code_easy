@@ -16,8 +16,5 @@ module.exports = (knex) => {
 	app.use(auth.initialize());
 	app.use(fileUpload());
 
-	// require('./init-sessions')(app);
-	// require('./init-passport')(app, knex);
-
 	return app;
 };

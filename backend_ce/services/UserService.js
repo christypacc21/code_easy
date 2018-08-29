@@ -48,22 +48,27 @@ module.exports = class UserService {
 
 	instructorSignUp(education, yearCodeExp, introduction, cert_path, skills, id) {
 		try {
-			const infoInput = this.knex(USERS).insert({
+			this.knex(USERS).update({
 				i_education: education,
 				i_year_codeExp: yearCodeExp,
 				i_introduction: introduction,
 				i_cert_path: cert_path,
-			}).where('id', id).returning('id').catch(function(error) {
+			}).where('id', id).catch(function(error) {
 				console.error(error);
 			});
-			const skillInput = skills.map(skill => this.knex.select('id').from('codingSkills').where('skill', skill).then((skillId) =>
-				this.knex('instructors_skills').insert({
-					instructor_id: id,
-					skill: skillId
-				})));
-			return Promise.all([infoInput, skillInput]).then((data) => {
-				console.log(data);
-				return data;
+
+			const skillInput = skills.map(skill => {
+				return this.knex.select('id').from('codingSkills').where('skill', skill).then(skillId => {
+					// console.log('id: ' + skillId[0].id);
+					return this.knex('instructors_skills').insert({
+						instructor_id: id,
+						codingSkill_id: skillId[0].id
+					}).returning('codingSkill_id');
+				});
+			});
+
+			return Promise.all(skillInput).then((ids) => {
+				return 'codingSkill_ids: ' + ids;
 			});
 		} catch (err) {
 			throw err;

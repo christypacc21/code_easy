@@ -2,7 +2,7 @@ import axios from 'axios';
 // import { SERVER_URL } from '../config';
 
 import { LOGIN, LOGIN_FAIL, LOGOUT } from '../reducers/constants';
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function localSignup(displayName, email, password, role) {
   return async dispatch => {
