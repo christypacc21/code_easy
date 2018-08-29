@@ -124,13 +124,6 @@ class InstructorProfileForm extends Component {
               imgExtension={['.jpg', '.gif', '.png', '.gif']}
               maxFileSize={123242880}
             />
-
-            <input
-              type="file"
-              className="form-control"
-              id="exampleFormControlFile1"
-              placeholder="UploadCertification"
-            />
           </form>
 
           <br />
