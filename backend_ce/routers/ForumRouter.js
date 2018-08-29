@@ -1,9 +1,7 @@
 const express = require('express');
-// const passport = require('passport');
 const app = express();
-app.use(express.static('public'));
-const axios = require('axios');
-require('dotenv').config();
+const authClass = require('../utils/auth');
+const auth = authClass();
 
 module.exports = class ForumRouter {
   constructor(forumService) {
@@ -12,7 +10,13 @@ module.exports = class ForumRouter {
 
   router() {
     let router = express.Router();
-    router.get('/posts', this.getPosts.bind(this));
+    router.get('/posts', auth.authenticate(), this.getPosts.bind(this)); //get all posts
+    // router.post('/posts', auth.authenticate(), this.getPosts.bind(this)); //create(post) a new post
+    // router.get('/posts/:id', auth.authenticate(),this.getPostDetails.bind(this)); //get individual posts and corresponding comments
+    // router.delete('/posts/:id', auth.authenticate(),this.delPost.bind(this)); //delete individual post (won't delete comments)
+
+    // router.post('/comment', auth.authenticate(),this.getPosts.bind(this)); //create(post) a new comment
+    // router.delete('/posts/:id/comments/:comments_id', auth.authenticate(),this.getPosts.bind(this)); //delete a comment
 
     return router;
   }
