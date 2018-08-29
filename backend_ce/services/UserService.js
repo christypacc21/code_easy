@@ -46,17 +46,35 @@ module.exports = class UserService {
 		});
 	}
 
-	instructorSignUp(education, yearCodeExp, introduction, cert_path) {
-		return this.knex(USERS).insert({
-
-		}).returning('id');
+	instructorSignUp(education, yearCodeExp, introduction, cert_path, skills, id) {
+		try {
+			const infoInput = this.knex(USERS).insert({
+				i_education: education,
+				i_year_codeExp: yearCodeExp,
+				i_introduction: introduction,
+				i_cert_path: cert_path,
+			}).where('id', id).returning('id').catch(function(error) {
+				console.error(error);
+			});
+			const skillInput = skills.map(skill => this.knex.select('id').from('codingSkills').where('skill', skill).then((skillId) =>
+				this.knex('instructors_skills').insert({
+					instructor_id: id,
+					skill: skillId
+				})));
+			return Promise.all([infoInput, skillInput]).then((data) => {
+				console.log(data);
+				return data;
+			});
+		} catch (err) {
+			throw err;
+		}
 	}
 
-	// getProfilePic(id){
-	//     return this.knex.select('propic_path').from(USERS).where("id",id);
-	// }
+	getProfilePic(id) {
+		return this.knex.select('profilePic').from(USERS).where('id', id);
+	}
 
-	// uploadProfilePic(id,url){
-	//     return this.knex(USERS).where('id',id).update('propic_path',url);
-	// }
+	uploadProfilePic(id, url) {
+		return this.knex(USERS).where('id', id).update('profilePic', url);
+	}
 };

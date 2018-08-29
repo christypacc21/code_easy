@@ -1,9 +1,9 @@
 const express = require('express');
 const jwt = require('jwt-simple');
-// const passport = require('passport');
 const axios = require('axios');
 const bcrypt = require('../utils/bcrypt');
-require('dotenv').config();
+const authClass = require('../utils/auth');
+const auth = authClass();
 
 module.exports = class UserRouter {
 	constructor(userService) {
@@ -15,9 +15,9 @@ module.exports = class UserRouter {
 		router.post('/login', this.localLogin.bind(this));
 		router.post('/signup', this.localSignUp.bind(this));
 		router.post('/login/facebook', this.facebookLogin.bind(this));
-		router.post('/instructor/signup', this.instructorSignUp.bind(this));
-		// router.get('/user/profilePic', passport.authenticate('jwt', process.env.JWT_SESSION), this.getProfilePic.bind(this));
-		// router.post('/user/profilePic', passport.authenticate('jwt', process.env.JWT_SESSION), this.uploadProfilePic.bind(this));
+		router.post('/instructor/signup', auth.authenticate(), this.instructorSignUp.bind(this));
+		router.get('/user/profilePic', auth.authenticate(), this.getProfilePic.bind(this));
+		router.post('/user/profilePic', auth.authenticate(), this.uploadProfilePic.bind(this));
 		return router;
 	}
 
@@ -137,26 +137,34 @@ module.exports = class UserRouter {
 	}
 
 	async instructorSignUp(req, res) {
-		try {
-
-		} catch (err) {
-
+		if (!req.files) return res.status(400).send('No files were uploaded.');
+		let inputFile = req.files.inputFile;
+		if (inputFile != null) {
+			const filePath = 'images/' + inputFile.name;
+			inputFile.mv(`${__dirname}/public/${filePath}`, function(err) {
+				if (err) return res.status(500).send(err);
+				return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, filePath, req.body.skills, req.user.id)
+					.then((data) => res.json(data))
+					.catch((err) => res.status(500).json(err));
+			});
+		} else {
+			return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, null, req.body.skills, req.user.id)
+				.then((data) => res.json(data))
+				.catch((err) => res.status(500).json(err));
 		}
 	}
 
-	// getProfilePic(req, res) {
-	// 	this.userService.getProfilePic(req.user.id)
-	// 		.then((result) => {
-	// 			res.json({
-	// 				profilePic: result[0]
-	// 			});
-	// 		});
-	// }
+	getProfilePic(req, res) {
+		return this.userService.getProfilePic(req.user.id)
+			.then((data) => res.json({
+				profilePic: data[0]
+			}))
+			.catch((err) => res.status(500).json(err));
+	}
 
-	// uploadProfilePic(req, res) {
-	// 	this.userService.uploadProfilePic(req.user.id, req.body)
-	// 		.then((result) => {
-	// 			res.json(result);
-	// 		});
-	// }
+	uploadProfilePic(req, res) {
+		return this.userService.uploadProfilePic(req.user.id, req.body)
+			.then((data) => res.json(data))
+			.catch((err) => res.status(500).json(err));
+	}
 };
