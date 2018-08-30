@@ -5,7 +5,13 @@ class CommentCard extends Component {
   render() {
     return (
       <div>
-        <p>List of comments here </p>
+        <div>
+          <p>user propic </p>
+          <p>username</p>
+          <p>comment dateTime</p>
+          <p>comment content</p>
+          <p>image or files (image_path)(if any)</p>
+        </div>
       </div>
     );
   }

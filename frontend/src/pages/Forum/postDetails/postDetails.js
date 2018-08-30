@@ -12,8 +12,11 @@ class PostDetails extends Component {
           Back to posts
         </a>
         <PostDetailsCard />
-        <CommentList />
-        <CommentForm />
+        <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
+          <p>CommentList here:</p>
+          <CommentList />
+          <CommentForm />
+        </div>
       </div>
     );
   }

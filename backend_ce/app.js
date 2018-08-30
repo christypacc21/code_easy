@@ -8,17 +8,9 @@ const knex = require('knex')(knexFile);
 const app = require('./utils/init-app')(knex);
 
 // Dependency Injection for Routers and Service
-const {
-	UserRouter,
-	ForumRouter,
-	QuestionRouter
-} = require('./routers');
+const { UserRouter, ForumRouter, QuestionRouter } = require('./routers');
 
-const {
-	UserService,
-	ForumService,
-	QuestionService
-} = require('./services');
+const { UserService, ForumService, QuestionService } = require('./services');
 
 let userService = new UserService(knex);
 let forumService = new ForumService(knex);
