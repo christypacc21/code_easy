@@ -19,22 +19,22 @@ module.exports = class ForumService {
       .count('forumComments.post_id'); //for counting how many comments the post has(?)
   }
 
-  createPost() {
+  createPost(user_id, title, content) {
     const data = {
-      user_id: req.user.id,
-      title: req.body.title,
-      content: req.body.content,
+      user_id,
+      title,
+      content,
       image_path: null
     };
     return this.knex.insert(data).into('forumPosts');
   }
 
-  getPostDetails() {
+  getPostDetails() { //not yet built
     return this.knex;
   }
 
   delPost() {
-    //delpost but not del post's commments
+    //delpost but not del post's commments(?)
     return this.knex('posts')
       .where('id', req.params.id)
       .where('posts.user_id', req.user.id)
@@ -42,11 +42,11 @@ module.exports = class ForumService {
   }
 
   //----------two services about forum's indiv posts' comments----------
-  postComments() {
+  postComments(user_id, post_id, content) {
     const data = {
-      user_id: req.user.id,
-      post_id: req.params.id,
-      content: req.body.content,
+      user_id,
+      post_id,
+      content,
       image_path: null
     };
     return this.knex.insert(data).into('forumComments');

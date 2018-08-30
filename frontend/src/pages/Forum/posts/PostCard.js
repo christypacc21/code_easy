@@ -1,3 +1,4 @@
+// func component ?
 import React from 'react';
 
 const PostCard = () => {
@@ -10,7 +11,9 @@ const PostCard = () => {
         <h5 className="card-title">Post 1 Title</h5>
         <p className="card-text">Post 1 Content</p>
         <p className="card-text">Post 1 Image</p>
-        <a className="btn btn-primary">Press into Post 1 details</a>
+        <a className="btn btn-primary" href="/postDetails">
+          Press into Post 1 details
+        </a>
       </div>
     </div>
   );

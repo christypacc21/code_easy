@@ -1,14 +1,17 @@
+// class component
 import React, { Component } from 'react';
-import PostCard from './Fcomponents/PostCard';
-// import PostCardList from './Fcomponents/PostCardList';
-import SearchBar from './Fcomponents/SearchBar';
+import PostCard from './PostCard';
+import PostCardList from './PostCardList';
+import SearchBar from './SearchBar';
 
 class Posts extends Component {
   render() {
     return (
       <div>
         <div>
-          <a className="btn btn-primary">Create Post!</a>
+          <a className="btn btn-primary" href="/createPost">
+            Create Post!
+          </a>
         </div>
         <SearchBar />
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
@@ -28,7 +31,7 @@ class Posts extends Component {
                 <div className="card col-sm-4">
                   <PostCard />
                 </div>
-                {/* <PostCardList /> */}
+                <PostCardList />
               </div>
             </div>
           </div>

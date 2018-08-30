@@ -1,17 +1,20 @@
+//test db
+// how to link to frontend
+// frontend how mui gor react page/componentneeda use redux / async redux thunk???
 const express = require('express');
 const app = express();
 const authClass = require('../utils/auth');
 const auth = authClass();
 
 module.exports = class ForumRouter {
-  constructor(forumService) { // where does "forumService" come from? dun needa import from other folder?
+  constructor(forumService) {
     this.forumService = forumService;
   }
 
   router() {
     let router = express.Router();
-    router.get('/posts', auth.authenticate(), this.getPosts.bind(this)); //get all posts
-    router.post('/posts', auth.authenticate(), this.createPost.bind(this)); //create(post) a new post
+    router.get('/posts', this.getPosts.bind(this)); //get all posts
+    router.post('/posts', this.createPost.bind(this)); //create(post) a new post
     router.get(
       '/posts/:id',
       auth.authenticate(),
@@ -47,38 +50,49 @@ module.exports = class ForumRouter {
 
   createPost(req, res) {
     return this.forumService
-      .createPost()
-      .then(data => {
-        // res.send(data); //?
-        res.redirect('/posts');
-      })
+      .createPost(req.user.id, req.body.title, req.body.content)
+      .then(() => res.json({ success: true }))
       .catch(err => {
         console.log('createPost error: ', err);
-        res.redirect('/posts');
+        res.status(500).json(err);
       });
   }
 
-  getPostDetails(req, res) {
+  getPostDetails(req, res) { //not yet built
     return this.forumService.getPostDetail();
     // .then(postDetails => res.json(postDetails))
     // .catch(err => res.status(500).json(err));
   }
 
   delPost(req, res) {
-    return this.forumService.delPost().then(() => res.redirect('/posts/')); // needa /api/forum/posts?
+    return this.forumService
+      .delPost()
+      .then(() => res.json({ success: true }))
+      .catch(err => {
+        console.log('delPost error: ', err);
+        res.status(500).json(err);
+      });
   }
 
   //----------two routes about forum's indiv posts' comments----------
   postComments(req, res) {
     return this.forumService
-      .postComments()
-      .then(() => res.redirect('/posts/' + req.params.id)); //?
+      .postComments(req.user.id, req.params.id, req.body.content)
+      .then(() => res.json({ success: true }))
+      .catch(err => {
+        console.log('postComments error: ', err);
+        res.status(500).json(err);
+      });
   }
 
   delComment(req, res) {
     return this.forumService
       .delComments()
-      .then(() => res.redirect('/posts/' + req.params.id)); //?
+      .then(() => res.json({ success: true }))
+      .catch(err => {
+        console.log('delComment error: ', err);
+        res.status(500).json(err);
+      });
   }
   //----------two routes about getting my post and my comments (with identifying user id)----------
   getMyPosts(req, res) {
@@ -87,19 +101,17 @@ module.exports = class ForumRouter {
       .then(myposts => res.json(myposts))
       .catch(err => {
         console.log('getMyPosts error: ', err);
-        res.status(500).json(err); //can res.status n  res.redirect both exist?
-        res.redirect('/posts');
+        res.status(500).json(err);
       });
   }
 
   getMyComments(req, res) {
     return this.forumService
-      .getMyComments()
-      .then(mycomments => res.json(mycomments))
-      .catch(err => {
-        console.log('getMyComments error: ', err);
-        res.status(500).json(err); //can res.status n  res.redirect both exist?
-        res.redirect('/posts');
-      });
+    .getMyComments()
+    .then(mycomments => res.json(mycomments))
+    .catch(err => {
+      console.log('getMyComments error:', err);
+      res.status(500).json(err);
+    })
   }
 };
