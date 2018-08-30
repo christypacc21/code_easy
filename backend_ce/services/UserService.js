@@ -1,4 +1,6 @@
 const USERS = require('./tables').USERS;
+const CODINGSKILLS = require('./tables').CODINGSKILLS;
+const INSTRUCTORS_SKILLS = require('./tables').INSTRUCTORS_SKILLS;
 
 module.exports = class UserService {
 	constructor(knex) {
@@ -58,17 +60,17 @@ module.exports = class UserService {
 			});
 
 			const skillInput = skills.map(skill => {
-				return this.knex.select('id').from('codingSkills').where('skill', skill).then(skillId => {
+				return this.knex.select('id').from(CODINGSKILLS).where('skill', skill).then(skillId => {
 					// console.log('id: ' + skillId[0].id);
-					return this.knex('instructors_skills').insert({
+					return this.knex(INSTRUCTORS_SKILLS).insert({
 						instructor_id: id,
 						codingSkill_id: skillId[0].id
-					}).returning('codingSkill_id');
+					}).returning('instructor_id');
 				});
 			});
 
-			return Promise.all(skillInput).then((ids) => {
-				return 'codingSkill_ids: ' + ids;
+			return Promise.all(skillInput).then((id) => {
+				return 'Profile done for instructor id: ' + id;
 			});
 		} catch (err) {
 			throw err;

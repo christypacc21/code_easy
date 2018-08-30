@@ -154,7 +154,7 @@ module.exports = class UserRouter {
 	instructorSignUp(req, res) {
 		if (req.files != null) {
 			const inputFile = req.files.inputFile;
-			const filePath = 'images/' + inputFile.name;
+			const filePath = 'images/instructor/' + inputFile.name;
 			inputFile.mv(__dirname + '/../' + filePath, (err) => {
 				if (err) return res.status(500).send(err);
 			});
