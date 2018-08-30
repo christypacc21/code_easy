@@ -9,12 +9,33 @@ module.exports = class QuestionRouter {
 
 	router() {
 		let router = express.Router();
+		router.get(
+			'/credit/check',
+			auth.authenticate(),
+			this.getCreditBalance.bind(this)
+		);
 		router.post(
 			'/create',
 			auth.authenticate(),
 			this.postQuestion.bind(this)
 		);
 		return router;
+	}
+
+	getCreditBalance(req, res) {
+		return this.questionService
+			.checkCredit(req.user.id)
+			.then(credit =>
+				res.json({
+					success: true,
+					credit: credit
+				})
+			)
+			.catch(err => res.status(500).json({
+				success: false,
+				message: err.message,
+				error: err
+			}));
 	}
 
 	postQuestion(req, res) {
@@ -24,31 +45,13 @@ module.exports = class QuestionRouter {
 			inputFile.mv(__dirname + '/../' + filePath, (err) => {
 				if (err) return res.status(500).send(err);
 			});
-			return this.questionService.createQuestion(req.body.education, req.body.yearCodeExp, req.body.introduction, filePath, req.body.skills, req.user.id)
+			return this.questionService.createQuestion(req.user.id, req.body.content, filePath, req.body.skills)
 				.then((data) => res.json(data))
 				.catch((err) => res.status(500).json(err));
 		} else {
-			return this.userService.createQuestion(req.body.education, req.body.yearCodeExp, req.body.introduction, null, req.body.skills, req.user.id)
+			return this.questionService.createQuestion(req.user.id, req.body.content, null, req.body.skills)
 				.then((data) => res.json(data))
 				.catch((err) => res.status(500).json(err));
 		}
-	}
-
-	getProfilePic(req, res) {
-		return this.userService
-			.getProfilePic(req.user.id)
-			.then(data =>
-				res.json({
-					profilePic: data[0]
-				})
-			)
-			.catch(err => res.status(500).json(err));
-	}
-
-	uploadProfilePic(req, res) {
-		return this.userService
-			.uploadProfilePic(req.user.id, req.body)
-			.then(data => res.json(data))
-			.catch(err => res.status(500).json(err));
 	}
 };

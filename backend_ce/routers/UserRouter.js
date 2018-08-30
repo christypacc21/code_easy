@@ -64,6 +64,7 @@ module.exports = class UserRouter {
 				return res.status(401).send('User not found');
 			}
 		} catch (err) {
+			console.error(err);
 			return res.status(401).json(err);
 		}
 	}
@@ -96,6 +97,7 @@ module.exports = class UserRouter {
 				role: userInfo[0].role
 			});
 		} catch (err) {
+			console.error(err);
 			return res.status(401).json(err);
 		}
 	}

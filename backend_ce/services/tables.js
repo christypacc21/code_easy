@@ -1,3 +1,5 @@
-export const USERS = 'users';
-export const CODINGSKILLS = 'codingSkills';
-export const INSTRUCTORS_SKILLS = 'instructors_skills';
+module.exports.USERS = 'users';
+module.exports.CODINGSKILLS = 'codingSkills';
+module.exports.INSTRUCTORS_SKILLS = 'instructors_skills';
+module.exports.QUESTIONS = 'questions';
+module.exports.QUESTIONS_SKILLS = 'questions_skills';

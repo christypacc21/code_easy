@@ -55,9 +55,7 @@ module.exports = class UserService {
 				i_year_codeExp: yearCodeExp,
 				i_introduction: introduction,
 				i_cert_path: cert_path,
-			}).where('id', id).catch(function(error) {
-				console.error(error);
-			});
+			}).where('id', id);
 
 			const skillInput = skills.map(skill => {
 				return this.knex.select('id').from(CODINGSKILLS).where('skill', skill).then(skillId => {
@@ -73,6 +71,7 @@ module.exports = class UserService {
 				return 'Profile done for instructor id: ' + id;
 			});
 		} catch (err) {
+			console.error(err);
 			throw err;
 		}
 	}
