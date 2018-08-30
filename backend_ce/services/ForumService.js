@@ -24,20 +24,22 @@ module.exports = class ForumService {
       user_id: req.user.id,
       title: req.body.title,
       content: req.body.content,
-      image_path: null,
-    }
-    return this.knex
-    .insert(data)
-    .into('forumPosts')
+      image_path: null
+    };
+    return this.knex.insert(data).into('forumPosts');
   }
 
-  // getPostDetails() {
-  //   return this.knex;
-  // }
+  getPostDetails() {
+    return this.knex;
+  }
 
-  // delPost() {
-  //   return this.knex;
-  // }
+  delPost() {
+    //delpost but not del post's commments
+    return this.knex('posts')
+      .where('id', req.params.id)
+      .where('posts.user_id', req.user.id)
+      .delete();
+  }
 
   //----------two services about forum's indiv posts' comments----------
   postComments() {
@@ -45,32 +47,32 @@ module.exports = class ForumService {
       user_id: req.user.id,
       post_id: req.params.id,
       content: req.body.content,
-      image_path: null,
-    }
-    return this.knex
-    .insert(data)
-    .into('forumComments');
+      image_path: null
+    };
+    return this.knex.insert(data).into('forumComments');
   }
 
-  delComments() {
+  delComment() {
     return this.knex
-    .select()
-    .from('forumComments')
-    .where('id', req.params.comments_id)
-    .where('user_id', req.user.id)
-    .delete()
+      .select()
+      .from('forumComments')
+      .where('id', req.params.comments_id)
+      .where('user_id', req.user.id)
+      .delete();
   }
 
   //----------two services about getting my post and my comments (with identifying user id)----------
   getMyPosts() {
-    return this.knex;
+    return this.knex
+      .select()
+      .from('forumPosts')
+      .where('user_id', req.user.id);
   }
+
   getMyComments() {
-    return this.knex('forumComments')
-      .where('user_id', req.user.id)
-      .then(comments => {
-        res.json(comments);
-      });
+    return this.knex
+      .select()
+      .from('forumComments')
+      .where('user_id', req.user.id);
   }
 };
-

@@ -4,22 +4,34 @@ const authClass = require('../utils/auth');
 const auth = authClass();
 
 module.exports = class ForumRouter {
-  constructor(forumService) {
+  constructor(forumService) { // where does "forumService" come from? dun needa import from other folder?
     this.forumService = forumService;
   }
 
   router() {
     let router = express.Router();
     router.get('/posts', auth.authenticate(), this.getPosts.bind(this)); //get all posts
-    router.post('/posts', this.createPost.bind(this)); //create(post) a new post
-    // router.get('/posts/:id', auth.authenticate(),this.getPostDetails.bind(this)); //get individual posts and corresponding comments
-    //// router.delete('/posts/:id', auth.authenticate(),this.delPost.bind(this)); //delete individual post (won't delete comments)
+    router.post('/posts', auth.authenticate(), this.createPost.bind(this)); //create(post) a new post
+    router.get(
+      '/posts/:id',
+      auth.authenticate(),
+      this.getPostDetails.bind(this)
+    ); //get individual posts and corresponding comments
+    router.delete('/posts/:id', auth.authenticate(), this.delPost.bind(this)); //delete individual post (won't delete comments) (?)
 
     router.post('/comment', auth.authenticate(), this.postComments.bind(this)); //create(post) a new comment
-    // router.delete('/posts/:id/comments/:comments_id', auth.authenticate(),this.delComment.bind(this)); //delete a comment
+    router.delete(
+      '/posts/:id/comments/:comments_id',
+      auth.authenticate(),
+      this.delComment.bind(this)
+    ); //delete a comment
 
-    // router.get('/myposts', auth.authenticate(),this.getMyPosts.bind(this)); //get myPosts
-    // router.get('/mycomments', auth.authenticate(),this.getMyComments.bind(this)); //get myComments
+    router.get('/myposts', auth.authenticate(), this.getMyPosts.bind(this)); //get myPosts
+    router.get(
+      '/mycomments',
+      auth.authenticate(),
+      this.getMyComments.bind(this)
+    ); //get myComments
 
     return router;
   }
@@ -37,24 +49,24 @@ module.exports = class ForumRouter {
     return this.forumService
       .createPost()
       .then(data => {
-        res.send(data);//?
-        // res.redirect('/posts');
+        // res.send(data); //?
+        res.redirect('/posts');
       })
       .catch(err => {
-        console.log('insert post error: ', err);
+        console.log('createPost error: ', err);
         res.redirect('/posts');
       });
   }
 
-  // getPostDetails(req, res) {
-  //   return this.forumService.getPostDetail();
-  //   // .then(postDetails => res.json(postDetails))
-  //   // .catch(err => res.status(500).json(err));
-  // }
+  getPostDetails(req, res) {
+    return this.forumService.getPostDetail();
+    // .then(postDetails => res.json(postDetails))
+    // .catch(err => res.status(500).json(err));
+  }
 
-  // delPost(req, res) {
-  //   return this.forumService.delPost();
-  // }
+  delPost(req, res) {
+    return this.forumService.delPost().then(() => res.redirect('/posts/')); // needa /api/forum/posts?
+  }
 
   //----------two routes about forum's indiv posts' comments----------
   postComments(req, res) {
@@ -63,7 +75,7 @@ module.exports = class ForumRouter {
       .then(() => res.redirect('/posts/' + req.params.id)); //?
   }
 
-  delComments(req, res) {
+  delComment(req, res) {
     return this.forumService
       .delComments()
       .then(() => res.redirect('/posts/' + req.params.id)); //?
@@ -73,13 +85,21 @@ module.exports = class ForumRouter {
     return this.forumService
       .getMyPosts()
       .then(myposts => res.json(myposts))
-      .catch(err => res.status(500).json(err));
+      .catch(err => {
+        console.log('getMyPosts error: ', err);
+        res.status(500).json(err); //can res.status n  res.redirect both exist?
+        res.redirect('/posts');
+      });
   }
 
   getMyComments(req, res) {
     return this.forumService
       .getMyComments()
       .then(mycomments => res.json(mycomments))
-      .catch(err => res.status(500).json(err));
+      .catch(err => {
+        console.log('getMyComments error: ', err);
+        res.status(500).json(err); //can res.status n  res.redirect both exist?
+        res.redirect('/posts');
+      });
   }
 };
