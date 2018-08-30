@@ -7,16 +7,16 @@ class CommentList extends Component {
     return (
       <div className="CommentList">
         <div className="row">
-          <div className="card col-sm-6">
+          <div className="card col-sm-12">
             <CommentCard />
           </div>
-          <div className="card col-sm-6">
+          <div className="card col-sm-12">
             <CommentCard />
           </div>
-          <div className="card col-sm-6">
+          <div className="card col-sm-12">
             <CommentCard />
           </div>
-          <div className="card col-sm-6">
+          <div className="card col-sm-12">
             <CommentCard />
           </div>
         </div>

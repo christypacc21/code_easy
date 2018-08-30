@@ -5,7 +5,15 @@ class PostDetailsCard extends Component {
   render() {
     return (
       <div>
-        <p>individual post details card here</p>
+        <div className="card col-sm-12">
+          <p>user propic</p>
+          <p>username</p>
+          <p>post Title</p>
+          <p>post Image(/file) (if any)</p>
+          <p>post DateTime</p>
+          <p>post Content (Full)</p>
+          <p>(no. of comments)</p>
+        </div>
       </div>
     );
   }

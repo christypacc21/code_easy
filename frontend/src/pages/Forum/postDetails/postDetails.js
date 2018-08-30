@@ -9,11 +9,16 @@ class PostDetails extends Component {
     return (
       <div>
         <a className="btn btn-primary " href="/posts">
-          Back to posts
+          Back to forum(posts)
         </a>
-        <PostDetailsCard />
+
+        <div className="jumbotron" style={{ margin: 0, background: '#D3D3D3' }}>
+          <p>GET and Show individual post details card here</p>
+          <PostDetailsCard />
+        </div>
+
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
-          <p>CommentList here:</p>
+          <p>GET and show CommentList here:</p>
           <CommentList />
           <CommentForm />
         </div>

@@ -4,6 +4,15 @@ import PostCardList from './PostCardList';
 import SearchBar from './SearchBar';
 
 class Posts extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { posts: '' };
+  // }
+
+  // postSearch(posts){
+  //   this.setState
+  // }
+
   render() {
     return (
       <div>
@@ -12,10 +21,11 @@ class Posts extends Component {
             Create Post!
           </a>
         </div>
+        {/* <SearchBar onSearchTermChange={postSearch} /> */}
         <SearchBar />
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           {/* <div className="container"> */}
-          <div>Posts Lists:</div>
+          <div>GET and show Posts Lists (list of posts):</div>
           <PostCardList />
           {/* </div> */}
           <button

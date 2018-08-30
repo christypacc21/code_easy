@@ -32,9 +32,11 @@ class CommentForm extends Component {
             />
           </form>
           <br />
-          <a type="submit" className="btn btn-primary">
-            Send
-          </a>
+          <input
+            type="submit"
+            class="btn btn-primary btn-sm btn-block"
+            value="send"
+          />
         </div>
       </div>
     );

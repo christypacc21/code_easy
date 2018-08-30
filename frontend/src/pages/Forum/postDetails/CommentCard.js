@@ -8,9 +8,16 @@ class CommentCard extends Component {
         <div>
           <p>user propic </p>
           <p>username</p>
-          <p>comment dateTime</p>
-          <p>comment content</p>
-          <p>image or files (image_path)(if any)</p>
+          <p>comment DateTime</p>
+          <p>comment Content</p>
+          <p>comment Image (or files) (image_path)(if any)</p>
+          {/* <form
+            action="/posts/{{post_id}}/comments/{{id}}?_method=DELETE"
+            method="post"
+            style="float:right"
+          > */}
+          {/* <button class="btn btn-danger btn-sm">Delete advice</button> */}
+          {/* </form> */}
         </div>
       </div>
     );
