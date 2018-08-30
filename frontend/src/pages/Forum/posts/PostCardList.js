@@ -4,7 +4,16 @@ import PostCard from './PostCard';
 
 const PostCardList = () => {
   return (
-    <div>
+    <div className="row">
+      <div className="card col-sm-4">
+        <PostCard />
+      </div>
+      <div className="card col-sm-4">
+        <PostCard />
+      </div>
+      <div className="card col-sm-4">
+        <PostCard />
+      </div>
       <div className="card col-sm-4">
         <PostCard />
       </div>

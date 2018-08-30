@@ -21,8 +21,8 @@ class Posts extends Component {
             </div>
 
             <div className="PostCardList">
-              <div className="row">
-                <div className="card col-sm-4">
+              {/* <div className="row"> */}
+              {/* <div className="card col-sm-4">
                   <PostCard />
                 </div>
                 <div className="card col-sm-4">
@@ -30,9 +30,9 @@ class Posts extends Component {
                 </div>
                 <div className="card col-sm-4">
                   <PostCard />
-                </div>
-                <PostCardList />
-              </div>
+                </div> */}
+              <PostCardList />
+              {/* </div> */}
             </div>
           </div>
         </div>
