@@ -10,13 +10,15 @@ module.exports = class ForumService {
     // if (req.query.sort != null) {
     //     sort = req.query.sort;
     //   }
-    return this.knex
-      .select('*')
-      .from('forumPosts')
-      .join('users', 'users.id', 'forumPosts.user_id')
-      .groupBy('forumPosts.id') //?
-      .orderBy('forumPosts.created_at', 'aesc')
-      .count('forumComments.post_id'); //for counting how many comments the post has(?)
+    return (
+      this.knex
+        .select('*')
+        .from('forumPosts')
+        .join('users', 'users.id', 'forumPosts.user_id')
+        // .groupBy('forumPosts.id') //?
+        .orderBy('forumPosts.created_at', 'aesc')
+        .count('forumComments.post_id')
+    ); //for counting how many comments the post has(?)
   }
 
   createPost(user_id, title, content) {
@@ -29,7 +31,8 @@ module.exports = class ForumService {
     return this.knex.insert(data).into('forumPosts');
   }
 
-  getPostDetails() { //not yet built
+  getPostDetails() {
+    //not yet built
     return this.knex;
   }
 
