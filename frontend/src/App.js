@@ -19,6 +19,7 @@ import MultipleSelect from './pages/Signup/MultipleSelect';
 import CreatePost from './pages/Forum/createPost';
 import PostDetails from './pages/Forum/postDetails';
 import Posts from './pages/Forum/posts';
+// import CreateQuestion from './pages/CreateQuestion/home';
 
 class App extends Component {
   render() {
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/createPost" component={CreatePost} />
             <Route exact path="/pricing" component={Pricing} />
             <Route exact path="/contact" component={Contact} />
+            {/* <Route exact path="/CreateQuestion" component={CreateQuestion} /> */}
             <Route
               exact
               path="/instructor-profileForm"
