@@ -19,7 +19,11 @@ class PureLogin extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.user && this.props.user !== prevProps.user) {
-      this.props.history.push('/profile');
+      if (this.props.user.user.role === 'student') {
+        this.props.history.push('/createQuestion');
+      } else {
+        this.props.history.push('/profile'); //instructor after sign up>take order
+      }
     }
   }
 
