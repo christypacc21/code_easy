@@ -37,8 +37,9 @@ module.exports = class UserService {
 			email,
 			profilePic,
 			role // role is not nullable
-		}).returning('id').catch(function(error) {
-			console.error(error);
+		}).returning('id').catch(err => {
+			// console.error(err);
+			throw err;
 		});
 	}
 
@@ -68,10 +69,10 @@ module.exports = class UserService {
 			});
 
 			return Promise.all(skillInput).then((id) => {
-				return 'Profile done for instructor id: ' + id;
+				return 'Profile done for instructor id: ' + id[0][0];
 			});
 		} catch (err) {
-			console.error(err);
+			// console.error(err);
 			throw err;
 		}
 	}

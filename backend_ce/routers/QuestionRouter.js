@@ -46,12 +46,26 @@ module.exports = class QuestionRouter {
 				if (err) return res.status(500).send(err);
 			});
 			return this.questionService.createQuestion(req.user.id, req.body.content, filePath, req.body.skills)
-				.then((data) => res.json(data))
-				.catch((err) => res.status(500).json(err));
+				.then((questionId) => res.json({
+					success: true,
+					questionId
+				}))
+				.catch((err) => res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				}));
 		} else {
 			return this.questionService.createQuestion(req.user.id, req.body.content, null, req.body.skills)
-				.then((data) => res.json(data))
-				.catch((err) => res.status(500).json(err));
+				.then((questionId) => res.json({
+					success: true,
+					questionId
+				}))
+				.catch((err) => res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				}));
 		}
 	}
 };

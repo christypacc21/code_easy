@@ -40,31 +40,40 @@ module.exports = class UserRouter {
 			}
 			const email = req.body.email;
 			const password = req.body.password;
-			const result = await this.userService.localLogin(email);
-			if (result[0]) {
+			const userInfo = await this.userService.localLogin(email);
+			if (userInfo[0]) {
 				const passwordMatch = await bcrypt.checkPassword(
 					password,
-					result[0].password
+					userInfo[0].password
 				);
 				if (!passwordMatch) {
 					return res.status(401).send('Incorrect password');
 				}
 				const payload = {
-					id: result[0].id,
-					role: result[0].role
+					id: userInfo[0].id,
+					role: userInfo[0].role
 				};
 				const token = jwt.encode(payload, process.env.JWT_SECRET);
 
 				return res.json({
-					id: result[0].id,
-					token: token,
-					role: result[0].role
+					id: userInfo[0].id,
+					displayName: userInfo[0].display_name,
+					profilePic: userInfo[0].profilePic,
+					role: userInfo[0].role,
+					sQuestionCredit: userInfo[0].s_questionsCanAsk,
+					iBalance: userInfo[0].i_balance,
+					iEducation: userInfo[0].i_education,
+					iYearOfCodeExp: userInfo[0].i_year_codeExp,
+					iIntroduction: userInfo[0].i_introduction,
+					iNumRating: userInfo[0].i_num_rating,
+					iTotalRating: userInfo[0].i_total_rating,
+					token
 				});
 			} else {
 				return res.status(401).send('User not found');
 			}
 		} catch (err) {
-			console.error(err);
+			// console.error(err);
 			return res.status(401).json(err);
 		}
 	}
@@ -97,7 +106,7 @@ module.exports = class UserRouter {
 				role: userInfo[0].role
 			});
 		} catch (err) {
-			console.error(err);
+			// console.error(err);
 			return res.status(401).json(err);
 		}
 	}
@@ -139,8 +148,17 @@ module.exports = class UserRouter {
 					console.log('Facebook Login User Id: ' + userId);
 					return res.json({
 						id: userId,
-						token,
-						role: userInfo[0].role
+						displayName: userInfo[0].display_name,
+						profilePic: userInfo[0].profilePic,
+						role: userInfo[0].role,
+						sQuestionCredit: userInfo[0].s_questionsCanAsk,
+						iBalance: userInfo[0].i_balance,
+						iEducation: userInfo[0].i_education,
+						iYearOfCodeExp: userInfo[0].i_year_codeExp,
+						iIntroduction: userInfo[0].i_introduction,
+						iNumRating: userInfo[0].i_num_rating,
+						iTotalRating: userInfo[0].i_total_rating,
+						token
 					});
 				} else {
 					return res.status(401).send('Invalid facebook access token');
