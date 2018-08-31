@@ -1,7 +1,4 @@
 const express = require('express');
-const jwt = require('jwt-simple');
-const axios = require('axios');
-const bcrypt = require('../utils/bcrypt');
 
 module.exports = class UserRouter {
 	constructor(userService) {
