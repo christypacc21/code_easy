@@ -16,10 +16,17 @@ import InstructorSignup from './pages/Signup/instructor-signup';
 import InstructorProfileForm from './pages/Signup/instructor-profileForm';
 import UserSignup from './pages/Signup/user-signup';
 import MultipleSelect from './pages/Signup/MultipleSelect';
+<<<<<<< HEAD
 import CreatePost from './pages/Forum/createPost';
 import PostDetails from './pages/Forum/postDetails';
 import Posts from './pages/Forum/posts';
 import CreateQuestion from './pages/CreateQuestion/home';
+=======
+import CreatePost from './pages/Forum/createPost/createPost';
+import PostDetails from './pages/Forum/postDetails/postDetails';
+import Posts from './pages/Forum/posts/posts';
+// import CreateQuestion from './pages/CreateQuestion/home';
+>>>>>>> master
 
 class App extends Component {
   render() {

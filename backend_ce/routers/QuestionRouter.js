@@ -1,6 +1,4 @@
 const express = require('express');
-const authClass = require('../utils/auth');
-const auth = authClass();
 
 module.exports = class QuestionRouter {
 	constructor(questionService) {
@@ -9,16 +7,8 @@ module.exports = class QuestionRouter {
 
 	router() {
 		let router = express.Router();
-		router.get(
-			'/credit/check',
-			auth.authenticate(),
-			this.getCreditBalance.bind(this)
-		);
-		router.post(
-			'/create',
-			auth.authenticate(),
-			this.postQuestion.bind(this)
-		);
+		router.get('/credit/check', this.getCreditBalance.bind(this));
+		router.post('/create', this.postQuestion.bind(this));
 		return router;
 	}
 
@@ -45,13 +35,28 @@ module.exports = class QuestionRouter {
 			inputFile.mv(__dirname + '/../' + filePath, (err) => {
 				if (err) return res.status(500).send(err);
 			});
+
 			return this.questionService.createQuestion(req.user.id, req.body.content, filePath, req.body.skills)
-				.then((data) => res.json(data))
-				.catch((err) => res.status(500).json(err));
+				.then((questionId) => res.json({
+					success: true,
+					questionId
+				}))
+				.catch((err) => res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				}));
 		} else {
 			return this.questionService.createQuestion(req.user.id, req.body.content, null, req.body.skills)
-				.then((data) => res.json(data))
-				.catch((err) => res.status(500).json(err));
+				.then((questionId) => res.json({
+					success: true,
+					questionId
+				}))
+				.catch((err) => res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				}));
 		}
 	}
 };
