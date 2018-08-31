@@ -3,11 +3,9 @@ const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
-const authClass = require('./auth');
 
-module.exports = (knex) => {
+module.exports = (auth) => {
 	const app = express();
-	const auth = authClass(knex);
 
 	app.use(logger('dev'));
 	app.use(cors());
@@ -15,8 +13,8 @@ module.exports = (knex) => {
 	app.use(bodyParser.urlencoded({
 		extended: true
 	}));
-	app.use(auth.initialize());
 	app.use(fileUpload());
+	app.use(auth.initialize());
 
 	return app;
 };

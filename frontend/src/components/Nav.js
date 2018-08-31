@@ -1,8 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as UserAction from '../redux/actions/userActions';
+import { Link, withRouter } from 'react-router-dom';
 
 class Nav extends React.Component {
+  question = () => {
+    if (this.props.user && this.props.user.user) {
+      return (
+        <li className="nav-item">
+          <Link
+            className="nav-link"
+            to="/CreateQuestion"
+            // onClick={() => this.props.history.push('/CreateQuestion')}
+          >
+            Question
+          </Link>
+        </li>
+      );
+    }
+    return null;
+  };
+
   loginOrLogout = () => {
     if (this.props.user && this.props.user.user) {
       return (
@@ -16,14 +34,14 @@ class Nav extends React.Component {
     return (
       <React.Fragment>
         <li className="nav-item">
-          <a className="nav-link" href="/login">
+          <Link className="nav-link" to="/login">
             Login
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/signup">
+          <Link className="nav-link" to="/signup">
             Sign Up
-          </a>
+          </Link>
         </li>
       </React.Fragment>
     );
@@ -32,9 +50,9 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{}}>
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           CodeEasy
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -46,29 +64,27 @@ class Nav extends React.Component {
         >
           <span className="navbar-toggler-icon" />
         </button>
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
+            {this.question()}
             <li className="nav-item">
-              <a className="nav-link" href="/pricing">
+              <Link className="nav-link" to="/pricing">
                 Pricing
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link " href="/posts">
+              <Link className="nav-link " to="/posts">
                 Coding Community
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link " href="/contact">
+              <Link className="nav-link " to="/contact">
                 Contact Us
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link " href="/CreateQuestion">
-                Create Question
-              </a>
-            </li>
+
             {this.loginOrLogout()}
           </ul>
         </div>
@@ -83,7 +99,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  UserAction
-)(Nav);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    UserAction
+  )(Nav)
+);
