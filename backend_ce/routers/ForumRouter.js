@@ -40,7 +40,7 @@ module.exports = class ForumRouter {
       .catch(err => res.status(500).json(err));
   }
 
-  //ok, can createPost
+  //ok, can createPost to db
   createPost(req, res) {
     return this.forumService
       .createPost(
@@ -63,9 +63,39 @@ module.exports = class ForumRouter {
     // .catch(err => res.status(500).json(err));
   }
 
+  //   ///////////////////////
+  //   app.get('/posts/:id', authHelpers.loginRequired, async (req, res) => {
+  //   const id = req.params.id;
+  //   const post = await knex('posts').where('id', id);
+  //   const allAdvices = await knex('advices').where('post_id', id);
+
+  //   Promise.all([post, allAdvices])
+  //     .then(results => {
+  //       for (let i = 0; i < results[1].length; i++) {
+  //         results[1][i].isAdviceMine = (req.user.id === results[1][i].user_id);
+  //       }
+  //       if (results[1][0] != undefined) {
+  //         res.render('postdetails', {
+  //           details: results[0][0],
+  //           advices: results[1],
+  //           isMine: req.user.id == results[0][0].user_id, //abt button of update showing logic //first post in the array of "post"
+  //           // isAdviceMine: req.user.id == results[1][0].user_id, //first advice in the array of "advices"
+  //         });
+  //       } else {
+  //         res.render('postdetails', {
+  //           details: results[0][0],
+  //           advices: results[1],
+  //           isMine: req.user.id == results[0][0].user_id, //abt button of update showing logic
+  //         })
+  //       }
+  //       // .catch(err => console.log('opppspsspsps', err));
+  //     });
+  // });
+  // ///////////////////////
+
   delPost(req, res) {
     return this.forumService
-      .delPost()
+      .delPost(req.params.id, req.body.user_id) // req.user.id,
       .then(() => res.json({ success: true }))
       .catch(err => {
         console.log('delPost error: ', err);
@@ -74,6 +104,7 @@ module.exports = class ForumRouter {
   }
 
   //----------two routes about forum's indiv posts' comments----------
+  //ok, can createComments to db
   postComments(req, res) {
     return this.forumService
       .postComments(
@@ -82,7 +113,10 @@ module.exports = class ForumRouter {
         req.body.content,
         req.body.image_path // filePath
       )
-      .then(() => res.json({ success: true }))
+      .then(() => {
+        console.log(req.body);
+        res.json({ success: true });
+      })
       .catch(err => {
         console.log('postComments error: ', err);
         res.status(500).json(err);
@@ -90,18 +124,21 @@ module.exports = class ForumRouter {
   }
 
   delComment(req, res) {
-    return this.forumService
-      .delComments()
-      .then(() => res.json({ success: true }))
-      .catch(err => {
-        console.log('delComment error: ', err);
-        res.status(500).json(err);
-      });
+    return (
+      this.forumService
+        // .delComment()
+        .delComment(req.params.id, req.params.comments_id, req.body.user_id) // req.user.id,
+        .then(() => res.json({ success: true }))
+        .catch(err => {
+          console.log('delComment error: ', err);
+          res.status(500).json(err);
+        })
+    );
   }
   //----------two routes about getting my post and my comments (with identifying user id)----------
   getMyPosts(req, res) {
     return this.forumService
-      .getMyPosts()
+      .getMyPosts(req.body.user_id) //req.user.id
       .then(myposts => res.json(myposts))
       .catch(err => {
         console.log('getMyPosts error: ', err);
@@ -111,7 +148,7 @@ module.exports = class ForumRouter {
 
   getMyComments(req, res) {
     return this.forumService
-      .getMyComments()
+      .getMyComments(req.body.user_id) //req.user.id
       .then(mycomments => res.json(mycomments))
       .catch(err => {
         console.log('getMyComments error:', err);
