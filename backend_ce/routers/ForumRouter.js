@@ -17,7 +17,7 @@ module.exports = class ForumRouter {
     router.get('/posts', this.getPosts.bind(this)); //get all posts
     router.post('/posts', this.createPost.bind(this)); //create(post) a new post
     router.get('/posts/:id', this.getPostDetails.bind(this)); //get individual posts and corresponding comments
-    router.delete('/posts/:id', this.delPost.bind(this)); //delete individual post (won't delete comments) (?)
+    // router.delete('/posts/:id', this.delPost.bind(this)); //delete individual post (won't delete comments) (?)
 
     router.post('/posts/:id/comments', this.postComments.bind(this)); //create(post) a new comment
     router.delete(
@@ -31,7 +31,7 @@ module.exports = class ForumRouter {
     return router;
   }
   //----------four routes about forum posts----------
-  //ok, can getPost
+  //ok, can getPost from db
   getPosts(req, res) {
     // return this.forumService.getForumPosts(req.query.sort)
     return this.forumService
@@ -57,12 +57,20 @@ module.exports = class ForumRouter {
   }
 
   getPostDetails(req, res) {
-    //not yet built
-    return this.forumService.getPostDetail(req.params.id);
-    // .then(postDetails => res.json(postDetails))
-    // .catch(err => res.status(500).json(err));
+    return this.forumService
+      .getPostDetails(req.params.id) //.getPostDetails(req.params.id, req.user.id)
+      .then(postDetails => res.json(postDetails))
+      .catch(err => res.status(500).json(err));
   }
 
+  // const post = await knex('forumPosts').where('forumPosts.id', req.params.id);
+  // const comments = await knex('forumComments').where('forumComments.post_id', req.params.comments_id);
+
+  // Promise.all([post, comments])
+  // .then(results =>{
+  //   post: result[0][0],
+  //   comments: result[0]
+  // })
   //   ///////////////////////
   //   app.get('/posts/:id', authHelpers.loginRequired, async (req, res) => {
   //   const id = req.params.id;
@@ -93,15 +101,18 @@ module.exports = class ForumRouter {
   // });
   // ///////////////////////
 
-  delPost(req, res) {
-    return this.forumService
-      .delPost(req.params.id, req.body.user_id) // req.user.id,
-      .then(() => res.json({ success: true }))
-      .catch(err => {
-        console.log('delPost error: ', err);
-        res.status(500).json(err);
-      });
-  }
+  // delPost(req, res) {
+  //   return (
+  //     this.forumService
+  //       // .delPost(req.params.id, req.body.user_id) // req.user.id,
+  //       .delPost(req.params.id) // req.user.id,
+  //       .then(() => res.json({ success: true }))
+  //       .catch(err => {
+  //         console.log('delPost error: ', err);
+  //         res.status(500).json(err);
+  //       })
+  //   );
+  // }
 
   //----------two routes about forum's indiv posts' comments----------
   //ok, can createComments to db
@@ -123,11 +134,12 @@ module.exports = class ForumRouter {
       });
   }
 
+  //ok, can delComments from db
   delComment(req, res) {
     return (
       this.forumService
-        // .delComment(req.params.id, req.params.comments_id, req.body.user_id) // req.user.id,
-        .delComment(req.params.id, req.params.comments_id) // req.user.id,
+        // .delComment(req.params.comments_id, req.body.user_id) // req.user.id,
+        .delComment(req.params.comments_id) // req.user.id,
         .then(() => res.json({ success: true }))
         .catch(err => {
           console.log('delComment error: ', err);
