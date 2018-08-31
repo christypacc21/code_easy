@@ -20,6 +20,7 @@ import CreatePost from './pages/Forum/createPost/createPost';
 import PostDetails from './pages/Forum/postDetails/postDetails';
 import Posts from './pages/Forum/posts/posts';
 import CreateQuestion from './pages/CreateQuestion/home';
+import AskQuestion from './pages/CreateQuestion/AskQuestion';
 
 class App extends Component {
   render() {
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path="/createPost" component={CreatePost} />
             <Route exact path="/pricing" component={Pricing} />
             <Route exact path="/contact" component={Contact} />
+            <Route exact path="/AskQuestion" component={AskQuestion} />
             <Route exact path="/CreateQuestion" component={CreateQuestion} />
             <Route
               exact

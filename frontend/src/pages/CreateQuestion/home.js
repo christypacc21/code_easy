@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HomeTab from './HomeTab';
 
 class CreateQuestion extends Component {
   render() {
@@ -9,10 +10,12 @@ class CreateQuestion extends Component {
       >
         <div className="container">
           <h1 className="display-4">My Question</h1>
-          <a className="btn btn-primary " href="/">
+          <a className="btn btn-primary " href="/AskQuestion">
             Ask Question Now!
           </a>
         </div>
+
+        <HomeTab />
       </div>
     );
   }
