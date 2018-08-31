@@ -10,14 +10,19 @@ const app = require('./utils/init-app')(auth);
 
 // Dependency Injection for Routers and Service
 const {
-	AuthRouter,
-	UserRouter,
-	ForumRouter,
-	QuestionRouter,
-	// SocketIORouter
+  AuthRouter,
+  UserRouter,
+  ForumRouter,
+  QuestionRouter
+  // SocketIORouter
 } = require('./routers');
 
-const { AuthService, UserService, ForumService, QuestionService } = require('./services');
+const {
+  AuthService,
+  UserService,
+  ForumService,
+  QuestionService
+} = require('./services');
 
 let authService = new AuthService(knex);
 let userService = new UserService(knex);
@@ -26,12 +31,20 @@ let questionService = new QuestionService(knex);
 
 app.use('/api', new AuthRouter(authService).router());
 app.use('/api', auth.authenticate(), new UserRouter(userService).router());
-app.use('/api/forum', auth.authenticate(), new ForumRouter(forumService).router());
-app.use('/api/question', auth.authenticate(), new QuestionRouter(questionService).router());
+app.use(
+  '/api/forum',
+  auth.authenticate(),
+  new ForumRouter(forumService).router()
+);
+app.use(
+  '/api/question',
+  auth.authenticate(),
+  new QuestionRouter(questionService).router()
+);
 
 // HTTP Setting
 const server = app.listen(8080, () => {
-	console.log('Server is running at port 8080');
+  console.log('Server is running at port 8080');
 });
 
 // SocketIO Setting
