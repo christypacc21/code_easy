@@ -14,7 +14,6 @@ module.exports = class ForumRouter {
     router.get('/posts', this.getPosts.bind(this)); //get all posts
     router.post('/posts', this.createPost.bind(this)); //create(post) a new post
     router.get('/posts/:id', this.getPostDetails.bind(this)); //get individual posts and corresponding comments
-    // router.delete('/posts/:id', this.delPost.bind(this)); //delete individual post (won't delete comments) (?)
 
     router.post('/posts/:id/comments', this.postComments.bind(this)); //create(post) a new comment
     router.delete(
@@ -46,7 +45,10 @@ module.exports = class ForumRouter {
         req.body.content,
         req.body.image_path
       )
-      .then(() => res.json({ success: true }))
+      .then(() => {
+        console.log(req.body);
+        res.json({ success: true });
+      })
       .catch(err => {
         console.log('createPost error: ', err);
         res.status(500).json(err);
@@ -59,19 +61,6 @@ module.exports = class ForumRouter {
       .then(postDetails => res.json(postDetails))
       .catch(err => res.status(500).json(err));
   }
-
-  // delPost(req, res) {
-  //   return (
-  //     this.forumService
-  //       // .delPost(req.params.id, req.body.user_id) // req.user.id,
-  //       .delPost(req.params.id) // req.user.id,
-  //       .then(() => res.json({ success: true }))
-  //       .catch(err => {
-  //         console.log('delPost error: ', err);
-  //         res.status(500).json(err);
-  //       })
-  //   );
-  // }
 
   //----------two routes about forum's indiv posts' comments----------
   //ok, can createComments to db
@@ -133,7 +122,7 @@ module.exports = class ForumRouter {
   //----------two routes about getting my post and my comments (with identifying user id)----------
   getMyPosts(req, res) {
     return this.forumService
-      .getMyPosts(req.body.user_id) //req.user.id
+      .getMyPosts(req.user.id) //req.user.id
       .then(myposts => res.json(myposts))
       .catch(err => {
         console.log('getMyPosts error: ', err);
@@ -143,7 +132,7 @@ module.exports = class ForumRouter {
 
   getMyComments(req, res) {
     return this.forumService
-      .getMyComments(req.body.user_id) //req.user.id
+      .getMyComments(req.user.id) //req.user.id
       .then(mycomments => res.json(mycomments))
       .catch(err => {
         console.log('getMyComments error:', err);
