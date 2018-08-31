@@ -6,19 +6,20 @@ module.exports = class ForumService {
   //----------four services about forum posts----------
 
   getPosts() {
-    // let sort = 'forumPosts.created_at';
-    // if (req.query.sort != null) {
-    //     sort = req.query.sort;
-    //   }
-    return (
-      this.knex
-        .select('*')
-        .from('forumPosts')
-        .join('users', 'users.id', 'forumPosts.user_id')
-        // .groupBy('forumPosts.id') //?
-        .orderBy('forumPosts.created_at', 'aesc')
-        .count('forumComments.post_id')
-    ); //for counting how many comments the post has(?)
+    return this.knex
+      .count('forumComments.post_id')
+      .column(
+        'forumPosts.id',
+        'forumPosts.user_id',
+        'forumPosts.title',
+        'forumPosts.content',
+        'forumPosts.image_path',
+        'forumPosts.created_at'
+      )
+      .from('forumPosts')
+      .join('forumComments', 'forumComments.post_id', 'forumPosts.id')
+      .groupBy('forumPosts.id') //why forumPosts.id instead of forumComments.posts_id?
+      .orderBy('forumPosts.created_at', 'aesc');
   }
 
   createPost(user_id, title, content) {

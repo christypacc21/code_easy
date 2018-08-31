@@ -58,7 +58,8 @@ module.exports = class ForumRouter {
       });
   }
 
-  getPostDetails(req, res) { //not yet built
+  getPostDetails(req, res) {
+    //not yet built
     return this.forumService.getPostDetail();
     // .then(postDetails => res.json(postDetails))
     // .catch(err => res.status(500).json(err));
@@ -107,11 +108,11 @@ module.exports = class ForumRouter {
 
   getMyComments(req, res) {
     return this.forumService
-    .getMyComments()
-    .then(mycomments => res.json(mycomments))
-    .catch(err => {
-      console.log('getMyComments error:', err);
-      res.status(500).json(err);
-    })
+      .getMyComments()
+      .then(mycomments => res.json(mycomments))
+      .catch(err => {
+        console.log('getMyComments error:', err);
+        res.status(500).json(err);
+      });
   }
 };
