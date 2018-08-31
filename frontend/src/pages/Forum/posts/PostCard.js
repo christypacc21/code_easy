@@ -1,4 +1,4 @@
-// func component ?
+// func component
 import React from 'react';
 
 const PostCard = () => {

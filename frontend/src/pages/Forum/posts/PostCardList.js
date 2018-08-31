@@ -1,4 +1,4 @@
-// class component
+// class component -edux
 import React, { Component } from 'react';
 import PostCard from './PostCard';
 

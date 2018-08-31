@@ -1,4 +1,4 @@
-//func component
+//class component
 import React, { Component } from 'react';
 import PostDetailsCard from './PostDetailsCard';
 import CommentList from './CommentList';

@@ -60,7 +60,7 @@ module.exports = class ForumRouter {
 
   getPostDetails(req, res) {
     //not yet built
-    return this.forumService.getPostDetail();
+    return this.forumService.getPostDetail(req.params.id);
     // .then(postDetails => res.json(postDetails))
     // .catch(err => res.status(500).json(err));
   }
