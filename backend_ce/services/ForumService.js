@@ -117,14 +117,13 @@ module.exports = class ForumService {
     return this.knex.insert(data).into('forumComments');
   }
 
-  delComment(posts_id, comments_id, user_id) {
+  // delComment(posts_id, comments_id, user_id) {
+  delComment(posts_id, comments_id) {
     return (
       this.knex('forumComments')
-        // .select()
-        // .from('forumComments')
         .where('post_id', posts_id)
-        .where('id', comments_id)
-        .where('user_id', user_id) // .where('user_id', req.user.id)
+        .andWhere('id', comments_id)
+        // .andWhere('user_id', user_id) // .where('user_id', req.user.id)
         .del()
     );
   }

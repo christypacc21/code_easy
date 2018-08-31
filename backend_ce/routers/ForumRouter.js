@@ -126,8 +126,8 @@ module.exports = class ForumRouter {
   delComment(req, res) {
     return (
       this.forumService
-        // .delComment()
-        .delComment(req.params.id, req.params.comments_id, req.body.user_id) // req.user.id,
+        // .delComment(req.params.id, req.params.comments_id, req.body.user_id) // req.user.id,
+        .delComment(req.params.id, req.params.comments_id) // req.user.id,
         .then(() => res.json({ success: true }))
         .catch(err => {
           console.log('delComment error: ', err);
