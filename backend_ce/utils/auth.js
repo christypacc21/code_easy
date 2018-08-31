@@ -12,7 +12,7 @@ module.exports = (knex) => {
 
 		if (user) {
 			return done(null, {
-				id: user.id
+				id: user[0].id
 			});
 		} else {
 			return done(new Error('User not found'), null);
@@ -25,7 +25,7 @@ module.exports = (knex) => {
 			return passport.initialize();
 		},
 		authenticate: function() {
-			return passport.authenticate('jwt', process.env.JWT_SESSION);
+			return passport.authenticate('jwt', { session: false });
 		}
 	};
 };

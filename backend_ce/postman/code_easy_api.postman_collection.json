@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "eeb3020a-faf7-4695-8929-53469cbf7cc1",
+		"name": "code_easy_api",
+		"description": "API Test For Accelerate Capstone Project: code_easy ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "student",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "displayName",
+							"value": "Test",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local Sign Up",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "50e298fe-5ec5-4239-9375-5b1b7975a2dc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb81abc9-1571-43f6-932c-326dfdcbd8f9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "test3@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "student",
+							"type": "text"
+						},
+						{
+							"key": "displayName",
+							"value": "test3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor Sign Up",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwic…nQifQ.NuBsQMIrp8Xj2tPG_PCBXz_QfLgSn3rl6ho4ABKfuo4",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "education",
+							"value": "UW",
+							"type": "text"
+						},
+						{
+							"key": "yearCodeExp",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "introduction",
+							"value": "Hello",
+							"type": "text"
+						},
+						{
+							"key": "inputFile",
+							"value": "",
+							"type": "file"
+						},
+						{
+							"key": "skills",
+							"value": "JavaScript",
+							"type": "text"
+						},
+						{
+							"key": "skills",
+							"value": "Python",
+							"type": "text"
+						},
+						{
+							"key": "skills",
+							"value": "SQL",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructor/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructor",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Question Credit",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"disabled": true
+					},
+					{
+						"key": "'token'",
+						"value": "'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6InN0dWRlbnQifQ.BTkI5IoIo5VrJO8qy2IQqtHPrfp79x_jj0eEL_PRMYU'",
+						"disabled": true
+					},
+					{
+						"key": "role",
+						"value": "student",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/question/credit/check?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"question",
+						"credit",
+						"check"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Question",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwic…nQifQ.NuBsQMIrp8Xj2tPG_PCBXz_QfLgSn3rl6ho4ABKfuo4",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "content",
+							"value": "How to write if-else? (no pic)",
+							"type": "text"
+						},
+						{
+							"key": "inputFile",
+							"value": "",
+							"type": "file"
+						},
+						{
+							"key": "skills",
+							"value": "JavaScript",
+							"type": "text"
+						},
+						{
+							"key": "skills",
+							"value": "Python",
+							"type": "text"
+						},
+						{
+							"key": "skills",
+							"value": "SQL",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/question/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"question",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
