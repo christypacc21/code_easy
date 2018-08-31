@@ -1,8 +1,8 @@
-import { LOGIN, LOGOUT, INSTRUCTOR_SIGNUP } from './constants';
+import { LOGIN, LOGOUT, INSTRUCTOR_SIGNUP, AUTHENTICATED } from './constants';
 
 const initialState = {
-  user: null,
-  instructor: null
+  profile: null,
+  instructor: false,
 };
 
 export default (state = initialState, action) => {
@@ -10,18 +10,23 @@ export default (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        user: action.payload
+        profile: action.payload,
       };
     case LOGOUT:
       return {
-        ...state,
-        user: null,
-        instructor: null
+        authenticated: false,
+        profile: null,
+        instructor: false,
       };
     case INSTRUCTOR_SIGNUP:
       return {
         ...state,
-        instructor: true
+        instructor: true,
+      };
+    case AUTHENTICATED:
+      return {
+        ...state,
+        authenticated: true,
       };
     default:
       return state;
