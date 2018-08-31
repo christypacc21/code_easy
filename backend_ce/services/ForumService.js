@@ -5,6 +5,7 @@ module.exports = class ForumService {
 
   //----------four services about forum posts----------
 
+  //ok, can getPost
   getPosts() {
     return this.knex
       .count('forumComments.post_id')
@@ -37,13 +38,13 @@ module.exports = class ForumService {
         );
       });
   }
-
-  createPost(user_id, title, content) {
+  //ok, can createPost
+  createPost(user_id, title, content, image_path) {
     const data = {
       user_id,
       title,
       content,
-      image_path: null
+      image_path
     };
     return this.knex.insert(data).into('forumPosts');
   }
@@ -66,36 +67,6 @@ module.exports = class ForumService {
       .orderBy('forumPosts.created_at', 'aesc');
   }
 
-  //   ///////////////////////
-  //   app.get('/posts/:id', authHelpers.loginRequired, async (req, res) => {
-  //   const id = req.params.id;
-  //   const post = await knex('forumPosts').where('id', id);
-  //   const allAdvices = await knex('advices').where('post_id', id);
-
-  //   Promise.all([post, allAdvices])
-  //     .then(results => {
-  //       for (let i = 0; i < results[1].length; i++) {
-  //         results[1][i].isAdviceMine = (req.user.id === results[1][i].user_id);
-  //       }
-  //       if (results[1][0] != undefined) {
-  //         res.render('postdetails', {
-  //           details: results[0][0],
-  //           advices: results[1],
-  //           isMine: req.user.id == results[0][0].user_id, //abt button of update showing logic //first post in the array of "post"
-  //           // isAdviceMine: req.user.id == results[1][0].user_id, //first advice in the array of "advices"
-  //         });
-  //       } else {
-  //         res.render('postdetails', {
-  //           details: results[0][0],
-  //           advices: results[1],
-  //           isMine: req.user.id == results[0][0].user_id, //abt button of update showing logic
-  //         })
-  //       }
-  //       // .catch(err => console.log('opppspsspsps', err));
-  //     });
-  // });
-  // ///////////////////////
-
   delPost() {
     //delpost but not del post's commments(?)
     return (
@@ -108,12 +79,13 @@ module.exports = class ForumService {
   }
 
   //----------two services about forum's indiv posts' comments----------
-  postComments(user_id, post_id, content) {
+  //
+  postComments(user_id, post_id, content, image_path) {
     const data = {
       user_id,
       post_id,
       content,
-      image_path: null
+      image_path
     };
     return this.knex.insert(data).into('forumComments');
   }
