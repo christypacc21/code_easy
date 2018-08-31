@@ -11,7 +11,7 @@ class InstructorProfileForm extends Component {
     education: '',
     yearCodeExp: 0,
     filePath: [],
-    skill: ''
+    skills: []
   };
 
   componentDidUpdate(prevProps) {
@@ -36,7 +36,7 @@ class InstructorProfileForm extends Component {
       education,
       yearCodeExp,
       filePath,
-      skill
+      skills
     } = this.state;
 
     // console.log('introduction: ', introduction);
@@ -52,16 +52,19 @@ class InstructorProfileForm extends Component {
       >
         <div className="container">
           <div className="row">
-            <h2 style={{ color: 'white' }}>Hi, Instructor!</h2>
-          </div>
+            <h2 style={{ color: 'white' }}> Hi, Instructor! </h2>{' '}
+          </div>{' '}
           <div className="row">
             <h6 style={{ color: 'white' }}>
               We would love to know more about you!
-            </h6>
-          </div>
+            </h6>{' '}
+          </div>{' '}
           <form>
             <div className="form-group" />
-            <label htmlFor="exampleFormControlTextarea1">Introduction</label>
+            <label htmlFor="exampleFormControlTextarea1">
+              {' '}
+              Introduction{' '}
+            </label>{' '}
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -71,9 +74,11 @@ class InstructorProfileForm extends Component {
                 this.setState({ introduction: e.target.value });
               }}
             />
-
             <div className="form-group" />
-            <label htmlFor="exampleFormControlTextarea2">Education</label>
+            <label htmlFor="exampleFormControlTextarea2">
+              {' '}
+              Education{' '}
+            </label>{' '}
             <textarea
               className="form-control"
               id="exampleFormControlTextarea2"
@@ -83,39 +88,37 @@ class InstructorProfileForm extends Component {
                 this.setState({ education: e.target.value });
               }}
             />
-
             <div className="form-group" />
             <label htmlFor="exampleFormControlSelect1">
-              Year of coding experience
-            </label>
+              Year of coding experience{' '}
+            </label>{' '}
             <select
               className="form-control"
               id="exampleFormControlSelect1"
               value={yearCodeExp}
               onChange={e => this.setState({ yearCodeExp: e.target.value })}
             >
-              <option> &lt;1 </option>
-              <option>1-3 Years</option>
-              <option>4-6 Years</option>
-              <option>7-10 Years</option>
-              <option>10-13 Years</option>
-              <option>more than 13 years</option>
+              <option> &lt; 1 </option> <option> 1 - 3 Years </option>{' '}
+              <option> 4 - 6 Years </option> <option> 7 - 10 Years </option>{' '}
+              <option> 10 - 13 Years </option>{' '}
+              <option> more than 13 years </option>{' '}
             </select>
-
             <div className="form-group" />
-            <label htmlFor="exampleFormControlSelect2">Coding Skills</label>
+            <label htmlFor="exampleFormControlSelect2">
+              {' '}
+              Coding Skills{' '}
+            </label>{' '}
             <Select
               isSearchable
               isMulti
-              value={skill}
-              onChange={skill => this.setState({ skill })}
+              value={skills}
+              onChange={skills => this.setState({ skills })}
               options={options}
             />
-
             <div className="form-group" />
             <label htmlFor="exampleFormControlFile1">
               Upload certification{' '}
-            </label>
+            </label>{' '}
             <ImageUploader
               withPreview
               withIcon={true}
@@ -123,9 +126,8 @@ class InstructorProfileForm extends Component {
               onChange={this.onDrop}
               imgExtension={['.jpg', '.gif', '.png', '.gif']}
               maxFileSize={123242880}
-            />
+            />{' '}
           </form>
-
           <br />
           <button
             className="btn btn-primary"
@@ -135,13 +137,13 @@ class InstructorProfileForm extends Component {
                 education,
                 yearCodeExp,
                 filePath,
-                skill
+                skills
               )
             }
           >
-            Confirm
-          </button>
-        </div>
+            Confirm{' '}
+          </button>{' '}
+        </div>{' '}
       </div>
     );
   }
