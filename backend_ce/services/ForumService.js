@@ -38,7 +38,7 @@ module.exports = class ForumService {
         );
       });
   }
-  //ok, can createPost to db
+  //ok, can createPost to db with authenToken
   createPost(user_id, title, content, image_path) {
     const data = {
       user_id,
@@ -72,7 +72,7 @@ module.exports = class ForumService {
   }
 
   //----------two services about forum's indiv posts' comments----------
-  //ok, can createComments to db
+  //ok, can createComments to db with authenToken
   postComments(user_id, post_id, content, image_path) {
     const data = {
       user_id,
@@ -83,25 +83,23 @@ module.exports = class ForumService {
     return this.knex.insert(data).into('forumComments');
   }
 
-  //ok, can delComments from db
-  // delComment(posts_id, comments_id, user_id) {
-  delComment(comments_id) {
-    return (
-      this.knex('forumComments')
-        .where('id', comments_id)
-        // .andWhere('user_id', user_id)
-        .del()
-    );
+  //ok, can delComments from db with authenToken
+  delComment(comments_id, user_id) {
+    return this.knex('forumComments')
+      .where('id', comments_id)
+      .where('user_id', user_id)
+      .del();
   }
 
   //----------two services about getting my post and my comments (with identifying user id)----------
+  //ok, can getMyPosts from db with authenToken
   getMyPosts(user_id) {
     return this.knex
       .select()
       .from('forumPosts')
       .where('user_id', user_id);
   }
-
+  //ok, can getMyComments from db with authenToken
   getMyComments(user_id) {
     return this.knex
       .select()

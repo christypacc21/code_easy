@@ -8,7 +8,6 @@ module.exports = class ForumRouter {
     this.forumService = forumService;
   }
 
-  // router.delete('/posts/:id', auth.authenticate(), this.delPost.bind(this));
   router() {
     let router = express.Router();
     router.get('/posts', this.getPosts.bind(this)); //get all posts
@@ -27,7 +26,7 @@ module.exports = class ForumRouter {
     return router;
   }
   //----------four routes about forum posts----------
-  //ok, can getPost from db
+  //???ok, can getPost from db //?why chut ng sai posts?
   getPosts(req, res) {
     // return this.forumService.getForumPosts(req.query.sort)
     return this.forumService
@@ -36,11 +35,11 @@ module.exports = class ForumRouter {
       .catch(err => res.status(500).json(err));
   }
 
-  //ok, can createPost to db
+  //ok, can createPost to db with authenToken
   createPost(req, res) {
     return this.forumService
       .createPost(
-        req.body.user_id, // req.user.id,
+        req.user.id,
         req.body.title,
         req.body.content,
         req.body.image_path
@@ -57,17 +56,17 @@ module.exports = class ForumRouter {
 
   getPostDetails(req, res) {
     return this.forumService
-      .getPostDetails(req.params.id) //.getPostDetails(req.params.id, req.user.id)
+      .getPostDetails(req.params.id, req.user.id)
       .then(postDetails => res.json(postDetails))
       .catch(err => res.status(500).json(err));
   }
 
   //----------two routes about forum's indiv posts' comments----------
-  //ok, can createComments to db
+  //ok, can createComments to db with authenToken
   postComments(req, res) {
     return this.forumService
       .postComments(
-        req.body.user_id, // req.user.id,
+        req.user.id,
         req.params.id,
         req.body.content,
         req.body.image_path // filePath
@@ -82,23 +81,22 @@ module.exports = class ForumRouter {
       });
   }
 
-  //ok, can delComments from db
+  //ok, can delComments from db with authenToken
+  //tested in postman, only the authorized eprson can del comment, though unauthorized person if try to del comment dou wui chut success but actually he didnt deleted the comment
   delComment(req, res) {
-    return (
-      this.forumService
-        // .delComment(req.params.comments_id, req.body.user_id) // req.user.id,
-        .delComment(req.params.comments_id) // req.user.id,
-        .then(() => res.json({ success: true }))
-        .catch(err => {
-          console.log('delComment error: ', err);
-          res.status(500).json(err);
-        })
-    );
+    return this.forumService
+      .delComment(req.params.comments_id, req.user.id)
+      .then(() => res.json({ success: true }))
+      .catch(err => {
+        console.log('delComment error: ', err);
+        res.status(500).json(err);
+      });
   }
   //----------two routes about getting my post and my comments (with identifying user id)----------
+  //ok, can getMyPosts from db with authenToken
   getMyPosts(req, res) {
     return this.forumService
-      .getMyPosts(req.body.user_id) //req.user.id
+      .getMyPosts(req.user.id)
       .then(myposts => res.json(myposts))
       .catch(err => {
         console.log('getMyPosts error: ', err);
@@ -106,33 +104,10 @@ module.exports = class ForumRouter {
       });
   }
 
-  //ok, can delComments from db
-  delComment(req, res) {
-    return (
-      this.forumService
-        // .delComment(req.params.comments_id, req.body.user_id) // req.user.id,
-        .delComment(req.params.comments_id) // req.user.id,
-        .then(() => res.json({ success: true }))
-        .catch(err => {
-          console.log('delComment error: ', err);
-          res.status(500).json(err);
-        })
-    );
-  }
-  //----------two routes about getting my post and my comments (with identifying user id)----------
-  getMyPosts(req, res) {
-    return this.forumService
-      .getMyPosts(req.user.id) //req.user.id
-      .then(myposts => res.json(myposts))
-      .catch(err => {
-        console.log('getMyPosts error: ', err);
-        res.status(500).json(err);
-      });
-  }
-
+  //ok, can getMyComments from db with authenToken
   getMyComments(req, res) {
     return this.forumService
-      .getMyComments(req.user.id) //req.user.id
+      .getMyComments(req.user.id)
       .then(mycomments => res.json(mycomments))
       .catch(err => {
         console.log('getMyComments error:', err);
