@@ -98,10 +98,13 @@ module.exports = class ForumService {
 
   delPost() {
     //delpost but not del post's commments(?)
-    return this.knex('posts')
-      .where('id', req.params.id)
-      .where('posts.user_id', req.user.id)
-      .delete();
+    return (
+      this.knex('posts')
+        .where('posts.id', req.params.id)
+        // .where('posts.user_id', req.user.id)
+        .where('posts.user_id', req.body.id)
+        .delete()
+    );
   }
 
   //----------two services about forum's indiv posts' comments----------
@@ -116,26 +119,35 @@ module.exports = class ForumService {
   }
 
   delComment() {
-    return this.knex
-      .select()
-      .from('forumComments')
-      .where('id', req.params.comments_id)
-      .where('user_id', req.user.id)
-      .delete();
+    return (
+      this.knex
+        .select()
+        .from('forumComments')
+        .where('id', req.params.comments_id)
+        // .where('user_id', req.user.id)
+        .where('user_id', req.body.id)
+        .delete()
+    );
   }
 
   //----------two services about getting my post and my comments (with identifying user id)----------
   getMyPosts() {
-    return this.knex
-      .select()
-      .from('forumPosts')
-      .where('user_id', req.user.id);
+    return (
+      this.knex
+        .select()
+        .from('forumPosts')
+        // .where('user_id', req.user.id);
+        .where('user_id', req.body.id)
+    );
   }
 
   getMyComments() {
-    return this.knex
-      .select()
-      .from('forumComments')
-      .where('user_id', req.user.id);
+    return (
+      this.knex
+        .select()
+        .from('forumComments')
+        // .where('user_id', req.user.id);
+        .where('user_id', req.body.id)
+    );
   }
 };
