@@ -8,7 +8,7 @@ module.exports = class UserRouter {
 	router() {
 		let router = express.Router();
 		router.post('/instructor/signup', this.instructorSignUp.bind(this));
-		router.get('/user/profilePic', this.getProfilePic.bind(this));
+		router.get('/user/profile', this.getProfile.bind(this));
 		router.post('/user/profilePic', this.uploadProfilePic.bind(this));
 		return router;
 	}
@@ -46,12 +46,12 @@ module.exports = class UserRouter {
 		}
 	}
 
-	getProfilePic(req, res) {
+	getProfile(req, res) {
 		return this.userService
-			.getProfilePic(req.user.id)
+			.getProfile(req.user.id)
 			.then(data =>
 				res.json({
-					profilePic: data[0]
+					profile: data
 				})
 			)
 			.catch(err => res.status(500).json(err));

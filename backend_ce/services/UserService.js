@@ -48,7 +48,6 @@ module.exports = class UserService {
 					introduction,
 					cert_path,
 					skills,
-					id
 				];
 			});
 		} catch (err) {
@@ -57,11 +56,26 @@ module.exports = class UserService {
 		}
 	}
 
-	getProfilePic(id) {
-		return this.knex
-			.select('profilePic')
+	async getProfile(id) {
+		const userInfo = await this.knex
+			.select()
 			.from(USERS)
 			.where('id', id);
+		console.log('userInfo: ' + userInfo[0].role);
+
+		if (userInfo[0].role === 'instructor') {
+			const instructorInfo = await this.knex.select('skill')
+				.from(CODINGSKILLS)
+				.join(INSTRUCTORS_SKILLS, 'codingSkill_id', 'codingSkills.id')
+				.where('instructor_id', id);
+			console.log('instructor: ' + instructorInfo[0]);
+			return {
+				userInfo: userInfo[0],
+				instructorInfo: instructorInfo[0]
+			};
+		} else {
+			return userInfo[0];
+		}
 	}
 
 	uploadProfilePic(id, url) {
