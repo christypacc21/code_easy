@@ -37,9 +37,9 @@ module.exports = class QuestionRouter {
 			});
 
 			return this.questionService.createQuestion(req.user.id, req.body.content, filePath, req.body.skills)
-				.then((questionId) => res.json({
+				.then((questionInfo) => res.json({
 					success: true,
-					questionId
+					questionInfo
 				}))
 				.catch((err) => res.status(500).json({
 					success: false,
@@ -48,9 +48,9 @@ module.exports = class QuestionRouter {
 				}));
 		} else {
 			return this.questionService.createQuestion(req.user.id, req.body.content, null, req.body.skills)
-				.then((questionId) => res.json({
+				.then((questionInfo) => res.json({
 					success: true,
-					questionId
+					questionInfo
 				}))
 				.catch((err) => res.status(500).json({
 					success: false,

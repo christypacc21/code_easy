@@ -57,7 +57,14 @@ module.exports = class QuestionService {
 
 			return Promise.all(skillInput).then((questionId) => {
 				// console.log('question id: ' + questionId[0][0]);
-				return questionId[0][0];
+				const questionInfo = {
+					questionId: questionId[0][0],
+					studentId: id,
+					content,
+					image_path,
+					skills
+				};
+				return questionInfo;
 			});
 		} catch (err) {
 			// console.error(err);
