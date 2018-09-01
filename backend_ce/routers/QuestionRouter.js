@@ -21,42 +21,59 @@ module.exports = class QuestionRouter {
 					credit: credit
 				})
 			)
-			.catch(err => res.status(500).json({
-				success: false,
-				message: err.message,
-				error: err
-			}));
+			.catch(err =>
+				res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				})
+			);
 	}
 
 	postQuestion(req, res) {
 		if (req.files != null) {
 			const inputFile = req.files.inputFile;
-			const filePath = 'images/question/' + inputFile.name;
-			inputFile.mv(__dirname + '/../' + filePath, (err) => {
+			const filePath = 'images/question/' + inputFile.name + '.jpg';
+			inputFile.mv(__dirname + '/../' + filePath, err => {
 				if (err) return res.status(500).send(err);
 			});
 
-			return this.questionService.createQuestion(req.user.id, req.body.content, filePath, req.body.skills)
-				.then((questionInfo) => res.json({
-					success: true,
-					questionInfo
-				}))
-				.catch((err) => res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				}));
+			return this.questionService
+				.createQuestion(
+					req.user.id,
+					req.body.content,
+					filePath,
+					req.body.skills
+				)
+				.then(questionId =>
+					res.json({
+						success: true,
+						questionId
+					})
+				)
+				.catch(err =>
+					res.status(500).json({
+						success: false,
+						message: err.message,
+						error: err
+					})
+				);
 		} else {
-			return this.questionService.createQuestion(req.user.id, req.body.content, null, req.body.skills)
-				.then((questionInfo) => res.json({
-					success: true,
-					questionInfo
-				}))
-				.catch((err) => res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				}));
+			return this.questionService
+				.createQuestion(req.user.id, req.body.content, null, req.body.skills)
+				.then(questionId =>
+					res.json({
+						success: true,
+						questionId
+					})
+				)
+				.catch(err =>
+					res.status(500).json({
+						success: false,
+						message: err.message,
+						error: err
+					})
+				);
 		}
 	}
 };

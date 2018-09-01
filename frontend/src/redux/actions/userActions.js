@@ -7,7 +7,7 @@ import {
   LOGOUT,
   INSTRUCTOR_SIGNUP,
   INSTRUCTOR_SIGNUP_FAIL,
-  AUTHENTICATED,
+  AUTHENTICATED
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
@@ -17,22 +17,22 @@ export function localSignup(displayName, email, password, role) {
       displayName,
       email,
       password,
-      role,
+      role
     });
 
     // console.log('res', response);
     if (response.data) {
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED,
+        type: AUTHENTICATED
       });
       dispatch({
         type: LOGIN,
-        payload: response.data,
+        payload: response.data
       });
     } else {
       dispatch({
-        type: LOGIN_FAIL,
+        type: LOGIN_FAIL
       });
     }
   };
@@ -42,22 +42,22 @@ export function loginByEmail(email, password) {
   return async dispatch => {
     const { data } = await axios.post(SERVER_URL + '/api/login', {
       email,
-      password,
+      password
     });
 
     // console.log('response: ', data);
 
     if (data) {
       dispatch({
-        type: AUTHENTICATED,
+        type: AUTHENTICATED
       });
       dispatch({
         type: LOGIN,
-        payload: data,
+        payload: data
       });
     } else {
       dispatch({
-        type: LOGIN_FAIL,
+        type: LOGIN_FAIL
       });
     }
   };
@@ -67,22 +67,22 @@ export function loginByFacebook(access_token, role) {
   return async dispatch => {
     const { data } = await axios.post(SERVER_URL + '/api/login/facebook', {
       access_token,
-      role,
+      role
     });
 
     // console.log('response: ', data);
 
     if (data) {
       dispatch({
-        type: AUTHENTICATED,
+        type: AUTHENTICATED
       });
       dispatch({
         type: LOGIN,
-        payload: data,
+        payload: data
       });
     } else {
       dispatch({
-        type: LOGIN_FAIL,
+        type: LOGIN_FAIL
       });
     }
   };
@@ -92,8 +92,31 @@ export function logout() {
   return dispatch => {
     localStorage.removeItem('token');
     dispatch({
-      type: LOGOUT,
+      type: LOGOUT
     });
+  };
+}
+
+export function uploadQuestion(content, filePath, skills) {
+  return async dispatch => {
+    const data = new FormData();
+    data.append('inputFile', filePath[0], 'questionIMG');
+    data.append('content', content);
+    const instructorSkills = skills.map(skill => skill.label);
+    data.append('skills', JSON.stringify(instructorSkills));
+    const token = localStorage.getItem('token');
+
+    const response = await axios({
+      method: 'post',
+      url: SERVER_URL + '/api/question/create',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'multipart/form-data'
+      },
+      data
+    });
+
+    console.log('question res: ', response);
   };
 }
 
@@ -102,7 +125,7 @@ export function updateInstructorProfile(
   education,
   yearCodeExp,
   filePath,
-  skills,
+  skills
 ) {
   return async dispatch => {
     const data = new FormData();
@@ -125,9 +148,9 @@ export function updateInstructorProfile(
       url: SERVER_URL + '/api/instructor/signup',
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
       },
-      data,
+      data
     });
 
     // console.log('response: ', response);
@@ -140,12 +163,12 @@ export function updateInstructorProfile(
           education,
           yearCodeExp,
           filePath,
-          skills: skills.map(skill => skill.label),
-        },
+          skills: skills.map(skill => skill.label)
+        }
       });
     } else {
       dispatch({
-        type: INSTRUCTOR_SIGNUP_FAIL,
+        type: INSTRUCTOR_SIGNUP_FAIL
       });
     }
   };

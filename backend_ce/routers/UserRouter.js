@@ -16,17 +16,33 @@ module.exports = class UserRouter {
 	instructorSignUp(req, res) {
 		if (req.files != null) {
 			const inputFile = req.files.inputFile;
-			const filePath = 'images/instructor/' + inputFile.name;
-			inputFile.mv(__dirname + '/../' + filePath, (err) => {
+			const filePath = 'images/instructor/' + req.user.id + '.jpg';
+			inputFile.mv(__dirname + '/../' + filePath, err => {
 				if (err) return res.status(500).send(err);
 			});
-			return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, filePath, req.body.skills, req.user.id)
-				.then((data) => res.json(data))
-				.catch((err) => res.status(500).json(err));
+			return this.userService
+				.instructorSignUp(
+					req.body.education,
+					req.body.yearCodeExp,
+					req.body.introduction,
+					filePath,
+					req.body.skills,
+					req.user.id
+				)
+				.then(data => res.json(data))
+				.catch(err => res.status(500).json(err));
 		} else {
-			return this.userService.instructorSignUp(req.body.education, req.body.yearCodeExp, req.body.introduction, null, req.body.skills, req.user.id)
-				.then((data) => res.json(data))
-				.catch((err) => res.status(500).json(err));
+			return this.userService
+				.instructorSignUp(
+					req.body.education,
+					req.body.yearCodeExp,
+					req.body.introduction,
+					null,
+					req.body.skills,
+					req.user.id
+				)
+				.then(data => res.json(data))
+				.catch(err => res.status(500).json(err));
 		}
 	}
 

@@ -30,3 +30,5 @@ backend_ce/yarn\.lock
 package\.json
 
 yarn\.lock
+
+backend_ce/images

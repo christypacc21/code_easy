@@ -1,10 +1,34 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import { options } from './selectOptions';
-import ImageUploader from 'react-images-upload';
+import { connect } from 'react-redux';
+import * as UserActions from '../../redux/actions/userActions';
+import Dropzone from 'react-dropzone';
 
 class AskQuestion extends Component {
+  state = {
+    content: '',
+    filePath: [],
+    skills: []
+  };
+
+  // componentDidUpdate(prevProps) {
+
+  //   if (
+  //     this.props.instructor &&
+  //     this.props.instructor !== prevProps.instructor
+  //   ) {
+  //     this.props.history.push('/chat');
+  //   }
+  // }
+
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    this.setState({
+      filePath: acceptedFiles
+    });
+  };
   render() {
+    const { content, filePath, skills } = this.state;
     return (
       <div
         className="jumbotron jumbotron-fluid"
@@ -18,36 +42,64 @@ class AskQuestion extends Component {
           <form>
             <div className="form-group" />
             <label htmlFor="exampleFormControlSelect2">Coding Skills</label>
-            <Select isSearchable isMulti options={options} />
+            <Select
+              isSearchable
+              isMulti
+              value={skills}
+              onChange={skills => this.setState({ skills })}
+              options={options}
+            />
 
             <div className="form-group" />
-            <label htmlFor="exampleFormControlTextarea2">Question</label>
+            <label htmlFor="exampleFormControlTextarea1">
+              Question Content
+            </label>
             <textarea
               className="form-control"
-              id="exampleFormControlTextarea2"
+              id="exampleFormControlTextarea1"
               rows="3"
+              value={content}
+              onChange={e => {
+                this.setState({ content: e.target.value });
+              }}
             />
 
             <div className="form-group" />
-            <label htmlFor="exampleFormControlFile1">
-              Upload certification{' '}
-            </label>
-            <ImageUploader
-              withPreview
-              withIcon={true}
-              buttonText="Choose images"
-              onChange={this.onDrop}
-              imgExtension={['.jpg', '.gif', '.png', '.gif']}
-              maxFileSize={123242880}
-            />
+            <label htmlFor="exampleFormControlFile1">Upload Image</label>
+            <Dropzone onDrop={this.onDrop}>
+              <p>
+                Try dropping some files here, or click to select files to
+                upload.
+              </p>
+            </Dropzone>
+            <aside>
+              <br />
+              {this.state.filePath.length > 0 ? <h2>Uploaded Image</h2> : null}
+
+              <ul>
+                {this.state.filePath.map(f => (
+                  <li key={f.name}>
+                    {f.name} - {f.size} bytes
+                  </li>
+                ))}
+              </ul>
+            </aside>
           </form>
 
           <br />
-          <button className="btn btn-primary">Confirm</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => this.props.uploadQuestion(content, filePath, skills)}
+          >
+            Send
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default AskQuestion;
+export default connect(
+  null,
+  UserActions
+)(AskQuestion);
