@@ -20,7 +20,7 @@ export function localSignup(displayName, email, password, role) {
       role,
     });
 
-    console.log('res', response);
+    // console.log('res', response);
     if (response.data) {
       localStorage.setItem('token', response.data.token);
       dispatch({
@@ -45,7 +45,7 @@ export function loginByEmail(email, password) {
       password,
     });
 
-    console.log('response: ', data);
+    // console.log('response: ', data);
 
     if (data) {
       dispatch({
@@ -70,7 +70,7 @@ export function loginByFacebook(access_token, role) {
       role,
     });
 
-    console.log('response: ', data);
+    // console.log('response: ', data);
 
     if (data) {
       dispatch({
@@ -105,23 +105,32 @@ export function updateInstructorProfile(
   skills,
 ) {
   return async dispatch => {
-    const token = localStorage.getItem('token');
-    console.log('token: ' + token);
-    const config = { headers: { Authorization: 'Bearer ' + token } };
-    console.log('url: ', SERVER_URL + '/api/instructor/signup');
-    const response = await axios.post(
-      SERVER_URL + '/api/instructor/signup',
-      {
-        introduction,
-        education,
-        yearCodeExp,
-        filePath,
-        skills: skills.map(skill => skill.label),
-      },
-      config,
-    );
+    const data = new FormData();
+    data.append('inputFile', filePath[0], 'instructorCert');
+    data.append('introduction', introduction);
+    data.append('education', education);
+    data.append('yearCodeExp', yearCodeExp);
+    const instructorSkills = skills.map(skill => skill.label);
+    // JSON.stringify(instructorSkills);
+    // skills.map((skill, i) => {
+    //   data.append('skills', skill.label);
+    //   return true;
+    // });
+    data.append('skills', JSON.stringify(instructorSkills));
 
-    console.log('response: ', response);
+    const token = localStorage.getItem('token');
+
+    const response = await axios({
+      method: 'post',
+      url: SERVER_URL + '/api/instructor/signup',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'multipart/form-data',
+      },
+      data,
+    });
+
+    // console.log('response: ', response);
 
     if (response.status === 200) {
       dispatch({
