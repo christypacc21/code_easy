@@ -1,4 +1,5 @@
 export const LOGIN = 'LOGIN';
+export const AUTHENTICATED = 'AUTHENTICATED';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const INSTRUCTOR_SIGNUP = 'INSTRUCTOR_SIGNUP';

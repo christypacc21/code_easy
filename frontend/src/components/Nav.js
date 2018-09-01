@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 class Nav extends React.Component {
   question = () => {
-    if (this.props.user && this.props.user.user) {
+    if (this.props.authenticated) {
       return (
         <li className="nav-item">
           <Link
@@ -22,7 +22,7 @@ class Nav extends React.Component {
   };
 
   loginOrLogout = () => {
-    if (this.props.user && this.props.user.user) {
+    if (this.props.authenticated) {
       return (
         <li className="nav-item">
           <a className="nav-link" onClick={() => this.props.logout()}>
@@ -95,13 +95,13 @@ class Nav extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    authenticated: state.user.authenticated,
   };
 }
 
 export default withRouter(
   connect(
     mapStateToProps,
-    UserAction
-  )(Nav)
+    UserAction,
+  )(Nav),
 );

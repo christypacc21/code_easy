@@ -13,17 +13,27 @@ class PureLogin extends React.Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
     };
   }
 
+  componentDidMount() {
+    if (this.props.authenticated) {
+      // if (this.props.user.profile.role === 'student') {
+      this.props.history.push('/createQuestion');
+      // } else {
+      //   this.props.history.push('/profile'); //instructor after sign up>take order
+      // }
+    }
+  }
+
   componentDidUpdate(prevProps) {
-    if (this.props.user && this.props.user !== prevProps.user) {
-      if (this.props.user.user.role === 'student') {
-        this.props.history.push('/createQuestion');
-      } else {
-        this.props.history.push('/profile'); //instructor after sign up>take order
-      }
+    if (this.props.authenticated) {
+      // if (this.props.user.profile.role === 'student') {
+      this.props.history.push('/createQuestion');
+      // } else {
+      //   this.props.history.push('/profile'); //instructor after sign up>take order
+      // }
     }
   }
 
@@ -60,7 +70,7 @@ class PureLogin extends React.Component {
                 className="form-control"
                 onChange={e => {
                   this.setState({
-                    email: e.target.value
+                    email: e.target.value,
                   });
                 }}
               />{' '}
@@ -73,7 +83,7 @@ class PureLogin extends React.Component {
                 className="form-control"
                 onChange={e => {
                   this.setState({
-                    password: e.target.value
+                    password: e.target.value,
                   });
                 }}
               />{' '}
@@ -103,11 +113,11 @@ class PureLogin extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    authenticated: state.user.authenticated,
   };
 }
 
 export default connect(
   mapStateToProps,
-  UserActions
+  UserActions,
 )(PureLogin);

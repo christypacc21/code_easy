@@ -8,11 +8,11 @@ class UserSignup extends Component {
     email: '',
     displayName: '',
     password: '',
-    role: 'student'
+    role: 'student',
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.user && this.props.user !== prevProps.user) {
+    if (this.props.authenticated) {
       this.props.history.push('/profile');
     }
   }
@@ -109,11 +109,11 @@ class UserSignup extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    authenticated: state.user.authenticated,
   };
 }
 
 export default connect(
   mapStateToProps,
-  UserActions
+  UserActions,
 )(UserSignup);
