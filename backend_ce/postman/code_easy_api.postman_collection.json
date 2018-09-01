@@ -269,32 +269,27 @@
 			"name": "Create Question",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6InN0dWRlbnQifQ.BTkI5IoIo5VrJO8qy2IQqtHPrfp79x_jj0eEL_PRMYU",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwic…nQifQ.NuBsQMIrp8Xj2tPG_PCBXz_QfLgSn3rl6ho4ABKfuo4",
-						"disabled": true
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"disabled": true
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "content",
-							"value": "How to write if-else? (no pic)",
+							"value": "How to write if-else?",
 							"type": "text"
 						},
 						{
 							"key": "inputFile",
-							"value": "",
 							"type": "file"
 						},
 						{
@@ -310,11 +305,6 @@
 						{
 							"key": "skills",
 							"value": "SQL",
-							"type": "text"
-						},
-						{
-							"key": "id",
-							"value": "2",
 							"type": "text"
 						}
 					]
