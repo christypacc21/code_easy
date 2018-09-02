@@ -22,6 +22,7 @@ import Posts from './pages/Forum/posts/posts';
 import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeOrder from './pages/TakeOrder';
+import Chatroom from './pages/Chatroom';
 
 class App extends Component {
   render() {
@@ -40,6 +41,7 @@ class App extends Component {
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/AskQuestion" component={AskQuestion} />
             <Route exact path="/CreateQuestion" component={CreateQuestion} />
+            <Route exact path="/chatroom/:chatId" component={Chatroom} />
             <Route
               exact
               path="/instructor-profileForm"
