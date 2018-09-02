@@ -10,3 +10,4 @@ export const SOCKET_EMIT = 'SOCKET_EMIT';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
+export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';

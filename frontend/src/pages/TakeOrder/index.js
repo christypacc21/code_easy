@@ -1,10 +1,42 @@
 import React from 'react';
-// import codePhoto from '../../img/code.jpg';
+import { connect } from 'react-redux';
+import * as QuestionActions from '../../redux/actions/questionAction';
+import codePhoto from '../../img/code.jpg';
 
 class TakeOrder extends React.Component {
   componentDidMount() {
-    // callAPI
+    this.props.getAllQuestions();
   }
+
+  renderQuestions = () => {
+    return this.props.questions.map((question, i) => (
+      <div className="card" key={i}>
+        <div className="card-header">Coding skills: {question.skills}</div>
+
+        <div className="card-body">
+          <div className="row">
+            <div className="col-md-4">
+              <img
+                className="card-img-top codePhoto"
+                style={{ width: 250 }}
+                src={codePhoto}
+                alt="Code"
+              />
+            </div>
+            <div className="col-md-4">
+              <h5 className="card-title">Question</h5>
+              <p className="card-text">What is React? Where to learn?</p>
+              <a href="/chatroom" className="btn btn-primary ">
+                Take Order
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="card-footer text-muted">2 days ago</div>
+      </div>
+    ));
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -17,29 +49,8 @@ class TakeOrder extends React.Component {
               <h2 style={{ color: 'white' }}>Take Order</h2>
             </div>
             <br />
-            <div className="card">
-              <div className="card-header">Coding skills: React</div>
-              {/* <div className="col-md-4">
-                <img
-                  className="card-img-top codePhoto"
-                  style={{ width: 250 }}
-                  src={codePhoto}
-                  alt="Code"
-                />
-              </div> */}
-
-              <div className="card-body">
-                <h5 className="card-title">Question</h5>
-                <p className="card-text">What is React? Where to learn?</p>
-                <a href="/chatroom" class="btn btn-primary ">
-                  Take Order
-                </a>
-              </div>
-              <div class="card-footer text-muted">2 days ago</div>
-            </div>
-
+            {this.renderQuestions()}
             <br />
-
             <nav aria-label="Page navigation example">
               <ul className="pagination justify-content-center">
                 <li className="page-item">
@@ -76,4 +87,13 @@ class TakeOrder extends React.Component {
   }
 }
 
-export default TakeOrder;
+function mapStateToProps(state) {
+  return {
+    questions: state.questions.all
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  QuestionActions
+)(TakeOrder);
