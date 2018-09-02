@@ -29,8 +29,15 @@ module.exports = class UserRouter {
 					req.body.skills,
 					req.user.id
 				)
-				.then(data => res.json(data))
-				.catch(err => res.status(500).json(err));
+				.then(data => res.json({
+					success: true,
+					instructorInfo: data
+				}))
+				.catch(err => res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				}));
 		} else {
 			return this.userService
 				.instructorSignUp(
@@ -41,8 +48,15 @@ module.exports = class UserRouter {
 					req.body.skills,
 					req.user.id
 				)
-				.then(data => res.json(data))
-				.catch(err => res.status(500).json(err));
+				.then(data => res.json({
+					success: true,
+					instructorInfo: data
+				}))
+				.catch(err => res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				}));
 		}
 	}
 
@@ -51,16 +65,28 @@ module.exports = class UserRouter {
 			.getProfile(req.user.id)
 			.then(data =>
 				res.json({
+					success: true,
 					profile: data
 				})
 			)
-			.catch(err => res.status(500).json(err));
+			.catch(err => res.status(500).json({
+				success: false,
+				message: err.message,
+				error: err
+			}));
 	}
 
 	uploadProfilePic(req, res) {
 		return this.userService
 			.uploadProfilePic(req.user.id, req.body)
-			.then(data => res.json(data))
-			.catch(err => res.status(500).json(err));
+			.then(data => res.json({
+				success: true,
+				profilePic: data[0]
+			}))
+			.catch(err => res.status(500).json({
+				success: false,
+				message: err.message,
+				error: err
+			}));
 	}
 };

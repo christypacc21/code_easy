@@ -42,13 +42,14 @@ module.exports = class UserService {
 			});
 
 			return Promise.all(skillInput).then(id => {
-				return 'Profile done for instructor id: ' + id[0][0] + [
+				return {
+					id: id[0][0],
 					education,
 					yearCodeExp,
 					introduction,
 					cert_path,
 					skills,
-				];
+				};
 			});
 		} catch (err) {
 			// console.error(err);
@@ -68,10 +69,10 @@ module.exports = class UserService {
 				.from(CODINGSKILLS)
 				.join(INSTRUCTORS_SKILLS, 'codingSkill_id', 'codingSkills.id')
 				.where('instructor_id', id);
-			console.log('instructor: ' + instructorInfo[0]);
+			// console.log('instructor: ' + instructorInfo);
 			return {
 				userInfo: userInfo[0],
-				instructorInfo: instructorInfo[0]
+				instructorInfo: instructorInfo
 			};
 		} else {
 			return userInfo[0];
@@ -81,6 +82,6 @@ module.exports = class UserService {
 	uploadProfilePic(id, url) {
 		return this.knex(USERS)
 			.where('id', id)
-			.update('profilePic', url);
+			.update('profilePic', url).returning('profilePic');
 	}
 };

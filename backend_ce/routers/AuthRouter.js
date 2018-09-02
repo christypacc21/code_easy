@@ -37,7 +37,7 @@ module.exports = class UserRouter {
 					role: userInfo[0].role
 				};
 				const token = jwt.encode(payload, process.env.JWT_SECRET);
-
+				console.log('Local Login User Id: ' + userInfo[0].id);
 				return res.json({
 					id: userInfo[0].id,
 					displayName: userInfo[0].display_name,
@@ -57,7 +57,11 @@ module.exports = class UserRouter {
 			}
 		} catch (err) {
 			// console.error(err);
-			return res.status(401).json(err);
+			return res.status(401).json({
+				success: false,
+				message: err.message,
+				error: err
+			});
 		}
 	}
 
@@ -85,12 +89,17 @@ module.exports = class UserRouter {
 
 			return res.json({
 				id: newUser[0],
-				token,
-				role: userInfo[0].role
+				displayName: userInfo[0].display_name,
+				role: userInfo[0].role,
+				token
 			});
 		} catch (err) {
 			// console.error(err);
-			return res.status(401).json(err);
+			return res.status(401).json({
+				success: false,
+				message: err.message,
+				error: err
+			});
 		}
 	}
 
@@ -147,7 +156,11 @@ module.exports = class UserRouter {
 					return res.status(401).send('Invalid facebook access token');
 				}
 			} catch (err) {
-				return res.status(401).json(err);
+				return res.status(401).json({
+					success: false,
+					message: err.message,
+					error: err
+				});
 			}
 		} else {
 			return res.sendStatus(401);

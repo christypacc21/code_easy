@@ -45,10 +45,10 @@ module.exports = class QuestionRouter {
 					filePath,
 					req.body.skills
 				)
-				.then(questionId =>
+				.then(questionInfo =>
 					res.json({
 						success: true,
-						questionId
+						questionInfo
 					})
 				)
 				.catch(err =>
@@ -61,10 +61,10 @@ module.exports = class QuestionRouter {
 		} else {
 			return this.questionService
 				.createQuestion(req.user.id, req.body.content, null, req.body.skills)
-				.then(questionId =>
+				.then(questionInfo =>
 					res.json({
 						success: true,
-						questionId
+						questionInfo
 					})
 				)
 				.catch(err =>
