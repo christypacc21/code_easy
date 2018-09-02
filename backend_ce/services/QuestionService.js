@@ -2,6 +2,7 @@ const USERS = require('./tables').USERS;
 const QUESTIONS = require('./tables').QUESTIONS;
 const CODINGSKILLS = require('./tables').CODINGSKILLS;
 const QUESTIONS_SKILLS = require('./tables').QUESTIONS_SKILLS;
+const CHATROOOMS = require('./tables').CHATROOOMS;
 
 module.exports = class QuestionService {
 	constructor(knex) {
@@ -42,9 +43,9 @@ module.exports = class QuestionService {
 			if (!student) {
 				throw new Error('Student not found');
 			}
-			// if (student[0].s_questionsCanAsk <= 0) {
-			//   throw new Error('You do not have enough credit to ask a question');
-			// }
+			if (student[0].s_questionsCanAsk <= 0) {
+				throw new Error('You do not have enough credit to ask a question');
+			}
 
 			await this.knex(USERS)
 				.where('id', id)
@@ -74,17 +75,27 @@ module.exports = class QuestionService {
 					});
 			});
 
-			return Promise.all(skillInput).then((questionId) => {
-				// console.log('question id: ' + questionId[0][0]);
-				const questionInfo = {
-					questionId: questionId[0][0],
-					studentId: id,
-					content,
-					image_path,
-					skills
-				};
-				return questionInfo;
-			});
+			return Promise.all(skillInput)
+				.then(questionId => {
+					// console.log('question id: ' + questionId[0][0]);
+					return this.knex(CHATROOOMS)
+						.insert({
+							student_id: id,
+							question_id: questionId[0][0]
+						})
+						.returning('id');
+				})
+				.then(chatId => {
+					const questionInfo = {
+						questionId: question[0],
+						chatId: chatId[0],
+						studentId: id,
+						content,
+						image_path,
+						skills
+					};
+					return questionInfo;
+				});
 		} catch (err) {
 			// console.error(err);
 			throw err;

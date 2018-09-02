@@ -13,7 +13,7 @@ module.exports = class UserService {
 		introduction,
 		cert_path,
 		skills,
-		id,
+		id
 	) {
 		try {
 			await this.knex(USERS)
@@ -21,7 +21,7 @@ module.exports = class UserService {
 					i_education: education,
 					i_year_codeExp: yearCodeExp,
 					i_introduction: introduction,
-					i_cert_path: cert_path,
+					i_cert_path: cert_path
 				})
 				.where('id', id);
 
@@ -35,21 +35,22 @@ module.exports = class UserService {
 						return this.knex(INSTRUCTORS_SKILLS)
 							.insert({
 								instructor_id: id,
-								codingSkill_id: skillId[0].id,
+								codingSkill_id: skillId[0].id
 							})
 							.returning('instructor_id');
 					});
 			});
 
 			return Promise.all(skillInput).then(id => {
-				return {
+				const instructorInfo = {
 					id: id[0][0],
 					education,
 					yearCodeExp,
 					introduction,
 					cert_path,
-					skills,
+					skills
 				};
+				return instructorInfo;
 			});
 		} catch (err) {
 			// console.error(err);
@@ -65,7 +66,8 @@ module.exports = class UserService {
 		console.log('userInfo: ' + userInfo[0].role);
 
 		if (userInfo[0].role === 'instructor') {
-			const instructorInfo = await this.knex.select('skill')
+			const instructorInfo = await this.knex
+				.select('skill')
 				.from(CODINGSKILLS)
 				.join(INSTRUCTORS_SKILLS, 'codingSkill_id', 'codingSkills.id')
 				.where('instructor_id', id);
@@ -82,6 +84,7 @@ module.exports = class UserService {
 	uploadProfilePic(id, url) {
 		return this.knex(USERS)
 			.where('id', id)
-			.update('profilePic', url).returning('profilePic');
+			.update('profilePic', url)
+			.returning('profilePic');
 	}
 };

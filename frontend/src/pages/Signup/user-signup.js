@@ -38,7 +38,7 @@ class UserSignup extends Component {
       >
         <div className="container">
           <div className="row">
-            <h2 style={{ color: 'white' }}>Hi, User!</h2>
+            <h2 style={{ color: 'white' }}>Hi, Student!</h2>
           </div>
           <div className="row">
             <h6 style={{ color: 'white' }}>
