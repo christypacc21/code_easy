@@ -1,9 +1,18 @@
 // class component
 
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import * as ForumActions from '../../../redux/actions/forumActions';
 
 class CreatePost extends Component {
+  state = {
+    postTitle: '',
+    postContent: ''
+  };
+
   render() {
+    const { postTitle, postContent } = this.state;
+
     return (
       <div>
         <a className="btn btn-primary " href="/posts">
@@ -31,6 +40,8 @@ class CreatePost extends Component {
                   className="form-control"
                   id="inputDisplay"
                   placeholder="Title"
+                  value={postTitle}
+                  onChange={e => this.setState({ postTitle: e.target.value })}
                 />
               </div>
 
@@ -46,11 +57,17 @@ class CreatePost extends Component {
                 id="exampleFormControlTextarea1"
                 placeholder="Content"
                 rows="9"
+                value={postContent}
+                onChange={e => this.setState({ postContent: e.target.value })}
               />
             </form>
 
             <br />
-            <a type="submit" className="btn btn-primary">
+            <a
+              type="submit"
+              className="btn btn-primary"
+              // onClick={()=> this.props.}
+            >
               Post to forum!
             </a>
           </div>
