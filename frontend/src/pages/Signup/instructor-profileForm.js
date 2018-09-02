@@ -44,7 +44,7 @@ class InstructorProfileForm extends Component {
     // console.log('edu: ', education);
     // console.log('year: ', yearCodeExp);
     // console.log('file: ', filePath);
-    // console.log('skill: ', skill);
+    // console.log('skills: ', skills);
 
     return (
       <div
