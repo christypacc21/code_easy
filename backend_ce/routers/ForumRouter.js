@@ -44,25 +44,42 @@ module.exports = class ForumRouter {
 
   //ok, can createPost to db with authenToken
   createPost(req, res) {
-    return this.forumService
-      .createPost(
-        req.user.id,
-        req.body.title,
-        req.body.content,
-        req.body.image_path
-      )
-      .then(() => {
-        console.log(req.body);
-        res.json({ success: true });
-      })
-      .catch(err => {
-        console.log('createPost error: ', err);
-        res.status(500).json({
-          success: false,
-          message: err.message,
-          error: err
-        });
+    if (req.files != null) {
+      const inputFile = req.files.inputFile;
+      const filePath = 'images/forumPosts/' + inputFile.name + '.jpg';
+      inputFile.mv(__dirname + '/../' + filePath, err => {
+        if (err) return res.status(500).send(err);
       });
+      return this.forumService
+        .createPost(req.user.id, req.body.title, req.body.content, filePath)
+        .then(() => {
+          console.log(req.body);
+          res.json({ success: true });
+        })
+        .catch(err => {
+          console.log('createPost error: ', err);
+          res.status(500).json({
+            success: false,
+            message: err.message,
+            error: err
+          });
+        });
+    } else {
+      return this.forumService
+        .createPost(req.user.id, req.body.title, req.body.content, null)
+        .then(() => {
+          console.log(req.body);
+          res.json({ success: true });
+        })
+        .catch(err => {
+          console.log('createPost error: ', err);
+          res.status(500).json({
+            success: false,
+            message: err.message,
+            error: err
+          });
+        });
+    }
   }
 
   getPostDetails(req, res) {
@@ -85,25 +102,42 @@ module.exports = class ForumRouter {
   //----------two routes about forum's indiv posts' comments----------
   //ok, can createComments to db with authenToken
   postComments(req, res) {
-    return this.forumService
-      .postComments(
-        req.user.id,
-        req.params.id,
-        req.body.content,
-        req.body.image_path // filePath
-      )
-      .then(() => {
-        console.log(req.body);
-        res.json({ success: true });
-      })
-      .catch(err => {
-        console.log('postComments error: ', err);
-        res.status(500).json({
-          success: false,
-          message: err.message,
-          error: err
-        });
+    if (req.files != null) {
+      const inputFile = req.files.inputFile;
+      const filePath = 'images/forumComments/' + inputFile.name + '.jpg';
+      inputFile.mv(__dirname + '/../' + filePath, err => {
+        if (err) return res.status(500).send(err);
       });
+      return this.forumService
+        .postComments(req.user.id, req.params.id, req.body.content, filePath)
+        .then(() => {
+          console.log('hvimageupload' + req.body);
+          res.json({ success: true });
+        })
+        .catch(err => {
+          console.log('postComments error: ', err);
+          res.status(500).json({
+            success: false,
+            message: err.message,
+            error: err
+          });
+        });
+    } else {
+      return this.forumService
+        .postComments(req.user.id, req.params.id, req.body.content, null)
+        .then(() => {
+          console.log('noimageupload' + req.body);
+          res.json({ success: true });
+        })
+        .catch(err => {
+          console.log('postComments error: ', err);
+          res.status(500).json({
+            success: false,
+            message: err.message,
+            error: err
+          });
+        });
+    }
   }
 
   //ok, can delComments from db with authenToken
