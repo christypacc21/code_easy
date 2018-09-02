@@ -1,8 +1,8 @@
 // class component
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as ForumActions from '../../../redux/actions/forumActions';
+// import { connect } from 'react-redux';
+// import * as ForumActions from '../../../redux/actions/forumActions';
 
 class CreatePost extends Component {
   state = {
