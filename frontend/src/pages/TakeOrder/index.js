@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeTab from '../CreateQuestion/HomeTab';
+// import HomeTab from '../CreateQuestion/HomeTab';
 
 class TakeOrder extends React.Component {
   render() {
