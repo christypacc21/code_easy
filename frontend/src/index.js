@@ -5,9 +5,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 
-import configureStore from './redux/store';
 import { AUTHENTICATED } from './redux/reducers/constants';
-const store = configureStore();
+
+import store from './redux/store';
 
 const token = localStorage.getItem('token');
 if (token) {

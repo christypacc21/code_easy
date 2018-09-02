@@ -1,5 +1,6 @@
 import reduxThunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import socket from './socket';
 
 let middleware = [reduxThunk];
 
@@ -19,10 +20,12 @@ if (process.env.NODE_ENV === 'development') {
   let logger = createLogger({
     predicate: (getState, action) => isDebuggingInChrome,
     collapsed: true,
-    duration: true
+    duration: true,
   });
 
   middleware.push(logger);
 }
+
+middleware.push(socket);
 
 export default middleware;
