@@ -9,6 +9,7 @@ module.exports = class QuestionRouter {
 		let router = express.Router();
 		router.get('/credit/check', this.getCreditBalance.bind(this));
 		router.post('/create', this.postQuestion.bind(this));
+		router.get('/list', this.getQuestion.bind(this));
 		return router;
 	}
 
@@ -18,7 +19,7 @@ module.exports = class QuestionRouter {
 			.then(credit =>
 				res.json({
 					success: true,
-					credit: credit
+					credit
 				})
 			)
 			.catch(err =>
@@ -75,5 +76,23 @@ module.exports = class QuestionRouter {
 					})
 				);
 		}
+	}
+
+	getQuestion(req, res) {
+		return this.questionService
+			.listQuestion(req.user.id)
+			.then(questionList =>
+				res.json({
+					success: true,
+					questionList
+				})
+			)
+			.catch(err =>
+				res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				})
+			);
 	}
 };

@@ -15,15 +15,15 @@ module.exports = class QuestionService {
 			.select()
 			.from(USERS)
 			.where('id', id)
-			.andwhere('role', 'student')
-			.then(credit => {
-				// console.log(credit[0].s_questionsCanAsk);
-				if (!credit) {
+			.andWhere('role', 'student')
+			.then(student => {
+				// console.log(student[0].s_questionsCanAsk);
+				if (!student) {
 					throw new Error('Student not found');
-				} else if (credit[0].s_questionsCanAsk <= 0) {
+				} else if (student[0].s_questionsCanAsk <= 0) {
 					throw new Error('You do not have enough credit to ask a question');
 				} else {
-					return credit[0].s_questionsCanAsk;
+					return student[0].s_questionsCanAsk;
 				}
 			})
 			.catch(err => {
@@ -100,5 +100,27 @@ module.exports = class QuestionService {
 			// console.error(err);
 			throw err;
 		}
+	}
+
+	listQuestion(id) {
+		// For checking instructor before listing questions
+		return this.knex
+			.select()
+			.from(USERS)
+			.where('id', id)
+			.andWhere('role', 'instructor')
+			.then(instructor => {
+				if (!instructor) {
+					throw new Error('Instructor not found');
+				} else {
+					return this.knex
+						.select()
+						.from(QUESTIONS)
+						.where('active', true);
+				}
+			})
+			.catch(err => {
+				throw err;
+			});
 	}
 };

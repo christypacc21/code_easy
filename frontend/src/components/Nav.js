@@ -22,8 +22,8 @@ class Nav extends React.Component {
         return (
           <React.Fragment>
             <li className="nav-item">
-              <Link className="nav-link" to="/TakeOrder">
-                Take Order
+              <Link className="nav-link" to="/TakeQuestions">
+                Take Questions
               </Link>
             </li>
             <li className="nav-item">
@@ -113,13 +113,13 @@ class Nav extends React.Component {
 function mapStateToProps(state) {
   return {
     authenticated: state.user.authenticated,
-    role: state.user && state.user.profile && state.user.profile.role,
+    role: state.user && state.user.profile && state.user.profile.role
   };
 }
 
 export default withRouter(
   connect(
     mapStateToProps,
-    UserAction,
-  )(Nav),
+    UserAction
+  )(Nav)
 );

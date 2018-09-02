@@ -1,7 +1,7 @@
 import React from 'react';
 // import codePhoto from '../../img/code.jpg';
 
-class TakeOrder extends React.Component {
+class TakeQuestions extends React.Component {
   componentDidMount() {
     // callAPI
   }
@@ -14,7 +14,7 @@ class TakeOrder extends React.Component {
         >
           <div className="container py-3">
             <div className="row">
-              <h2 style={{ color: 'white' }}>Take Order</h2>
+              <h2 style={{ color: 'white' }}>Start Taking Questions!</h2>
             </div>
             <br />
             <div className="card">
@@ -31,8 +31,8 @@ class TakeOrder extends React.Component {
               <div className="card-body">
                 <h5 className="card-title">Question</h5>
                 <p className="card-text">What is React? Where to learn?</p>
-                <a href="/chatroom" class="btn btn-primary ">
-                  Take Order
+                <a href="/chatroom" class="btn btn-primary">
+                  Answer
                 </a>
               </div>
               <div class="card-footer text-muted">2 days ago</div>
@@ -76,4 +76,4 @@ class TakeOrder extends React.Component {
   }
 }
 
-export default TakeOrder;
+export default TakeQuestions;

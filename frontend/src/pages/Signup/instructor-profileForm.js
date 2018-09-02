@@ -21,7 +21,7 @@ class InstructorProfileForm extends Component {
       this.props.instructor &&
       this.props.instructor !== prevProps.instructor
     ) {
-      this.props.history.push('/TakeOrder');
+      this.props.history.push('/TakeQuestions');
     }
   }
   // for upload file
