@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HomeTab from './HomeTab';
+import { Link } from 'react-router-dom';
 
 class CreateQuestion extends Component {
   render() {
@@ -11,9 +12,9 @@ class CreateQuestion extends Component {
         >
           <div className="container">
             <h1 className="display-4">My Question</h1>
-            <a className="btn btn-primary " href="/AskQuestion">
+            <Link className="btn btn-primary " to="/AskQuestion">
               Ask Question Now!
-            </a>
+            </Link>
           </div>
         </div>
         <HomeTab />
