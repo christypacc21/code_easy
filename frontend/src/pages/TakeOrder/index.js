@@ -1,7 +1,10 @@
 import React from 'react';
-// import HomeTab from '../CreateQuestion/HomeTab';
+// import codePhoto from '../../img/code.jpg';
 
 class TakeOrder extends React.Component {
+  componentDidMount() {
+    // callAPI
+  }
   render() {
     return (
       <React.Fragment>
@@ -9,19 +12,65 @@ class TakeOrder extends React.Component {
           className="jumbotron jumbotron-fluid"
           style={{ margin: 0, background: '#00B0AF' }}
         >
-          <div className="container">
+          <div className="container py-3">
             <div className="row">
               <h2 style={{ color: 'white' }}>Take Order</h2>
             </div>
             <br />
-            <div className="row">
-              {/* <a type="button" className="btn btn-outline-light">
-                Chat room
-              </a> */}
+            <div className="card">
+              <div className="card-header">Coding skills: React</div>
+              {/* <div className="col-md-4">
+                <img
+                  className="card-img-top codePhoto"
+                  style={{ width: 250 }}
+                  src={codePhoto}
+                  alt="Code"
+                />
+              </div> */}
+
+              <div className="card-body">
+                <h5 className="card-title">Question</h5>
+                <p className="card-text">What is React? Where to learn?</p>
+                <a href="/chatroom" class="btn btn-primary ">
+                  Take Order
+                </a>
+              </div>
+              <div class="card-footer text-muted">2 days ago</div>
             </div>
+
+            <br />
+
+            <nav aria-label="Page navigation example">
+              <ul className="pagination justify-content-center">
+                <li className="page-item">
+                  <a className="page-link" href="/">
+                    Previous
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="/">
+                    1
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="/">
+                    2
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="/">
+                    3
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="/">
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
-        {/* <HomeTab /> */}
       </React.Fragment>
     );
   }

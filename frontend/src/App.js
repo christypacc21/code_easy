@@ -22,6 +22,7 @@ import Posts from './pages/Forum/posts/posts';
 import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeOrder from './pages/TakeOrder';
+import myQuestions from './pages/TakeOrder/my-questions';
 
 class App extends Component {
   render() {
@@ -53,6 +54,7 @@ class App extends Component {
             />
             <Route exact path="/MultipleSelect" component={MultipleSelect} />
             <Route exact path="/TakeOrder" component={TakeOrder} />
+            <Route exact path="/my-questions" component={myQuestions} />
           </Switch>
           <Footer />
         </div>
