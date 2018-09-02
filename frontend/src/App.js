@@ -23,6 +23,7 @@ import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeOrder from './pages/TakeOrder';
 import Chatroom from './pages/Chatroom';
+import myQuestions from './pages/TakeOrder/my-questions';
 
 class App extends Component {
   render() {
