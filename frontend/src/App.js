@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from "./logo.svg";
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -9,7 +8,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 
 import Signup from './pages/Signup';
-// import Community from './pages/Community';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import InstructorSignup from './pages/Signup/instructor-signup';
