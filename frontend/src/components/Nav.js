@@ -21,6 +21,19 @@ class Nav extends React.Component {
     return null;
   };
 
+  takeOrder = () => {
+    if (this.props.authenticated) {
+      return (
+        <li className="nav-item">
+          <Link className="nav-link" to="/TakeOrder">
+            TakeOrder
+          </Link>
+        </li>
+      );
+    }
+    return null;
+  };
+
   loginOrLogout = () => {
     if (this.props.authenticated) {
       return (
@@ -67,6 +80,7 @@ class Nav extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
+            {this.takeOrder()}
             {this.question()}
             <li className="nav-item">
               <Link className="nav-link" to="/pricing">
@@ -95,13 +109,13 @@ class Nav extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.user.authenticated,
+    authenticated: state.user.authenticated
   };
 }
 
 export default withRouter(
   connect(
     mapStateToProps,
-    UserAction,
-  )(Nav),
+    UserAction
+  )(Nav)
 );

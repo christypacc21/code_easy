@@ -11,7 +11,7 @@ class InstructorProfileForm extends Component {
     education: '',
     yearCodeExp: 0,
     filePath: [],
-    skills: [],
+    skills: []
   };
 
   componentDidUpdate(prevProps) {
@@ -20,13 +20,13 @@ class InstructorProfileForm extends Component {
       this.props.instructor &&
       this.props.instructor !== prevProps.instructor
     ) {
-      this.props.history.push('/profile');
+      this.props.history.push('/TakeOrder');
     }
   }
 
   onDrop = (acceptedFiles, rejectedFiles) => {
     this.setState({
-      filePath: acceptedFiles,
+      filePath: acceptedFiles
     });
   };
 
@@ -36,7 +36,7 @@ class InstructorProfileForm extends Component {
       education,
       yearCodeExp,
       filePath,
-      skills,
+      skills
     } = this.state;
 
     // console.log('introduction: ', introduction);
@@ -140,7 +140,7 @@ class InstructorProfileForm extends Component {
                 education,
                 yearCodeExp,
                 filePath,
-                skills,
+                skills
               )
             }
           >
@@ -154,11 +154,11 @@ class InstructorProfileForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    instructor: state.user.instructor,
+    instructor: state.user.instructor
   };
 }
 
 export default connect(
   mapStateToProps,
-  UserActions,
+  UserActions
 )(InstructorProfileForm);

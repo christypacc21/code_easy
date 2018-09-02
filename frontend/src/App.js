@@ -21,6 +21,7 @@ import PostDetails from './pages/Forum/postDetails/postDetails';
 import Posts from './pages/Forum/posts/posts';
 import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
+import TakeOrder from './pages/TakeOrder';
 
 class App extends Component {
   render() {
@@ -51,6 +52,7 @@ class App extends Component {
               component={InstructorSignup}
             />
             <Route exact path="/MultipleSelect" component={MultipleSelect} />
+            <Route exact path="/TakeOrder" component={TakeOrder} />
           </Switch>
           <Footer />
         </div>

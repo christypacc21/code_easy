@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeTab from '../CreateQuestion/HomeTab';
 
-class TakeOder extends React.Component {
+class TakeOrder extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -15,13 +15,13 @@ class TakeOder extends React.Component {
             </div>
             <br />
             <div className="row">
-              <button type="button" className="btn btn-outline-light">
-                Go To Coding Community
-              </button>
+              {/* <a type="button" className="btn btn-outline-light">
+                Chat room
+              </a> */}
             </div>
           </div>
         </div>
-        <HomeTab />
+        {/* <HomeTab /> */}
       </React.Fragment>
     );
   }
