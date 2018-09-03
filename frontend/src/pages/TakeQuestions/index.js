@@ -15,7 +15,7 @@ class TakeQuestions extends React.Component {
           Coding skills:{' '}
           {question.skillInfo.map(skill => (
             <h3 style={{ margin: '0 3px' }}>
-              <span class="badge badge-info">{skill.skill}</span>
+              <span class="badge badge-pill badge-info">{skill.skill}</span>
             </h3>
           ))}
         </div>

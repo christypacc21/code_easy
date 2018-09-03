@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as UserAction from '../redux/actions/userActions';
 import { Link, withRouter } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 class Nav extends React.Component {
   orderOrQuestion = () => {
@@ -56,8 +57,8 @@ class Nav extends React.Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/signup">
-            Sign Up
+          <Link className="btn btn-outline-info" to="/signup">
+            Sign Up Now!
           </Link>
         </li>
       </React.Fragment>
@@ -67,9 +68,17 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{}}>
-        <Link className="navbar-brand" to="/">
-          CodeEasy
+        <Link className="navbar-brand" style={{ color: '#00B0AF' }} to="/">
+          <img
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="/"
+          />
+          <span style={{ marginLeft: 5 }}>CodeEasy</span>
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -83,7 +92,7 @@ class Nav extends React.Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav mr-auto">
             {this.orderOrQuestion()}
             <li className="nav-item">
               <Link className="nav-link" to="/pricing">
@@ -96,14 +105,13 @@ class Nav extends React.Component {
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <Link className="nav-link " to="/contact">
                 Contact Us
               </Link>
             </li>
-
-            {this.loginOrLogout()}
           </ul>
+          <ul className="navbar-nav">{this.loginOrLogout()}</ul>
         </div>
       </nav>
     );
