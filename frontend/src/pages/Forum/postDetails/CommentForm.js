@@ -41,7 +41,7 @@ class CommentForm extends Component {
               <label htmlFor="exampleFormControlFile1">Upload Image</label>
               <Dropzone onDrop={this.onDrop}>
                 <p>
-                  Try dropping some files here, or click to select files to
+                  Try dropping an image here, or click to select an image to
                   upload.
                 </p>
               </Dropzone>

@@ -117,7 +117,7 @@ class InstructorProfileForm extends Component {
             {/* file upload */}
             <Dropzone onDrop={this.onDrop}>
               <p>
-                Try dropping some files here, or click to select files to
+                Try dropping an image here, or click to select an image to
                 upload.
               </p>
             </Dropzone>

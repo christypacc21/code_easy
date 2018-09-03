@@ -59,6 +59,7 @@ class PureLogin extends React.Component {
     // console.log('fb id: ', process.env.REACT_APP_FACEBOOK_APP_ID);
     return (
       <div>
+        <br />
         <h3 className="text-center"> Login Form </h3>{' '}
         <div className="container">
           <form>
@@ -96,6 +97,7 @@ class PureLogin extends React.Component {
             </button>
           </form>
           <h4 className="text-center"> OR </h4>
+          <br />
           <div className="text-center">
             <FacebookLogin
               appId={process.env.REACT_APP_FACEBOOK_APP_ID}
@@ -103,7 +105,9 @@ class PureLogin extends React.Component {
               fields="name,email,picture"
               onClick={this.componentClicked}
               callback={this.responseFacebook}
-            />{' '}
+            />
+            <br />
+            <br />
           </div>{' '}
         </div>{' '}
       </div>
