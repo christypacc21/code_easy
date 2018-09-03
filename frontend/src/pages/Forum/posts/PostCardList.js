@@ -2,14 +2,32 @@
 import React, { Component } from 'react';
 import PostCard from './PostCard';
 import { connect } from 'react-redux';
+import { requestPosts } from '../../../redux/actions/forumActions';
 // import JSONData from './JSONData';
+
+function mapStateToProps(state) {
+  return {
+    // postdata: state.postData
+    postData: state.requestPosts.posts,
+    isPending: state.requestPosts.isPendsing,
+    error: state.requestPosts.error
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onRequestPosts: () => dispatch(requestPosts())
+  };
+}
 
 class PostCardList extends Component {
   // renderPostList() {
-  // componentDidMount???
   //   const postData = JSON.stringify(JSONData);
   //   console.log(postData);
   //   return postData.map((data, i) => {
+  componentDidMount() {
+    this.props.onRequestPosts();
+  }
   renderPostList() {
     return this.props.postData.map((data, i) => {
       return (
@@ -31,7 +49,12 @@ class PostCardList extends Component {
   }
 
   render() {
-    return (
+    const { isPending } = this.props;
+    return !isPending ? (
+      <div>
+        <h1>Loading</h1>
+      </div>
+    ) : (
       <div className="PostCardList">
         <div className="row">{this.renderPostList()}</div>
       </div>
@@ -39,13 +62,10 @@ class PostCardList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    postdata: state.postData
-  };
-}
-
-export default connect(mapStateToProps)(PostCardList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostCardList);
 
 //   render() {
 //     return (

@@ -10,7 +10,9 @@ import {
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
-export const requestPosts = dispatch => {
+//-----------action - request posts ( get all posts)-----------//
+// export const requestPosts = dispatch => {
+export const requestPosts = () => dispatch => {
   dispatch({ type: REQUEST_POSTS_PENDING });
   axios
     .get(SERVER_URL + '/api/forum/posts') //get what?:o
@@ -18,6 +20,7 @@ export const requestPosts = dispatch => {
     .catch(error => dispatch({ type: REQUEST_POSTS_FAILED, payload: error }));
 };
 
+//-----------action - create post-----------//
 // export function createPost(postTitle, postContent, filePath) {
 export function createPost(title, content, filePath) {
   return async dispatch => {
@@ -39,7 +42,7 @@ export function createPost(title, content, filePath) {
     console.log('createPost res: ', response);
   };
 }
-
+//-----------action - create comment-----------//
 export function createComment(content, filePath) {
   return async dispatch => {
     const data = new FormData();
@@ -60,6 +63,7 @@ export function createComment(content, filePath) {
   };
 }
 
+//--------action - search--------//
 // export const setSearchField = text => ({
 //   type: CHANGE_SEARCH_FIELD,
 //   payload: text
