@@ -12,7 +12,12 @@ class TakeQuestions extends React.Component {
     return this.props.questions.map((question, i) => (
       <div className="card" key={i}>
         <div className="card-header">
-          Coding skills: {question.questionInfo.skills}
+          Coding skills:{' '}
+          {question.skillInfo.map(skill => (
+            <h3 style={{ margin: '0 3px' }}>
+              <span class="badge badge-info">{skill.skill}</span>
+            </h3>
+          ))}
         </div>
 
         <div className="card-body">

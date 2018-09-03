@@ -29,6 +29,12 @@ class Chatroom extends Component {
     this.setState({ inputMessage: '' });
   };
 
+  endSession = () => {
+    //step 1: action creator to change status
+    //step 2: redirect to next page (History)
+    //otherwise, will keep in on-going page
+  };
+
   render() {
     return (
       <div className="container">
@@ -40,6 +46,9 @@ class Chatroom extends Component {
         />
         <button className="button" onClick={this.sendMessage}>
           Submit
+        </button>
+        <button className="button" onClick={this.endSession}>
+          End Session
         </button>
       </div>
     );
