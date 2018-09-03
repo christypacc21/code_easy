@@ -1,23 +1,46 @@
-// import axios from 'axios';
-// import {
-//   REQUEST_POSTS_PENDING,
-//   REQUEST_POSTS_SUCCESS,
-//   REQUEST_POSTS_FAILED,
-//   CREATE_POST,
-//   CREATE_COMMENT,
-//   DELETE_COMMENT,
-//   CHANGE_SEARCH_FIELD
-// } from '../reducers/constants';
+import axios from 'axios';
+import {
+  REQUEST_POSTS_PENDING,
+  REQUEST_POSTS_SUCCESS,
+  REQUEST_POSTS_FAILED,
+  CREATE_POST,
+  CREATE_COMMENT,
+  DELETE_COMMENT,
+  CHANGE_SEARCH_FIELD
+} from '../reducers/constants';
+const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
-// export const setSearchField = text => ({
-//   type: CHANGE_SEARCH_FIELD,
-//   payload: text
-// });
+export const setSearchField = text => ({
+  type: CHANGE_SEARCH_FIELD,
+  payload: text
+});
 
-// export const requestPosts = dispatch => {
-//   dispatch({ type: REQUEST_POSTS_PENDING });
-//   axios
-//     .get('http://locahost:8080/api/forum/posts') //get what?:o
-//     .then(data => dispatch({ type: REQUEST_POSTS_SUCCESS, payload: data }))
-//     .catch(error => dispatch({ type: REQUEST_POSTS_FAILED, payload: error }));
-// };
+export const requestPosts = dispatch => {
+  dispatch({ type: REQUEST_POSTS_PENDING });
+  axios
+    .get(SERVER_URL + '/api/forum/posts') //get what?:o
+    .then(data => dispatch({ type: REQUEST_POSTS_SUCCESS, payload: data }))
+    .catch(error => dispatch({ type: REQUEST_POSTS_FAILED, payload: error }));
+};
+
+// export function createPost(postTitle, postContent, filePath) {
+export function createPost(title, content, filePath) {
+  return async dispatch => {
+    const data = new FormData();
+    data.append('inputFile', filePath[0], 'postIMG'); // ??
+    data.append('content', content); //the names used here shd follow which file's variable name?
+    data.append('title', title);
+    const token = localStorage.getItem('token'); ////??
+
+    const response = await axios({
+      method: 'post',
+      url: SERVER_URL + '/api/forum/post',
+      headers: {
+        Authorization: 'Bearer' + token,
+        'Content-Type': 'multipart/form-data'
+      },
+      data
+    });
+    console.log('post res: ', response);
+  };
+}

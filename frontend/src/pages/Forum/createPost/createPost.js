@@ -1,17 +1,26 @@
 // class component
 
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import * as ForumActions from '../../../redux/actions/forumActions';
+import { connect } from 'react-redux';
+import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
+import Dropzone from 'react-dropzone';
 
 class CreatePost extends Component {
   state = {
     postTitle: '',
-    postContent: ''
+    postContent: '',
+    filePath: []
+  };
+
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    this.setState({
+      filePath: acceptedFiles
+    });
+    console.log(this.state);
   };
 
   render() {
-    const { postTitle, postContent } = this.state;
+    const { postTitle, postContent, filePath } = this.state;
 
     return (
       <div>
@@ -41,15 +50,45 @@ class CreatePost extends Component {
                   id="inputDisplay"
                   placeholder="Title"
                   value={postTitle}
-                  onChange={e => this.setState({ postTitle: e.target.value })}
+                  onChange={pt => this.setState({ postTitle: pt.target.value })}
                 />
               </div>
 
-              <h6>Upload image (or files) (if any):</h6>
+              {/* <h6>Upload image (or files) (if any):</h6>
               <div class="form-group">
                 <input class="form-control" type="file" name="inputFile" />
+              </div> */}
+              <div className="form-group">
+                <label htmlFor="exampleFormControlFile1">Upload Image</label>
+                <Dropzone onDrop={this.onDrop}>
+                  <p>
+                    Try dropping some files here, or click to select files to
+                    upload.
+                  </p>
+                </Dropzone>
+                <aside>
+                  <br />
+                  {this.state.filePath.length > 0 ? (
+                    <h2>Uploaded Image</h2>
+                  ) : null}
+
+                  <ul>
+                    {this.state.filePath.map(f => (
+                      <li key={f.name}>
+                        {f.name} - {f.size} bytes
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => this.setState({ filePath: [] })}
+                        >
+                          Delete this file
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
               </div>
 
+              <br />
               <div className="form-group" />
               <label htmlFor="exampleFormControlTextarea1">Post Content</label>
               <textarea
@@ -58,15 +97,18 @@ class CreatePost extends Component {
                 placeholder="Content"
                 rows="9"
                 value={postContent}
-                onChange={e => this.setState({ postContent: e.target.value })}
+                onChange={pc => this.setState({ postContent: pc.target.value })}
               />
             </form>
 
             <br />
+            {/* whts the dif between using a , button and input here? */}
             <a
-              type="submit"
+              // type="submit"
               className="btn btn-primary"
-              // onClick={()=> this.props.}
+              onClick={
+                () => this.props.createPost(postTitle, postContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
+              }
             >
               Post to forum!
             </a>
@@ -77,4 +119,7 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+export default connect(
+  null,
+  ForumActions
+)(CreatePost);
