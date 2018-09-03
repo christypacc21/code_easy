@@ -59,6 +59,7 @@ module.exports = class QuestionService {
 				})
 				.returning('id');
 
+			console.log('skills ', skills);
 			const skillInput = JSON.parse(skills).map(skill => {
 				return this.knex
 					.select('id')
@@ -116,7 +117,30 @@ module.exports = class QuestionService {
 					return this.knex
 						.select()
 						.from(QUESTIONS)
-						.where('active', true);
+						.where('active', true)
+						.then(questionList => {
+							const getQuestionListInfo = questionList.map(question => {
+								// console.log('question', question);
+								return this.knex
+									.select('id')
+									.from(CHATROOOMS)
+									.where('question_id', question.id)
+									.then(chatId => {
+										// console.log('chatId', chatId[0].id);
+
+										// use chatId[0] to avoid error: "Cannot read property 'id' of undefined"
+										const questionListInfo = {
+											chatId: chatId[0],
+											questionInfo: question
+										};
+										// console.log('questionListInfo', questionListInfo);
+										return questionListInfo;
+									});
+							});
+							return Promise.all(getQuestionListInfo).then(questionListInfo => {
+								return questionListInfo;
+							});
+						});
 				}
 			})
 			.catch(err => {

@@ -58,8 +58,3 @@ const server = app.listen(8080, () => {
 // SocketIO Setting
 const io = socketIO(server);
 new SocketIORouter(io, knex).router();
-
-io.on('connection', socket => {
-	console.log('client connected');
-	socket.emit('Hello', { msg: 'Hello' });
-});

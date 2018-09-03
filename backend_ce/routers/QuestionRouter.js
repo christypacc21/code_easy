@@ -81,12 +81,12 @@ module.exports = class QuestionRouter {
 	getQuestion(req, res) {
 		return this.questionService
 			.listQuestion(req.user.id)
-			.then(questionList =>
+			.then(questionList => {
 				res.json({
 					success: true,
 					questionList
-				})
-			)
+				});
+			})
 			.catch(err =>
 				res.status(500).json({
 					success: false,
