@@ -7,7 +7,7 @@ class TakeQuestions extends React.Component {
   componentDidMount() {
     this.props.getAllQuestions();
   }
-  //hi
+
   renderQuestions = () => {
     return this.props.questions.map((question, i) => (
       <div className="card" key={i}>
@@ -25,7 +25,7 @@ class TakeQuestions extends React.Component {
             </div>
             <div className="col-md-4">
               <h5 className="card-title">Question</h5>
-              <p className="card-text">What is React? Where to learn?</p>
+              <p className="card-text">{question.contnet}</p>
               <a href="/chatroom" className="btn btn-primary ">
                 Take Order
               </a>

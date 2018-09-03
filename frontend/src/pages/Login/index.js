@@ -13,7 +13,7 @@ class PureLogin extends React.Component {
 
     this.state = {
       email: '',
-      password: '',
+      password: ''
     };
   }
 
@@ -70,7 +70,7 @@ class PureLogin extends React.Component {
                 className="form-control"
                 onChange={e => {
                   this.setState({
-                    email: e.target.value,
+                    email: e.target.value
                   });
                 }}
               />{' '}
@@ -83,7 +83,7 @@ class PureLogin extends React.Component {
                 className="form-control"
                 onChange={e => {
                   this.setState({
-                    password: e.target.value,
+                    password: e.target.value
                   });
                 }}
               />{' '}
@@ -113,11 +113,11 @@ class PureLogin extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.user.authenticated,
+    authenticated: state.user.authenticated
   };
 }
 
 export default connect(
   mapStateToProps,
-  UserActions,
+  UserActions
 )(PureLogin);
