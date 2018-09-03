@@ -10,11 +10,6 @@ import {
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
-export const setSearchField = text => ({
-  type: CHANGE_SEARCH_FIELD,
-  payload: text
-});
-
 export const requestPosts = dispatch => {
   dispatch({ type: REQUEST_POSTS_PENDING });
   axios
@@ -64,3 +59,8 @@ export function createComment(content, filePath) {
     console.log('createComment res: ', response);
   };
 }
+
+// export const setSearchField = text => ({
+//   type: CHANGE_SEARCH_FIELD,
+//   payload: text
+// });

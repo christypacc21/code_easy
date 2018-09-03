@@ -16,7 +16,7 @@ import UserSignup from './pages/Signup/user-signup';
 import MultipleSelect from './pages/Signup/MultipleSelect';
 import CreatePost from './pages/Forum/createPost/createPost';
 import PostDetails from './pages/Forum/postDetails/postDetails';
-import Posts from './pages/Forum/posts/posts';
+import PostsPage from './pages/Forum/posts/postsPage';
 import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeQuestions from './pages/TakeQuestions';
@@ -33,7 +33,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/posts" component={Posts} />
+            <Route exact path="/postsPage" component={PostsPage} />
             <Route exact path="/postDetails" component={PostDetails} />
             <Route exact path="/posts/new" component={CreatePost} />
             <Route exact path="/pricing" component={Pricing} />

@@ -2,8 +2,14 @@
 import React, { Component } from 'react';
 import PostCard from './PostCard';
 import { connect } from 'react-redux';
+// import JSONData from './JSONData';
 
 class PostCardList extends Component {
+  // renderPostList() {
+  // componentDidMount???
+  //   const postData = JSON.stringify(JSONData);
+  //   console.log(postData);
+  //   return postData.map((data, i) => {
   renderPostList() {
     return this.props.postData.map((data, i) => {
       return (
@@ -17,7 +23,7 @@ class PostCardList extends Component {
             postTitle={data.posts[i].title}
             postContent={data.posts[i].content}
             postImagePath={data.posts[i].image_path}
-            count
+            count={data.count[i].count}
           />
         </div>
       );

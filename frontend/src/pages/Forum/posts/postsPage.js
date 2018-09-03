@@ -2,17 +2,9 @@
 import React, { Component } from 'react';
 import PostCardList from './PostCardList';
 import SearchBar from './SearchBar';
+// import { setSearchField } from '.././redux/actions/forumActions';
 
-class Posts extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { posts: '' };
-  // }
-
-  // postSearch(posts){
-  //   this.setState
-  // }
-
+class PostsPage extends Component {
   render() {
     return (
       <div>
@@ -40,4 +32,16 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default PostsPage;
+
+// function mapStateToProps(state) {
+//   return {
+//     searchField: state.searchPosts.searchField
+//   };
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     onSearchChange: e => dispatch(setSearchField(e.target.value))
+//   };
+// }
