@@ -16,7 +16,8 @@ module.exports = class UserRouter {
 	instructorSignUp(req, res) {
 		if (req.files != null) {
 			const inputFile = req.files.inputFile;
-			const filePath = 'images/instructor/' + req.user.id + '.jpg';
+			const filePath =
+        'images/instructor/' + req.user.id + '_' + inputFile.name + '.jpg';
 			inputFile.mv(__dirname + '/../' + filePath, err => {
 				if (err) return res.status(500).send(err);
 			});
@@ -29,15 +30,19 @@ module.exports = class UserRouter {
 					req.body.skills,
 					req.user.id
 				)
-				.then(data => res.json({
-					success: true,
-					instructorInfo: data
-				}))
-				.catch(err => res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				}));
+				.then(data =>
+					res.json({
+						success: true,
+						instructorInfo: data
+					})
+				)
+				.catch(err =>
+					res.status(500).json({
+						success: false,
+						message: err.message,
+						error: err
+					})
+				);
 		} else {
 			return this.userService
 				.instructorSignUp(
@@ -48,15 +53,19 @@ module.exports = class UserRouter {
 					req.body.skills,
 					req.user.id
 				)
-				.then(data => res.json({
-					success: true,
-					instructorInfo: data
-				}))
-				.catch(err => res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				}));
+				.then(data =>
+					res.json({
+						success: true,
+						instructorInfo: data
+					})
+				)
+				.catch(err =>
+					res.status(500).json({
+						success: false,
+						message: err.message,
+						error: err
+					})
+				);
 		}
 	}
 
@@ -69,24 +78,30 @@ module.exports = class UserRouter {
 					profile: data
 				})
 			)
-			.catch(err => res.status(500).json({
-				success: false,
-				message: err.message,
-				error: err
-			}));
+			.catch(err =>
+				res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				})
+			);
 	}
 
 	uploadProfilePic(req, res) {
 		return this.userService
 			.uploadProfilePic(req.user.id, req.body)
-			.then(data => res.json({
-				success: true,
-				profilePic: data[0]
-			}))
-			.catch(err => res.status(500).json({
-				success: false,
-				message: err.message,
-				error: err
-			}));
+			.then(data =>
+				res.json({
+					success: true,
+					profilePic: data[0]
+				})
+			)
+			.catch(err =>
+				res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				})
+			);
 	}
 };

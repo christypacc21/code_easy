@@ -10,7 +10,7 @@ module.exports = class QuestionService {
 	}
 
 	checkCredit(id) {
-		// For checking student before entering into question form
+		// Checking student before entering into question form
 		return this.knex
 			.select()
 			.from(USERS)
@@ -33,7 +33,7 @@ module.exports = class QuestionService {
 
 	async createQuestion(id, content, image_path, skills) {
 		try {
-			// Checking
+			// Checking student before entering into question form
 			const student = await this.knex
 				.select()
 				.from(USERS)
@@ -59,7 +59,7 @@ module.exports = class QuestionService {
 				})
 				.returning('id');
 
-			console.log('skills ', skills);
+			// console.log('skills ', skills);
 			const skillInput = JSON.parse(skills).map(skill => {
 				return this.knex
 					.select('id')
@@ -104,7 +104,7 @@ module.exports = class QuestionService {
 	}
 
 	listQuestion(id) {
-		// For checking instructor before listing questions
+		// Checking instructor before listing questions
 		return this.knex
 			.select()
 			.from(USERS)
@@ -121,21 +121,28 @@ module.exports = class QuestionService {
 						.then(questionList => {
 							const getQuestionListInfo = questionList.map(question => {
 								// console.log('question', question);
-								return this.knex
+								const getQuestionSkills = this.knex
+									.select('skill')
+									.from(CODINGSKILLS)
+									.join(QUESTIONS_SKILLS, 'codingSkill_id', 'codingSkills.id')
+									.where('question_id', question.id);
+
+								const getChatId = this.knex
 									.select('id')
 									.from(CHATROOOMS)
-									.where('question_id', question.id)
-									.then(chatId => {
-										// console.log('chatId', chatId[0].id);
+									.where('question_id', question.id);
 
-										// use chatId[0] to avoid error: "Cannot read property 'id' of undefined"
+								return Promise.all([getQuestionSkills, getChatId]).then(
+									skillChatInfo => {
+										// console.log('skillChatInfo', skillChatInfo);
 										const questionListInfo = {
-											chatId: chatId[0],
-											questionInfo: question
+											questionInfo: question,
+											skillInfo: skillChatInfo[0],
+											chatInfo: skillChatInfo[1][0]
 										};
-										// console.log('questionListInfo', questionListInfo);
 										return questionListInfo;
-									});
+									}
+								);
 							});
 							return Promise.all(getQuestionListInfo).then(questionListInfo => {
 								return questionListInfo;

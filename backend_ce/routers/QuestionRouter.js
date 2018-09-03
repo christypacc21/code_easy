@@ -34,7 +34,9 @@ module.exports = class QuestionRouter {
 	postQuestion(req, res) {
 		if (req.files != null) {
 			const inputFile = req.files.inputFile;
-			const filePath = 'images/question/' + inputFile.name + '.jpg';
+			// need to check number of questions asked by user for unique image filename
+			const filePath =
+        'images/question/' + req.user.id + '_' + inputFile.name + '.jpg';
 			inputFile.mv(__dirname + '/../' + filePath, err => {
 				if (err) return res.status(500).send(err);
 			});
