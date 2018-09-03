@@ -2,6 +2,7 @@ const USERS = require('./tables').USERS;
 const QUESTIONS = require('./tables').QUESTIONS;
 const CODINGSKILLS = require('./tables').CODINGSKILLS;
 const QUESTIONS_SKILLS = require('./tables').QUESTIONS_SKILLS;
+const CHATROOOMS = require('./tables').CHATROOOMS;
 
 module.exports = class QuestionService {
 	constructor(knex) {
@@ -14,15 +15,15 @@ module.exports = class QuestionService {
 			.select()
 			.from(USERS)
 			.where('id', id)
-			.andwhere('role', 'student')
-			.then(credit => {
-				// console.log(credit[0].s_questionsCanAsk);
-				if (!credit) {
+			.andWhere('role', 'student')
+			.then(student => {
+				// console.log(student[0].s_questionsCanAsk);
+				if (!student) {
 					throw new Error('Student not found');
-				} else if (credit[0].s_questionsCanAsk <= 0) {
+				} else if (student[0].s_questionsCanAsk <= 0) {
 					throw new Error('You do not have enough credit to ask a question');
 				} else {
-					return credit[0].s_questionsCanAsk;
+					return student[0].s_questionsCanAsk;
 				}
 			})
 			.catch(err => {
@@ -42,9 +43,9 @@ module.exports = class QuestionService {
 			if (!student) {
 				throw new Error('Student not found');
 			}
-			// if (student[0].s_questionsCanAsk <= 0) {
-			//   throw new Error('You do not have enough credit to ask a question');
-			// }
+			if (student[0].s_questionsCanAsk <= 0) {
+				throw new Error('You do not have enough credit to ask a question');
+			}
 
 			await this.knex(USERS)
 				.where('id', id)
@@ -74,20 +75,52 @@ module.exports = class QuestionService {
 					});
 			});
 
-			return Promise.all(skillInput).then((questionId) => {
-				// console.log('question id: ' + questionId[0][0]);
-				const questionInfo = {
-					questionId: questionId[0][0],
-					studentId: id,
-					content,
-					image_path,
-					skills
-				};
-				return questionInfo;
-			});
+			return Promise.all(skillInput)
+				.then(questionId => {
+					// console.log('question id: ' + questionId[0][0]);
+					return this.knex(CHATROOOMS)
+						.insert({
+							student_id: id,
+							question_id: questionId[0][0]
+						})
+						.returning('id');
+				})
+				.then(chatId => {
+					const questionInfo = {
+						questionId: question[0],
+						chatId: chatId[0],
+						studentId: id,
+						content,
+						image_path,
+						skills
+					};
+					return questionInfo;
+				});
 		} catch (err) {
 			// console.error(err);
 			throw err;
 		}
+	}
+
+	listQuestion(id) {
+		// For checking instructor before listing questions
+		return this.knex
+			.select()
+			.from(USERS)
+			.where('id', id)
+			.andWhere('role', 'instructor')
+			.then(instructor => {
+				if (!instructor) {
+					throw new Error('Instructor not found');
+				} else {
+					return this.knex
+						.select()
+						.from(QUESTIONS)
+						.where('active', true);
+				}
+			})
+			.catch(err => {
+				throw err;
+			});
 	}
 };

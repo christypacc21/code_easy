@@ -1,43 +1,35 @@
+// const USERS = require('./tables').USERS;
+// const forumPosts = require('./tables').forumPosts;
+// const forumComments = require('./tables').forumComments;
+
 module.exports = class ForumService {
   constructor(knex) {
     this.knex = knex;
   }
 
-  //----------four services about forum posts----------
-
-  //???ok, can getPost from db //?why chut ng sai posts?
+  //----------three services about forum posts----------
   getPosts() {
     return this.knex
-      .count('forumComments.post_id')
-      .column(
-        'forumPosts.id',
-        'forumPosts.user_id',
-        'forumPosts.title',
-        'forumPosts.content',
-        'forumPosts.image_path',
-        'forumPosts.created_at'
-      )
-      .from('forumPosts')
-      .join('forumComments', 'forumComments.post_id', 'forumPosts.id')
-      .groupBy('forumPosts.id') //why forumPosts.id instead of forumComments.posts_id?
-      .orderBy('forumPosts.created_at', 'aesc')
-      .then(aboveresult => {
-        return Promise.all(
-          aboveresult.map(post => {
-            return this.knex
-              .select('users.id', 'users.display_name', 'users.profilePic')
-              .from('users')
-              .where('users.id', post.user_id)
-              .then(user => {
-                return {
-                  user: user[0],
-                  post
-                };
-              });
-          })
-        );
+      .select('*')
+      .from('users')
+      .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id')
+      .then(posts => {
+        return this.knex
+          .count('forumComments.post_id')
+          .column('forumPosts.id')
+          .from('forumPosts')
+          .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
+          .groupBy('forumPosts.id')
+          .orderBy('forumPosts.id', 'aesc')
+          .then(count => {
+            return {
+              posts,
+              count
+            };
+          });
       });
   }
+
   //ok, can createPost to db with authenToken
   createPost(user_id, title, content, image_path) {
     const data = {
@@ -92,13 +84,24 @@ module.exports = class ForumService {
   }
 
   //----------two services about getting my post and my comments (with identifying user id)----------
-  //ok, can getMyPosts from db with authenToken
+  //ok, can getMyPosts from db with count and authenToken
   getMyPosts(user_id) {
-    return this.knex
-      .select()
-      .from('forumPosts')
-      .where('user_id', user_id);
+    return this.knex('forumPosts')
+      .where('forumPosts.user_id', user_id)
+      .count('forumComments.post_id')
+      .column(
+        'forumPosts.id',
+        'forumPosts.user_id',
+        'forumPosts.image_path',
+        'forumPosts.title',
+        'forumPosts.content',
+        'forumPosts.created_at'
+      )
+      .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
+      .groupBy('forumPosts.id')
+      .orderBy('forumPosts.id', 'aesc');
   }
+
   //ok, can getMyComments from db with authenToken
   getMyComments(user_id) {
     return this.knex

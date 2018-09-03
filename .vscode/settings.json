@@ -4,5 +4,9 @@
   "editor.formatOnPaste": true,
   "editor.tabSize": 2,
   "prettier.eslintIntegration": true,
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "*.js": "javascriptreact"
+  }
 }

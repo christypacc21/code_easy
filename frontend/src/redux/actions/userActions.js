@@ -20,7 +20,7 @@ export function localSignup(displayName, email, password, role) {
       role
     });
 
-    // console.log('res', response);
+    // console.log('response: ', response);
     if (response.data) {
       localStorage.setItem('token', response.data.token);
       dispatch({
@@ -40,20 +40,21 @@ export function localSignup(displayName, email, password, role) {
 
 export function loginByEmail(email, password) {
   return async dispatch => {
-    const { data } = await axios.post(SERVER_URL + '/api/login', {
+    const response = await axios.post(SERVER_URL + '/api/login', {
       email,
       password
     });
 
-    // console.log('response: ', data);
+    console.log('response: ', response);
 
-    if (data) {
+    if (response.data) {
+      localStorage.setItem('token', response.data.token);
       dispatch({
         type: AUTHENTICATED
       });
       dispatch({
         type: LOGIN,
-        payload: data
+        payload: response.data
       });
     } else {
       dispatch({
@@ -65,20 +66,21 @@ export function loginByEmail(email, password) {
 
 export function loginByFacebook(access_token, role) {
   return async dispatch => {
-    const { data } = await axios.post(SERVER_URL + '/api/login/facebook', {
+    const response = await axios.post(SERVER_URL + '/api/login/facebook', {
       access_token,
       role
     });
 
-    // console.log('response: ', data);
+    console.log('response: ', response);
 
-    if (data) {
+    if (response.data) {
+      localStorage.setItem('token', response.data.token);
       dispatch({
         type: AUTHENTICATED
       });
       dispatch({
         type: LOGIN,
-        payload: data
+        payload: response.data
       });
     } else {
       dispatch({
@@ -153,7 +155,7 @@ export function updateInstructorProfile(
       data
     });
 
-    // console.log('response: ', response);
+    console.log('response: ', response);
 
     if (response.status === 200) {
       dispatch({

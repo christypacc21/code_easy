@@ -3,7 +3,7 @@ import { options } from './selectOptions';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import * as UserActions from '../../redux/actions/userActions';
-import Dropzone from 'react-dropzone';
+import Dropzone from 'react-dropzone'; // for upload file
 
 class InstructorProfileForm extends Component {
   state = {
@@ -14,22 +14,23 @@ class InstructorProfileForm extends Component {
     skills: []
   };
 
+  //check role
   componentDidUpdate(prevProps) {
     // console.log('current props: ', this.props);
     if (
       this.props.instructor &&
       this.props.instructor !== prevProps.instructor
     ) {
-      this.props.history.push('/TakeOrder');
+      this.props.history.push('/TakeQuestions');
     }
   }
-
+  // for upload file
   onDrop = (acceptedFiles, rejectedFiles) => {
     this.setState({
       filePath: acceptedFiles
     });
   };
-
+  //data send to back end
   render() {
     const {
       introduction,
@@ -43,7 +44,7 @@ class InstructorProfileForm extends Component {
     // console.log('edu: ', education);
     // console.log('year: ', yearCodeExp);
     // console.log('file: ', filePath);
-    // console.log('skill: ', skill);
+    // console.log('skills: ', skills);
 
     return (
       <div
@@ -103,6 +104,7 @@ class InstructorProfileForm extends Component {
             <label htmlFor="exampleFormControlSelect2">Coding Skills</label>
             <Select
               isSearchable
+              //save array
               isMulti
               value={skills}
               onChange={skills => this.setState({ skills })}
@@ -112,6 +114,7 @@ class InstructorProfileForm extends Component {
             <label htmlFor="exampleFormControlFile1">
               Upload certification
             </label>
+            {/* file upload */}
             <Dropzone onDrop={this.onDrop}>
               <p>
                 Try dropping some files here, or click to select files to

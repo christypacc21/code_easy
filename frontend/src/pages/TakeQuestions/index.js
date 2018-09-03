@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as QuestionActions from '../../redux/actions/questionAction';
 import codePhoto from '../../img/code.jpg';
 
-class TakeOrder extends React.Component {
+class TakeQuestions extends React.Component {
   componentDidMount() {
     this.props.getAllQuestions();
   }
@@ -46,7 +46,7 @@ class TakeOrder extends React.Component {
         >
           <div className="container py-3">
             <div className="row">
-              <h2 style={{ color: 'white' }}>Take Order</h2>
+              <h2 style={{ color: 'white' }}>Start Taking Questions!</h2>
             </div>
             <br />
             {this.renderQuestions()}
@@ -96,4 +96,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   QuestionActions
-)(TakeOrder);
+)(TakeQuestions);

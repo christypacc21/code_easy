@@ -8,7 +8,7 @@ class UserSignup extends Component {
     email: '',
     displayName: '',
     password: '',
-    role: 'instructor',
+    role: 'instructor'
   };
 
   componentDidUpdate(prevProps) {
@@ -46,25 +46,15 @@ class UserSignup extends Component {
               Please fill all information below
             </h6>
           </div>
+          <FacebookLogin
+            appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+            fields="name,email,picture"
+            onClick={this.componentClicked}
+            callback={this.responseFacebook}
+          />
+          <br />
+          <br />
           <form>
-            <FacebookLogin
-              appId={process.env.REACT_APP_FACEBOOK_APP_ID}
-              fields="name,email,picture"
-              onClick={this.componentClicked}
-              callback={this.responseFacebook}
-            />
-
-            <div className="form-group">
-              <label htmlFor="inputDisplay">User Name</label>
-              <input
-                type="name"
-                className="form-control"
-                id="inputDisplay"
-                placeholder="Username"
-                value={displayName}
-                onChange={e => this.setState({ displayName: e.target.value })}
-              />
-            </div>
             <div className="form-group">
               <label htmlFor="inputEmail">Email</label>
               <input
@@ -72,7 +62,7 @@ class UserSignup extends Component {
                 className="form-control"
                 id="inputEmail"
                 aria-describedby="emailHelp"
-                placeholder="Enter email"
+                placeholder="Email"
                 value={email}
                 onChange={e => this.setState({ email: e.target.value })}
               />
@@ -89,6 +79,17 @@ class UserSignup extends Component {
                 placeholder="Password"
                 value={password}
                 onChange={e => this.setState({ password: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputDisplay">Username</label>
+              <input
+                type="name"
+                className="form-control"
+                id="inputDisplay"
+                placeholder="Username"
+                value={displayName}
+                onChange={e => this.setState({ displayName: e.target.value })}
               />
             </div>
           </form>
@@ -111,11 +112,11 @@ class UserSignup extends Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.user.authenticated,
+    authenticated: state.user.authenticated
   };
 }
 
 export default connect(
   mapStateToProps,
-  UserActions,
+  UserActions
 )(UserSignup);

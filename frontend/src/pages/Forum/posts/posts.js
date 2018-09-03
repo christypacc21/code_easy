@@ -17,7 +17,7 @@ class Posts extends Component {
     return (
       <div>
         <div>
-          <a className="btn btn-primary" href="/createPost">
+          <a className="btn btn-primary" href="/posts/new">
             Create Post!
           </a>
         </div>
