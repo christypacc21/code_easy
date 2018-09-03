@@ -1,11 +1,11 @@
 import {
   REQUEST_POSTS_PENDING,
   REQUEST_POSTS_SUCCESS,
-  REQUEST_POSTS_FAILED,
-  CREATE_POST,
-  CREATE_COMMENT,
-  DELETE_COMMENT,
-  CHANGE_SEARCH_FIELD
+  REQUEST_POSTS_FAILED
+  // CREATE_POST,
+  // CREATE_COMMENT,
+  // DELETE_COMMENT,
+  // CHANGE_SEARCH_FIELD
 } from '../reducers/constants';
 
 //--------reducer - request posts (get all posts)--------//
