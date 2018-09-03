@@ -6,7 +6,7 @@ import { messagesByChatroom } from '../../redux/reducers/chatReducer';
 
 class Chatroom extends Component {
   state = {
-    inputMessage: '',
+    inputMessage: ''
   };
 
   componentDidMount() {
@@ -14,8 +14,8 @@ class Chatroom extends Component {
   }
 
   renderChats = () =>
-    this.props.messages.map(message => (
-      <div>
+    this.props.messages.map((message, i) => (
+      <div key={message.message + i}>
         {message.sender}: {message.message}
       </div>
     ));
@@ -24,8 +24,9 @@ class Chatroom extends Component {
     this.props.sendChatMessage(
       this.state.inputMessage,
       this.props.userId,
-      this.props.match.params.chatId,
+      this.props.match.params.chatId
     );
+    this.setState({ inputMessage: '' });
   };
 
   render() {
@@ -48,11 +49,11 @@ class Chatroom extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     userId: state.user && state.user.profile && state.user.profile.id,
-    messages: messagesByChatroom(state, ownProps.match.params.chatId),
+    messages: messagesByChatroom(state, ownProps.match.params.chatId)
   };
 }
 
 export default connect(
   mapStateToProps,
-  ChatActions,
+  ChatActions
 )(Chatroom);

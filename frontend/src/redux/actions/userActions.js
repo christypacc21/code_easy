@@ -99,10 +99,8 @@ export function logout() {
   };
 }
 
-export function uploadQuestion(content, filePath, skills) {
-  return async (dispatch, getState) => {
-    const state = getState();
-    console.log('state: ', state);
+export function uploadQuestion(content, filePath, skills, history) {
+  return async dispatch => {
     try {
       const data = new FormData();
       data.append('inputFile', filePath[0], 'questionIMG');
@@ -122,6 +120,9 @@ export function uploadQuestion(content, filePath, skills) {
       });
 
       console.log('question res: ', response);
+      if (response.data.success) {
+        history.push('/chatroom/' + response.data.questionInfo.chatId);
+      }
     } catch (err) {
       alert('Not enough credit');
     }

@@ -3,19 +3,17 @@ import store from '../store';
 import {
   SOCKET,
   SOCKET_ON,
-  SOCKET_EMIT,
+  SOCKET_EMIT
   // SEND_MESSAGE,
 } from '../reducers/constants';
 
 const socket = io(process.env.REACT_APP_API_SERVER);
 
 socket.on(SOCKET_ON, payload => {
-  // console.log('socket type: ', type);
-  console.log('socket payload: ', payload);
   if (payload.actionType) {
     store.dispatch({
       type: payload.actionType,
-      payload: payload.payload,
+      payload: payload.payload
     });
   }
 });

@@ -1,10 +1,4 @@
-import {
-  // SOCKET,
-  // SOCKET_EMIT,
-  // SEND_MESSAGE,
-  NEW_MESSAGE,
-  GET_ALL_MESSAGES
-} from './constants';
+import { NEW_MESSAGE, GET_ALL_MESSAGES } from './constants';
 
 const initialState = {
   messages: []
@@ -28,6 +22,5 @@ export default (state = initialState, action) => {
 };
 
 export function messagesByChatroom(state, chatId) {
-  console.log('chatId: ', chatId);
   return state.chat.messages.filter(message => message.chatId === chatId);
 }

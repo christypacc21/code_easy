@@ -89,7 +89,14 @@ class AskQuestion extends Component {
           <br />
           <button
             className="btn btn-primary"
-            onClick={() => this.props.uploadQuestion(content, filePath, skills)}
+            onClick={() =>
+              this.props.uploadQuestion(
+                content,
+                filePath,
+                skills,
+                this.props.history
+              )
+            }
           >
             Send
           </button>
