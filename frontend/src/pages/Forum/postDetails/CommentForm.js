@@ -1,46 +1,96 @@
 // class component
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
+import Dropzone from 'react-dropzone';
 
 class CommentForm extends Component {
+  state = {
+    commentContent: '',
+    filePath: []
+  };
+
+  //?
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    this.setState({
+      filePath: acceptedFiles
+    });
+    console.log(this.state);
+  };
+
   render() {
+    const { commentContent, filePath } = this.state;
     return (
       <div
         className="jumbotron jumbotron-fluid"
         style={{ margin: 0, background: '#00B0AF' }}
       >
-        <div className="container" style={{ background: '#000000' }}>
-          {/* <div className="row"> */}
+        <div className="container" style={{ background: '#D3D3D3' }}>
           <h2 style={{ color: 'white' }}>Your comments:</h2>
-          {/* </div> */}
-          {/* <div className="row">
-            <h6 style={{ color: 'white' }}>Leave your comments here!</h6>
-          </div> */}
           <form>
             <div className="form-group" />
             {/* <label htmlFor="exampleFormControlTextarea1">My reply:</label> */}
-            {/* can upload more than one file or image??? */}
-            <h6>Upload image or files (if any):</h6>
-            <div class="form-group">
-              <input class="form-control" type="file" name="inputFile" />
-            </div>
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
               placeholder="Type something..."
               rows="9"
             />
+            <div className="form-group">
+              <label htmlFor="exampleFormControlFile1">Upload Image</label>
+              <Dropzone onDrop={this.onDrop}>
+                <p>
+                  Try dropping some files here, or click to select files to
+                  upload.
+                </p>
+              </Dropzone>
+              <aside>
+                <br />
+                {this.state.filePath.length > 0 ? (
+                  <h2>Uploaded Image</h2>
+                ) : null}
+
+                <ul>
+                  {this.state.filePath.map(f => (
+                    <li key={f.name}>
+                      {f.name} - {f.size} bytes
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => this.setState({ filePath: [] })}
+                      >
+                        Delete this file
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
+            {/* <input
+              type="submit"
+              class="btn btn-primary btn-sm btn-block"
+              value="send"
+            /> */}
           </form>
+
           <br />
-          <input
-            type="submit"
-            class="btn btn-primary btn-sm btn-block"
-            value="send"
-          />
+          {/* whts the dif between using a , button and input here? */}
+          <a
+            // type="submit"
+            className="btn btn-primary btn-block"
+            onClick={
+              () => this.props.createComment(commentContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
+            }
+          >
+            Send !
+          </a>
         </div>
       </div>
     );
   }
 }
 
-export default CommentForm;
+export default connect(
+  null,
+  ForumActions
+)(CommentForm);

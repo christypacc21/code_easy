@@ -12,6 +12,7 @@ class CreatePost extends Component {
     filePath: []
   };
 
+  //?
   onDrop = (acceptedFiles, rejectedFiles) => {
     this.setState({
       filePath: acceptedFiles
@@ -32,7 +33,6 @@ class CreatePost extends Component {
           style={{ margin: 0, background: '#00B0AF' }}
         >
           <div className="container">
-            <div />
             <div className="row">
               <h2 style={{ color: 'white' }}>Create a Forum Post!</h2>
             </div>
@@ -53,11 +53,6 @@ class CreatePost extends Component {
                   onChange={pt => this.setState({ postTitle: pt.target.value })}
                 />
               </div>
-
-              {/* <h6>Upload image (or files) (if any):</h6>
-              <div class="form-group">
-                <input class="form-control" type="file" name="inputFile" />
-              </div> */}
               <div className="form-group">
                 <label htmlFor="exampleFormControlFile1">Upload Image</label>
                 <Dropzone onDrop={this.onDrop}>
@@ -89,16 +84,21 @@ class CreatePost extends Component {
               </div>
 
               <br />
-              <div className="form-group" />
-              <label htmlFor="exampleFormControlTextarea1">Post Content</label>
-              <textarea
-                className="form-control"
-                id="exampleFormControlTextarea1"
-                placeholder="Content"
-                rows="9"
-                value={postContent}
-                onChange={pc => this.setState({ postContent: pc.target.value })}
-              />
+              <div className="form-group">
+                <label htmlFor="exampleFormControlTextarea1">
+                  Post Content
+                </label>
+                <textarea
+                  className="form-control"
+                  id="exampleFormControlTextarea1"
+                  placeholder="Content"
+                  rows="9"
+                  value={postContent}
+                  onChange={pc =>
+                    this.setState({ postContent: pc.target.value })
+                  }
+                />
+              </div>
             </form>
 
             <br />
