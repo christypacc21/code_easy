@@ -43,7 +43,10 @@ class Nav extends React.Component {
     if (this.props.authenticated) {
       return (
         <li className="nav-item">
-          <a className="nav-link" onClick={() => this.props.logout()}>
+          <a
+            className="btn btn-outline-secondary "
+            onClick={() => this.props.logout()}
+          >
             Logout
           </a>
         </li>
@@ -63,6 +66,30 @@ class Nav extends React.Component {
         </li>
       </React.Fragment>
     );
+  };
+
+  userProfileOrinstructorProfile = () => {
+    if (this.props.authenticated) {
+      if (this.props.role === 'student') {
+        return (
+          <li className="nav-item">
+            <Link className="nav-link" to="/userProfile">
+              Profile
+            </Link>
+          </li>
+        );
+      } else {
+        return (
+          <React.Fragment>
+            <li className="nav-item">
+              <Link className="nav-link" to="/instructorProfile">
+                Profile
+              </Link>
+            </li>
+          </React.Fragment>
+        );
+      }
+    }
   };
 
   render() {
@@ -102,6 +129,12 @@ class Nav extends React.Component {
             <li className="nav-item">
               <Link className="nav-link " to="/posts">
                 Coding Community
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link " to="/instructorProfile">
+                Profile
               </Link>
             </li>
 

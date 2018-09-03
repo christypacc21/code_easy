@@ -22,6 +22,8 @@ import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeQuestions from './pages/TakeQuestions';
 import Chatroom from './pages/Chatroom';
 import myQuestions from './pages/TakeQuestions/my-questions';
+import instructorProfile from './pages/Profile/instructorProfile';
+import userProfile from './pages/Profile/userProfile';
 
 class App extends Component {
   render() {
@@ -55,6 +57,12 @@ class App extends Component {
             <Route exact path="/MultipleSelect" component={MultipleSelect} />
             <Route exact path="/TakeQuestions" component={TakeQuestions} />
             <Route exact path="/my-questions" component={myQuestions} />
+            <Route
+              exact
+              path="/instructorProfile"
+              component={instructorProfile}
+            />
+            <Route exact path="/userProfile" component={userProfile} />
           </Switch>
           <Footer />
         </div>
