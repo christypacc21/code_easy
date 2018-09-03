@@ -132,11 +132,9 @@ class Nav extends React.Component {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link className="nav-link " to="/instructorProfile">
-                Profile
-              </Link>
-            </li>
+            <ul className="navbar-nav">
+              {this.userProfileOrInstructorProfile()}
+            </ul>
 
             <li className="nav-item ">
               <Link className="nav-link " to="/contact">
