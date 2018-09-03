@@ -100,25 +100,31 @@ export function logout() {
 }
 
 export function uploadQuestion(content, filePath, skills) {
-  return async dispatch => {
-    const data = new FormData();
-    data.append('inputFile', filePath[0], 'questionIMG');
-    data.append('content', content);
-    const instructorSkills = skills.map(skill => skill.label);
-    data.append('skills', JSON.stringify(instructorSkills));
-    const token = localStorage.getItem('token');
+  return async (dispatch, getState) => {
+    const state = getState();
+    console.log('state: ', state);
+    try {
+      const data = new FormData();
+      data.append('inputFile', filePath[0], 'questionIMG');
+      data.append('content', content);
+      const instructorSkills = skills.map(skill => skill.label);
+      data.append('skills', JSON.stringify(instructorSkills));
+      const token = localStorage.getItem('token');
 
-    const response = await axios({
-      method: 'post',
-      url: SERVER_URL + '/api/question/create',
-      headers: {
-        Authorization: 'Bearer ' + token,
-        'Content-Type': 'multipart/form-data'
-      },
-      data
-    });
+      const response = await axios({
+        method: 'post',
+        url: SERVER_URL + '/api/question/create',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'multipart/form-data'
+        },
+        data
+      });
 
-    console.log('question res: ', response);
+      console.log('question res: ', response);
+    } catch (err) {
+      alert('Not enough credit');
+    }
   };
 }
 

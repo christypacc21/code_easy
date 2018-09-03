@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import * as QuestionActions from '../../redux/actions/questionAction';
-import codePhoto from '../../img/code.jpg';
 
 class TakeQuestions extends React.Component {
   componentDidMount() {
@@ -19,20 +19,24 @@ class TakeQuestions extends React.Component {
               <img
                 className="card-img-top codePhoto"
                 style={{ width: 250 }}
-                src={codePhoto}
-                alt="Code"
+                src={`${process.env.REACT_APP_API_SERVER}/${
+                  question.image_path
+                }`}
+                alt={question.content}
               />
             </div>
             <div className="col-md-4">
               <h5 className="card-title">Question</h5>
-              <p className="card-text">{question.contnet}</p>
-              <a href="/chatroom" className="btn btn-primary ">
-                Take Order
+              <p className="card-text">{question.content}</p>
+              <a href={`/chatroom/${question.id}`} className="btn btn-primary ">
+                Take Question
               </a>
             </div>
           </div>
         </div>
-        <div className="card-footer text-muted">2 days ago</div>
+        <div className="card-footer text-muted">
+          {moment(question.created_at).fromNow()}
+        </div>
       </div>
     ));
   };
@@ -51,35 +55,6 @@ class TakeQuestions extends React.Component {
             <br />
             {this.renderQuestions()}
             <br />
-            <nav aria-label="Page navigation example">
-              <ul className="pagination justify-content-center">
-                <li className="page-item">
-                  <a className="page-link" href="/">
-                    Previous
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="/">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="/">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="/">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="/">
-                    Next
-                  </a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </React.Fragment>
