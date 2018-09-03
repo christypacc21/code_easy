@@ -68,7 +68,7 @@ class Nav extends React.Component {
     );
   };
 
-  userProfileOrinstructorProfile = () => {
+  userProfileOrInstructorProfile = () => {
     if (this.props.authenticated) {
       if (this.props.role === 'student') {
         return (

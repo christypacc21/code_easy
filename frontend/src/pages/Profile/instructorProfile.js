@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as InstructorProfileAction from '../../redux/actions/InstructorProfileAction';
 
 class instructorProfile extends React.Component {
+  componentDidMount() {
+    this.props.getAllInstructorProfile();
+  }
   render() {
     return (
       <React.Fragment>
@@ -20,7 +25,7 @@ class instructorProfile extends React.Component {
                   className="form-control"
                   id="inputEmail"
                   aria-describedby="emailHelp"
-                  placeholder="Email"
+                  placeholder={instructorProfile.email}
                 />
               </div>
 
@@ -30,7 +35,7 @@ class instructorProfile extends React.Component {
                   type="name"
                   className="form-control"
                   id="inputDisplay"
-                  placeholder="Username"
+                  placeholder={instructorProfile.displayName}
                 />
               </div>
 
@@ -40,6 +45,7 @@ class instructorProfile extends React.Component {
                 className="form-control"
                 id="exampleFormControlTextarea1"
                 rows="3"
+                placeholder={instructorProfile.intro}
               />
 
               <div className="form-group" />
@@ -48,17 +54,26 @@ class instructorProfile extends React.Component {
                 className="form-control"
                 id="exampleFormControlTextarea2"
                 rows="3"
+                placeholder={instructorProfile.education}
               />
 
               <div className="form-group" />
               <label htmlFor="exampleFormControlSelect1">
                 Year of coding experience
               </label>
-              <input className="form-control" id="exampleFormControlSelect1" />
+              <input
+                className="form-control"
+                id="exampleFormControlSelect1"
+                placeholder={instructorProfile.yearCodeExp}
+              />
 
               <div className="form-group" />
               <label htmlFor="exampleFormControlSelect2">Coding Skills</label>
-              <input className="form-control" id="exampleFormControlSelect1" />
+              <input
+                className="form-control"
+                id="exampleFormControlSelect1"
+                placeholder={instructorProfile.skills}
+              />
 
               <div className="form-group" />
               <img
@@ -87,4 +102,16 @@ class instructorProfile extends React.Component {
     );
   }
 }
-export default instructorProfile;
+
+// export default instructorProfile;
+
+function mapStateToProps(state) {
+  return {
+    instructorProfile: state.instructorProfile
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  InstructorProfileAction
+)(instructorProfile);

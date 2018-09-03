@@ -22,16 +22,7 @@ class TakeQuestions extends React.Component {
 
         <div className="card-body">
           <div className="row">
-            <div className="col-md-4">
-              <img
-                className="card-img-top codePhoto"
-                style={{ width: 250 }}
-                src={`${process.env.REACT_APP_API_SERVER}/${
-                  question.questionInfo.image_path
-                }`}
-                alt={question.questionInfo.content}
-              />
-            </div>
+            <div className="col-md-4" />
             <div className="col-md-4">
               <h5 className="card-title">Question</h5>
               <p className="card-text">{question.questionInfo.content}</p>
