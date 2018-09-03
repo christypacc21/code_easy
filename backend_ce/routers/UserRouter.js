@@ -17,7 +17,13 @@ module.exports = class UserRouter {
 		if (req.files != null) {
 			const inputFile = req.files.inputFile;
 			const filePath =
-        'images/instructor/' + req.user.id + '_' + inputFile.name + '.jpg';
+        'images/instructor/' +
+        req.user.id +
+        '_' +
+        Date.now() +
+        '_' +
+        inputFile.name +
+        '.jpg';
 			inputFile.mv(__dirname + '/../' + filePath, err => {
 				if (err) return res.status(500).send(err);
 			});

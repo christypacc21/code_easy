@@ -3,9 +3,9 @@ const jwt = require('jwt-simple');
 const axios = require('axios');
 const bcrypt = require('../utils/bcrypt');
 
-module.exports = class UserRouter {
-	constructor(userService) {
-		this.userService = userService;
+module.exports = class AuthRouter {
+	constructor(authService) {
+		this.authService = authService;
 	}
 
 	router() {
@@ -23,7 +23,7 @@ module.exports = class UserRouter {
 			}
 			const email = req.body.email;
 			const password = req.body.password;
-			const userInfo = await this.userService.localLogin(email);
+			const userInfo = await this.authService.localLogin(email);
 			if (userInfo[0]) {
 				const passwordMatch = await bcrypt.checkPassword(
 					password,
@@ -39,6 +39,7 @@ module.exports = class UserRouter {
 				const token = jwt.encode(payload, process.env.JWT_SECRET);
 				console.log('Local Login User Id: ' + userInfo[0].id);
 				return res.json({
+					success: true,
 					id: userInfo[0].id,
 					displayName: userInfo[0].display_name,
 					profilePic: userInfo[0].profilePic,
@@ -67,20 +68,20 @@ module.exports = class UserRouter {
 
 	async localSignUp(req, res) {
 		try {
-			const duplicateEmail = await this.userService.checkValidEmail(
+			const duplicateEmail = await this.authService.checkValidEmail(
 				req.body.email
 			);
 			if (duplicateEmail.length > 0) {
 				return res.status(401).send('That email address has already been used');
 			}
 			const hash = await bcrypt.hashPassword(req.body.password);
-			const newUser = await this.userService.localSignUp(
+			const newUser = await this.authService.localSignUp(
 				req.body.displayName,
 				req.body.email,
 				hash,
 				req.body.role
 			);
-			const userInfo = await this.userService.getUserInfoById(newUser[0]);
+			const userInfo = await this.authService.getUserInfoById(newUser[0]);
 			const payload = {
 				id: newUser[0],
 				role: userInfo[0].role
@@ -88,6 +89,7 @@ module.exports = class UserRouter {
 			const token = jwt.encode(payload, process.env.JWT_SECRET);
 
 			return res.json({
+				success: true,
 				id: newUser[0],
 				displayName: userInfo[0].display_name,
 				role: userInfo[0].role,
@@ -113,13 +115,13 @@ module.exports = class UserRouter {
 				// console.log(data.data);
 				if (!data.data.error) {
 					let userId;
-					const user = await this.userService.findUserByFacebookId(
+					const user = await this.authService.findUserByFacebookId(
 						data.data.id
 					);
 					if (user[0]) {
 						userId = user[0].id;
 					} else {
-						const newUser = await this.userService.facebookSignUp(
+						const newUser = await this.authService.facebookSignUp(
 							data.data.name,
 							data.data.id,
 							data.data.email,
@@ -129,7 +131,7 @@ module.exports = class UserRouter {
 						console.log('New User Id: ' + newUser);
 						userId = newUser[0];
 					}
-					const userInfo = await this.userService.getUserInfoById(userId);
+					const userInfo = await this.authService.getUserInfoById(userId);
 					const payload = {
 						id: userId,
 						role: userInfo[0].role
@@ -139,6 +141,7 @@ module.exports = class UserRouter {
 					const token = jwt.encode(payload, process.env.JWT_SECRET);
 					console.log('Facebook Login User Id: ' + userId);
 					return res.json({
+						success: true,
 						id: userId,
 						displayName: userInfo[0].display_name,
 						profilePic: userInfo[0].profilePic,
