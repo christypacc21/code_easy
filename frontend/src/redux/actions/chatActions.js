@@ -2,7 +2,7 @@ import {
   SOCKET,
   SOCKET_EMIT,
   SEND_MESSAGE,
-  GET_ALL_MESSAGES,
+  GET_ALL_MESSAGES
 } from '../reducers/constants';
 
 export function sendChatMessage(message, userId, chatId) {
@@ -14,8 +14,8 @@ export function sendChatMessage(message, userId, chatId) {
         actionType: SEND_MESSAGE,
         message,
         userId,
-        chatId,
-      },
+        chatId
+      }
     });
   };
 }
@@ -26,8 +26,8 @@ export function getAllMessages() {
       type: SOCKET,
       socketAction: SOCKET_EMIT,
       payload: {
-        actionType: GET_ALL_MESSAGES,
-      },
+        actionType: GET_ALL_MESSAGES
+      }
     });
   };
 }

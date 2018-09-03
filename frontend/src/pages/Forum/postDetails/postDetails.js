@@ -8,7 +8,7 @@ class PostDetails extends Component {
   render() {
     return (
       <div>
-        <a className="btn btn-primary " href="/posts">
+        <a className="btn btn-primary " href="/postsPage">
           Back to forum(posts)
         </a>
 

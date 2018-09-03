@@ -25,7 +25,7 @@ class CreatePost extends Component {
 
     return (
       <div>
-        <a className="btn btn-primary " href="/posts">
+        <a className="btn btn-primary " href="/postsPage">
           Go back to posts
         </a>
         <div

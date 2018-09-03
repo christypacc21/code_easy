@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
   let logger = createLogger({
     predicate: (getState, action) => isDebuggingInChrome,
     collapsed: true,
-    duration: true,
+    duration: true
   });
 
   middleware.push(logger);
