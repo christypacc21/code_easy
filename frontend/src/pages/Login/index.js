@@ -1,11 +1,8 @@
 import React from 'react';
-// import FacebookLogin, { ReactFacebookLoginInfo } from "react-facebook-login";
 import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux';
 
 import * as UserActions from '../../redux/actions/userActions';
-
-// import { loginFacebook } from "../redux/auth/actions";
 
 class PureLogin extends React.Component {
   constructor(props) {
@@ -18,22 +15,24 @@ class PureLogin extends React.Component {
   }
 
   componentDidMount() {
+    console.log('this.props', this.props);
     if (this.props.authenticated) {
-      // if (this.props.user.profile.role === 'student') {
-      this.props.history.push('/createQuestion');
-      // } else {
-      //   this.props.history.push('/profile'); //instructor after sign up>take order
-      // }
+      if (this.props.role === 'student') {
+        this.props.history.push('/CreateQuestion');
+      } else {
+        this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
+      }
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
+    console.log('this.props-didUpdate', this.props);
     if (this.props.authenticated) {
-      // if (this.props.user.profile.role === 'student') {
-      this.props.history.push('/createQuestion');
-      // } else {
-      //   this.props.history.push('/profile'); //instructor after sign up>take order
-      // }
+      if (this.props.role === 'student') {
+        this.props.history.push('/CreateQuestion');
+      } else {
+        this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
+      }
     }
   }
 
@@ -117,7 +116,8 @@ class PureLogin extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.user.authenticated
+    authenticated: state.user.authenticated,
+    role: state.user && state.user.profile && state.user.profile.role
   };
 }
 

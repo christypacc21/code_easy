@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 
 class Nav extends React.Component {
   orderOrQuestion = () => {
+    console.log('this.props-Nav', this.props);
     if (this.props.authenticated) {
       if (this.props.role === 'student') {
         return (

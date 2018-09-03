@@ -10,6 +10,7 @@ class TakeQuestions extends React.Component {
 
   renderQuestions = () => {
     return this.props.questions.map((question, i) => {
+      console.log('question', question);
       if (question.questionInfo.image_path) {
         return (
           <div className="card" key={i}>
@@ -48,7 +49,7 @@ class TakeQuestions extends React.Component {
                   <h5 className="card-title">Question</h5>
                   <p className="card-text">{question.questionInfo.content}</p>
                   <a
-                    href={`/chatroom/${question.chatId && question.chatId.id}`}
+                    href={`/chatroom/${question.chatInfo.id}`}
                     className="btn btn-primary "
                   >
                     Answer
@@ -91,7 +92,7 @@ class TakeQuestions extends React.Component {
                   <h5 className="card-title">Question</h5>
                   <p className="card-text">{question.questionInfo.content}</p>
                   <a
-                    href={`/chatroom/${question.chatId && question.chatId.id}`}
+                    href={`/chatroom/${question.chatInfo.id}`}
                     className="btn btn-primary "
                   >
                     Answer

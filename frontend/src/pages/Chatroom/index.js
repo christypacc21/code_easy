@@ -14,11 +14,14 @@ class Chatroom extends Component {
   }
 
   renderChats = () =>
-    this.props.messages.map((message, i) => (
-      <div key={message.message + i}>
-        {message.sender}: {message.message}
-      </div>
-    ));
+    this.props.messages.map((message, i) => {
+      console.log('message', message);
+      return (
+        <div key={message.message + i}>
+          {message.userId}: {message.message}
+        </div>
+      );
+    });
 
   sendMessage = () => {
     this.props.sendChatMessage(
