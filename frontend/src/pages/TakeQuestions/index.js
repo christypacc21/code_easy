@@ -7,7 +7,7 @@ class TakeQuestions extends React.Component {
   componentDidMount() {
     this.props.getAllQuestions();
   }
-
+  //hi
   renderQuestions = () => {
     return this.props.questions.map((question, i) => (
       <div className="card" key={i}>
