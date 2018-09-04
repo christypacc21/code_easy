@@ -26,6 +26,7 @@ class Chatroom extends Component {
     });
 
   sendMessage = () => {
+    console.log('this.props', this.props);
     this.props.sendChatMessage(
       this.state.inputMessage,
       this.props.user.id,
