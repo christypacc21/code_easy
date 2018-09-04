@@ -1,59 +1,45 @@
-// class component
-import React, { Component } from 'react';
+import React from 'react';
 import CommentCard from './CommentCard';
-import { connect } from 'react-redux';
-import { requestPostDetails } from '../../../redux/actions/forumActions';
 
-class CommentList extends Component {
-  componentDidMount() {
-    this.props.onRequestPostDetails();
-  }
-
-  renderCommentList() {
-    return this.props.comments.map((comment, i) => {
-      return (
-        <div className="card col-sm-4">
-          <CommentCard
-            key={i}
-            propicPath={comment[i].profilePic}
-            username={comment[i].display_name}
-            dateTime={comment[i].created_at}
-            commentContent={comment[i].content}
-            commentImagePath={comment[i].image_path}
-          />
-        </div>
-      );
-    });
-  }
-
-  render() {
-    return !this.props.isPending ? (
-      <div>
-        <h1>Loading Comments</h1>
-      </div>
-    ) : (
-      <div className="CommentList">
-        <div className="row">{this.renderCommentList()}</div>
+const CommentList = ({ comments }) => {
+  return comments.map((comment, i) => {
+    return (
+      <div className="card col-sm-4">
+        <CommentCard
+          key={i}
+          propicPath={comment[i].profilePic}
+          username={comment[i].display_name}
+          dateTime={comment[i].created_at}
+          commentContent={comment[i].content}
+          commentImagePath={comment[i].image_path}
+        />
       </div>
     );
-  }
-}
+  });
+};
 
-function mapStateToProps(state) {
-  return {
-    isPending: state.requestPostDetails.isPending,
-    comments: state.requestPostDetails.data.comments,
-    error: state.requestPostDetails.error
-  };
-}
+export default CommentList;
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onRequestPostDetails: () => dispatch(requestPostDetails())
-  };
-}
+// //------
+// // class component without redux
+// import React from 'react';
+// import CommentCard from './CommentCard';
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CommentList);
+// const CommentList = ({
+//   key,
+//   propicPath,
+//   username,
+//   dateTime,
+//   commentContent,
+//   commentImagePath
+// }) => {
+//   return (
+//     <div className="CommentList">
+//       <div className="row">
+//         <CommentCard />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default CommentList;

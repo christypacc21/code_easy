@@ -26,7 +26,7 @@ class PostCardList extends Component {
           <div className="card col-sm-4">
             <PostCard
               key={i}
-              postId={i}
+              postId={i + 1}
               propicPath={post.profilePic}
               username={post.display_name}
               dateTime={post.created_at}

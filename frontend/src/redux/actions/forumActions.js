@@ -31,6 +31,7 @@ export const requestPosts = () => {
       url: SERVER_URL + '/api/forum/posts',
       headers: {
         Authorization: 'Bearer ' + token
+        //Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQifQ.QBeadLcUbFkn4OwugU239EqNSvfzZ9liA9OXaCPtBFI'
       }
     });
     if (response.status === 200) {
@@ -43,14 +44,14 @@ export const requestPosts = () => {
 
 //-----------action - request postDetails ( get the postdetila and its comments)-----------//
 // export const requestPosts = dispatch => {
-export const requestPostDetails = () => {
+export const requestPostDetails = id => {
   // console.log('start trying action (api?)');
 
   return dispatch => {
     // console.log(SERVER_URL + '/api/forum/posts');
     dispatch({ type: REQUEST_POSTDETAILS_PENDING });
     axios
-      .get('http://localhost:8080/api/forum/posts/:id', {
+      .get(`http://localhost:8080/api/forum/posts/${id}`, {
         //this this route? where to get the value of :id?
         headers: {
           Authorization:
@@ -99,7 +100,7 @@ export function createComment(content, filePath) {
 
     const response = await axios({
       method: 'post',
-      // url: SERVER_URL + '/api/forum/post',
+      url: SERVER_URL + '/api/forum/post',
       headers: {
         Authorization: 'Bearer' + token,
         'Content-Type': 'multipart/form-data'

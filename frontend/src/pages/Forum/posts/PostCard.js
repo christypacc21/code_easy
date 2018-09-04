@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 const PostCard = ({
+  // key,
   postId,
   propicPath,
   username,
@@ -11,31 +12,42 @@ const PostCard = ({
   postImagePath
   // count
 }) => {
+  if (postContent.length > 50) {
+    postContent = 'Too many words, press in to read more detials';
+  }
+  if ((postImagePath = null)) {
+    return;
+  }
   return (
+    // <div id={key}>
     <div>
       <div className="card-body">
         <p className="card-text">
           PostID:
-          {postId + 1}
+          {postId}
         </p>
         <img alt="User propic" src={propicPath} />
-        <p className="card-text">
-          {username}
-          {dateTime}
-        </p>
+        <p className="card-text">{username}</p>
+        <p className="card-text">{dateTime}</p>
         <h5 className="card-title">{postTitle}</h5>
         <p className="card-text">
           {postContent}
           (limited to 100words to show here?)
         </p>
-        <img alt="Post file" src={postImagePath} />
+        {
+          (propicPath = null ? (
+            <p>This post has no image</p>
+          ) : (
+            <img alt="(Failed to show Post file )" src={postImagePath} />
+          ))
+        }
         {/* <p>(No. of comments): {count}</p> */}
         {/* <a className="btn btn-primary" href="/postDetails"> */}
         {/* <a className="btn btn-primary" href="/api/forum/posts/">
           Press into Post Details
         </a> */}
         <br />
-        <Link className="btn btn-primary" to={`/posts/${postId + 1}`}>
+        <Link className="btn btn-primary" to={`/posts/${postId}`}>
           Press into details
         </Link>
       </div>
