@@ -5,7 +5,7 @@ import {
   REQUEST_POSTDETAILS_PENDING,
   REQUEST_POSTDETAILS_SUCCESS,
   REQUEST_POSTDETAILS_FAILED
-  // CREATE_POST,
+  // CREATE_POST
   // CREATE_COMMENT,
   // DELETE_COMMENT,
   // CHANGE_SEARCH_FIELD
@@ -60,6 +60,7 @@ export const requestPostDetails = (
       return state;
   }
 };
+
 //----------- reducer -  create post-----------//
 // export default (state = initialState, action) => {
 //   switch (action.type) {

@@ -47,10 +47,10 @@ class PostDetails extends Component {
           <div>
             <PostDetailsCard
               // key={i}
-              postId={popo.details.id}
+              postId={popo.id}
               propicPath={popo.profilePic}
               username={popo.display_name}
-              dateTime={popo.created_atå}
+              dateTime={popo.created_at}
               postTitle={popo.title}
               postContent={popo.content}
               postImagePath={popo.image_path}

@@ -4,7 +4,6 @@ import React from 'react';
 // import { requestPostDetails } from '../../../redux/actions/forumActions';
 
 const PostDetailsCard = ({
-  // key={ i },
   postId,
   propicPath,
   username,
@@ -15,7 +14,7 @@ const PostDetailsCard = ({
   //count
 }) => {
   return (
-    <div>
+    <div className="card">
       <div className="card-body">
         <p className="card-text">
           PostID:
