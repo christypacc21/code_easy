@@ -10,27 +10,36 @@ class Chatroom extends Component {
   };
 
   componentDidMount() {
-    console.log('this.props', this.props);
+    console.log('did-this.props', this.props);
 
-    this.props.getAllMessages(this.props.user, this.props.match.params.chatId);
+    this.props.getAllMessages(this.props.match.params.chatId);
   }
+
+  // componentDidMount() {
+  //   console.log('id-did-this.props', this.props);
+
+  //   this.props.getAllMessages(
+  //     this.props.match.params.chatId,
+  //     this.props.user.id
+  //   );
+  // }
 
   renderChats = () =>
     this.props.messages.map((message, i) => {
       // console.log('message', message);
       return (
         <div key={message.message + i}>
-          {message.display_name}: {message.message}
+          {message.displayName}: {message.message}
         </div>
       );
     });
 
   sendMessage = () => {
-    console.log('this.props', this.props);
+    console.log('this.props-sendMessage', this.props);
     this.props.sendChatMessage(
       this.state.inputMessage,
       this.props.user.id,
-      this.props.user.display_name,
+      this.props.user.displayName,
       this.props.match.params.chatId
     );
     this.setState({ inputMessage: '' });
@@ -65,7 +74,7 @@ class Chatroom extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    user: state.user && state.user.profile && state.user.profile.userInfo,
+    user: state.user && state.user.profile && state.user.profile,
     messages: messagesByChatroom(state, ownProps.match.params.chatId)
   };
 }
