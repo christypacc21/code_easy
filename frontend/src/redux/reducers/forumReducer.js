@@ -27,6 +27,7 @@ export const requestPosts = (state = initialStatePosts, action = {}) => {
     case REQUEST_POSTS_PENDING:
       return { ...state, isPending: true };
     case REQUEST_POSTS_SUCCESS:
+      console.log('request success reducer');
       return { ...state, data: action.payload, isPending: false };
     case REQUEST_POSTS_FAILED:
       return { ...state, error: action.payload, isPending: false };

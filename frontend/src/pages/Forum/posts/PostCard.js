@@ -16,11 +16,9 @@ const PostCard = ({
       <div className="card-body">
         <p className="card-text">
           PostID:
-          {postId}
+          {postId + 1}
         </p>
-        <img alt="User propic" src={propicPath}>
-          UserPropic
-        </img>
+        <img alt="User propic" src={propicPath} />
         <p className="card-text">
           {username}
           {dateTime}
@@ -33,7 +31,7 @@ const PostCard = ({
         <img alt="Post file" src={postImagePath} />
         {/* <p>(No. of comments): {count}</p> */}
         {/* <a className="btn btn-primary" href="/postDetails"> */}
-        <a className="btn btn-primary" href="/api/forum/posts/1">
+        <a className="btn btn-primary" href="/api/forum/posts/">
           Press into Post Details
         </a>
       </div>

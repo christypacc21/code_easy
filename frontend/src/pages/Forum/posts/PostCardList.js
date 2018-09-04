@@ -26,13 +26,13 @@ class PostCardList extends Component {
           <div className="card col-sm-4">
             <PostCard
               key={i}
-              postid={post[i].id}
-              propicPath={post[i].profilePic}
-              username={post[i].display_name}
-              dateTime={post[i].created_at}
-              postTitle={post[i].title}
-              postContent={post[i].content}
-              postImagePath={post[i].image_path}
+              postId={i}
+              propicPath={post.profilePic}
+              username={post.display_name}
+              dateTime={post.created_at}
+              postTitle={post.title}
+              postContent={post.content}
+              postImagePath={post.image_path}
               // count={data.count[i].count}
             />
           </div>
@@ -42,7 +42,7 @@ class PostCardList extends Component {
   }
 
   render() {
-    return !this.props.isPending ? (
+    return this.props.isPending ? (
       <div>
         <h1>Loading</h1>
       </div>
@@ -57,15 +57,13 @@ class PostCardList extends Component {
 function mapStateToProps(state) {
   // console.log('state:' + state);
   console.log('started MapStateToProps->' + state.requestPosts.data);
-  return (
-    {
-      // postdata: state.postData
-      isPending: state.requestPosts.isPending,
-      postData: state.requestPosts.data,
-      error: state.requestPosts.error
-    },
-    console.log('MapStateToProps after return->' + state.requestPosts.data)
-  );
+  console.log('MapStateToProps after return->' + state.requestPosts.data);
+  return {
+    // postdata: state.postData
+    isPending: state.requestPosts.isPending,
+    postData: state.requestPosts.data,
+    error: state.requestPosts.error
+  };
 }
 
 function mapDispatchToProps(dispatch) {
