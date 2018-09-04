@@ -10,7 +10,9 @@ class Chatroom extends Component {
   };
 
   componentDidMount() {
-    this.props.getAllMessages();
+    console.log('this.props', this.props);
+
+    this.props.getAllMessages(this.props.user, this.props.match.params.chatId);
   }
 
   renderChats = () =>
@@ -24,7 +26,6 @@ class Chatroom extends Component {
     });
 
   sendMessage = () => {
-    // maybe get userId from params as well
     this.props.sendChatMessage(
       this.state.inputMessage,
       this.props.user.id,

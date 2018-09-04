@@ -21,13 +21,16 @@ export function sendChatMessage(message, userId, display_name, chatId) {
   };
 }
 
-export function getAllMessages() {
+export function getAllMessages(userId, chatId) {
+  console.log('userId', userId, 'chatId', chatId);
   return async dispatch => {
     dispatch({
       type: SOCKET,
       socketAction: SOCKET_EMIT,
       payload: {
-        actionType: GET_ALL_MESSAGES
+        actionType: GET_ALL_MESSAGES,
+        userId,
+        chatId
       }
     });
   };

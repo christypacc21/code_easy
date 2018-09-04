@@ -63,7 +63,7 @@ module.exports = class UserService {
 			.select()
 			.from(USERS)
 			.where('id', id);
-		console.log('userInfo: ' + userInfo[0].role);
+		console.log('getProfile - userInfo: ' + userInfo[0].role);
 
 		if (userInfo[0].role === 'instructor') {
 			const instructorInfo = await this.knex

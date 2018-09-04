@@ -26,9 +26,15 @@ class SocketRouter {
 
 			socket.on('SOCKET_EMIT', payload => {
 				console.log('socket emit event: ', payload);
+				console.log(
+					`a user with id ${payload.userId} has connected to chatroom ${
+						payload.chatId
+					}`
+				);
 
 				if (payload.actionType === 'SEND_MESSAGE') {
 					allMessages = [...allMessages, payload];
+					console.log('socket-allMessages: ', allMessages);
 
 					this.io.emit('SOCKET_ON', {
 						actionType: 'NEW_MESSAGE',
