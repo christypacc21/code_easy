@@ -22,7 +22,7 @@ class PostsPage extends Component {
           <PostCardList />
           {/* </div> */}
           <button
-            className="btn btn-danger btn-block"
+            className="btn btn-danger btn-lg btn-block"
             style={{ marginTop: 30 }}
           >
             Load more

@@ -45,8 +45,15 @@ module.exports = class ForumRouter {
   createPost(req, res) {
     if (req.files != null) {
       const inputFile = req.files.inputFile;
-      const filePath = 'images/forumPosts/' + inputFile.name + '.jpg';
-      inputFile.mv(__dirname + '/../' + filePath, err => {
+      const filePath =
+        'images/forumPosts/' +
+        req.user.id +
+        '_' +
+        Date.now() +
+        '_' +
+        inputFile.name +
+        '.jpg';
+      inputFile.mv(__dirname + '/../public' + filePath, err => {
         if (err) return res.status(500).send(err);
       });
 
@@ -104,8 +111,15 @@ module.exports = class ForumRouter {
   postComments(req, res) {
     if (req.files != null) {
       const inputFile = req.files.inputFile;
-      const filePath = 'images/forumComments/' + inputFile.name + '.jpg';
-      inputFile.mv(__dirname + '/../' + filePath, err => {
+      const filePath =
+        'images/forumComments/' +
+        req.user.id +
+        '_' +
+        Date.now() +
+        '_' +
+        inputFile.name +
+        '.jpg';
+      inputFile.mv(__dirname + '/../public' + filePath, err => {
         if (err) return res.status(500).send(err);
       });
       return this.forumService
