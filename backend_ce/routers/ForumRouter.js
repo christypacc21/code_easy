@@ -49,11 +49,12 @@ module.exports = class ForumRouter {
       inputFile.mv(__dirname + '/../' + filePath, err => {
         if (err) return res.status(500).send(err);
       });
+
       return this.forumService
         .createPost(req.user.id, req.body.title, req.body.content, filePath)
-        .then(() => {
+        .then(data => {
           console.log(req.body);
-          res.json({ success: true });
+          res.json({ success: true, data });
         })
         .catch(err => {
           console.log('createPost error: ', err);
@@ -66,9 +67,9 @@ module.exports = class ForumRouter {
     } else {
       return this.forumService
         .createPost(req.user.id, req.body.title, req.body.content, null)
-        .then(() => {
+        .then(data => {
           console.log(req.body);
-          res.json({ success: true });
+          res.json({ success: true, data });
         })
         .catch(err => {
           console.log('createPost error: ', err);
