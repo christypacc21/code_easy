@@ -80,6 +80,12 @@ class AskQuestion extends Component {
                 {this.state.filePath.map(f => (
                   <li key={f.name}>
                     {f.name} - {f.size} bytes
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => this.setState({ filePath: [] })}
+                    >
+                      Delete this file
+                    </button>
                   </li>
                 ))}
               </ul>

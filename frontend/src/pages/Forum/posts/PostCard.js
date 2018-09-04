@@ -41,7 +41,7 @@ const PostCard = ({
                 className="card"
                 style={{ maxHeight: '10em' }}
                 alt="(Failed to show Post file )"
-                src={postImagePath}
+                src={`${process.env.REACT_APP_API_SERVER}/${postImagePath}`}
               />
             </div>
           ))
