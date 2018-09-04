@@ -10,20 +10,20 @@ const app = require('./utils/init-app')(auth);
 
 // Dependency Injection for Routers and Service
 const {
-  AuthRouter,
-  UserRouter,
-  ForumRouter,
-  QuestionRouter,
-  PaymentRouter,
-  SocketIORouter
+	AuthRouter,
+	UserRouter,
+	ForumRouter,
+	QuestionRouter,
+	PaymentRouter,
+	SocketIORouter
 } = require('./routers');
 
 const {
-  AuthService,
-  UserService,
-  ForumService,
-  QuestionService,
-  PaymentService
+	AuthService,
+	UserService,
+	ForumService,
+	QuestionService,
+	PaymentService
 } = require('./services');
 
 let authService = new AuthService(knex);
@@ -35,24 +35,24 @@ let paymentService = new PaymentService(knex);
 app.use('/api', new AuthRouter(authService).router());
 app.use('/api', auth.authenticate(), new UserRouter(userService).router());
 app.use(
-  '/api/forum',
-  auth.authenticate(),
-  new ForumRouter(forumService).router()
+	'/api/forum',
+	auth.authenticate(),
+	new ForumRouter(forumService).router()
 );
 app.use(
-  '/api/question',
-  auth.authenticate(),
-  new QuestionRouter(questionService).router()
+	'/api/question',
+	auth.authenticate(),
+	new QuestionRouter(questionService).router()
 );
 app.use(
-  '/api/payment',
-  auth.authenticate(),
-  new PaymentRouter(paymentService).router()
+	'/api/payment',
+	auth.authenticate(),
+	new PaymentRouter(paymentService).router()
 );
 
 // HTTP Setting
 const server = app.listen(8080, () => {
-  console.log('Server is running at port 8080');
+	console.log('Server is running at port 8080');
 });
 
 // SocketIO Setting

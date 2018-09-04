@@ -5,19 +5,19 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 
 module.exports = auth => {
-  const app = express();
+	const app = express();
 
-  app.use(logger('dev'));
-  app.use(cors());
-  app.use(bodyParser.json());
-  app.use(
-    bodyParser.urlencoded({
-      extended: true
-    })
-  );
-  app.use(fileUpload());
-  app.use(auth.initialize());
-  app.use(express.static('public'));
+	app.use(logger('dev'));
+	app.use(cors());
+	app.use(bodyParser.json());
+	app.use(
+		bodyParser.urlencoded({
+			extended: true
+		})
+	);
+	app.use(fileUpload());
+	app.use(auth.initialize());
+	app.use(express.static('public'));
 
-  return app;
+	return app;
 };
