@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+// import Lightbox from 'react-images';
 import * as QuestionActions from '../../redux/actions/questionAction';
 
 class TakeQuestions extends React.Component {

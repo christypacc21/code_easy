@@ -24,6 +24,8 @@ import Chatroom from './pages/Chatroom';
 import MyHistory from './pages/MyQuestions/History';
 import MyOngoing from './pages/MyQuestions/Ongoing';
 import Profile from './pages/Profile';
+import instructorProfile from './pages/Profile/instructorProfile';
+import userProfile from './pages/Profile/userProfile';
 
 import { connect } from 'react-redux';
 import * as userActions from './redux/actions/userActions';
@@ -65,6 +67,12 @@ class App extends Component {
             <Route exact path="/my-questions/ongoing" component={MyOngoing} />
             <Route exact path="/my-questions/history" component={MyHistory} />
             <Route exact path="/profile" component={Profile} />
+            <Route
+              exact
+              path="/instructorProfile"
+              component={instructorProfile}
+            />
+            <Route exact path="/userProfile" component={userProfile} />
           </Switch>
           <Footer />
         </div>

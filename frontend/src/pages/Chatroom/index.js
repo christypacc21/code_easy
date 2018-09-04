@@ -11,7 +11,6 @@ class Chatroom extends Component {
 
   componentDidMount() {
     console.log('this.props', this.props);
-
     this.props.getAllMessages(this.props.user, this.props.match.params.chatId);
   }
 

@@ -40,11 +40,11 @@ class instructorProfile extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    profile: state.user.profile.userInfo,
+    profile: state.user.profile.userInfo
   };
 }
 
 export default connect(
   mapStateToProps,
-  userActions,
+  userActions
 )(instructorProfile);

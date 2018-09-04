@@ -12,7 +12,6 @@ export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
 export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';
 export const GET_MY_PROFILE = 'GET_MY_PROFILE';
-// export const GET_ALL_USER_PROFILE = 'GET_ALL_USER_PROFILE';
 
 //about Forum
 export const CREATE_POST = 'CREATE_POST';

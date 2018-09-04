@@ -139,12 +139,12 @@ class Nav extends React.Component {
                 Coding Community
               </Link>
             </li>
-
-            <li className="nav-item">
+            {this.userProfileOrInstructorProfile()}
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/profile">
                 Profile
               </Link>
-            </li>
+            </li> */}
 
             <li className="nav-item ">
               <Link className="nav-link " to="/contact">
