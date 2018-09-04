@@ -13,25 +13,26 @@ class PostDetails extends Component {
     this.props.onRequestPostDetails(id);
   }
 
-  renderPost() {
-    return this.props.postDetails.map((details, i) => {
-      return (
-        <PostDetailsCard
-          key={i}
-          postId={details.id}
-          propicPath={details.profilePic}
-          username={details.display_name}
-          dateTime={details.created_atå}
-          postTitle={details.title}
-          postContent={details.content}
-          postImagePath={details.image_path}
-          // count={data.count[i].count}
-        />
-      );
-    });
-  }
+  // renderPost() {
+  //   const popo = this.props.postDetails;
+  //   console.log(popo);
+  //   return (
+  //     <PostDetailsCard
+  //       // key={i}
+  //       postId={popo.details.id}
+  //       propicPath={popo.profilePic}
+  //       username={popo.display_name}
+  //       dateTime={popo.created_atå}
+  //       postTitle={popo.title}
+  //       postContent={popo.content}
+  //       postImagePath={popo.image_path}
+  //       // count={data.count[i].count}
+  //     />
+  //   );
+  // }
 
   render() {
+    const popo = this.props.postDetails;
     return (
       <div>
         <a className="btn btn-primary " href="/postsPage">
@@ -44,15 +45,24 @@ class PostDetails extends Component {
         >
           <p>GET and Show individual post details card here</p>
           <div>
-            {' '}
-            <PostDetailsCard post={this.renderPost()} />
+            <PostDetailsCard
+              // key={i}
+              postId={popo.details.id}
+              propicPath={popo.profilePic}
+              username={popo.display_name}
+              dateTime={popo.created_atå}
+              postTitle={popo.title}
+              postContent={popo.content}
+              postImagePath={popo.image_path}
+              // count={data.count[i].count}
+            />
           </div>
         </div>
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           <p>GET and show CommentList here:</p>
-          <CommentList comments={this.props.comments} />
-          <CommentForm />
+          {/* <CommentList comments={this.props.comments} /> */}
+          {/* <CommentForm /> */}
         </div>
       </div>
     );
@@ -60,6 +70,7 @@ class PostDetails extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state.requestPostDetails.data.postDetails);
   return {
     isPending: state.requestPostDetails.isPending,
     postDetails: state.requestPostDetails.data.postDetails,

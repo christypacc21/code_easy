@@ -39,7 +39,7 @@ export const requestPosts = (state = initialStatePosts, action = {}) => {
 const initialStatePostDetails = {
   isPending: false,
   data: {
-    postDetails: [],
+    postDetails: {},
     comments: []
   },
   error: ''

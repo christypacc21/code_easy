@@ -19,7 +19,7 @@ const PostCard = ({
   return (
     // <div id={key}>
     <div>
-      <div className="card-body" >
+      <div className="card-body">
         <p className="card-text">
           PostID:
           {postId}
@@ -36,9 +36,13 @@ const PostCard = ({
           (propicPath = null ? (
             <p>This post has no image</p>
           ) : (
-            <div  >
-                <img className="card" style={{ maxHeight: '10em' }} 
-                alt="(Failed to show Post file )" src={postImagePath} />
+            <div>
+              <img
+                className="card"
+                style={{ maxHeight: '10em' }}
+                alt="(Failed to show Post file )"
+                src={postImagePath}
+              />
             </div>
           ))
         }
