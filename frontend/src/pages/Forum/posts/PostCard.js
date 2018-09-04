@@ -12,16 +12,14 @@ const PostCard = ({
   postImagePath
   // count
 }) => {
+  // const postImagePath = `"${postImage}"`
   if (postContent.length > 50) {
     postContent = 'Too many words, press in to read more detials';
-  }
-  if ((postImagePath = null)) {
-    return;
   }
   return (
     // <div id={key}>
     <div>
-      <div className="card-body">
+      <div className="card-body" >
         <p className="card-text">
           PostID:
           {postId}
@@ -38,7 +36,10 @@ const PostCard = ({
           (propicPath = null ? (
             <p>This post has no image</p>
           ) : (
-            <img alt="(Failed to show Post file )" src={postImagePath} />
+            <div  >
+                <img className="card" style={{ maxHeight: '10em' }} 
+                alt="(Failed to show Post file )" src={postImagePath} />
+            </div>
           ))
         }
         {/* <p>(No. of comments): {count}</p> */}

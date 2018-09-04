@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PostDetailsCard from './PostDetailsCard';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
-import { match } from 'react-router-dom';
+// import { match } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { requestPostDetails } from '../../../redux/actions/forumActions';
 
@@ -12,6 +12,7 @@ class PostDetails extends Component {
     const id = this.props.match.params.id;
     this.props.onRequestPostDetails(id);
   }
+
   renderPost() {
     return this.props.postDetails.map((details, i) => {
       return (
@@ -42,7 +43,10 @@ class PostDetails extends Component {
           style={{ margin: 0, background: '#D3D3D3' }}
         >
           <p>GET and Show individual post details card here</p>
-          <div> {this.renderPost()}</div>
+          <div>
+            {' '}
+            <PostDetailsCard post={this.renderPost()} />
+          </div>
         </div>
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
@@ -73,7 +77,7 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostDetailsCard);
+)(PostDetails);
 
 // renderCommentList() {
 //   return this.props.comments.map((comment, i) => {
@@ -91,3 +95,14 @@ export default connect(
 //     );
 //   });
 // }
+
+// post = {
+//                 ({
+//     id,
+//     user_id,
+//     title,
+//     content,
+//     image_path,
+//     create_at
+//   } = this.props.postDetails)
+//               }
