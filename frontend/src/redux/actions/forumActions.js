@@ -13,7 +13,7 @@ import {
   // REQUEST_MYPOSTS,
   // REQUEST_MYCOMMENTS,
 } from '../reducers/constants';
-// const SERVER_URL = process.env.REACT_APP_API_SERVER;
+const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 //-----------action - request posts ( get all posts)-----------//
 // export const requestPosts = dispatch => {
@@ -23,19 +23,21 @@ export const requestPosts = () => {
   return async dispatch => {
     // console.log(SERVER_URL + '/api/forum/posts');
     dispatch({ type: REQUEST_POSTS_PENDING });
-    axios
-      .get('http://localhost:8080/api/forum/posts', {
-        headers: {
-          Authorization:
-            'Bearer ' +
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQifQ.QBeadLcUbFkn4OwugU239EqNSvfzZ9liA9OXaCPtBFI'
-          // Authorization: 'Bearer ' + 'localStorage.getItem('token')'
-        }
-      })
-      .then(response =>
-        dispatch({ type: REQUEST_POSTS_SUCCESS, payload: response.data })
-      )
-      .catch(error => dispatch({ type: REQUEST_POSTS_FAILED, payload: error }));
+
+    const token = localStorage.getItem('token');
+
+    const response = await axios({
+      method: 'get',
+      url: SERVER_URL + '/api/forum/posts',
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
+    if (response.status === 200) {
+      dispatch({ type: REQUEST_POSTS_SUCCESS, payload: response.data });
+    } else {
+      dispatch({ type: REQUEST_POSTS_FAILED });
+    }
   };
 };
 

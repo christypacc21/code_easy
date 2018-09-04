@@ -24,6 +24,7 @@ class Chatroom extends Component {
     });
 
   sendMessage = () => {
+    // maybe get userId from params as well
     this.props.sendChatMessage(
       this.state.inputMessage,
       this.props.userId,

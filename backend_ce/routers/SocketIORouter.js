@@ -9,17 +9,20 @@ class SocketRouter {
 	router() {
 		this.io.on('connection', socket => {
 			// THIS IS THE POINT WHERE...
-			console.log('a user has connected to our socket.io server');
+			console.log(
+				`a user with id ${socket.id} has connected to our socket.io server`
+				// , socket
+			);
 
 			// this.onConnect(socket);
 
-			socket.on('chat message', msg => {
-				this.onMessageReceived(socket, msg);
-			});
+			// socket.on('chat message', msg => {
+			// 	this.onMessageReceived(socket, msg);
+			// });
 
-			socket.on('I NEED MORE', count => {
-				this.onLoadMore(socket, count);
-			});
+			// socket.on('I NEED MORE', count => {
+			// 	this.onLoadMore(socket, count);
+			// });
 
 			socket.on('SOCKET_EMIT', payload => {
 				console.log('socket emit event: ', payload);
