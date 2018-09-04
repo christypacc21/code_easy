@@ -54,13 +54,14 @@ module.exports = class ForumRouter {
         inputFile.name +
         '.jpg';
       inputFile.mv(__dirname + '/../public' + filePath, err => {
-        if (err) return res.status(500).send(err);
+        if (err) {
+          return res.status(500).send(err);
+        }
       });
 
       return this.forumService
         .createPost(req.user.id, req.body.title, req.body.content, filePath)
         .then(data => {
-          console.log(req.body);
           res.json({ success: true, data });
         })
         .catch(err => {
@@ -75,7 +76,6 @@ module.exports = class ForumRouter {
       return this.forumService
         .createPost(req.user.id, req.body.title, req.body.content, null)
         .then(data => {
-          console.log(req.body);
           res.json({ success: true, data });
         })
         .catch(err => {

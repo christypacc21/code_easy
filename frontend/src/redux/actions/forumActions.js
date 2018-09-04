@@ -71,9 +71,6 @@ export function requestPostDetails(id) {
 export function createPost(title, content, filePath) {
   return async dispatch => {
     try {
-      console.log(title);
-      console.log(content);
-
       const data = new FormData();
       data.append('title', title);
       data.append('content', content); //the names used here shd follow which file's variable name?
