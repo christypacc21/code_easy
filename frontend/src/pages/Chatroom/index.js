@@ -10,7 +10,12 @@ class Chatroom extends Component {
   };
 
   componentDidMount() {
-    this.props.getAllMessages();
+    console.log('this.props', this.props);
+
+    this.props.getAllMessages(
+      this.props.userId,
+      this.props.match.params.chatId
+    );
   }
 
   renderChats = () =>
@@ -24,7 +29,6 @@ class Chatroom extends Component {
     });
 
   sendMessage = () => {
-    // maybe get userId from params as well
     this.props.sendChatMessage(
       this.state.inputMessage,
       this.props.userId,
@@ -61,7 +65,7 @@ class Chatroom extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    userId: state.user && state.user.profile && state.user.profile.id,
+    userId: state.user && state.user.profile && state.user.profile.userInfo.id,
     messages: messagesByChatroom(state, ownProps.match.params.chatId)
   };
 }
