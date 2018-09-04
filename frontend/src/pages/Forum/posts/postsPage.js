@@ -8,21 +8,22 @@ class PostsPage extends Component {
   render() {
     return (
       <div>
-        <div>
-          <a className="btn btn-primary" href="/posts/new">
-            Create Post!
+        <SearchBar />
+        <div style={{ margin: 10 }}>
+          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+            Create Post for free!
           </a>
         </div>
         {/* <SearchBar onSearchTermChange={postSearch} /> */}
-        <SearchBar />
+
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           {/* <div className="container"> */}
           <div>GET and show Posts Lists (list of posts):</div>
           <PostCardList />
           {/* </div> */}
           <button
-            className="btn btn-danger"
-            style={{ marginLeft: 800, marginTop: 50 }}
+            className="btn btn-danger btn-block"
+            style={{ marginTop: 30 }}
           >
             Load more
           </button>

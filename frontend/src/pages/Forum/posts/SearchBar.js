@@ -10,14 +10,24 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="search-bar">
-        <input
-          type="text"
-          value={this.state.posts}
-          placeholder="Enter search keywords here..."
-          onChange={event => this.onInputChange(event.target.value)}
-        />
-        <button>Enter</button>
+      <div
+        className="jumbotron postDetails card col-sm-12"
+        style={{ margin: 0, background: '#D3D3D3' }}
+      >
+        <div className="search-bar input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            value={this.state.posts}
+            placeholder="Enter keywords here..."
+            onChange={event => this.onInputChange(event.target.value)}
+          />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+              Enter to filter
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

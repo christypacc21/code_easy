@@ -21,7 +21,6 @@ export const requestPosts = () => {
   console.log('start trying action (api?)');
 
   return async dispatch => {
-    // console.log(SERVER_URL + '/api/forum/posts');
     dispatch({ type: REQUEST_POSTS_PENDING });
 
     const token = localStorage.getItem('token');
@@ -47,25 +46,24 @@ export const requestPosts = () => {
 export const requestPostDetails = id => {
   // console.log('start trying action (api?)');
 
-  return dispatch => {
+  return async dispatch => {
     // console.log(SERVER_URL + '/api/forum/posts');
     dispatch({ type: REQUEST_POSTDETAILS_PENDING });
-    axios
-      .get(`http://localhost:8080/api/forum/posts/${id}`, {
-        //this this route? where to get the value of :id?
-        headers: {
-          Authorization:
-            'Bearer ' +
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQifQ.QBeadLcUbFkn4OwugU239EqNSvfzZ9liA9OXaCPtBFI'
-          // Authorization: 'Bearer ' + 'localStorage.getItem('token')'
-        }
-      })
-      .then(response =>
-        dispatch({ type: REQUEST_POSTDETAILS_SUCCESS, payload: response.data })
-      )
-      .catch(error =>
-        dispatch({ type: REQUEST_POSTDETAILS_FAILED, payload: error })
-      );
+
+    const token = localStorage.getItem('token');
+    const response = await axios({
+      method: 'get',
+      url: SERVER_URL + `/api/forum/posts/${id}`,
+      headers: {
+        Authorization: 'Bearer ' + token
+        //Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQifQ.QBeadLcUbFkn4OwugU239EqNSvfzZ9liA9OXaCPtBFI'
+      }
+    });
+    if (response.status === 200) {
+      dispatch({ type: REQUEST_POSTDETAILS_SUCCESS, payload: response.data });
+    } else {
+      dispatch({ type: REQUEST_POSTDETAILS_FAILED });
+    }
   };
 };
 //-----------action - create post-----------//

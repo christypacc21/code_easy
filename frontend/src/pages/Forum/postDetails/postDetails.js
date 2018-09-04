@@ -15,19 +15,17 @@ class PostDetails extends Component {
   renderPost() {
     return this.props.postDetails.map((details, i) => {
       return (
-        <div>
-          <PostDetailsCard
-            key={i}
-            postId={details.id}
-            propicPath={details.profilePic}
-            username={details.display_name}
-            dateTime={details.created_atå}
-            postTitle={details.title}
-            postContent={details.content}
-            postImagePath={details.image_path}
-            // count={data.count[i].count}
-          />
-        </div>
+        <PostDetailsCard
+          key={i}
+          postId={details.id}
+          propicPath={details.profilePic}
+          username={details.display_name}
+          dateTime={details.created_atå}
+          postTitle={details.title}
+          postContent={details.content}
+          postImagePath={details.image_path}
+          // count={data.count[i].count}
+        />
       );
     });
   }

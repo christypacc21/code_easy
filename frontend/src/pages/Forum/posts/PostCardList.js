@@ -1,15 +1,10 @@
-// class component -edux
+// class component -redux
 import React, { Component } from 'react';
 import PostCard from './PostCard';
 import { connect } from 'react-redux';
 import { requestPosts } from '../../../redux/actions/forumActions';
-// import JSONData from './JSONData';
 
 class PostCardList extends Component {
-  // renderPostList() {
-  //   const postData = JSON.stringify(JSONData);
-  //   console.log(postData);
-  //   return postData.map((data, i) => {
   componentDidMount() {
     this.props.onRequestPosts();
     console.log('ComponentDidMountdata :' + this.props.postData);
@@ -59,7 +54,6 @@ function mapStateToProps(state) {
   console.log('started MapStateToProps->' + state.requestPosts.data);
   console.log('MapStateToProps after return->' + state.requestPosts.data);
   return {
-    // postdata: state.postData
     isPending: state.requestPosts.isPending,
     postData: state.requestPosts.data,
     error: state.requestPosts.error
@@ -76,33 +70,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PostCardList);
-
-//   render() {
-//     return (
-//       <div className="PostCardList">
-//         <div className="row">
-//           <div className="card col-sm-4">
-//             <PostCard />
-//           </div>
-//           <div className="card col-sm-4">
-//             <PostCard />
-//           </div>
-//           <div className="card col-sm-4">
-//             <PostCard />
-//           </div>
-//           <div className="card col-sm-4">
-//             <PostCard />
-//           </div>
-//           <div className="card col-sm-4">
-//             <PostCard />
-//           </div>
-//           <div className="card col-sm-4">
-//             <PostCard />
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default PostCardList;

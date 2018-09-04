@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import user from './userReducer';
 import chat from './chatReducer';
-import { requestPosts } from './forumReducer';
-// import forum from './forumReducer';
 import questions from './questionReducer';
+// import forum from './forumReducer';
+import { requestPosts } from './forumReducer';
+import { requestPostDetails } from './forumReducer';
 
 const rootReducer = combineReducers({
   user,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   questions,
   // forum,
   requestPosts,
+  requestPostDetails
 });
 
 export default rootReducer;
