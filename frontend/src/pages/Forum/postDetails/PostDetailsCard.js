@@ -10,7 +10,8 @@ const PostDetailsCard = ({
   dateTime,
   postTitle,
   postContent,
-  postImagePath
+  postImagePath,
+  role
   //count
 }) => {
   return (
@@ -18,13 +19,14 @@ const PostDetailsCard = ({
       <div className="card-body">
         <p className="card-text">
           PostID:
-          {postId}
+          {' ' + postId}
         </p>
         <img alt="User propic" src={propicPath} />
-        <p className="card-text">{username}</p>
-        <p className="card-text">{dateTime}</p>
-        <h5 className="card-title">{postTitle}</h5>
-        <p className="card-text">{postContent}</p>
+        <p className="card-text">Created by :{username}</p>
+        <p className="card-text">Role: {role}</p>
+        <p className="card-text">Created at: {dateTime}</p>
+        <h5 className="card-title">Post Title: {postTitle}</h5>
+        <p className="card-text">Post Content: {postContent}</p>
         {
           (propicPath = null ? (
             <p>This post has no image</p>

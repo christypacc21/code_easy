@@ -55,6 +55,7 @@ module.exports = class ForumService {
           .select('*')
           .from('forumComments')
           .where('forumComments.post_id', post_id)
+          .join('users', 'users.id', '=', 'forumComments.id')
           .then(comments => {
             return {
               postDetails: postDetails[0],

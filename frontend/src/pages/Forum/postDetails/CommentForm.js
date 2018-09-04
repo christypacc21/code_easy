@@ -75,15 +75,15 @@ class CommentForm extends Component {
 
           <br />
           {/* whts the dif between using a , button and input here? */}
-          <a
+          <button
             // type="submit"
-            className="btn btn-primary btn-block"
+            className="btn btn-primary btn-lg btn-block"
             onClick={
               () => this.props.createComment(commentContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
             }
           >
             Send !
-          </a>
+          </button>
         </div>
       </div>
     );

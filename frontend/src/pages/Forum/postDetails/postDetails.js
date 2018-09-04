@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PostDetailsCard from './PostDetailsCard';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
-// import { match } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { requestPostDetails } from '../../../redux/actions/forumActions';
 
@@ -13,29 +12,12 @@ class PostDetails extends Component {
     this.props.onRequestPostDetails(id);
   }
 
-  // renderPost() {
-  //   const popo = this.props.postDetails;
-  //   console.log(popo);
-  //   return (
-  //     <PostDetailsCard
-  //       // key={i}
-  //       postId={popo.details.id}
-  //       propicPath={popo.profilePic}
-  //       username={popo.display_name}
-  //       dateTime={popo.created_atå}
-  //       postTitle={popo.title}
-  //       postContent={popo.content}
-  //       postImagePath={popo.image_path}
-  //       // count={data.count[i].count}
-  //     />
-  //   );
-  // }
-
   render() {
     const popo = this.props.postDetails;
+    const comments = this.props.comments;
     return (
       <div>
-        <a className="btn btn-primary " href="/postsPage">
+        <a className="btn btn-primary " href="/posts">
           Back to forum(posts)
         </a>
 
@@ -46,14 +28,16 @@ class PostDetails extends Component {
           <p>GET and Show individual post details card here</p>
           <div>
             <PostDetailsCard
-              // key={i}
               postId={popo.id}
               propicPath={popo.profilePic}
               username={popo.display_name}
               dateTime={popo.created_at}
               postTitle={popo.title}
               postContent={popo.content}
-              postImagePath={popo.image_path}
+              postImagePath={`${process.env.REACT_APP_API_SERVER}/${
+                popo.image_path
+              }`}
+              role={popo.role}
               // count={data.count[i].count}
             />
           </div>
@@ -61,8 +45,8 @@ class PostDetails extends Component {
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           <p>GET and show CommentList here:</p>
-          {/* <CommentList comments={this.props.comments} /> */}
-          {/* <CommentForm /> */}
+          <CommentList comments={this.props.comments} />
+          <CommentForm />
         </div>
       </div>
     );
@@ -89,31 +73,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PostDetails);
-
-// renderCommentList() {
-//   return this.props.comments.map((comment, i) => {
-//     return (
-//       <div className="card col-sm-4">
-//         <CommentList
-//           key={i}
-//           propicPath={comment[i].profilePic}
-//           username={comment[i].display_name}
-//           dateTime={comment[i].created_at}
-//           commentContent={comment[i].content}
-//           commentImagePath={comment[i].image_path}
-//         />
-//       </div>
-//     );
-//   });
-// }
-
-// post = {
-//                 ({
-//     id,
-//     user_id,
-//     title,
-//     content,
-//     image_path,
-//     create_at
-//   } = this.props.postDetails)
-//               }

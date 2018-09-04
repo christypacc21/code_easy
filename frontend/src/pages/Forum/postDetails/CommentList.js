@@ -7,11 +7,13 @@ const CommentList = ({ comments }) => {
       <div className="card col-sm-4">
         <CommentCard
           key={i}
-          propicPath={comment[i].profilePic}
-          username={comment[i].display_name}
-          dateTime={comment[i].created_at}
-          commentContent={comment[i].content}
-          commentImagePath={comment[i].image_path}
+          commentId={comment.id}
+          propicPath={comment.profilePic}
+          role={comment.role}
+          username={comment.display_name}
+          dateTime={comment.created_at}
+          commentContent={comment.content}
+          commentImagePath={comment.image_path}
         />
       </div>
     );
