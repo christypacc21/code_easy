@@ -31,4 +31,4 @@ package\.json
 
 yarn\.lock
 
-backend_ce/images
+backend_ce/public

@@ -24,7 +24,7 @@ module.exports = class UserRouter {
         '_' +
         inputFile.name +
         '.jpg';
-			inputFile.mv(__dirname + '/../' + filePath, err => {
+			inputFile.mv(__dirname + '/../public/' + filePath, err => {
 				if (err) return res.status(500).send(err);
 			});
 			return this.userService
