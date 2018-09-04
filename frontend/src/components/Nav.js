@@ -6,7 +6,7 @@ import logo from '../assets/logo.png';
 
 class Nav extends React.Component {
   orderOrQuestion = () => {
-    console.log('this.props-Nav', this.props);
+    // console.log('this.props-Nav', this.props);
     if (this.props.authenticated) {
       if (this.props.role === 'student') {
         return (
@@ -133,9 +133,11 @@ class Nav extends React.Component {
               </Link>
             </li>
 
-            <ul className="navbar-nav">
-              {this.userProfileOrInstructorProfile()}
-            </ul>
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            </li>
 
             <li className="nav-item ">
               <Link className="nav-link " to="/contact">
@@ -153,13 +155,13 @@ class Nav extends React.Component {
 function mapStateToProps(state) {
   return {
     authenticated: state.user.authenticated,
-    role: state.user && state.user.profile && state.user.profile.role
+    role: state.user && state.user.profile && state.user.profile.role,
   };
 }
 
 export default withRouter(
   connect(
     mapStateToProps,
-    UserAction
-  )(Nav)
+    UserAction,
+  )(Nav),
 );

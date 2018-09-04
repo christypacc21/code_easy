@@ -22,10 +22,15 @@ import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeQuestions from './pages/TakeQuestions';
 import Chatroom from './pages/Chatroom';
 import myQuestions from './pages/TakeQuestions/my-questions';
-import instructorProfile from './pages/Profile/instructorProfile';
-import userProfile from './pages/Profile/userProfile';
+import Profile from './pages/Profile';
+
+import { connect } from 'react-redux';
+import * as userActions from './redux/actions/userActions';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getMyProfile();
+  }
   render() {
     return (
       <Router>
@@ -57,12 +62,7 @@ class App extends Component {
             <Route exact path="/MultipleSelect" component={MultipleSelect} />
             <Route exact path="/TakeQuestions" component={TakeQuestions} />
             <Route exact path="/my-questions" component={myQuestions} />
-            <Route
-              exact
-              path="/instructorProfile"
-              component={instructorProfile}
-            />
-            <Route exact path="/userProfile" component={userProfile} />
+            <Route exact path="/profile" component={Profile} />
           </Switch>
           <Footer />
         </div>
@@ -71,4 +71,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  userActions,
+)(App);
