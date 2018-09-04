@@ -13,7 +13,7 @@ class instructorProfile extends React.Component {
 
           <div>
             <h4>Display Name:</h4>
-            <p>{profile.display_name}</p>
+            <p>{profile.displayName}</p>
           </div>
 
           <div>
@@ -23,12 +23,12 @@ class instructorProfile extends React.Component {
 
           <div>
             <h4>Education:</h4>
-            <p>{profile.i_education}</p>
+            <p>{profile.iEducation}</p>
           </div>
 
           <div>
             <h4>Introduction:</h4>
-            <p>{profile.i_introduction}</p>
+            <p>{profile.iIntroduction}</p>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@ class instructorProfile extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    profile: state.user.profile.userInfo
+    profile: state.user.profile
   };
 }
 

@@ -73,11 +73,35 @@ module.exports = class UserService {
 				.where('instructor_id', id);
 			// console.log('instructor: ' + instructorInfo);
 			return {
-				userInfo: userInfo[0],
+				id: userInfo[0].id,
+				displayName: userInfo[0].display_name,
+				email: userInfo[0].email,
+				profilePic: userInfo[0].profilePic,
+				role: userInfo[0].role,
+				sQuestionCredit: userInfo[0].s_questionsCanAsk,
+				iBalance: userInfo[0].i_balance,
+				iEducation: userInfo[0].i_education,
+				iYearOfCodeExp: userInfo[0].i_year_codeExp,
+				iIntroduction: userInfo[0].i_introduction,
+				iNumRating: userInfo[0].i_num_rating,
+				iTotalRating: userInfo[0].i_total_rating,
 				instructorInfo: instructorInfo
 			};
 		} else {
-			return userInfo[0];
+			return {
+				id: userInfo[0].id,
+				displayName: userInfo[0].display_name,
+				email: userInfo[0].email,
+				profilePic: userInfo[0].profilePic,
+				role: userInfo[0].role,
+				sQuestionCredit: userInfo[0].s_questionsCanAsk,
+				iBalance: userInfo[0].i_balance,
+				iEducation: userInfo[0].i_education,
+				iYearOfCodeExp: userInfo[0].i_year_codeExp,
+				iIntroduction: userInfo[0].i_introduction,
+				iNumRating: userInfo[0].i_num_rating,
+				iTotalRating: userInfo[0].i_total_rating
+			};
 		}
 	}
 

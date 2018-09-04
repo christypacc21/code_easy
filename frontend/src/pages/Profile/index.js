@@ -11,8 +11,8 @@ class Profile extends Component {
     if (
       user &&
       user.profile &&
-      user.profile.userInfo &&
-      user.profile.userInfo.role === 'instructor'
+      user.profile &&
+      user.profile.role === 'instructor'
     ) {
       return <InstructorProfile />;
     } else {
@@ -23,11 +23,11 @@ class Profile extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    user: state.user
   };
 }
 
 export default connect(
   mapStateToProps,
-  null,
+  null
 )(Profile);

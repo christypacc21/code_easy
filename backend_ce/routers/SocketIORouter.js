@@ -36,6 +36,8 @@ class SocketRouter {
 					allMessages = [...allMessages, payload];
 					console.log('socket-allMessages: ', allMessages);
 
+					this.onMessageReceived(socket, payload);
+
 					this.io.emit('SOCKET_ON', {
 						actionType: 'NEW_MESSAGE',
 						payload
@@ -65,21 +67,21 @@ class SocketRouter {
 	// 	});
 	// }
 
-	// onMessageReceived(socket, msg, cb) {
-	// 	const user = socket.session.passport.user;
-	// 	const wholeMessage = user.profile.displayName + ': ' + msg;
-	// 	this.redisClient.lpush(this.chatroomName, wholeMessage, err => {
-	// 		if (err) {
-	// 			console.log(err);
-	// 			this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
-	// 			return;
-	// 		}
-	// 		this.io.emit('chat message', wholeMessage);
-	// 		if (cb != null) {
-	// 			cb();
-	// 		}
-	// 	});
-	// }
+	onMessageReceived(socket, msg, cb) {
+		// 	const user = socket.session.passport.user;
+		// 	const wholeMessage = user.profile.displayName + ': ' + msg;
+		// 	this.redisClient.lpush(this.chatroomName, wholeMessage, err => {
+		// 		if (err) {
+		// 			console.log(err);
+		// 			this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
+		// 			return;
+		// 		}
+		// 		this.io.emit('chat message', wholeMessage);
+		// 		if (cb != null) {
+		// 			cb();
+		// 		}
+		// 	});
+	}
 
 	// onLoadMore(socket, count) {
 	// 	console.log(-count - 20, -count);
