@@ -14,27 +14,27 @@ class PureLogin extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log('this.props', this.props);
-    if (this.props.authenticated) {
-      if (this.props.role === 'student') {
-        this.props.history.push('/CreateQuestion');
-      } else {
-        this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
-      }
-    }
-  }
+  // componentDidMount() {
+  //   console.log('this.props', this.props);
+  //   if (this.props.authenticated) {
+  //     if (this.props.role === 'student') {
+  //       this.props.history.push('/CreateQuestion');
+  //     } else {
+  //       this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
+  //     }
+  //   }
+  // }
 
-  componentDidUpdate() {
-    console.log('this.props-didUpdate', this.props);
-    if (this.props.authenticated) {
-      if (this.props.role === 'student') {
-        this.props.history.push('/CreateQuestion');
-      } else {
-        this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
-      }
-    }
-  }
+  // componentDidUpdate() {
+  //   console.log('this.props-didUpdate', this.props);
+  //   if (this.props.authenticated) {
+  //     if (this.props.role === 'student') {
+  //       this.props.history.push('/CreateQuestion');
+  //     } else {
+  //       this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
+  //     }
+  //   }
+  // }
 
   componentClicked() {
     return null;
@@ -43,7 +43,11 @@ class PureLogin extends React.Component {
   responseFacebook = userInfo => {
     if (userInfo.accessToken) {
       console.log('fb response: ', userInfo);
-      this.props.loginByFacebook(userInfo.accessToken);
+      this.props.loginByFacebook(
+        userInfo.accessToken,
+        null,
+        this.props.history
+      );
     }
     return null;
   };
@@ -51,7 +55,7 @@ class PureLogin extends React.Component {
   onEmailLogin = e => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.loginByEmail(email, password);
+    this.props.loginByEmail(email, password, this.props.history);
   };
 
   render() {
@@ -116,8 +120,7 @@ class PureLogin extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.user.authenticated,
-    role: state.user && state.user.profile && state.user.profile.role
+    authenticated: state.user.authenticated
   };
 }
 

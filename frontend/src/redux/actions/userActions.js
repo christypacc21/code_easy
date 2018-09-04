@@ -7,7 +7,7 @@ import {
   INSTRUCTOR_SIGNUP,
   INSTRUCTOR_SIGNUP_FAIL,
   AUTHENTICATED,
-  GET_MY_PROFILE,
+  GET_MY_PROFILE
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
@@ -17,63 +17,85 @@ export function localSignup(displayName, email, password, role) {
       displayName,
       email,
       password,
-      role,
+      role
     });
 
     // console.log('response: ', response);
     if (response.data) {
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED,
+        type: AUTHENTICATED
       });
       dispatch({
         type: LOGIN,
-        payload: response.data,
+        payload: response.data
       });
     } else {
       dispatch({
-        type: LOGIN_FAIL,
+        type: LOGIN_FAIL
       });
     }
   };
 }
 
-export function loginByEmail(email, password) {
+export function loginByEmail(email, password, history) {
   return async dispatch => {
     const response = await axios.post(SERVER_URL + '/api/login', {
       email,
-      password,
+      password
     });
     if (response.data) {
+      console.log('local login res: ', response.data);
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED,
+        type: AUTHENTICATED
       });
-      dispatch(getMyProfile());
+      dispatch({
+        type: LOGIN,
+        payload: response.data
+      });
+      if (response.data.role === 'student') {
+        history.push('/CreateQuestion');
+      } else {
+        history.push('/TakeQuestions');
+      }
+      // dispatch(getMyProfile());
     } else {
       dispatch({
-        type: LOGIN_FAIL,
+        type: LOGIN_FAIL
       });
     }
   };
 }
 
-export function loginByFacebook(access_token, role) {
+export function loginByFacebook(access_token, role, history) {
   return async dispatch => {
     const response = await axios.post(SERVER_URL + '/api/login/facebook', {
       access_token,
-      role,
+      role
     });
 
     if (response.data) {
+      console.log('facebook login res: ', response.data);
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED,
+        type: AUTHENTICATED
       });
-      dispatch(getMyProfile());
+      dispatch({
+        type: LOGIN,
+        payload: response.data
+      });
+      if (history) {
+        if (response.data.role === 'student') {
+          history.push('/CreateQuestion');
+        } else {
+          history.push('/TakeQuestions');
+        }
+      }
+      // dispatch(getMyProfile());
     } else {
       dispatch({
-        type: LOGIN_FAIL,
+        type: LOGIN_FAIL
       });
     }
   };
@@ -83,7 +105,7 @@ export function logout() {
   return dispatch => {
     localStorage.removeItem('token');
     dispatch({
-      type: LOGOUT,
+      type: LOGOUT
     });
   };
 }
@@ -103,9 +125,9 @@ export function uploadQuestion(content, filePath, skills, history) {
         url: SERVER_URL + '/api/question/create',
         headers: {
           Authorization: 'Bearer ' + token,
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data'
         },
-        data,
+        data
       });
 
       console.log('question res: ', response);
@@ -123,7 +145,7 @@ export function updateInstructorProfile(
   education,
   yearCodeExp,
   filePath,
-  skills,
+  skills
 ) {
   return async dispatch => {
     const data = new FormData();
@@ -146,9 +168,9 @@ export function updateInstructorProfile(
       url: SERVER_URL + '/api/instructor/signup',
       headers: {
         Authorization: 'Bearer ' + token,
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
       },
-      data,
+      data
     });
 
     console.log('response: ', response);
@@ -161,12 +183,12 @@ export function updateInstructorProfile(
           education,
           yearCodeExp,
           filePath,
-          skills: skills.map(skill => skill.label),
-        },
+          skills: skills.map(skill => skill.label)
+        }
       });
     } else {
       dispatch({
-        type: INSTRUCTOR_SIGNUP_FAIL,
+        type: INSTRUCTOR_SIGNUP_FAIL
       });
     }
   };
@@ -182,14 +204,15 @@ export function getMyProfile() {
           url: SERVER_URL + '/api/user/profile',
           headers: {
             Authorization: 'Bearer ' + token,
-            'Content-Type': 'multipart/form-data',
-          },
+            'Content-Type': 'multipart/form-data'
+          }
         });
 
         if (response.data.success) {
+          console.log('response.data: ', response.data);
           dispatch({
             type: GET_MY_PROFILE,
-            payload: response.data.profile,
+            payload: response.data.profile
           });
         }
       } catch (err) {

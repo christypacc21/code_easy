@@ -24,7 +24,7 @@ class UserSignup extends Component {
   responseFacebook = userInfo => {
     if (userInfo.accessToken) {
       console.log('fb response: ', userInfo);
-      this.props.loginByFacebook(userInfo.accessToken, this.state.role);
+      this.props.loginByFacebook(userInfo.accessToken, this.state.role, null);
     }
     return null;
   };
