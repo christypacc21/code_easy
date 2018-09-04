@@ -2,24 +2,69 @@ import axios from 'axios';
 import {
   REQUEST_POSTS_PENDING,
   REQUEST_POSTS_SUCCESS,
-  REQUEST_POSTS_FAILED
+  REQUEST_POSTS_FAILED,
+  REQUEST_POSTDETAILS_PENDING,
+  REQUEST_POSTDETAILS_SUCCESS,
+  REQUEST_POSTDETAILS_FAILED
   // CREATE_POST,
   // CREATE_COMMENT,
   // DELETE_COMMENT,
-  // CHANGE_SEARCH_FIELD
+  // CHANGE_SEARCH_FIELD,
+  // REQUEST_MYPOSTS,
+  // REQUEST_MYCOMMENTS,
 } from '../reducers/constants';
-const SERVER_URL = process.env.REACT_APP_API_SERVER;
+// const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 //-----------action - request posts ( get all posts)-----------//
 // export const requestPosts = dispatch => {
-export const requestPosts = () => dispatch => {
-  dispatch({ type: REQUEST_POSTS_PENDING });
-  axios
-    .get(SERVER_URL + '/api/forum/posts') //get what?:o
-    .then(data => dispatch({ type: REQUEST_POSTS_SUCCESS, payload: data }))
-    .catch(error => dispatch({ type: REQUEST_POSTS_FAILED, payload: error }));
+export const requestPosts = () => {
+  console.log('start trying action (api?)');
+
+  return async dispatch => {
+    // console.log(SERVER_URL + '/api/forum/posts');
+    dispatch({ type: REQUEST_POSTS_PENDING });
+    axios
+      .get('http://localhost:8080/api/forum/posts', {
+        headers: {
+          Authorization:
+            'Bearer ' +
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQifQ.QBeadLcUbFkn4OwugU239EqNSvfzZ9liA9OXaCPtBFI'
+          // Authorization: 'Bearer ' + 'localStorage.getItem('token')'
+        }
+      })
+      .then(response =>
+        dispatch({ type: REQUEST_POSTS_SUCCESS, payload: response.data })
+      )
+      .catch(error => dispatch({ type: REQUEST_POSTS_FAILED, payload: error }));
+  };
 };
 
+//-----------action - request postDetails ( get the postdetila and its comments)-----------//
+// export const requestPosts = dispatch => {
+export const requestPostDetails = () => {
+  // console.log('start trying action (api?)');
+
+  return dispatch => {
+    // console.log(SERVER_URL + '/api/forum/posts');
+    dispatch({ type: REQUEST_POSTDETAILS_PENDING });
+    axios
+      .get('http://localhost:8080/api/forum/posts/:id', {
+        //this this route? where to get the value of :id?
+        headers: {
+          Authorization:
+            'Bearer ' +
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwicm9sZSI6InN0dWRlbnQifQ.QBeadLcUbFkn4OwugU239EqNSvfzZ9liA9OXaCPtBFI'
+          // Authorization: 'Bearer ' + 'localStorage.getItem('token')'
+        }
+      })
+      .then(response =>
+        dispatch({ type: REQUEST_POSTDETAILS_SUCCESS, payload: response.data })
+      )
+      .catch(error =>
+        dispatch({ type: REQUEST_POSTDETAILS_FAILED, payload: error })
+      );
+  };
+};
 //-----------action - create post-----------//
 // export function createPost(postTitle, postContent, filePath) {
 export function createPost(title, content, filePath) {
@@ -32,7 +77,7 @@ export function createPost(title, content, filePath) {
 
     const response = await axios({
       method: 'post',
-      url: SERVER_URL + '/api/forum/post',
+      // url: SERVER_URL + '/api/forum/post',
       headers: {
         Authorization: 'Bearer' + token,
         'Content-Type': 'multipart/form-data'
@@ -52,7 +97,7 @@ export function createComment(content, filePath) {
 
     const response = await axios({
       method: 'post',
-      url: SERVER_URL + '/api/forum/post',
+      // url: SERVER_URL + '/api/forum/post',
       headers: {
         Authorization: 'Bearer' + token,
         'Content-Type': 'multipart/form-data'
@@ -68,3 +113,9 @@ export function createComment(content, filePath) {
 //   type: CHANGE_SEARCH_FIELD,
 //   payload: text
 // });
+
+//-----------action - delete comment-----------//
+
+//-----------action - get myPosts-----------//
+
+//-----------action - get myComments-----------//

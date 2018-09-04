@@ -13,7 +13,6 @@ module.exports = class ForumRouter {
     router.get('/posts', this.getPosts.bind(this)); //get all posts
     router.post('/posts', this.createPost.bind(this)); //create(post) a new post
     router.get('/posts/:id', this.getPostDetails.bind(this)); //get individual posts and corresponding comments
-
     router.post('/posts/:id/comments', this.postComments.bind(this)); //create(post) a new comment
     router.delete(
       '/posts/:id/comments/:comments_id',

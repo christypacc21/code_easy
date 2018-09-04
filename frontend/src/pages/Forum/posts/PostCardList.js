@@ -5,21 +5,6 @@ import { connect } from 'react-redux';
 import { requestPosts } from '../../../redux/actions/forumActions';
 // import JSONData from './JSONData';
 
-function mapStateToProps(state) {
-  return {
-    // postdata: state.postData
-    postData: state.requestPosts.posts,
-    isPending: state.requestPosts.isPendsing,
-    error: state.requestPosts.error
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onRequestPosts: () => dispatch(requestPosts())
-  };
-}
-
 class PostCardList extends Component {
   // renderPostList() {
   //   const postData = JSON.stringify(JSONData);
@@ -27,30 +12,37 @@ class PostCardList extends Component {
   //   return postData.map((data, i) => {
   componentDidMount() {
     this.props.onRequestPosts();
+    console.log('ComponentDidMountdata :' + this.props.postData);
   }
+
   renderPostList() {
-    return this.props.postData.map((data, i) => {
-      return (
-        <div className="card col-sm-4">
-          <PostCard
-            key={i}
-            postid={data.posts[i].id}
-            propicPath={data.posts[i].profilePic}
-            username={data.posts[i].display_name}
-            dateTime={data.posts[i].created_at}
-            postTitle={data.posts[i].title}
-            postContent={data.posts[i].content}
-            postImagePath={data.posts[i].image_path}
-            count={data.count[i].count}
-          />
-        </div>
-      );
-    });
+    if (this.props.isPending) {
+      console.log('renderpostlist is pending');
+    } else {
+      console.log('renderPostList got data :' + this.props.postData);
+      return this.props.postData.posts.map((post, i) => {
+        console.log('about to render post list' + post);
+        return (
+          <div className="card col-sm-4">
+            <PostCard
+              key={i}
+              postid={post[i].id}
+              propicPath={post[i].profilePic}
+              username={post[i].display_name}
+              dateTime={post[i].created_at}
+              postTitle={post[i].title}
+              postContent={post[i].content}
+              postImagePath={post[i].image_path}
+              // count={data.count[i].count}
+            />
+          </div>
+        );
+      });
+    }
   }
 
   render() {
-    const { isPending } = this.props;
-    return !isPending ? (
+    return !this.props.isPending ? (
       <div>
         <h1>Loading</h1>
       </div>
@@ -60,6 +52,26 @@ class PostCardList extends Component {
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  // console.log('state:' + state);
+  console.log('started MapStateToProps->' + state.requestPosts.data);
+  return (
+    {
+      // postdata: state.postData
+      isPending: state.requestPosts.isPending,
+      postData: state.requestPosts.data,
+      error: state.requestPosts.error
+    },
+    console.log('MapStateToProps after return->' + state.requestPosts.data)
+  );
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onRequestPosts: () => dispatch(requestPosts())
+  };
 }
 
 export default connect(

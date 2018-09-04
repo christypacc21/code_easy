@@ -1,27 +1,40 @@
 // func component
-import React, { Component } from 'react';
+import React from 'react';
 
-class CommentCard extends Component {
-  render() {
-    return (
-      <div>
-        <div>
-          <p>user propic </p>
-          <p>username</p>
-          <p>comment DateTime</p>
-          <p>comment Content</p>
-          <p>comment Image (or files) (image_path)(if any)</p>
-          {/* <form
-            action="/posts/{{post_id}}/comments/{{id}}?_method=DELETE"
-            method="post"
-            style="float:right"
-          > */}
-          {/* <button class="btn btn-danger btn-sm">Delete advice</button> */}
-          {/* </form> */}
-        </div>
+const CommentCard = ({
+  key,
+  propicPath,
+  username,
+  dateTime,
+  commentContent,
+  commentImagePath
+}) => {
+  return (
+    <div>
+      <div className="card-body">
+        <p className="card-text">
+          CommentID:
+          {key}
+        </p>
+        <img alt="User propic" src={propicPath}>
+          UserPropic
+        </img>
+        <p className="card-text">{username}</p>
+        <p className="card-text">{dateTime}</p>
+        <p className="card-text">{commentContent}</p>
+        <img alt="Commentfile" src={commentImagePath} />
       </div>
-    );
-  }
-}
+    </div>
+    // <div>
+    //   <form
+    //       action="/posts/{{post_id}}/comments/{{id}}?_method=DELETE"
+    //       method="post"
+    //       style="float:right"
+    //     >
+    //   <button class="btn btn-danger btn-sm">Delete advice</button>
+    //   </form>
+    // </div>
+  );
+};
 
 export default CommentCard;

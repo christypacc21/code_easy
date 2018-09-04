@@ -128,7 +128,7 @@ class Nav extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link " to="/posts">
+              <Link className="nav-link " to="/postsPage">
                 Coding Community
               </Link>
             </li>
