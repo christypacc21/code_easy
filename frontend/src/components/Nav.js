@@ -10,15 +10,22 @@ class Nav extends React.Component {
     if (this.props.authenticated) {
       if (this.props.role === 'student') {
         return (
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              to="/CreateQuestion"
-              // onClick={() => this.props.history.push('/CreateQuestion')}
-            >
-              Create Question
-            </Link>
-          </li>
+          <React.Fragment>
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                to="/AskQuestion"
+                // onClick={() => this.props.history.push('/CreateQuestion')}
+              >
+                Create Question
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/my-questions/ongoing">
+                My Questions
+              </Link>
+            </li>
+          </React.Fragment>
         );
       } else {
         return (
@@ -29,7 +36,7 @@ class Nav extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/my-questions">
+              <Link className="nav-link" to="/my-questions/ongoing">
                 My Questions
               </Link>
             </li>
@@ -155,13 +162,13 @@ class Nav extends React.Component {
 function mapStateToProps(state) {
   return {
     authenticated: state.user.authenticated,
-    role: state.user && state.user.profile && state.user.profile.role,
+    role: state.user && state.user.profile && state.user.profile.role
   };
 }
 
 export default withRouter(
   connect(
     mapStateToProps,
-    UserAction,
-  )(Nav),
+    UserAction
+  )(Nav)
 );

@@ -5,7 +5,7 @@ import {
   GET_ALL_MESSAGES
 } from '../reducers/constants';
 
-export function sendChatMessage(message, userId, chatId) {
+export function sendChatMessage(message, userId, display_name, chatId) {
   return async dispatch => {
     dispatch({
       type: SOCKET,
@@ -14,6 +14,7 @@ export function sendChatMessage(message, userId, chatId) {
         actionType: SEND_MESSAGE,
         message,
         userId,
+        display_name,
         chatId
       }
     });

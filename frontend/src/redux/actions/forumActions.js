@@ -17,7 +17,7 @@ const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 //-----------action - request posts ( get all posts)-----------//
 // export const requestPosts = dispatch => {
-export const requestPosts = () => {
+export function requestPosts() {
   console.log('start trying action (api?)');
 
   return async dispatch => {
@@ -39,11 +39,11 @@ export const requestPosts = () => {
       dispatch({ type: REQUEST_POSTS_FAILED });
     }
   };
-};
+}
 
 //-----------action - request postDetails ( get the postdetila and its comments)-----------//
 // export const requestPosts = dispatch => {
-export const requestPostDetails = id => {
+export function requestPostDetails(id) {
   // console.log('start trying action (api?)');
 
   return async dispatch => {
@@ -65,27 +65,34 @@ export const requestPostDetails = id => {
       dispatch({ type: REQUEST_POSTDETAILS_FAILED });
     }
   };
-};
+}
 //-----------action - create post-----------//
 // export function createPost(postTitle, postContent, filePath) {
 export function createPost(title, content, filePath) {
   return async dispatch => {
-    const data = new FormData();
-    data.append('title', title);
-    data.append('content', content); //the names used here shd follow which file's variable name?
-    data.append('inputFile', filePath[0], 'postIMG'); // ??
-    const token = localStorage.getItem('token'); ////??
+    try {
+      console.log(title);
+      console.log(content);
 
-    const response = await axios({
-      method: 'post',
-      // url: SERVER_URL + '/api/forum/post',
-      headers: {
-        Authorization: 'Bearer' + token,
-        'Content-Type': 'multipart/form-data'
-      },
-      data
-    });
-    console.log('createPost res: ', response);
+      const data = new FormData();
+      data.append('title', title);
+      data.append('content', content); //the names used here shd follow which file's variable name?
+      data.append('inputFile', filePath[0], 'postIMG'); // ??
+      const token = localStorage.getItem('token'); ////??
+      console.log(SERVER_URL + '/api/forum/posts');
+      const response = await axios({
+        method: 'post',
+        url: SERVER_URL + '/api/forum/posts',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'multipart/form-data'
+        },
+        data
+      });
+      console.log('createPost res: ', response);
+    } catch (err) {
+      console.log('create post error: ', err);
+    }
   };
 }
 //-----------action - create comment-----------//

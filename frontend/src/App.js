@@ -21,7 +21,8 @@ import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeQuestions from './pages/TakeQuestions';
 import Chatroom from './pages/Chatroom';
-import myQuestions from './pages/TakeQuestions/my-questions';
+import MyHistory from './pages/MyQuestions/History';
+import MyOngoing from './pages/MyQuestions/Ongoing';
 import Profile from './pages/Profile';
 
 import { connect } from 'react-redux';
@@ -41,8 +42,8 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/posts" component={PostsPage} />
-            <Route exact path="/posts/:id" component={PostDetails} />
             <Route exact path="/posts/new" component={CreatePost} />
+            <Route exact path="/posts/:id" component={PostDetails} />
             <Route exact path="/pricing" component={Pricing} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/AskQuestion" component={AskQuestion} />
@@ -61,7 +62,8 @@ class App extends Component {
             />
             <Route exact path="/MultipleSelect" component={MultipleSelect} />
             <Route exact path="/TakeQuestions" component={TakeQuestions} />
-            <Route exact path="/my-questions" component={myQuestions} />
+            <Route exact path="/my-questions/ongoing" component={MyOngoing} />
+            <Route exact path="/my-questions/history" component={MyHistory} />
             <Route exact path="/profile" component={Profile} />
           </Switch>
           <Footer />
@@ -73,5 +75,5 @@ class App extends Component {
 
 export default connect(
   null,
-  userActions,
+  userActions
 )(App);
