@@ -16,9 +16,7 @@ const CommentCard = ({
           CommentID:
           {key}
         </p>
-        <img alt="User propic" src={propicPath}>
-          UserPropic
-        </img>
+        <img alt="User propic" src={propicPath} />
         <p className="card-text">{username}</p>
         <p className="card-text">{dateTime}</p>
         <p className="card-text">{commentContent}</p>

@@ -1,6 +1,6 @@
 // func component
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const PostCard = ({
   postId,
   propicPath,
@@ -31,9 +31,13 @@ const PostCard = ({
         <img alt="Post file" src={postImagePath} />
         {/* <p>(No. of comments): {count}</p> */}
         {/* <a className="btn btn-primary" href="/postDetails"> */}
-        <a className="btn btn-primary" href="/api/forum/posts/">
+        {/* <a className="btn btn-primary" href="/api/forum/posts/">
           Press into Post Details
-        </a>
+        </a> */}
+        <br />
+        <Link className="btn btn-primary" to={`/posts/${postId + 1}`}>
+          Press into details
+        </Link>
       </div>
     </div>
   );
