@@ -74,7 +74,6 @@ class CommentForm extends Component {
           </form>
 
           <br />
-          {/* whts the dif between using a , button and input here? */}
           <button
             // type="submit"
             className="btn btn-primary btn-lg btn-block"
