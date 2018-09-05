@@ -11,7 +11,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div
-        className="jumbotron postDetails card col-sm-12"
+        className="jumbotron postDetails col-sm-12"
         style={{ margin: 0, background: '#D3D3D3' }}
       >
         <div className="search-bar input-group mb-3">

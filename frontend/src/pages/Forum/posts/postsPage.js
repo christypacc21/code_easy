@@ -11,7 +11,7 @@ class PostsPage extends Component {
         <SearchBar />
         <div style={{ margin: 10 }}>
           <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
-            Create Post for free!
+            Press to Create Post for Free!
           </a>
         </div>
         {/* <SearchBar onSearchTermChange={postSearch} /> */}

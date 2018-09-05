@@ -11,96 +11,94 @@ const CommentCard = ({
   commentContent,
   commentImagePath
 }) => {
-  if (!commentNum) {
-    return (
-      <div className="jumbotron">
-        <h1>This Post has no comment! Wanna add one?</h1>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <div className="card-body">
-          {/* <p className="card-text">
+  // if (!commentNum) {
+  //   return (
+  //     <div className="jumbotron">
+  //       <h1>This Post has no comment! Wanna add one?</h1>
+  //     </div>
+  //   );
+  // } else {
+  return (
+    <div>
+      <div className="card-body">
+        {/* <p className="card-text">
             CommentID:
             {commentId}
           </p> */}
-          <h5 className="card-text">
-            <strong>Comment No. [ {commentNum} ]</strong>
-          </h5>
-          <div>
-            {
-              (propicPath = `${
-                process.env.REACT_APP_API_SERVER
-              }/${propicPath}` ? (
-                <p style={{ display: 'inline-block', marginRight: '3vw' }}>
-                  [[[This user has no pro pic]]]
-                </p>
-              ) : (
-                <div>
-                  <img
-                    className="card"
-                    style={{
-                      maxHeight: '7vh',
-                      maxWidth: '20vw',
-                      marginRight: '3vw'
-                    }}
-                    alt="(Failed to show Post file )"
-                    src={propicPath}
-                  />
-                </div>
-              ))
-            }
-
-            <p
-              className="card-text"
-              style={{ display: 'inline-block', marginRight: '3vw' }}
-            >
-              Created by: {username}
-            </p>
-            <p
-              className="card-text"
-              style={{ display: 'inline-block', marginRight: '3vw' }}
-            >
-              Role: {role}
-            </p>
-            <p
-              className="card-text"
-              style={{ display: 'inline-block', marginRight: '3vw' }}
-            >
-              Created at: {dateTime}
-            </p>
-          </div>
-          <div className="jumbotron">
-            <p className="card-text">Content: {commentContent}</p>
-            {!commentImagePath ? (
-              <p>[[[This post has no image]]]</p>
+        <h5 className="card-text">
+          <strong>Comment No. [ {commentNum} ]</strong>
+        </h5>
+        <div>
+          {
+            (propicPath = `${
+              process.env.REACT_APP_API_SERVER
+            }/${propicPath}` ? (
+              <p style={{ display: 'inline-block', marginRight: '3vw' }}>
+                [[[This user has no pro pic]]]
+              </p>
             ) : (
               <div>
                 <img
                   className="card"
-                  style={{ maxWidth: '60vw' }}
+                  style={{
+                    maxHeight: '7vh',
+                    maxWidth: '20vw',
+                    marginRight: '3vw'
+                  }}
                   alt="(Failed to show Post file )"
-                  src={`${
-                    process.env.REACT_APP_API_SERVER
-                  }/${commentImagePath}`}
+                  src={propicPath}
                 />
               </div>
-            )}
-          </div>
+            ))
+          }
+
+          <p
+            className="card-text"
+            style={{ display: 'inline-block', marginRight: '3vw' }}
+          >
+            Created by: {username}
+          </p>
+          <p
+            className="card-text"
+            style={{ display: 'inline-block', marginRight: '3vw' }}
+          >
+            Role: {role}
+          </p>
+          <p
+            className="card-text"
+            style={{ display: 'inline-block', marginRight: '3vw' }}
+          >
+            Created at: {dateTime}
+          </p>
+        </div>
+        <div className="jumbotron">
+          <p className="card-text">Content: {commentContent}</p>
+          {!commentImagePath ? (
+            <p>[[[This post has no image]]]</p>
+          ) : (
+            <div>
+              <img
+                className="card"
+                style={{ maxWidth: '60vw' }}
+                alt="(Failed to show Post file )"
+                src={`${process.env.REACT_APP_API_SERVER}/${commentImagePath}`}
+              />
+            </div>
+          )}
         </div>
       </div>
-      // <div>
-      //   <form
-      //       action="/posts/{{post_id}}/comments/{{id}}?_method=DELETE"
-      //       method="post"
-      //       style="float:right"
-      //     >
-      //   <button class="btn btn-danger btn-sm">Delete comment</button>
-      //   </form>
-      // </div>
-    );
-  }
+    </div>
+    // <div>
+    //   <form
+    //       action="/posts/{{post_id}}/comments/{{id}}?_method=DELETE"
+    //       method="post"
+    //       style="float:right"
+    //     >
+    //   <button class="btn btn-danger btn-sm">Delete comment</button>
+    //   </form>
+    // </div>
+  );
 };
+// };
 
 export default CommentCard;

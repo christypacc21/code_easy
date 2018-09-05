@@ -25,7 +25,7 @@ class CreatePost extends Component {
 
     return (
       <div>
-        <Link className="btn btn-primary " to="/posts">
+        <Link className="btn btn-primary btn-lg" to="/posts">
           Go back to posts
         </Link>
         <div
@@ -43,7 +43,9 @@ class CreatePost extends Component {
             </div>
             <form>
               <div className="form-group">
-                <label htmlFor="inputDisplay">Post Title</label>
+                <label htmlFor="inputDisplay" style={{ fontSize: '30px' }}>
+                  Post Title
+                </label>
                 <input
                   type="name"
                   className="form-control"
@@ -54,7 +56,12 @@ class CreatePost extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="exampleFormControlFile1">Upload Image</label>
+                <label
+                  htmlFor="exampleFormControlFile1"
+                  style={{ fontSize: '30px' }}
+                >
+                  Upload Image(if any)
+                </label>
                 <Dropzone onDrop={this.onDrop}>
                   <p>
                     Try dropping an image here, or click to select an image to
@@ -85,7 +92,10 @@ class CreatePost extends Component {
 
               <br />
               <div className="form-group">
-                <label htmlFor="exampleFormControlTextarea1">
+                <label
+                  htmlFor="exampleFormControlTextarea1"
+                  style={{ fontSize: '30px' }}
+                >
                   Post Content
                 </label>
                 <textarea
@@ -105,7 +115,7 @@ class CreatePost extends Component {
             {/* whts the dif between using a , button and input here? */}
             <button
               // type="submit"
-              className="btn btn-primary"
+              className="btn btn-secondary btn-lg btn-block"
               onClick={
                 () =>
                   this.props

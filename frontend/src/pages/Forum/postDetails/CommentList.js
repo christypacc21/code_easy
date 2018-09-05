@@ -6,6 +6,7 @@ const CommentList = ({ comments }) => {
     return (
       <div className="card col-sm-12" key={i}>
         <CommentCard
+          // commentId={comment.id}
           commentNum={i}
           propicPath={comment.profilePic}
           role={comment.role}
@@ -20,27 +21,3 @@ const CommentList = ({ comments }) => {
 };
 
 export default CommentList;
-
-// //------
-// // class component without redux
-// import React from 'react';
-// import CommentCard from './CommentCard';
-
-// const CommentList = ({
-//   key,
-//   propicPath,
-//   username,
-//   dateTime,
-//   commentContent,
-//   commentImagePath
-// }) => {
-//   return (
-//     <div className="CommentList">
-//       <div className="row">
-//         <CommentCard />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CommentList;
