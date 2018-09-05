@@ -19,8 +19,8 @@ const PostCard = ({
   return (
     // <div id={key}>
     <div>
-      <div style={{ height: '530px' }}>
-        <div className="card-body" style={{ height: '460px' }}>
+      <div style={{ height: '580px' }}>
+        <div className="card-body" style={{ height: '510px' }}>
           <div style={{ fontSize: '12px' }}>
             <p
               className="card-text"
@@ -53,7 +53,10 @@ const PostCard = ({
                 />
               </div>
             )}
-            <p className="card-text">{dateTime}</p>
+            <p className="card-text" style={{ fontSize: '20px' }}>
+              {dateTime}
+            </p>
+            <div style={{ matginBottom: '10px' }} />
           </div>
           <h5 className="card-title">Title: {postTitle}</h5>
           <p className="card-text">

@@ -8,7 +8,7 @@ class PostsPage extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <div style={{ margin: 10 }}>
           <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
             Press to Create Post for Free!
@@ -18,7 +18,7 @@ class PostsPage extends Component {
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           {/* <div className="container"> */}
-          <div>GET and show Posts Lists (list of posts):</div>
+          {/* <div>GET and show Posts Lists (list of posts):</div> */}
           <PostCardList />
           {/* </div> */}
           {/* <button

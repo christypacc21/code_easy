@@ -28,7 +28,7 @@ class PostDetails extends Component {
             </Link>
             <div style={{ marginTop: '30px' }} />
           </div>
-          <p>GET and Show individual post details card here</p>
+          {/* <p>GET and Show individual post details card here</p> */}
           <div>
             <PostDetailsCard
               postId={postDetailsData.id}
@@ -51,7 +51,7 @@ class PostDetails extends Component {
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           <CommentForm paramsId={this.props.match.params.id} />
-          <p>GET and show CommentList here:</p>
+          {/* <p>GET and show CommentList here:</p> */}
           <CommentList comments={this.props.comments} />
           {/* <CommentForm /> */}
           <br />

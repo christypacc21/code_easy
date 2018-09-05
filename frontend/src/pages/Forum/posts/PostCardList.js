@@ -39,7 +39,8 @@ class PostCardList extends Component {
   render() {
     return this.props.isPending ? (
       <div>
-        <h1>Loading</h1>
+        {/* <h1>Loading</h1> */}
+        <h1>Signup or Sign in to visit the dynamic coding community !!!</h1>
       </div>
     ) : (
       <div className="PostCardList">
