@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as ChatActions from '../../redux/actions/chatActions';
-import { messagesByChatroom } from '../../redux/reducers/chatReducer';
 
 class Chatroom extends Component {
   state = {
@@ -27,25 +26,6 @@ class Chatroom extends Component {
     }, 500);
   }
 
-  // componentDidUpdate() {
-  //   console.log('id-didUpdate-this.props', this.props);
-
-  //   this.props.getAllMessages(
-  //     this.props.match.params.chatId,
-  //     this.props.user.id
-  //   );
-  // }
-
-  renderChats = () =>
-    this.props.messages.map((message, i) => {
-      // console.log('message', message);
-      return (
-        <div key={message.message + i}>
-          {message.displayName}: {message.message}
-        </div>
-      );
-    });
-
   sendMessage = () => {
     console.log('this.props-sendMessage', this.props);
     this.props.sendChatMessage(
@@ -65,10 +45,22 @@ class Chatroom extends Component {
   };
 
   render() {
+    // console.log(this.props.match);
     return (
       <div className="container">
         Chat
-        <div>{this.renderChats()}</div>
+        {this.props.messages
+          .filter(
+            message => String(message.chatId) === this.props.match.params.chatId
+          )
+          .map((message, i) => {
+            console.log('message123', message);
+            return (
+              <div key={message.message + i}>
+                {message.displayName}: {message.message}
+              </div>
+            );
+          })}
         <textarea
           value={this.state.inputMessage}
           onChange={e => this.setState({ inputMessage: e.target.value })}
@@ -87,7 +79,7 @@ class Chatroom extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     user: state.user.profile,
-    messages: messagesByChatroom(state, ownProps.match.params.chatId)
+    messages: state.chat.messages
   };
 }
 

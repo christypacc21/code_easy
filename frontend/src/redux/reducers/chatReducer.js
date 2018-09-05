@@ -7,6 +7,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_MESSAGES:
+      console.log('GET_ALL_MESSAGES', action.payload);
       return {
         ...state,
         messages: action.payload
@@ -20,7 +21,3 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-
-export function messagesByChatroom(state, chatId) {
-  return state.chat.messages.filter(message => message.chatId === chatId);
-}
