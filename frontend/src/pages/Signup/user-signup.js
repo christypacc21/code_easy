@@ -13,7 +13,7 @@ class UserSignup extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.authenticated) {
-      this.props.history.push('/user-profileForm');
+      this.props.history.push('/createQuestion');
     }
   }
   componentClicked() {
