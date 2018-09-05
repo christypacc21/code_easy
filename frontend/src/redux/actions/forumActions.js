@@ -60,6 +60,7 @@ export function requestPostDetails(id) {
       }
     });
     if (response.status === 200) {
+      console.log(response);
       dispatch({ type: REQUEST_POSTDETAILS_SUCCESS, payload: response.data });
     } else {
       dispatch({ type: REQUEST_POSTDETAILS_FAILED });
@@ -100,12 +101,12 @@ export function createComment(content, filePath, id) {
       data.append('content', content); //the names used here shd follow which file's variable name?
       data.append('inputFile', filePath[0], 'commentIMG'); // ??
       const token = localStorage.getItem('token'); ////??
-      // console.log(SERVER_URL + '/api/forum/posts');
+      // console.log(SERVER_URL + `/api/forum/posts/${id}/comments`);
       const response = await axios({
         method: 'post',
         url: SERVER_URL + `/api/forum/posts/${id}/comments`,
         headers: {
-          Authorization: 'Bearer' + token,
+          Authorization: 'Bearer ' + token,
           'Content-Type': 'multipart/form-data'
         },
         data

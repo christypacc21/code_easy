@@ -5,7 +5,7 @@ class Pricing extends React.Component {
   onToken = token => {
     fetch('/save-stripe-token', {
       method: 'POST',
-      body: JSON.stringify(token),
+      body: JSON.stringify(token)
     }).then(response => {
       response.json().then(data => {
         alert(`We are in business, ${data.email}`);
@@ -25,7 +25,8 @@ class Pricing extends React.Component {
             <p>
               We believe student queries should be answered in a timely manner
               to prevent snow-balling. CodeEasy is filling that gap in students'
-              learning experience.
+              learning experience. For fairness, each question's maximum live
+              chat duration is supposed to be 15 minutes.
             </p>
           </div>
 
@@ -33,11 +34,15 @@ class Pricing extends React.Component {
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
                 <h5 className="card-title">Get started Pack</h5>
-                <p className="card-text">
-                  1 question:Some quick example text to build on the card title
-                  and make up the bulk of the card's content. <br />
-                </p>
-                <h1>$1000.00HKD</h1>
+                <div style={{ marginBottom: 55, marginTop: 55 }}>
+                  <h2 className="card-text">
+                    1 Question <br />
+                  </h2>
+                  <p className="card-text">
+                    Try the service! <br />
+                  </p>
+                </div>
+                <h1>$70HKD</h1>
                 <StripeCheckout
                   token={this.onToken}
                   stripeKey="pk_test_iFPuRXZV4aamZtNYpzHuqijR"
@@ -50,11 +55,15 @@ class Pricing extends React.Component {
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
                 <h5 className="card-title">3 Questions Pack</h5>
-                <p className="card-text">
-                  1 question:Some quick example text to build on the card title
-                  and make up the bulk of the card's content.
-                </p>
-                <h1>$1000.00HKD</h1>
+                <div style={{ marginBottom: 55, marginTop: 55 }}>
+                  <h2 className="card-text">
+                    3 Questions <br />
+                  </h2>
+                  <p className="card-text">
+                    10% OFF from total price! <br />
+                  </p>
+                </div>
+                <h1>$200HKD</h1>
                 <StripeCheckout
                   token={this.onToken}
                   stripeKey="pk_test_iFPuRXZV4aamZtNYpzHuqijR"
@@ -67,11 +76,15 @@ class Pricing extends React.Component {
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
                 <h5 className="card-title">10 Questions Pack</h5>
-                <p className="card-text">
-                  1 question:Some quick example text to build on the card title
-                  and make up the bulk of the card's content.
-                </p>
-                <h1>$1000.00HKD</h1>
+                <div style={{ marginBottom: 55, marginTop: 55 }}>
+                  <h2 className="card-text">
+                    10 Questions <br />
+                  </h2>
+                  <p className="card-text">
+                    15% OFF from total price! <br />
+                  </p>
+                </div>
+                <h1>$630HKD</h1>
                 <StripeCheckout
                   token={this.onToken}
                   stripeKey="pk_test_iFPuRXZV4aamZtNYpzHuqijR"

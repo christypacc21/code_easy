@@ -48,10 +48,10 @@ class PostDetails extends Component {
         </div>
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
+          <CommentForm paramsId={this.props.match.params.id} />
           <p>GET and show CommentList here:</p>
           <CommentList comments={this.props.comments} />
           {/* <CommentForm /> */}
-          <CommentForm paramsId={this.props.match.params.id} />
         </div>
       </div>
     );

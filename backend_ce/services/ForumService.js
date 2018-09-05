@@ -48,14 +48,14 @@ module.exports = class ForumService {
       .select('*')
       .from('forumPosts')
       .where('forumPosts.id', post_id)
-      .leftJoin('users', 'users.id', '=', 'forumPosts.id') //must leftJoin
+      .leftJoin('users', 'users.id', '=', 'forumPosts.user_id') //must leftJoin
 
       .then(postDetails => {
         return this.knex
           .select('*')
           .from('forumComments')
           .where('forumComments.post_id', post_id)
-          .join('users', 'users.id', '=', 'forumComments.id')
+          .join('users', 'users.id', '=', 'forumComments.user_id')
           .then(comments => {
             return {
               postDetails: postDetails[0],
@@ -101,7 +101,8 @@ module.exports = class ForumService {
       content,
       image_path
     };
-    return this.knex.insert(data).into('forumComments');
+    console.log(data);
+    return this.knex('forumComments').insert(data);
   }
 
   //ok, can delComments from db with authenToken

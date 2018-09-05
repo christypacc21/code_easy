@@ -31,7 +31,7 @@ class CommentForm extends Component {
         style={{ margin: 0, background: '#00B0AF' }}
       >
         <div className="container" style={{ background: '#D3D3D3' }}>
-          <h2 style={{ color: 'white' }}>Your comments:</h2>
+          <h2 style={{ color: 'Black' }}>Your comments:</h2>
           <form>
             <div className="form-group" />
             {/* <label htmlFor="exampleFormControlTextarea1">My reply:</label> */}
@@ -39,6 +39,10 @@ class CommentForm extends Component {
               className="form-control"
               id="exampleFormControlTextarea1"
               placeholder="Type something..."
+              value={this.state.commentContent}
+              onChange={event =>
+                this.setState({ commentContent: event.target.value })
+              }
               rows="9"
             />
             <div className="form-group">
@@ -81,14 +85,16 @@ class CommentForm extends Component {
           <button
             // type="submit"
             className="btn btn-primary btn-lg btn-block"
-            onClick={
-              () =>
-                this.props
-                  .createComment(commentContent, filePath, this.props.paramsId)
-                  .then(() => {
-                    this.setState({ commentContent: '', filePath: [] });
-                  }) //the params' names do i need to refer to somewhere?(ying goy not)
-            }
+            onClick={() => {
+              this.props.createComment(
+                commentContent,
+                filePath,
+                this.props.paramsId
+              );
+
+              this.setState({ commentContent: '', filePath: [] });
+              //the params' names do i need to refer to somewhere?(ying goy not)
+            }}
           >
             Send !
           </button>
