@@ -16,11 +16,11 @@ class PostCardList extends Component {
     } else {
       console.log('renderPostList got data :' + this.props.postData);
       return this.props.postData.posts.map((post, i) => {
-        console.log('about to render post list' + post);
+        // console.log('about to render post list' + post);
         return (
-          <div className="card col-sm-4">
+          <div className="card col-sm-4" key={i}>
             <PostCard
-              key={i}
+              // key={i}
               postId={i + 1}
               propicPath={post.profilePic}
               username={post.display_name}

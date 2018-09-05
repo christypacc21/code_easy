@@ -4,8 +4,8 @@ import {
   REQUEST_POSTS_FAILED,
   REQUEST_POSTDETAILS_PENDING,
   REQUEST_POSTDETAILS_SUCCESS,
-  REQUEST_POSTDETAILS_FAILED
-  // CREATE_POST
+  REQUEST_POSTDETAILS_FAILED,
+  CREATE_POST
   // CREATE_COMMENT,
   // DELETE_COMMENT,
   // CHANGE_SEARCH_FIELD
@@ -62,13 +62,17 @@ export const requestPostDetails = (
 };
 
 //----------- reducer -  create post-----------//
+// const initialStateCreatePost = {
+//   postTitle: '',
+//   postContent: '',
+//   filePath: []
+// }
 // export default (state = initialState, action) => {
 //   switch (action.type) {
 //     case CREATE_POST:
 //       return {};
 //   }
 // };
-
 //-----------reducer - create comment-----------//
 
 //--------reducer - search--------//

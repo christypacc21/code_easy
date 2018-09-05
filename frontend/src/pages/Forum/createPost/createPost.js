@@ -1,5 +1,5 @@
 // class component
-
+// version 2 can add select skills option
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
@@ -103,7 +103,7 @@ class CreatePost extends Component {
 
             <br />
             {/* whts the dif between using a , button and input here? */}
-            <a
+            <button
               // type="submit"
               className="btn btn-primary"
               onClick={
@@ -111,7 +111,7 @@ class CreatePost extends Component {
               }
             >
               Post to forum!
-            </a>
+            </button>
           </div>
         </div>
       </div>
