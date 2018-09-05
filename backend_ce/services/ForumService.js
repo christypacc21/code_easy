@@ -48,7 +48,7 @@ module.exports = class ForumService {
       .select('*')
       .from('forumPosts')
       .where('forumPosts.id', post_id)
-      .join('users', 'users.id', '=', 'forumPosts.id')
+      .leftJoin('users', 'users.id', '=', 'forumPosts.id') //must leftJoin
 
       .then(postDetails => {
         return this.knex

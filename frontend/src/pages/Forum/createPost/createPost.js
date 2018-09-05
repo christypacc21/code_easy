@@ -19,7 +19,6 @@ class CreatePost extends Component {
     });
     console.log(this.state);
   };
-
   render() {
     const { postTitle, postContent, filePath } = this.state;
 
