@@ -4,11 +4,12 @@ import moment from 'moment';
 // import Lightbox from 'react-images';
 import * as QuestionActions from '../../redux/actions/questionAction';
 import Lightbox from 'react-images';
+import { Link } from 'react-router-dom';
 
 class TakeQuestions extends React.Component {
   state = {
     lightboxImage: '',
-    lightboxIsOpen: false,
+    lightboxIsOpen: false
   };
 
   componentDidMount() {
@@ -18,7 +19,7 @@ class TakeQuestions extends React.Component {
   closeLightbox = () => {
     this.setState({
       lightboxImage: '',
-      lightboxIsOpen: false,
+      lightboxIsOpen: false
     });
   };
 
@@ -26,7 +27,7 @@ class TakeQuestions extends React.Component {
     if (imgPath) {
       this.setState({
         lightboxImage: imgPath,
-        lightboxIsOpen: true,
+        lightboxIsOpen: true
       });
     }
   };
@@ -43,7 +44,7 @@ class TakeQuestions extends React.Component {
                 style={{
                   marginTop: '4px',
                   display: 'flex',
-                  flexDirection: 'row',
+                  flexDirection: 'row'
                 }}
               >
                 {question.skillInfo.map((skill, j) => (
@@ -70,7 +71,7 @@ class TakeQuestions extends React.Component {
                       this.openLightbox(
                         `${process.env.REACT_APP_API_SERVER}/${
                           question.questionInfo.image_path
-                        }`,
+                        }`
                       )
                     }
                   />
@@ -78,12 +79,12 @@ class TakeQuestions extends React.Component {
                 <div className="col-md-4">
                   <h5 className="card-title">Question</h5>
                   <p className="card-text">{question.questionInfo.content}</p>
-                  <a
-                    href={`/chatroom/${question.chatInfo.id}`}
+                  <Link
+                    to={`/chatroom/${question.chatInfo.id}`}
                     className="btn btn-primary "
                   >
                     Answer
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -102,7 +103,7 @@ class TakeQuestions extends React.Component {
                 style={{
                   marginTop: '4px',
                   display: 'flex',
-                  flexDirection: 'row',
+                  flexDirection: 'row'
                 }}
               >
                 {question.skillInfo.map((skill, j) => (
@@ -121,12 +122,12 @@ class TakeQuestions extends React.Component {
                 <div className="col-md-4">
                   <h5 className="card-title">Question</h5>
                   <p className="card-text">{question.questionInfo.content}</p>
-                  <a
-                    href={`/chatroom/${question.chatInfo.id}`}
+                  <Link
+                    to={`/chatroom/${question.chatInfo.id}`}
                     className="btn btn-primary "
                   >
                     Answer
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -159,8 +160,8 @@ class TakeQuestions extends React.Component {
         <Lightbox
           images={[
             {
-              src: this.state.lightboxImage,
-            },
+              src: this.state.lightboxImage
+            }
           ]}
           isOpen={this.state.lightboxIsOpen}
           onClose={this.closeLightbox}
@@ -172,11 +173,11 @@ class TakeQuestions extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    questions: state.questions.all,
+    questions: state.questions.all
   };
 }
 
 export default connect(
   mapStateToProps,
-  QuestionActions,
+  QuestionActions
 )(TakeQuestions);
