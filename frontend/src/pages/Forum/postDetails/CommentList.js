@@ -6,7 +6,7 @@ const CommentList = ({ comments }) => {
     return (
       <div className="card col-sm-12" key={i}>
         <CommentCard
-          commentId={comment.id}
+          commentNum={i}
           propicPath={comment.profilePic}
           role={comment.role}
           username={comment.display_name}

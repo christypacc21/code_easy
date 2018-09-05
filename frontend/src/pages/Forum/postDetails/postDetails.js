@@ -18,14 +18,16 @@ class PostDetails extends Component {
     const postDetailsData = this.props.postDetails;
     return (
       <div>
-        <Link className="btn btn-primary" to="/posts">
-          Back to forum(posts)
-        </Link>
-
         <div
-          className="jumbotron postDetails card col-sm-12"
+          className="jumbotron postDetails col-sm-12"
           style={{ margin: 0, background: '#D3D3D3' }}
         >
+          <div>
+            <Link className="btn btn-primary btn-lg" to="/posts">
+              Back to forum(posts)
+            </Link>
+            <div style={{ marginTop: '30px' }} />
+          </div>
           <p>GET and Show individual post details card here</p>
           <div>
             <PostDetailsCard
@@ -52,6 +54,10 @@ class PostDetails extends Component {
           <p>GET and show CommentList here:</p>
           <CommentList comments={this.props.comments} />
           {/* <CommentForm /> */}
+          <br />
+          <Link className="btn btn-primary btn-lg" to="/posts">
+            Back to forum(posts)
+          </Link>
         </div>
       </div>
     );

@@ -17,8 +17,7 @@ import {
 const initialStatePosts = {
   isPending: false,
   data: {
-    posts: [],
-    count: []
+    posts: []
   },
   error: ''
 };

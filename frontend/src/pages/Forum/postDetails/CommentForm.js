@@ -31,7 +31,7 @@ class CommentForm extends Component {
         style={{ margin: 0, background: '#00B0AF' }}
       >
         <div className="container" style={{ background: '#D3D3D3' }}>
-          <h2 style={{ color: 'Black' }}>Your comments:</h2>
+          <h2 style={{ color: 'Black', paddingTop: '10px' }}>Your comments:</h2>
           <form>
             <div className="form-group" />
             {/* <label htmlFor="exampleFormControlTextarea1">My reply:</label> */}
@@ -46,7 +46,12 @@ class CommentForm extends Component {
               rows="9"
             />
             <div className="form-group">
-              <label htmlFor="exampleFormControlFile1">Upload Image</label>
+              <label
+                htmlFor="exampleFormControlFile1"
+                style={{ fontSize: '30px' }}
+              >
+                Upload Image (if any)
+              </label>
               <Dropzone onDrop={this.onDrop}>
                 <p>
                   Try dropping an image here, or click to select an image to
@@ -82,9 +87,10 @@ class CommentForm extends Component {
           </form>
 
           <br />
+
           <button
             // type="submit"
-            className="btn btn-primary btn-lg btn-block"
+            className="btn btn-dark btn-lg btn-block"
             onClick={() => {
               this.props.createComment(
                 commentContent,

@@ -22,13 +22,51 @@ module.exports = class ForumService {
           .groupBy('forumPosts.id')
           .orderBy('forumPosts.id', 'aesc')
           .then(count => {
-            return {
-              posts,
-              count
-            };
+            return { posts, count };
           });
       });
   }
+
+  // getPosts() {
+  //   return this.knex
+  //     .select('*')
+  //     .from('users')
+  //     .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id')
+  //     .then(posts => {
+  //       return this.knex
+  //         .count('forumComments.post_id')
+  //         .column('forumPosts.id')
+  //         .from('forumPosts')
+  //         .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
+  //         .groupBy('forumPosts.id')
+  //         .orderBy('forumPosts.id', 'aesc')
+  //         .then(count => {
+  //           return posts.map((ele, idx) => {
+  //             return { ...ele, count: count[idx]['count'] };
+  //           });
+  //           // return { posts, count };
+  //         });
+  //     });
+  // }
+
+  // async getPost() {
+  //   const posts = await this.knex
+  //     .select('*')
+  //     .from('users')
+  //     .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id');
+  //   const count = await this.knex
+  //     .count('forumComments.post_id')
+  //     .column('forumPosts.id')
+  //     .from('forumPosts')
+  //     .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
+  //     .groupBy('forumPosts.id')
+  //     .orderBy('forumPosts.id', 'aesc');
+  //   console.log(posts, count);
+  //   return Promise.all([posts, count]).then(data => data);
+  //   // catch {
+  //   //   err => err;
+  //   // }
+  // }
 
   //ok, can createPost to db with authenToken
   createPost(user_id, title, content, image_path) {
@@ -64,33 +102,6 @@ module.exports = class ForumService {
           });
       });
   }
-
-  // getPostDetails(post_id) {
-  //   //  getPostDetails(post_id, user_id) {
-  //   return this.knex
-  //     .select('*')
-  //     .from('forumPosts')
-  //     .where('forumPosts.id', post_id)
-  //     .then(postDetails => {
-  //       return this.knex
-  //         .select('*')
-  //         .from('users')
-  //         .where('forumPosts.user_id', users.id);
-  //     })
-  //     .then((postDetails, all) => {
-  //       return this.knex
-  //         .select('*')
-  //         .from('forumComments')
-  //         .where('forumComments.post_id', post_id)
-  //         .then(comments => {
-  //           return {
-  //             postDetails,
-  //             all,
-  //             comments
-  //           };
-  //         });
-  //     });
-  // }
 
   //----------two services about forum's indiv posts' comments----------
   //ok, can createComments to db with authenToken
