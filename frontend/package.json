@@ -9,6 +9,7 @@
     "react-dom": "^16.4.2",
     "react-dropzone": "^5.0.1",
     "react-facebook-login": "^4.0.1",
+    "react-images": "^0.5.19",
     "react-images-upload": "^1.2.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
