@@ -21,12 +21,17 @@ class PostsPage extends Component {
           <div>GET and show Posts Lists (list of posts):</div>
           <PostCardList />
           {/* </div> */}
-          <button
+          {/* <button
             className="btn btn-danger btn-lg btn-block"
             style={{ marginTop: 30 }}
           >
             Load more
-          </button>
+          </button> */}
+        </div>
+        <div style={{ margin: 10 }}>
+          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+            Press to Create Post for Free!
+          </a>
         </div>
       </div>
     );
