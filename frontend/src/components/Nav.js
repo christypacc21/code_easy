@@ -14,6 +14,7 @@ class Nav extends React.Component {
             <li className="nav-item">
               <Link
                 className="nav-link"
+                style={{ color: '#FFFFFF' }}
                 to="/AskQuestion"
                 // onClick={() => this.props.history.push('/CreateQuestion')}
               >
@@ -21,7 +22,11 @@ class Nav extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/my-questions/ongoing">
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/my-questions/ongoing"
+              >
                 My Questions
               </Link>
             </li>
@@ -31,12 +36,20 @@ class Nav extends React.Component {
         return (
           <React.Fragment>
             <li className="nav-item">
-              <Link className="nav-link" to="/TakeQuestions">
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/TakeQuestions"
+              >
                 Take Questions
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/my-questions/ongoing">
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/my-questions/ongoing"
+              >
                 My Questions
               </Link>
             </li>
@@ -52,7 +65,8 @@ class Nav extends React.Component {
       return (
         <li className="nav-item">
           <a
-            className="btn btn-outline-secondary "
+            className=" btn btn-primary "
+            style={{ color: '#FFFFFF' }}
             onClick={() => this.props.logout()}
           >
             Logout
@@ -63,12 +77,16 @@ class Nav extends React.Component {
     return (
       <React.Fragment>
         <li className="nav-item">
-          <Link className="nav-link" to="/login">
+          <Link className="nav-link" style={{ color: '#FFFFFF' }} to="/login">
             Login
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="btn btn-outline-info" to="/signup">
+          <Link
+            className="btn btn btn-primary "
+            style={{ color: '#FFFFFF' }}
+            to="/signup"
+          >
             Sign Up Now!
           </Link>
         </li>
@@ -81,7 +99,11 @@ class Nav extends React.Component {
       if (this.props.role === 'student') {
         return (
           <li className="nav-item">
-            <Link className="nav-link" to="/userProfile">
+            <Link
+              className="nav-link"
+              style={{ color: '#FFFFFF' }}
+              to="/userProfile"
+            >
               Profile
             </Link>
           </li>
@@ -90,7 +112,11 @@ class Nav extends React.Component {
         return (
           <React.Fragment>
             <li className="nav-item">
-              <Link className="nav-link" to="/instructorProfile">
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/instructorProfile"
+              >
                 Profile
               </Link>
             </li>
@@ -102,8 +128,11 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{}}>
-        <Link className="navbar-brand" style={{ color: '#00B0AF' }} to="/">
+      <nav
+        className="navbar navbar-expand-lg navbar navbar-light"
+        style={{ backgroundColor: '#00B0AF' }}
+      >
+        <Link className="navbar-brand" style={{ color: '#FFFFFF' }} to="/">
           <img
             src={logo}
             width="30"
@@ -111,7 +140,9 @@ class Nav extends React.Component {
             className="d-inline-block align-top"
             alt="/"
           />
-          <span style={{ marginLeft: 5 }}>CodeEasy</span>
+          <span className="codeLogo" style={{ marginLeft: 5 }}>
+            CodeEasy
+          </span>
         </Link>
 
         <button
@@ -123,19 +154,31 @@ class Nav extends React.Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon" style={{ color: '#FFFFFF' }} />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className="collapse navbar-collapse"
+          id="navbarNav"
+          style={{ color: '#FFFFFF' }}
+        >
           <ul className="navbar-nav mr-auto">
             {this.orderOrQuestion()}
             <li className="nav-item">
-              <Link className="nav-link" to="/pricing">
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/pricing"
+              >
                 Pricing
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link " to="/posts">
+              <Link
+                className="nav-link "
+                style={{ color: '#FFFFFF' }}
+                to="/posts"
+              >
                 Coding Community
               </Link>
             </li>
@@ -147,7 +190,11 @@ class Nav extends React.Component {
             </li> */}
 
             <li className="nav-item ">
-              <Link className="nav-link " to="/contact">
+              <Link
+                className="nav-link "
+                style={{ color: '#FFFFFF' }}
+                to="/contact"
+              >
                 Contact Us
               </Link>
             </li>

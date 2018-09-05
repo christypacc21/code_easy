@@ -34,7 +34,6 @@ class TakeQuestions extends React.Component {
 
   renderQuestions = () => {
     return this.props.questions.map((question, i) => {
-      // console.log('question', question);
       if (question.questionInfo.image_path) {
         return (
           <div className="card" key={i}>

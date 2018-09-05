@@ -4,6 +4,7 @@ import PostDetailsCard from './PostDetailsCard';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { requestPostDetails } from '../../../redux/actions/forumActions';
 
 class PostDetails extends Component {
@@ -14,15 +15,12 @@ class PostDetails extends Component {
   }
 
   render() {
-    const postDetailsData = this.props.postDetails;
-    if (!postDetailsData) {
-      return <h1>Loading Post Details and Comments</h1>;
-    } else {
-      return (
-        <div>
-          <a className="btn btn-primary " href="/posts">
-            Back to forum(posts)
-          </a>
+    const popo = this.props.postDetails;
+    return (
+      <div>
+        <Link className="btn btn-primary " to="/posts">
+          Back to forum(posts)
+        </Link>
 
           <div
             className="jumbotron postDetails card col-sm-12"

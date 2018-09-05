@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato" rel="stylesheet');
+
 .App {
   text-align: center;
 }
@@ -8,9 +10,23 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  background-color: #9bccd0;
+  height: 450px;
+  padding: 120px;
+  color: white;
+}
+
+.bannerHow {
+  background-color: #ffffff;
+  height: 400px;
+  padding: 120px;
+  color: white;
+}
+
+.aboutbanner {
+  background-color: #ffffff;
+  height: 400px;
+  padding: 120px;
   color: white;
 }
 
@@ -23,6 +39,18 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  font-family: 'Lato';
+}
+
+.codeLogo {
+  font-family: 'Lato', bold;
 }

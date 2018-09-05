@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Signup extends Component {
   render() {
@@ -19,18 +20,18 @@ class Signup extends Component {
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
                 <h5 className="card-title">Student</h5>
-                <a className="btn btn-primary " href="/user-signup">
+                <Link className="btn btn-primary " to="/user-signup">
                   Sign up now
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
                 <h5 className="card-title">Instructor</h5>
-                <a className="btn btn-primary " href="/instuctor-signup">
+                <Link className="btn btn-primary " to="/instuctor-signup">
                   Sign up now
-                </a>
+                </Link>
               </div>
             </div>
           </div>

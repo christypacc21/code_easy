@@ -26,9 +26,9 @@ class CreatePost extends Component {
 
     return (
       <div>
-        <a className="btn btn-primary " href="/posts">
+        <Link className="btn btn-primary " to="/posts">
           Go back to posts
-        </a>
+        </Link>
         <div
           className="jumbotron jumbotron-fluid"
           style={{ margin: 0, background: '#00B0AF' }}
