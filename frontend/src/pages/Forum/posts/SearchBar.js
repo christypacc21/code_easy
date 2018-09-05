@@ -1,4 +1,4 @@
-// class component
+// className component
 // searchbar not yet done
 import React, { Component } from 'react';
 
@@ -17,13 +17,13 @@ class SearchBar extends Component {
         <div className="search-bar input-group mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             value={this.state.posts}
             placeholder="Enter keywords here..."
             onChange={event => this.onInputChange(event.target.value)}
           />
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">
+          <div className="input-group-append">
+            <button className="btn btn-outline-secondary" type="button">
               Enter to filter
             </button>
           </div>
