@@ -24,8 +24,7 @@ exports.seed = function(knex, Promise) {
           user_id: 3,
           title: 'fPost3',
           content: 'forumpost3content',
-          image_path:
-            'https://cdn-images-1.medium.com/max/881/1*SKIAmwDYVnrMvFOopOCwPQ.png'
+          image_path: 'images/forumPosts/8_1536084354220_postIMG.jpg'
         },
         {
           id: 4,
@@ -39,8 +38,7 @@ exports.seed = function(knex, Promise) {
           user_id: 5,
           title: 'fPost5',
           content: 'forumpost5content',
-          image_path:
-            'https://amp.businessinsider.com/images/5b05d5001ae66218008b45a2-750-500.jpg'
+          image_path: null
         },
         {
           id: 6,
