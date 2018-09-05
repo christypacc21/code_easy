@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
 import Dropzone from 'react-dropzone';
+// import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class CreatePost extends Component {
   state = {
@@ -106,8 +108,14 @@ class CreatePost extends Component {
               // type="submit"
               className="btn btn-primary"
               onClick={
-                () => this.props.createPost(postTitle, postContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
+                () =>
+                  this.props
+                    .createPost(postTitle, postContent, filePath)
+                    .then(() => {
+                      this.props.history.goBack();
+                    }) //the params' names do i need to refer to somewhere?(ying goy not)
               }
+              // <Redirect to='api/forum/posts'/>
             >
               Post to forum!
             </button>
@@ -118,7 +126,9 @@ class CreatePost extends Component {
   }
 }
 
-export default connect(
-  null,
-  ForumActions
-)(CreatePost);
+export default withRouter(
+  connect(
+    null,
+    ForumActions
+  )(CreatePost)
+);

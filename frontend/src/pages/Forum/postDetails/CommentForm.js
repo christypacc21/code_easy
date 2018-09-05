@@ -6,8 +6,8 @@ import * as ForumActions from '../../../redux/actions/forumActions'; //?why not 
 import Dropzone from 'react-dropzone';
 
 class CommentForm extends Component {
-  constructor({ paramsId }) {
-    super(paramsId);
+  constructor(props) {
+    super(props);
     this.state = {
       commentContent: '',
       filePath: []

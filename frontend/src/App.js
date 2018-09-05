@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -45,6 +50,7 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/posts" component={PostsPage} />
             <Route exact path="/posts/new" component={CreatePost} />
+            <Redirect from="/posts/new" to="/posts" />
             <Route exact path="/posts/:id" component={PostDetails} />
             <Route exact path="/pricing" component={Pricing} />
             <Route exact path="/contact" component={Contact} />
