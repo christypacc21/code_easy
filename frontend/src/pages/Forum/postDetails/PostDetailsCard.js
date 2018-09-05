@@ -14,6 +14,7 @@ const PostDetailsCard = ({
   role
   //count
 }) => {
+  // console.log('hahawewaerawer' + propicPath);
   return (
     <div className="card">
       <div className="card-body">
@@ -21,19 +22,36 @@ const PostDetailsCard = ({
           PostID:
           {' ' + postId}
         </p>
-        <img alt="User propic" src={propicPath} />
+        {
+          (propicPath = `${process.env.REACT_APP_API_SERVER}/${propicPath}` ? (
+            <p>[[[This user has no pro pic]]]</p>
+          ) : (
+            <div>
+              <img
+                className="card"
+                style={{ maxHeight: '10em' }}
+                alt="(Failed to show Post file )"
+                src={propicPath}
+              />
+            </div>
+          ))
+        }
         <p className="card-text">Created by :{username}</p>
         <p className="card-text">Role: {role}</p>
         <p className="card-text">Created at: {dateTime}</p>
         <h5 className="card-title">Post Title: {postTitle}</h5>
         <p className="card-text">Post Content: {postContent}</p>
-        {
-          (propicPath = null ? (
-            <p>This post has no image</p>
-          ) : (
-            <img alt="(Failed to show Post file )" src={postImagePath} />
-          ))
-        }
+        {!postImagePath ? (
+          <p>[[[This post has no image]]]</p>
+        ) : (
+          <div>
+            <img
+              className="card"
+              alt="(Failed to show Post file )"
+              src={postImagePath}
+            />
+          </div>
+        )}
         {/* <p>(No. of comments): {count}</p> */}
         <br />
       </div>

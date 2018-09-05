@@ -7,7 +7,7 @@ import Dropzone from 'react-dropzone';
 
 class CommentForm extends Component {
   constructor({ paramsId }) {
-    super({ paramsId });
+    super(paramsId);
     this.state = {
       commentContent: '',
       filePath: []

@@ -24,28 +24,37 @@ const PostCard = ({
           PostID:
           {postId}
         </p>
-        <img alt="User propic" src={propicPath} />
-        <p className="card-text">{username}</p>
+        {!propicPath ? (
+          <p>[[[This user has no pro pic]]]</p>
+        ) : (
+          <div>
+            <img
+              className="card"
+              style={{ maxHeight: '10em' }}
+              alt="(Failed to show Post file )"
+              src={`${process.env.REACT_APP_API_SERVER}/${propicPath}`}
+            />
+          </div>
+        )}
+        <p className="card-text">Created by: {username}</p>
         <p className="card-text">{dateTime}</p>
-        <h5 className="card-title">{postTitle}</h5>
+        <h5 className="card-title">Title: {postTitle}</h5>
         <p className="card-text">
-          {postContent}
-          (limited to 100words to show here?)
+          Content: {postContent}
+          {/* (limited to 100words to show here?) */}
         </p>
-        {
-          (propicPath = null ? (
-            <p>This post has no image</p>
-          ) : (
-            <div>
-              <img
-                className="card"
-                style={{ maxHeight: '10em' }}
-                alt="(Failed to show Post file )"
-                src={`${process.env.REACT_APP_API_SERVER}/${postImagePath}`}
-              />
-            </div>
-          ))
-        }
+        {!postImagePath ? (
+          <p>[[[This post has no image]]]</p>
+        ) : (
+          <div>
+            <img
+              className="card"
+              style={{ maxHeight: '10em' }}
+              alt="(Failed to show Post file )"
+              src={`${process.env.REACT_APP_API_SERVER}/${postImagePath}`}
+            />
+          </div>
+        )}
         {/* <p>(No. of comments): {count}</p> */}
         {/* <a className="btn btn-primary" href="/postDetails"> */}
         {/* <a className="btn btn-primary" href="/api/forum/posts/">

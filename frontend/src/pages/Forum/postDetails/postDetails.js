@@ -28,7 +28,10 @@ class PostDetails extends Component {
           <div>
             <PostDetailsCard
               postId={popo.id}
-              propicPath={popo.profilePic}
+              propicPath={`${process.env.REACT_APP_API_SERVER}/${
+                popo.profilePic
+              }`}
+              // /images/forumPosts/8_1536084354220_postIMG.jpg
               username={popo.display_name}
               dateTime={popo.created_at}
               postTitle={popo.title}
