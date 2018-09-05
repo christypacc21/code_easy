@@ -1,18 +1,20 @@
-import React from "react";
-import codePhoto from "../../img/code.jpg";
+import React from 'react';
+import codePhoto from '../../img/code.jpg';
 
-const CARDS = ["card1", "card2", "card3", "card4", "card5", "card6"];
+const CARDS = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6'];
 
 class Commun extends React.Component {
   render() {
     return (
       <div
-        className="jumbotron jumbotron-fluid"
-        style={{ margin: 0, background: "#00B0AF" }}
+        className="jumbotron jumbotron-fluid comBanner"
+        style={{ margin: 0 }}
       >
         <div className="container">
-          <div className="row">
-            <h2 style={{ color: "white" }}>Top Questions</h2>
+          <div className="row ">
+            <h3 className="display-4 wording" style={{ color: '#00b0af' }}>
+              Top Questions
+            </h3>
           </div>
 
           <div className="row">
@@ -27,11 +29,14 @@ class Commun extends React.Component {
                   />
 
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                    <h5 className="card-title" style={{ color: '#161515' }}>
+                      How to define a Diagrams backend that combines several
+                      primitive backends
+                    </h5>
+                    <p className="card-text" style={{ color: '#161515' }}>
+                      I would like to make the same program use two different
+                      Diagrams backends, notably diagrams-rasterific to generate
+                      PNGs...
                     </p>
                     <p className="card-text">
                       <small className="text-muted">
@@ -45,11 +50,10 @@ class Commun extends React.Component {
           </div>
 
           <br />
-          <div className="row">
-            <button type="button" className="btn btn-outline-light">
-              Go To Coding Community
-            </button>
-          </div>
+
+          <button type="button" className="btn btn-outline-info buttonAc">
+            Go To Coding Community
+          </button>
         </div>
       </div>
     );

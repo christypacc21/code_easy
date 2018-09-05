@@ -11,21 +11,31 @@
 
 .App-header {
   background-color: #9bccd0;
-  height: 450px;
+  background-image: url('./assets/bannerBG.jpeg');
+  background-position: center;
+  background-size: cover;
+  height: 500px;
   padding: 120px;
   color: white;
 }
 
 .bannerHow {
-  background-color: #ffffff;
-  height: 400px;
+  background-color: #00b0af;
+  height: 450px;
   padding: 120px;
   color: white;
 }
 
 .aboutbanner {
+  background-color: #72d9dd;
+  height: 450px;
+  padding: 120px;
+  color: white;
+}
+
+.comBanner {
   background-color: #ffffff;
-  height: 400px;
+  height: 1300px;
   padding: 120px;
   color: white;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import aboutPhoto from '../../img/asset2.png';
+// import aboutPhoto from '../../img/asset2.png';
+import workPhoto from '../../img/asset1.png';
 
 class AboutUs extends React.Component {
   render() {
@@ -9,22 +10,32 @@ class AboutUs extends React.Component {
         style={{ margin: 0 }}
       >
         <div className="container">
-          <h1 className="display-4" style={{ color: '#9BCCD0' }}>
-            About Us
-          </h1>
-          <h4 className="lead" style={{ color: '#9BCCD0' }}>
-            We believe student queries should be answered in a timely manner
-            <br /> to prevent snow-balling. CodeEasy is filling that gap in
-            students'
-            <br /> learning experience.
-          </h4>
-
-          <img
-            className="about"
-            style={{ width: '35%' }}
-            src={aboutPhoto}
-            alt="About Us"
-          />
+          <div class="row justify-content-md-center">
+            <div class="col">
+              <h1 className="display-4" style={{ color: '#ffffff' }}>
+                About Us
+              </h1>
+              <h4 className="lead" style={{ color: '#ffffff' }}>
+                We believe student queries should be answered in a timely manner
+                to prevent snow-balling. CodeEasy is filling that gap in
+                students' learning experience.
+              </h4>
+            </div>
+            <div class="col">
+              {/* <img
+                className="about"
+                style={{ width: '50%' }}
+                src={aboutPhoto}
+                alt="About Us"
+              /> */}
+              <img
+                className="work"
+                style={{ width: '78%' }}
+                src={workPhoto}
+                alt="How it works?"
+              />
+            </div>
+          </div>
         </div>
       </div>
     );
