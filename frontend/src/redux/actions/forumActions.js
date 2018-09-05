@@ -100,7 +100,7 @@ export function createComment(content, filePath, id) {
       data.append('content', content); //the names used here shd follow which file's variable name?
       data.append('inputFile', filePath[0], 'commentIMG'); // ??
       const token = localStorage.getItem('token'); ////??
-      console.log(SERVER_URL + '/api/forum/posts');
+      // console.log(SERVER_URL + '/api/forum/posts');
       const response = await axios({
         method: 'post',
         url: SERVER_URL + `/api/forum/posts/${id}/comments`,

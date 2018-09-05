@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
 import Dropzone from 'react-dropzone';
+import { withRouter } from 'react-router-dom';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -82,11 +83,11 @@ class CommentForm extends Component {
             className="btn btn-primary btn-lg btn-block"
             onClick={
               () =>
-                this.props.createComment(
-                  commentContent,
-                  filePath,
-                  this.props.paramsId
-                ) //the params' names do i need to refer to somewhere?(ying goy not)
+                this.props
+                  .createComment(commentContent, filePath, this.props.paramsId)
+                  .then(() => {
+                    this.setState({ commentContent: '', filePath: [] });
+                  }) //the params' names do i need to refer to somewhere?(ying goy not)
             }
           >
             Send !
@@ -97,7 +98,9 @@ class CommentForm extends Component {
   }
 }
 
-export default connect(
-  null,
-  ForumActions
-)(CommentForm);
+export default withRouter(
+  connect(
+    null,
+    ForumActions
+  )(CommentForm)
+);

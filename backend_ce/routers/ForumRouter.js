@@ -120,13 +120,15 @@ module.exports = class ForumRouter {
         inputFile.name +
         '.jpg';
       inputFile.mv(__dirname + '/../public/' + filePath, err => {
-        if (err) return res.status(500).send(err);
+        if (err) {
+          return res.status(500).send(err);
+        }
       });
       return this.forumService
         .postComments(req.user.id, req.params.id, req.body.content, filePath)
-        .then(() => {
-          console.log('hvimageupload' + req.body);
-          res.json({ success: true });
+        .then(data => {
+          // console.log('hvimageupload' + req.body);
+          res.json({ success: true, data });
         })
         .catch(err => {
           console.log('postComments error: ', err);
@@ -139,9 +141,9 @@ module.exports = class ForumRouter {
     } else {
       return this.forumService
         .postComments(req.user.id, req.params.id, req.body.content, null)
-        .then(() => {
-          console.log('noimageupload' + req.body);
-          res.json({ success: true });
+        .then(data => {
+          // console.log('noimageupload' + req.body);
+          res.json({ success: true, data });
         })
         .catch(err => {
           console.log('postComments error: ', err);

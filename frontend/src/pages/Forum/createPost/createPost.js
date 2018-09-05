@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
 import Dropzone from 'react-dropzone';
-// import { Redirect } from 'react-router-dom';
 import { Link, withRouter } from 'react-router-dom';
 
 class CreatePost extends Component {
@@ -115,7 +114,6 @@ class CreatePost extends Component {
                       this.props.history.goBack();
                     }) //the params' names do i need to refer to somewhere?(ying goy not)
               }
-              // <Redirect to='api/forum/posts'/>
             >
               Post to forum!
             </button>
