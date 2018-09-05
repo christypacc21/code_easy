@@ -6,10 +6,13 @@ import * as ForumActions from '../../../redux/actions/forumActions'; //?why not 
 import Dropzone from 'react-dropzone';
 
 class CommentForm extends Component {
-  state = {
-    commentContent: '',
-    filePath: []
-  };
+  constructor({ paramsId }) {
+    super(paramsId);
+    this.state = {
+      commentContent: '',
+      filePath: []
+    };
+  }
 
   //?
   onDrop = (acceptedFiles, rejectedFiles) => {
@@ -74,12 +77,16 @@ class CommentForm extends Component {
           </form>
 
           <br />
-          {/* whts the dif between using a , button and input here? */}
           <button
             // type="submit"
             className="btn btn-primary btn-lg btn-block"
             onClick={
-              () => this.props.createComment(commentContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
+              () =>
+                this.props.createComment(
+                  commentContent,
+                  filePath,
+                  this.props.paramsId
+                ) //the params' names do i need to refer to somewhere?(ying goy not)
             }
           >
             Send !

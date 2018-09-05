@@ -62,13 +62,17 @@ export const requestPostDetails = (
 };
 
 //----------- reducer -  create post-----------//
+// const initialStateCreatePost = {
+//   postTitle: '',
+//   postContent: '',
+//   filePath: []
+// }
 // export default (state = initialState, action) => {
 //   switch (action.type) {
 //     case CREATE_POST:
 //       return {};
 //   }
 // };
-
 //-----------reducer - create comment-----------//
 
 //--------reducer - search--------//

@@ -14,7 +14,6 @@ class PostDetails extends Component {
 
   render() {
     const popo = this.props.postDetails;
-    const comments = this.props.comments;
     return (
       <div>
         <a className="btn btn-primary " href="/posts">
@@ -29,7 +28,10 @@ class PostDetails extends Component {
           <div>
             <PostDetailsCard
               postId={popo.id}
-              propicPath={popo.profilePic}
+              propicPath={`${process.env.REACT_APP_API_SERVER}/${
+                popo.profilePic
+              }`}
+              // /images/forumPosts/8_1536084354220_postIMG.jpg
               username={popo.display_name}
               dateTime={popo.created_at}
               postTitle={popo.title}
@@ -46,7 +48,8 @@ class PostDetails extends Component {
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           <p>GET and show CommentList here:</p>
           <CommentList comments={this.props.comments} />
-          <CommentForm />
+          {/* <CommentForm /> */}
+          <CommentForm paramsId={this.props.match.params.id} />
         </div>
       </div>
     );

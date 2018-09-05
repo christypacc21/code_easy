@@ -4,9 +4,8 @@ import CommentCard from './CommentCard';
 const CommentList = ({ comments }) => {
   return comments.map((comment, i) => {
     return (
-      <div className="card col-sm-4">
+      <div className="card col-sm-12" key={i}>
         <CommentCard
-          key={i}
           commentId={comment.id}
           propicPath={comment.profilePic}
           role={comment.role}

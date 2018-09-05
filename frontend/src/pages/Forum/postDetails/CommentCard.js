@@ -24,10 +24,22 @@ const CommentCard = ({
             CommentID:
             {commentId}
           </p>
-          <img
-            alt="User propic"
-            src={`${process.env.REACT_APP_API_SERVER} /${propicPath}`}
-          />
+          {
+            (propicPath = `${
+              process.env.REACT_APP_API_SERVER
+            }/${propicPath}` ? (
+              <p>[[[This user has no pro pic]]]</p>
+            ) : (
+              <div>
+                <img
+                  className="card"
+                  style={{ maxHeight: '10em' }}
+                  alt="(Failed to show Post file )"
+                  src={propicPath}
+                />
+              </div>
+            ))
+          }
           <p className="card-text">
             Role:
             {role}
@@ -35,10 +47,17 @@ const CommentCard = ({
           <p className="card-text">Created by: {username}</p>
           <p className="card-text">Created at: {dateTime}</p>
           <p className="card-text">{commentContent}</p>
-          <img
-            alt="(Failed to show comment's image)"
-            src={`${process.env.REACT_APP_API_SERVER}/${commentImagePath}`}
-          />
+          {!commentImagePath ? (
+            <p>[[[This post has no image]]]</p>
+          ) : (
+            <div>
+              <img
+                className="card"
+                alt="(Failed to show Post file )"
+                src={`${process.env.REACT_APP_API_SERVER}/${commentImagePath}`}
+              />
+            </div>
+          )}
         </div>
       </div>
       // <div>
@@ -47,7 +66,7 @@ const CommentCard = ({
       //       method="post"
       //       style="float:right"
       //     >
-      //   <button class="btn btn-danger btn-sm">Delete advice</button>
+      //   <button class="btn btn-danger btn-sm">Delete comment</button>
       //   </form>
       // </div>
     );
