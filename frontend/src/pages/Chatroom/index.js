@@ -11,12 +11,24 @@ class Chatroom extends Component {
 
   componentDidMount() {
     console.log('did-this.props', this.props);
-
-    this.props.getAllMessages(this.props.match.params.chatId);
+    setTimeout(() => {
+      if (this.props.user) {
+        this.props.userEnterChatroom(
+          this.props.match.params.chatId,
+          this.props.user.id,
+          this.props.user.role
+        );
+        this.props.getAllMessages(
+          this.props.match.params.chatId,
+          this.props.user.id,
+          this.props.user.role
+        );
+      }
+    }, 500);
   }
 
-  // componentDidMount() {
-  //   console.log('id-did-this.props', this.props);
+  // componentDidUpdate() {
+  //   console.log('id-didUpdate-this.props', this.props);
 
   //   this.props.getAllMessages(
   //     this.props.match.params.chatId,
@@ -74,7 +86,7 @@ class Chatroom extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    user: state.user && state.user.profile && state.user.profile,
+    user: state.user.profile,
     messages: messagesByChatroom(state, ownProps.match.params.chatId)
   };
 }

@@ -1,6 +1,10 @@
+const CHATROOOMS = require('../services/tables').CHATROOOMS;
+const MESSAGES = require('../services/tables').MESSAGES;
+const QUESTIONS = require('../services/tables').QUESTIONS;
+
 let allMessages = [];
 
-class SocketRouter {
+module.exports = class SocketRouter {
 	constructor(io, knex) {
 		this.io = io;
 		this.knex = knex;
@@ -10,7 +14,7 @@ class SocketRouter {
 		this.io.on('connection', socket => {
 			// THIS IS THE POINT WHERE...
 			console.log(
-				`a user with id ${socket.id} has connected to our socket.io server`
+				'a user has connected to our socket.io server'
 				// , socket
 			);
 
@@ -26,17 +30,21 @@ class SocketRouter {
 
 			socket.on('SOCKET_EMIT', payload => {
 				console.log('socket emit event: ', payload);
-				console.log(
-					`a user with id ${payload.userId} has connected to chatroom ${
-						payload.chatId
-					}`
-				);
+
+				if (payload.actionType === 'START_SESSION') {
+					console.log(
+						`a ${payload.role} with id ${
+							payload.userId
+						} has connected to chatroom ${payload.chatId}`
+					);
+					this.onConnect(payload);
+				}
 
 				if (payload.actionType === 'SEND_MESSAGE') {
 					allMessages = [...allMessages, payload];
 					console.log('socket-allMessages: ', allMessages);
 
-					this.onMessageReceived(socket, payload);
+					this.onMessageReceived(payload);
 
 					this.io.emit('SOCKET_ON', {
 						actionType: 'NEW_MESSAGE',
@@ -55,51 +63,58 @@ class SocketRouter {
 		});
 	}
 
-	// onConnect(socket) {
-	// 	this.redisClient.lrange(this.chatroomName, 0, 20, (err, messages) => {
-	// 		if (err) {
-	// 			console.log(err);
-	// 			this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
-	// 			return;
-	// 		}
-	// 		messages.reverse();
-	// 		socket.emit('initial messages', messages);
-	// 	});
-	// }
-
-	onMessageReceived(socket, msg, cb) {
-		// 	const user = socket.session.passport.user;
-		// 	const wholeMessage = user.profile.displayName + ': ' + msg;
-		// 	this.redisClient.lpush(this.chatroomName, wholeMessage, err => {
-		// 		if (err) {
-		// 			console.log(err);
-		// 			this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
-		// 			return;
-		// 		}
-		// 		this.io.emit('chat message', wholeMessage);
-		// 		if (cb != null) {
-		// 			cb();
-		// 		}
-		// 	});
+	onConnect(user) {
+		if (user.role === 'instructor') {
+			this.knex(CHATROOOMS)
+				.update('instructor_id', user.userId)
+				.where('id', user.chatId)
+				.catch(err => {
+					console.log(err);
+					this.io.emit('SOCKET_ON', {
+						actionType: 'CHAT_ERROR',
+						payload: err
+					});
+					return;
+				});
+		}
 	}
 
-	// onLoadMore(socket, count) {
-	// 	console.log(-count - 20, -count);
-	// 	this.redisClient.lrange(
-	// 		this.chatroomName,
-	// 		count,
-	// 		count + 20,
-	// 		(err, messages) => {
-	// 			console.log(messages);
-	// 			if (err) {
-	// 				console.log(err);
-	// 				this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
-	// 				return;
-	// 			}
-	// 			socket.emit('your messages', messages);
-	// 		}
-	// 	);
-	// }
-}
+	onMessageReceived(msg) {
+		// const wholeMessage = user.profile.displayName + ': ' + msg;
 
-module.exports = SocketRouter;
+		this.knex(MESSAGES).insert({
+			chatroom_id: msg.chatId,
+			text: msg.message,
+			type: 'text'
+		});
+
+		// // lpush(this.chatroomName, wholeMessage, err => {
+		// // 	if (err) {
+		// // 		console.log(err);
+		// // 		this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
+		// // 		return;
+		// // 	}
+		// 	this.io.emit('chat message', wholeMessage);
+		// 	if (cb != null) {
+		// 		cb();
+		// 	}
+	}
+};
+
+// onLoadMore(socket, count) {
+// 	console.log(-count - 20, -count);
+// 	this.redisClient.lrange(
+// 		this.chatroomName,
+// 		count,
+// 		count + 20,
+// 		(err, messages) => {
+// 			console.log(messages);
+// 			if (err) {
+// 				console.log(err);
+// 				this.io.emit('chat error', 'SORRY! Something\'s wrong :(');
+// 				return;
+// 			}
+// 			socket.emit('your messages', messages);
+// 		}
+// 	);
+// }

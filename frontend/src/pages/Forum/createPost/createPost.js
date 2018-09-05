@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
 import Dropzone from 'react-dropzone';
 // import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class CreatePost extends Component {
   state = {

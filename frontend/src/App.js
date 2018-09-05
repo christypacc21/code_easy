@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -36,10 +31,12 @@ import { connect } from 'react-redux';
 import * as userActions from './redux/actions/userActions';
 
 class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getMyProfile();
+    console.log('app.js - this.props.authenticated', this.props.authenticated);
   }
   render() {
+    const authToken = localStorage.getItem('token');
     return (
       <Router>
         <div>
@@ -50,13 +47,14 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/posts" component={PostsPage} />
             <Route exact path="/posts/new" component={CreatePost} />
-            <Redirect from="/posts/new" to="/posts" />
             <Route exact path="/posts/:id" component={PostDetails} />
             <Route exact path="/pricing" component={Pricing} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/AskQuestion" component={AskQuestion} />
             <Route exact path="/CreateQuestion" component={CreateQuestion} />
-            <Route exact path="/chatroom/:chatId" component={Chatroom} />
+            {authToken && (
+              <Route path="/chatroom/:chatId" component={Chatroom} />
+            )}
             <Route
               exact
               path="/instructor-profileForm"
@@ -87,7 +85,14 @@ class App extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    authenticated: state.user.authenticated,
+    role: state.user && state.user.profile && state.user.profile.role
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   userActions
 )(App);

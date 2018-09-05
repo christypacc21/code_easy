@@ -2,7 +2,9 @@ import {
   SOCKET,
   SOCKET_EMIT,
   SEND_MESSAGE,
-  GET_ALL_MESSAGES
+  GET_ALL_MESSAGES,
+  START_SESSION,
+  END_SESSION
 } from '../reducers/constants';
 
 export function sendChatMessage(message, userId, displayName, chatId) {
@@ -21,8 +23,7 @@ export function sendChatMessage(message, userId, displayName, chatId) {
   };
 }
 
-export function getAllMessages(chatId, userId) {
-  console.log('chatId', chatId);
+export function getAllMessages(chatId, userId, role) {
   return async dispatch => {
     dispatch({
       type: SOCKET,
@@ -30,7 +31,24 @@ export function getAllMessages(chatId, userId) {
       payload: {
         actionType: GET_ALL_MESSAGES,
         chatId,
-        userId
+        userId,
+        role
+      }
+    });
+  };
+}
+
+export function userEnterChatroom(chatId, userId, role) {
+  console.log('userEnterChatroom - userId', userId, 'chatId', chatId);
+  return async dispatch => {
+    dispatch({
+      type: SOCKET,
+      socketAction: SOCKET_EMIT,
+      payload: {
+        actionType: START_SESSION,
+        chatId,
+        userId,
+        role
       }
     });
   };
