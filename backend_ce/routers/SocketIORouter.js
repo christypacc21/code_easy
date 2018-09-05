@@ -13,10 +13,7 @@ module.exports = class SocketRouter {
 	router() {
 		this.io.on('connection', socket => {
 			// THIS IS THE POINT WHERE...
-			console.log(
-				'a user has connected to our socket.io server'
-				// , socket
-			);
+			console.log('a user has connected to our socket.io server');
 
 			// this.onConnect(socket);
 
@@ -37,7 +34,7 @@ module.exports = class SocketRouter {
 							payload.userId
 						} has connected to chatroom ${payload.chatId}`
 					);
-					this.onConnect(payload);
+					this.onConnect(socket, payload);
 				}
 
 				if (payload.actionType === 'SEND_MESSAGE') {
@@ -63,14 +60,21 @@ module.exports = class SocketRouter {
 		});
 	}
 
-	onConnect(user) {
+	onConnect(socket, user) {
 		if (user.role === 'instructor') {
-			this.knex(CHATROOOMS)
+			return this.knex(CHATROOOMS)
 				.update('instructor_id', user.userId)
 				.where('id', user.chatId)
+				.returning('question_id')
+				.then(questionId => {
+					console.log('chat - questionId', questionId);
+					return this.knex(QUESTIONS)
+						.update('active', false)
+						.where('id', questionId);
+				})
 				.catch(err => {
 					console.log(err);
-					this.io.emit('SOCKET_ON', {
+					socket.emit('SOCKET_ON', {
 						actionType: 'CHAT_ERROR',
 						payload: err
 					});
