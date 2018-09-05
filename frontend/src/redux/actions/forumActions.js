@@ -14,6 +14,7 @@ import {
   // REQUEST_MYCOMMENTS,
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
+console.log('serurl ->>>>' + SERVER_URL);
 
 //-----------action - request posts ( get all posts)-----------//
 // export const requestPosts = dispatch => {
@@ -93,23 +94,27 @@ export function createPost(title, content, filePath) {
   };
 }
 //-----------action - create comment-----------//
-export function createComment(content, filePath) {
+export function createComment(content, filePath, id) {
   return async dispatch => {
-    const data = new FormData();
-    data.append('content', content); //the names used here shd follow which file's variable name?
-    data.append('inputFile', filePath[0], 'commentIMG'); // ??
-    const token = localStorage.getItem('token'); ////??
+    try {
+      const data = new FormData();
+      data.append('content', content); //the names used here shd follow which file's variable name?
+      data.append('inputFile', filePath[0], 'commentIMG'); // ??
+      const token = localStorage.getItem('token'); ////??
 
-    const response = await axios({
-      method: 'post',
-      url: SERVER_URL + '/api/forum/post',
-      headers: {
-        Authorization: 'Bearer' + token,
-        'Content-Type': 'multipart/form-data'
-      },
-      data
-    });
-    console.log('createComment res: ', response);
+      const response = await axios({
+        method: 'post',
+        url: SERVER_URL + `/api/forum/posts/${id}/comments`,
+        headers: {
+          Authorization: 'Bearer' + token,
+          'Content-Type': 'multipart/form-data'
+        },
+        data
+      });
+      console.log('createComment res: ', response);
+    } catch (err) {
+      console.log('createComment res: ', err);
+    }
   };
 }
 
