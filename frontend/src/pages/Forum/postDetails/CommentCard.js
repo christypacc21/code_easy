@@ -36,7 +36,7 @@ const CommentCard = ({
           <p className="card-text">Created at: {dateTime}</p>
           <p className="card-text">{commentContent}</p>
           <img
-            alt="(Failed to show comment's image)"
+            alt="(Failed to show comment's file)"
             src={`${process.env.REACT_APP_API_SERVER}/${commentImagePath}`}
           />
         </div>
