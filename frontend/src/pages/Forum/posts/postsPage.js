@@ -1,7 +1,7 @@
 // class component
 import React, { Component } from 'react';
 import PostCardList from './PostCardList';
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar';
 // import { setSearchField } from '.././redux/actions/forumActions';
 
 class PostsPage extends Component {

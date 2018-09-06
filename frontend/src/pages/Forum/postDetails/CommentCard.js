@@ -25,17 +25,25 @@ const CommentCard = ({
             CommentID:
             {commentId}
           </p> */}
-        <h5 className="card-text">
-          <strong>Comment No. [ {commentNum} ]</strong>
-        </h5>
         <div>
+          <h5
+            className="card-text"
+            style={{
+              display: 'inline-block',
+              marginRight: '1vw'
+            }}
+          >
+            <strong>[ {commentNum} ] </strong>
+          </h5>
+
           {
             (propicPath = `${
               process.env.REACT_APP_API_SERVER
             }/${propicPath}` ? (
-              <p style={{ display: 'inline-block', marginRight: '3vw' }}>
-                [[[This user has no pro pic]]]
-              </p>
+              // <p style={{ display: 'inline-block', marginRight: '3vw' }}>
+              //   [[[This user has no pro pic]]]
+              // </p>
+              <p style={{ display: 'inline-block' }} />
             ) : (
               <div>
                 <img
@@ -56,7 +64,7 @@ const CommentCard = ({
             className="card-text"
             style={{ display: 'inline-block', marginRight: '3vw' }}
           >
-            Created by: {username}
+            Username: {username}
           </p>
           <p
             className="card-text"

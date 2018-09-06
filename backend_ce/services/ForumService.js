@@ -39,7 +39,7 @@ module.exports = class ForumService {
   //ok, can createPost to db with authenToken
   createPost(user_id, title, content, image_path) {
     const data = {
-      user_id,
+      // user_id,
       title,
       content,
       image_path
@@ -75,7 +75,7 @@ module.exports = class ForumService {
   //ok, can createComments to db with authenToken
   postComments(user_id, post_id, content, image_path) {
     const data = {
-      user_id,
+      // user_id,
       post_id,
       content,
       image_path

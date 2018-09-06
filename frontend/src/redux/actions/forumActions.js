@@ -68,7 +68,6 @@ export function requestPostDetails(id) {
   };
 }
 //-----------action - create post-----------//
-// export function createPost(postTitle, postContent, filePath) {
 export function createPost(title, content, filePath) {
   return async dispatch => {
     try {
@@ -119,10 +118,6 @@ export function createComment(content, filePath, id) {
 }
 
 //--------action - search--------//
-// export const setSearchField = text => ({
-//   type: CHANGE_SEARCH_FIELD,
-//   payload: text
-// });
 
 //-----------action - delete comment-----------//
 

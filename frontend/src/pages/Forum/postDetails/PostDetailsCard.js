@@ -27,9 +27,10 @@ const PostDetailsCard = ({
         </p>
         {
           (propicPath = `${process.env.REACT_APP_API_SERVER}/${propicPath}` ? (
-            <p style={{ display: 'inline-block', marginRight: '3vw' }}>
-              [[[This user has no pro pic]]]
-            </p>
+            // <p style={{ display: 'inline-block', marginRight: '3vw' }}>
+            //   [[[This user has no pro pic]]]
+            // </p>
+            <p style={{ display: 'inline-block' }} />
           ) : (
             <div>
               <img
