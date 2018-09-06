@@ -67,7 +67,7 @@ class Nav extends React.Component {
           <a
             className=" btn btn-primary "
             style={{ color: '#FFFFFF' }}
-            onClick={() => this.props.logout()}
+            onClick={() => this.props.logout(this.props.history)}
           >
             Logout
           </a>

@@ -33,111 +33,113 @@ class TakeQuestions extends React.Component {
   };
 
   renderQuestions = () => {
-    return this.props.questions.map((question, i) => {
-      if (question.questionInfo.image_path) {
-        return (
-          <div className="card" key={i}>
-            <div className="card-header">
-              Related coding skills:
-              <div
-                style={{
-                  marginTop: '4px',
-                  display: 'flex',
-                  flexDirection: 'row'
-                }}
-              >
-                {question.skillInfo.map((skill, j) => (
-                  <h3 style={{ margin: '0 3px' }} key={j}>
-                    <span className="badge badge-pill badge-info">
-                      {skill.skill}
-                    </span>
-                  </h3>
-                ))}
-              </div>
-            </div>
-
-            <div className="card-body">
-              <div className="row">
-                <div className="col-md-4">
-                  <img
-                    className="card-img-top codePhoto"
-                    style={{ width: 250, cursor: 'pointer' }}
-                    src={`${process.env.REACT_APP_API_SERVER}/${
-                      question.questionInfo.image_path
-                    }`}
-                    alt={question.questionInfo.content}
-                    onClick={() =>
-                      this.openLightbox(
-                        `${process.env.REACT_APP_API_SERVER}/${
-                          question.questionInfo.image_path
-                        }`
-                      )
-                    }
-                  />
-                </div>
-                <div className="col-md-4">
-                  <h5 className="card-title">Question</h5>
-                  <p className="card-text">{question.questionInfo.content}</p>
-                  <Link
-                    to={`/chatroom/${question.chatInfo.id}`}
-                    className="btn btn-primary "
-                  >
-                    Answer
-                  </Link>
+    if (this.props.questions) {
+      return this.props.questions.map((question, i) => {
+        if (question.questionInfo.image_path) {
+          return (
+            <div className="card" key={i}>
+              <div className="card-header">
+                Related coding skills:
+                <div
+                  style={{
+                    marginTop: '4px',
+                    display: 'flex',
+                    flexDirection: 'row'
+                  }}
+                >
+                  {question.skillInfo.map((skill, j) => (
+                    <h3 style={{ margin: '0 3px' }} key={j}>
+                      <span className="badge badge-pill badge-info">
+                        {skill.skill}
+                      </span>
+                    </h3>
+                  ))}
                 </div>
               </div>
-            </div>
 
-            <div className="card-footer text-muted">
-              {moment(question.questionInfo.created_at).fromNow()}
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div className="card" key={i}>
-            <div className="card-header">
-              Related coding skills:
-              <div
-                style={{
-                  marginTop: '4px',
-                  display: 'flex',
-                  flexDirection: 'row'
-                }}
-              >
-                {question.skillInfo.map((skill, j) => (
-                  <h3 style={{ margin: '0 3px' }} key={j}>
-                    <span className="badge badge-pill badge-info">
-                      {skill.skill}
-                    </span>
-                  </h3>
-                ))}
-              </div>
-            </div>
-
-            <div className="card-body">
-              <div className="row">
-                <div className="col-md-4" />
-                <div className="col-md-4">
-                  <h5 className="card-title">Question</h5>
-                  <p className="card-text">{question.questionInfo.content}</p>
-                  <Link
-                    to={`/chatroom/${question.chatInfo.id}`}
-                    className="btn btn-primary "
-                  >
-                    Answer
-                  </Link>
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-4">
+                    <img
+                      className="card-img-top codePhoto"
+                      style={{ width: 250, cursor: 'pointer' }}
+                      src={`${process.env.REACT_APP_API_SERVER}/${
+                        question.questionInfo.image_path
+                      }`}
+                      alt={question.questionInfo.content}
+                      onClick={() =>
+                        this.openLightbox(
+                          `${process.env.REACT_APP_API_SERVER}/${
+                            question.questionInfo.image_path
+                          }`
+                        )
+                      }
+                    />
+                  </div>
+                  <div className="col-md-4">
+                    <h5 className="card-title">Question</h5>
+                    <p className="card-text">{question.questionInfo.content}</p>
+                    <Link
+                      to={`/chatroom/${question.chatInfo.id}`}
+                      className="btn btn-primary "
+                    >
+                      Answer
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="card-footer text-muted">
-              {moment(question.questionInfo.created_at).fromNow()}
+              <div className="card-footer text-muted">
+                {moment(question.questionInfo.created_at).fromNow()}
+              </div>
             </div>
-          </div>
-        );
-      }
-    });
+          );
+        } else {
+          return (
+            <div className="card" key={i}>
+              <div className="card-header">
+                Related coding skills:
+                <div
+                  style={{
+                    marginTop: '4px',
+                    display: 'flex',
+                    flexDirection: 'row'
+                  }}
+                >
+                  {question.skillInfo.map((skill, j) => (
+                    <h3 style={{ margin: '0 3px' }} key={j}>
+                      <span className="badge badge-pill badge-info">
+                        {skill.skill}
+                      </span>
+                    </h3>
+                  ))}
+                </div>
+              </div>
+
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-4" />
+                  <div className="col-md-4">
+                    <h5 className="card-title">Question</h5>
+                    <p className="card-text">{question.questionInfo.content}</p>
+                    <Link
+                      to={`/chatroom/${question.chatInfo.id}`}
+                      className="btn btn-primary "
+                    >
+                      Answer
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-footer text-muted">
+                {moment(question.questionInfo.created_at).fromNow()}
+              </div>
+            </div>
+          );
+        }
+      });
+    }
   };
 
   render() {

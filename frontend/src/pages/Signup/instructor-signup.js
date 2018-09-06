@@ -12,7 +12,10 @@ class UserSignup extends Component {
   };
 
   componentDidUpdate(prevProps) {
+    console.log('instructor-signup-didupdate', this.props.authenticated);
     if (this.props.authenticated) {
+      console.log('this.props.history', this.props.history);
+
       this.props.history.push('/instructor-profileForm');
     }
   }

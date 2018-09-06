@@ -3,12 +3,12 @@ import {
   LOGOUT,
   INSTRUCTOR_SIGNUP,
   AUTHENTICATED,
-  GET_MY_PROFILE,
+  GET_MY_PROFILE
 } from './constants';
 
 const initialState = {
   profile: null,
-  instructor: false,
+  instructor: false
 };
 
 export default (state = initialState, action) => {
@@ -16,28 +16,28 @@ export default (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        profile: action.payload,
+        profile: action.payload
       };
     case LOGOUT:
       return {
         authenticated: false,
         profile: null,
-        instructor: false,
+        instructor: false
       };
     case INSTRUCTOR_SIGNUP:
       return {
         ...state,
-        instructor: true,
+        instructor: true
       };
     case AUTHENTICATED:
       return {
         ...state,
-        authenticated: true,
+        authenticated: true
       };
     case GET_MY_PROFILE:
       return {
         ...state,
-        profile: action.payload,
+        profile: action.payload
       };
     default:
       return state;
