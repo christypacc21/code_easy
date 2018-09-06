@@ -87,7 +87,7 @@ const PostCard = ({
           <p className="card-text">No. of comments {count}</p>
         </div>
         {this.params === undefined ? (
-          <Link className="btn btn-info btn-block" to={`/posts/${postId}`}>
+          <Link className="btn btn-info btn-block" to={`/login`}>
             Login to see post details and comments
           </Link>
         ) : (
