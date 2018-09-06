@@ -9,7 +9,8 @@ const PostCard = ({
   dateTime,
   postTitle,
   postContent,
-  postImagePath
+  postImagePath,
+  count
   // count
 }) => {
   // const postImagePath = `"${postImage}"`
@@ -36,9 +37,10 @@ const PostCard = ({
               Created by: {username}
             </p>
             {!propicPath ? (
-              <p style={{ display: 'inline-block', marginRight: '2vw' }}>
-                [[[This user has no pro pic]]]
-              </p>
+              // <p style={{ display: 'inline-block', marginRight: '2vw' }}>
+              //   [[[This user has no pro pic]]]
+              // </p>
+              <p />
             ) : (
               <div>
                 <img
@@ -75,12 +77,14 @@ const PostCard = ({
               />
             </div>
           )}
+
           {/* <p>(No. of comments): {count}</p> */}
           {/* <a className="btn btn-primary" href="/postDetails"> */}
           {/* <a className="btn btn-primary" href="/api/forum/posts/">
           Press into Post Details
         </a> */}
           <br />
+          <p className="card-text">No. of comments {count}</p>
         </div>
         <Link className="btn btn-info btn-block" to={`/posts/${postId}`}>
           Press into details

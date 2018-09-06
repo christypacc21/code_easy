@@ -15,20 +15,22 @@ class PostCardList extends Component {
       console.log('renderpostlist is pending');
     } else {
       console.log('renderPostList got data :' + this.props.postData);
-      return this.props.postData.posts.map((post, i) => {
+      return this.props.postData.map((ele, i) => {
         // console.log('about to render post list' + post);
+        let post = ele.post;
+        let count = ele.count;
         return (
           <div className="card col-sm-4" key={i}>
             <PostCard
               // key={i}
-              postId={i + 1}
+              postId={post.id}
               propicPath={post.profilePic}
               username={post.display_name}
               dateTime={post.created_at}
               postTitle={post.title}
               postContent={post.content}
               postImagePath={post.image_path}
-              // count={data.count[i].count}
+              count={count}
             />
           </div>
         );
@@ -56,7 +58,7 @@ function mapStateToProps(state) {
   console.log('MapStateToProps after return->' + state.requestPosts.data);
   return {
     isPending: state.requestPosts.isPending,
-    postData: state.requestPosts.data,
+    postData: state.requestPosts.data.posts,
     error: state.requestPosts.error
   };
 }
