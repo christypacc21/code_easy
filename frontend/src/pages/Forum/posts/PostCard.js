@@ -13,9 +13,10 @@ const PostCard = ({
   count
   // count
 }) => {
+  // console.log('postId' + postId);
   // const postImagePath = `"${postImage}"`
-  if (postContent.length > 50) {
-    postContent = 'Too many words, press in to read more detials';
+  if (!postId) {
+    return <h1>Loading posts</h1>;
   }
   return (
     // <div id={key}>
@@ -61,10 +62,11 @@ const PostCard = ({
             <div style={{ matginBottom: '10px' }} />
           </div>
           <h5 className="card-title">Title: {postTitle}</h5>
-          <p className="card-text">
-            Content: {postContent}
-            {/* (limited to 100words to show here?) */}
-          </p>
+          {postContent.length > 50 ? (
+            (postContent = 'Too many words, press in toread more detials')
+          ) : (
+            <p className="card-text">Content: {postContent}</p>
+          )}
           {!postImagePath ? (
             <p>[[[This post has no image]]]</p>
           ) : (
@@ -77,7 +79,6 @@ const PostCard = ({
               />
             </div>
           )}
-
           {/* <p>(No. of comments): {count}</p> */}
           {/* <a className="btn btn-primary" href="/postDetails"> */}
           {/* <a className="btn btn-primary" href="/api/forum/posts/">
@@ -86,7 +87,7 @@ const PostCard = ({
           <br />
           <p className="card-text">No. of comments {count}</p>
         </div>
-        {this.params === undefined ? (
+        {!postId ? (
           <Link className="btn btn-info btn-block" to={`/login`}>
             Login to see post details and comments
           </Link>

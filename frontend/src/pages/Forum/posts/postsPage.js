@@ -6,14 +6,21 @@ import PostCardList from './PostCardList';
 
 class PostsPage extends Component {
   render() {
+    console.log('props' + this.props);
     return (
       <div>
         {/* <SearchBar /> */}
-        <div style={{ margin: 10 }}>
-          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
-            Press to Create Post for Free!
-          </a>
-        </div>
+        {/* <div style={{ margin: 10 }}>
+          {isPending ? (
+            <a className="btn btn-secondary btn-lg btn-block" href="/login">
+              Sign Up or Sign In to Create Post for Free!
+            </a>
+          ) : (
+            <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+              Press to Create Post for Free!
+            </a>
+          )}
+        </div> */}
         {/* <SearchBar onSearchTermChange={postSearch} /> */}
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
@@ -27,11 +34,6 @@ class PostsPage extends Component {
           >
             Load more
           </button> */}
-        </div>
-        <div style={{ margin: 10 }}>
-          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
-            Press to Create Post for Free!
-          </a>
         </div>
       </div>
     );

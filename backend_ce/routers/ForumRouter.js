@@ -2,11 +2,11 @@
 // how to link to frontend
 // frontend how mui gor react page/componentneeda use redux / async redux thunk???
 const express = require('express');
-const NODE_ENV = process.env.NODE_ENV || 'development';
-const knexFile = require('../knexfile')[NODE_ENV];
-const knex = require('knex')(knexFile);
-const authClass = require('../utils/auth');
-const auth = authClass(knex);
+// const NODE_ENV = process.env.NODE_ENV || 'development';
+// const knexFile = require('../knexfile')[NODE_ENV];
+// const knex = require('knex')(knexFile);
+// const authClass = require('../utils/auth');
+// const auth = authClass(knex);
 
 module.exports = class ForumRouter {
   constructor(forumService) {
@@ -16,27 +16,31 @@ module.exports = class ForumRouter {
   router() {
     let router = express.Router();
     router.get('/posts', this.getPosts.bind(this)); //get all posts
-    router.post('/posts', auth.authenticate(), this.createPost.bind(this)); //create(post) a new post
-    router.get(
-      '/posts/:id',
-      auth.authenticate(),
-      this.getPostDetails.bind(this)
-    ); //get individual posts and corresponding comments
+    router.post(
+      '/posts',
+      // auth.authenticate(),
+      this.createPost.bind(this)
+    ); //create(post) a new post
+    router.get('/posts/:id', this.getPostDetails.bind(this)); //get individual posts and corresponding comments
     router.post(
       '/posts/:id/comments',
-      auth.authenticate(),
+      // auth.authenticate(),
       this.postComments.bind(this)
     ); //create(post) a new comment
     router.delete(
       '/posts/:id/comments/:comments_id',
-      auth.authenticate(),
+      // auth.authenticate(),
       this.delComment.bind(this)
     ); //delete a comment
 
-    router.get('/myposts', auth.authenticate(), this.getMyPosts.bind(this)); //get myPosts
+    router.get(
+      '/myposts',
+      // auth.authenticate(),
+      this.getMyPosts.bind(this)
+    ); //get myPosts
     router.get(
       '/mycomments',
-      auth.authenticate(),
+      // auth.authenticate(),
       this.getMyComments.bind(this)
     ); //get myComments
 

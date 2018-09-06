@@ -32,9 +32,14 @@ let forumService = new ForumService(knex);
 let questionService = new QuestionService(knex);
 let paymentService = new PaymentService(knex);
 
-app.use('/api/forum', new ForumRouter(forumService).router());
+// app.use('/api/forum', new ForumRouter(forumService).router());
 app.use('/api', new AuthRouter(authService).router());
 app.use('/api', auth.authenticate(), new UserRouter(userService).router());
+app.use(
+  '/api/forum',
+  auth.authenticate(),
+  new ForumRouter(forumService).router()
+);
 app.use(
   '/api/question',
   auth.authenticate(),

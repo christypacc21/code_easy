@@ -13,6 +13,13 @@ class PostCardList extends Component {
   renderPostList() {
     if (this.props.isPending) {
       console.log('renderpostlist is pending');
+      return (
+        <div style={{ margin: 10 }}>
+          <a className="btn btn-secondary btn-lg btn-block" href="/login">
+            Sign Up or Sign In to Create Post for Free!
+          </a>
+        </div>
+      );
     } else {
       console.log('renderPostList got data :' + this.props.postData);
       return this.props.postData.map((ele, i) => {
@@ -45,8 +52,19 @@ class PostCardList extends Component {
         <h1>Signup or Sign in to visit the dynamic coding community !!!</h1>
       </div>
     ) : (
-      <div className="PostCardList">
+      <div>
+        <div style={{ margin: 10 }}>
+          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+            Press to Create Post for Free!
+          </a>{' '}
+        </div>
+        <div className="PostCardList" />
         <div className="row">{this.renderPostList()}</div>
+        <div style={{ margin: 10 }}>
+          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+            Press to Create Post for Free!
+          </a>
+        </div>
       </div>
     );
   }
