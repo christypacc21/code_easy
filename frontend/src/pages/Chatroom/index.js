@@ -12,7 +12,7 @@ class Chatroom extends Component {
     console.log('did-this.props', this.props);
     setTimeout(() => {
       if (this.props.user) {
-        this.props.userEnterChatroom(
+        this.props.userStartSession(
           this.props.match.params.chatId,
           this.props.user.id,
           this.props.user.role
@@ -41,7 +41,13 @@ class Chatroom extends Component {
     //step 1: action creator to change status
     //step 2: redirect to next page (History)
     //otherwise, will keep in on-going page
+
     this.props.history.push('/my-questions/history');
+    this.props.userEndSession(
+      this.props.match.params.chatId,
+      this.props.user.id,
+      this.props.user.role
+    );
   };
 
   render() {

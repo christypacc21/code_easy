@@ -48,6 +48,15 @@ module.exports = class SocketRouter {
 					// console.log('messages: ', allMessages);
 					this.getAllMessage(socket, payload);
 				}
+
+				if (payload.actionType === 'END_SESSION') {
+					console.log(
+						`a ${payload.role} with id ${payload.userId} has ended chatroom ${
+							payload.chatId
+						}`
+					);
+					this.onDisconnect(socket, payload);
+				}
 			});
 		});
 	}
@@ -135,6 +144,29 @@ module.exports = class SocketRouter {
 			});
 			return;
 		}
+	}
+
+	onDisconnect(socket, user) {
+		return (
+			this.knex(CHATROOOMS)
+				.update('active', false)
+				.where('id', user.chatId)
+			// .returning('question_id')
+			// .then(questionId => {
+			// 	console.log('chat - questionId', questionId[0]);
+			// 	return this.knex(QUESTIONS)
+			// 		.update('active', false)
+			// 		.where('id', questionId[0]);
+			// })
+				.catch(err => {
+					console.log(err);
+					socket.emit('SOCKET_ON', {
+						actionType: 'CHAT_ERROR',
+						payload: err
+					});
+					return;
+				})
+		);
 	}
 
 	// getAllMessage1(socket, msg) {

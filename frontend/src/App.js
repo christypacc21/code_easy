@@ -32,8 +32,14 @@ import * as userActions from './redux/actions/userActions';
 
 class App extends Component {
   componentWillMount() {
-    this.props.getMyProfile();
     console.log('app.js - this.props.authenticated', this.props.authenticated);
+    if (!this.props.user) {
+      this.props.getMyProfile();
+      console.log(
+        'app.js - this.props.authenticated',
+        this.props.authenticated
+      );
+    }
   }
   render() {
     const authToken = localStorage.getItem('token');
@@ -88,7 +94,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     authenticated: state.user.authenticated,
-    role: state.user && state.user.profile && state.user.profile.role
+    user: state.user
   };
 }
 

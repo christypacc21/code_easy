@@ -38,14 +38,30 @@ export function getAllMessages(chatId, userId, role) {
   };
 }
 
-export function userEnterChatroom(chatId, userId, role) {
-  console.log('userEnterChatroom - userId', userId, 'chatId', chatId);
+export function userStartSession(chatId, userId, role) {
+  console.log('userStartSession - userId', userId, 'chatId', chatId);
   return async dispatch => {
     dispatch({
       type: SOCKET,
       socketAction: SOCKET_EMIT,
       payload: {
         actionType: START_SESSION,
+        chatId,
+        userId,
+        role
+      }
+    });
+  };
+}
+
+export function userEndSession(chatId, userId, role) {
+  console.log('userEndSesssion - userId', userId, 'chatId', chatId);
+  return async dispatch => {
+    dispatch({
+      type: SOCKET,
+      socketAction: SOCKET_EMIT,
+      payload: {
+        actionType: END_SESSION,
         chatId,
         userId,
         role
