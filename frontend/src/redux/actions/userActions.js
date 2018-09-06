@@ -101,12 +101,15 @@ export function loginByFacebook(access_token, role, history) {
   };
 }
 
-export function logout() {
+export function logout(history) {
   return dispatch => {
     localStorage.removeItem('token');
     dispatch({
       type: LOGOUT
     });
+    if (history) {
+      history.push('/');
+    }
   };
 }
 

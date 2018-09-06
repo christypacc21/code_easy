@@ -15,7 +15,7 @@ export function getAllQuestions(contents, filepath, skills) {
       }
     });
 
-    // console.log('all q: ', response);
+    console.log('all q: ', response);
 
     if (response.data.success) {
       dispatch({

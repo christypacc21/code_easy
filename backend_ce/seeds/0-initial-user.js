@@ -31,15 +31,15 @@ exports.seed = function(knex, Promise) {
 					email: 'test3t@gmail.com',
 					password:
             '$2b$10$w6Z6abZ2D7VfdVWzNz2n9e3b3yotH8ioatXrXB24lbwY1fvNDZUpu',
-          phone: '12345678',
-          i_balance: 33,
-          role: 'instructor'
-        },
-        {
-          id: 4,
-          display_name: 'Test4S',
-          email: 'test4s@gmail.com',
-          password:
+					phone: '12345678',
+					i_balance: 33,
+					role: 'instructor'
+				},
+				{
+					id: 4,
+					display_name: 'Test4S',
+					email: 'test4s@gmail.com',
+					password:
             '$2b$10$w6Z6abZ2D7VfdVWzNz2n9e3b3yotH8ioatXrXB24lbwY1fvNDZUpu',
 					phone: '12345678',
 					s_questionsCanAsk: 11,
@@ -61,15 +61,15 @@ exports.seed = function(knex, Promise) {
 					email: 'test6t@gmail.com',
 					password:
             '$2b$10$w6Z6abZ2D7VfdVWzNz2n9e3b3yotH8ioatXrXB24lbwY1fvNDZUpu',
-          phone: '12345678',
-          i_balance: 33,
-          role: 'instructor'
-        },
-        {
-          id: 7,
-          display_name: 'Test7S',
-          email: 'test7s@gmail.com',
-          password:
+					phone: '12345678',
+					i_balance: 33,
+					role: 'instructor'
+				},
+				{
+					id: 7,
+					display_name: 'Test7S',
+					email: 'test7s@gmail.com',
+					password:
             '$2b$10$w6Z6abZ2D7VfdVWzNz2n9e3b3yotH8ioatXrXB24lbwY1fvNDZUpu',
 					phone: '12345678',
 					s_questionsCanAsk: 11,
