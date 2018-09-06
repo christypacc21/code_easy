@@ -97,9 +97,9 @@ class CommentForm extends Component {
                 filePath,
                 this.props.paramsId
               );
-
               this.setState({ commentContent: '', filePath: [] });
               //the params' names do i need to refer to somewhere?(ying goy not)
+              window.location.reload();
             }}
           >
             Send !
