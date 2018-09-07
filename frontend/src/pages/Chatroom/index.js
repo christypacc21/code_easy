@@ -66,7 +66,9 @@ class Chatroom extends Component {
               console.log('message123', message);
               return (
                 <div key={message.message + i}>
-                  {message.displayName}: {message.message}
+                  <pre>
+                    {message.displayName}: {message.message}
+                  </pre>
                 </div>
               );
             })}
