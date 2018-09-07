@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import '../../App.css';
 
 import * as ChatActions from '../../redux/actions/chatActions';
 
@@ -51,6 +52,7 @@ class Chatroom extends Component {
   };
 
   render() {
+    console.log(this.state.imputMessage);
     // console.log(this.props.match);
     return (
       <div className="jumbotron">
@@ -66,9 +68,8 @@ class Chatroom extends Component {
               console.log('message123', message);
               return (
                 <div key={message.message + i}>
-                  <pre>
-                    {message.displayName}: {message.message}
-                  </pre>
+                  {message.displayName}:{' '}
+                  <pre className="speechBubble">{message.message}</pre>
                 </div>
               );
             })}

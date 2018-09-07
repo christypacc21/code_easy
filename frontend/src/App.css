@@ -73,3 +73,9 @@ body {
 .postCard:hover {
   color: 'red';
 } */
+
+.speechBubble {
+  padding: 10px 12px 8px 12px;
+  background: #b8738f;
+  border-radius: 0.4em;
+}
