@@ -7,7 +7,7 @@ module.exports = class HistoryRouter {
 
   router() {
     let router = express.Router();
-    router.get('/gethistory', this.getHistory.bind(this));
+    router.get('/', this.getHistory.bind(this));
     return router;
   }
 
