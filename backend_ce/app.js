@@ -15,7 +15,8 @@ const {
   ForumRouter,
   QuestionRouter,
   PaymentRouter,
-  SocketIORouter
+  SocketIORouter,
+  HistoryRouter
 } = require('./routers');
 
 const {
@@ -23,7 +24,8 @@ const {
   UserService,
   ForumService,
   QuestionService,
-  PaymentService
+  PaymentService,
+  HistoryService
 } = require('./services');
 
 let authService = new AuthService(knex);
@@ -31,6 +33,7 @@ let userService = new UserService(knex);
 let forumService = new ForumService(knex);
 let questionService = new QuestionService(knex);
 let paymentService = new PaymentService(knex);
+let historyService = new HistoryService(knex);
 
 // app.use('/api/forum', new ForumRouter(forumService).router());
 app.use('/api', new AuthRouter(authService).router());
@@ -49,6 +52,11 @@ app.use(
   '/api/payment',
   auth.authenticate(),
   new PaymentRouter(paymentService).router()
+);
+app.use(
+  '/api/history',
+  auth.authenticate(),
+  new HistoryRouter(historyService).router()
 );
 
 // HTTP Setting
