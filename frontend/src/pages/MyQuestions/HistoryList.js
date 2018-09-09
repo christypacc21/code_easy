@@ -6,7 +6,8 @@ import { getHistory } from '../../redux/actions/historyActions';
 class HistoryList extends Component {
   componentWillMount() {
     this.props.onGetHistory();
-    console.log(this.props.postData);
+    // console.log('aaaaaa');
+    // console.log(this.props.postData);
   }
 
   renderHistoryList() {
@@ -18,8 +19,9 @@ class HistoryList extends Component {
           <div key={i}>
             <HistoryCard
               // skills={}
-              dateTime={history.created_at}
-              //  title={}
+              dateTime={history.message.created_at}
+              content={history.question.content}
+              imagePath={history.question.image_path}
               // username={}
               // rating={}
             />

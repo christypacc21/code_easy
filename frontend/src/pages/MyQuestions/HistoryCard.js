@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const HistoryCard = ({ dateTime }) => {
+const HistoryCard = ({ dateTime, content, imagePath }) => {
   // if (!postId) {
   //   return <h1>Loading posts</h1>;
   // }
@@ -14,7 +14,7 @@ const HistoryCard = ({ dateTime }) => {
     //   </p>
     // </div>
     <div style={{ height: '580px' }} className="card col-sm-6">
-      <div className="card-body" style={{ height: '510px' }}>
+      <div className="card-body">
         <div style={{ fontSize: '12px' }}>
           {/* <p
             className="card-text"
@@ -28,8 +28,11 @@ const HistoryCard = ({ dateTime }) => {
           >
             {dateTime}
           </p>
-          <h5 className="card-title">Title:</h5>
-          <img
+          <h5 className="card-title">
+            Content:
+            {content}
+          </h5>
+          {/* <img
             className="card"
             style={{
               maxHeight: '10em',
@@ -38,14 +41,18 @@ const HistoryCard = ({ dateTime }) => {
             }}
             alt="(Failed to show question img )"
             // src={`${process.env.REACT_APP_API_SERVER}/${propicPath}`}
-          />
+          /> */}
           <p className="card-text">Username</p>
-          {/* <img
+          {!imagePath ? (
+            <p />
+          ) : (
+            <img
               className="card"
               style={{ maxHeight: '10em' }}
-              alt="(Failed to show Post file )"
-              // src={`${process.env.REACT_APP_API_SERVER}/${postImagePath}`}
-            /> */}
+              alt="(Failed to show question img )"
+              src={`${process.env.REACT_APP_API_SERVER}/${imagePath}`}
+            />
+          )}
         </div>
         {/* <Link className="btn btn-info btn-block">Enter chat record</Link> */}
       </div>
