@@ -4,7 +4,7 @@ import moment from 'moment';
 // import Lightbox from 'react-images';
 import * as QuestionActions from '../../redux/actions/questionAction';
 import Lightbox from 'react-images';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class TakeQuestions extends React.Component {
   state = {
@@ -33,33 +33,42 @@ class TakeQuestions extends React.Component {
   };
 
   renderQuestions = () => {
-    if (this.props.questions) {
+    console.log(this.props.questions);
+    if (!this.props.questions) {
+      return (
+        <div>
+          <h1>Loading questions haha...</h1>
+        </div>
+      );
+    } else {
       return this.props.questions.map((question, i) => {
-        if (question.questionInfo.image_path) {
-          return (
-            <div className="card" key={i}>
-              <div className="card-header">
-                Related coding skills:
-                <div
-                  style={{
-                    marginTop: '4px',
-                    display: 'flex',
-                    flexDirection: 'row'
-                  }}
-                >
-                  {question.skillInfo.map((skill, j) => (
-                    <h3 style={{ margin: '0 3px' }} key={j}>
-                      <span className="badge badge-pill badge-info">
-                        {skill.skill}
-                      </span>
-                    </h3>
-                  ))}
-                </div>
+        console.log('no image ahha');
+        return (
+          // <React.Fragment>
+          <div className="card" key={i}>
+            <div className="card-header">
+              Related coding skills:
+              <div
+                style={{
+                  marginTop: '4px',
+                  display: 'flex',
+                  flexDirection: 'row'
+                }}
+              >
+                {question.skillInfo.map((skill, j) => (
+                  <h3 style={{ margin: '0 3px' }} key={j}>
+                    <span className="badge badge-pill badge-info">
+                      {skill.skill}
+                    </span>
+                  </h3>
+                ))}
               </div>
+            </div>
 
-              <div className="card-body">
-                <div className="row">
-                  <div className="col-md-4">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-md-4">
+                  {question.questionInfo.image_path ? (
                     <img
                       className="card-img-top codePhoto"
                       style={{ width: 250, cursor: 'pointer' }}
@@ -75,100 +84,69 @@ class TakeQuestions extends React.Component {
                         )
                       }
                     />
-                  </div>
-                  <div className="col-md-4">
-                    <h5 className="card-title">Question</h5>
-                    <p className="card-text">{question.questionInfo.content}</p>
-                    <Link
-                      to={`/chatroom/${question.chatInfo.id}`}
-                      className="btn btn-primary "
-                    >
-                      Answer
-                    </Link>
-                  </div>
+                  ) : (
+                    <p>This question has no image</p>
+                  )}
                 </div>
-              </div>
 
-              <div className="card-footer text-muted">
-                {moment(question.questionInfo.created_at).fromNow()}
+                <div className="col-md-4">
+                  <h5 className="card-title">Question</h5>
+                  <p className="card-text">{question.questionInfo.content}</p>
+                  {/* {!question.chatInfo.id ? (
+                        <div>Loading chatInfo.id</div>
+                      ) : (
+                        <Link
+                          to={`/chatroom/${question.chatInfo.id}`}
+                          className="btn btn-primary "
+                        >
+                          Answer
+                        </Link>
+                      )} */}
+                </div>
               </div>
             </div>
-          );
-        } else {
-          return (
-            <div className="card" key={i}>
-              <div className="card-header">
-                Related coding skills:
-                <div
-                  style={{
-                    marginTop: '4px',
-                    display: 'flex',
-                    flexDirection: 'row'
-                  }}
-                >
-                  {question.skillInfo.map((skill, j) => (
-                    <h3 style={{ margin: '0 3px' }} key={j}>
-                      <span className="badge badge-pill badge-info">
-                        {skill.skill}
-                      </span>
-                    </h3>
-                  ))}
-                </div>
-              </div>
 
-              <div className="card-body">
-                <div className="row">
-                  <div className="col-md-4" />
-                  <div className="col-md-4">
-                    <h5 className="card-title">Question</h5>
-                    <p className="card-text">{question.questionInfo.content}</p>
-                    <Link
-                      to={`/chatroom/${question.chatInfo.id}`}
-                      className="btn btn-primary "
-                    >
-                      Answer
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="card-footer text-muted">
-                {moment(question.questionInfo.created_at).fromNow()}
-              </div>
+            <div className="card-footer text-muted">
+              {moment(question.questionInfo.created_at).fromNow()}
             </div>
-          );
-        }
+          </div>
+          // </React.Fragment>
+        );
       });
     }
   };
 
   render() {
-    return (
-      <React.Fragment>
-        <div
-          className="jumbotron jumbotron-fluid"
-          style={{ margin: 0, background: '#00B0AF' }}
-        >
-          <div className="container py-3">
-            <div className="row">
-              <h2 style={{ color: 'white' }}>Start Taking Questions!</h2>
+    if (!this.props.questions) {
+      return <h1>Loading questions...</h1>;
+    } else {
+      return (
+        <React.Fragment>
+          <div
+            className="jumbotron jumbotron-fluid"
+            style={{ margin: 0, background: '#00B0AF' }}
+          >
+            <div className="container py-3">
+              <div className="row">
+                <h2 style={{ color: 'white' }}>Start Taking Questions!</h2>
+              </div>
+              <br />
+              {this.renderQuestions()}
+              <br />
             </div>
-            <br />
-            {this.renderQuestions()}
-            <br />
           </div>
-        </div>
-        <Lightbox
-          images={[
-            {
-              src: this.state.lightboxImage
-            }
-          ]}
-          isOpen={this.state.lightboxIsOpen}
-          onClose={this.closeLightbox}
-        />
-      </React.Fragment>
-    );
+          <Lightbox
+            images={[
+              {
+                src: this.state.lightboxImage
+              }
+            ]}
+            isOpen={this.state.lightboxIsOpen}
+            onClose={this.closeLightbox}
+          />
+        </React.Fragment>
+      );
+    }
   }
 }
 

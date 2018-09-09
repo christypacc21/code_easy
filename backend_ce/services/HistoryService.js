@@ -18,13 +18,3 @@ module.exports = class HistoryService {
       });
   }
 };
-
-// .select('*')
-//   .from('messages')
-//   .rightJoin('chatrooms', 'chatrooms.id', 'messages.chatroom_id')
-//   .where(user_id, 'chatrooms.student_id')
-//   .orWhere(user_id, 'chatrooms.instructor_id')
-//   .then(history => {
-//     console.log(history);
-//     return history;
-//   });
