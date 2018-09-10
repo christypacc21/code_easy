@@ -13,26 +13,36 @@ const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function localSignup(displayName, email, password, role) {
   return async dispatch => {
-    const response = await axios.post(SERVER_URL + '/api/signup', {
-      displayName,
-      email,
-      password,
-      role
-    });
-
-    // console.log('response: ', response);
-    if (response.data) {
-      localStorage.setItem('token', response.data.token);
-      dispatch({
-        type: LOGIN,
-        payload: response.data
+    try {
+      const response = await axios.post(SERVER_URL + '/api/signup', {
+        displayName,
+        email,
+        password,
+        role
       });
-      // dispatch({
-      //   type: AUTHENTICATED
-      // });
-    } else {
+
+      // console.log('response: ', response);
+      if (response.data.success) {
+        localStorage.setItem('token', response.data.token);
+        dispatch({
+          type: LOGIN,
+          payload: response.data
+        });
+        // dispatch({
+        //   type: AUTHENTICATED
+        // });
+      } else {
+        console.log('LOGIN_FAIL - response.data', response.data);
+        dispatch({
+          type: LOGIN_FAIL,
+          payload: response.data
+        });
+      }
+    } catch (err) {
+      console.log('LOGIN_FAIL - err', err.data);
       dispatch({
-        type: LOGIN_FAIL
+        type: LOGIN_FAIL,
+        payload: err
       });
     }
   };
@@ -44,7 +54,7 @@ export function loginByEmail(email, password, history) {
       email,
       password
     });
-    if (response.data) {
+    if (response.data.success) {
       console.log('local login res: ', response.data);
       localStorage.setItem('token', response.data.token);
       dispatch({
@@ -62,7 +72,8 @@ export function loginByEmail(email, password, history) {
       // dispatch(getMyProfile());
     } else {
       dispatch({
-        type: LOGIN_FAIL
+        type: LOGIN_FAIL,
+        payload: response.data
       });
     }
   };
@@ -75,7 +86,7 @@ export function loginByFacebook(access_token, role, history) {
       role
     });
 
-    if (response.data) {
+    if (response.data.success) {
       console.log('facebook login res: ', response.data);
       localStorage.setItem('token', response.data.token);
       dispatch({
@@ -97,7 +108,8 @@ export function loginByFacebook(access_token, role, history) {
       // dispatch(getMyProfile());
     } else {
       dispatch({
-        type: LOGIN_FAIL
+        type: LOGIN_FAIL,
+        payload: response.data
       });
     }
   };
@@ -180,7 +192,7 @@ export function updateInstructorProfile(
 
     console.log('response: ', response);
 
-    if (response.status === 200) {
+    if (response.data.success) {
       dispatch({
         type: INSTRUCTOR_SIGNUP,
         payload: {
@@ -193,7 +205,8 @@ export function updateInstructorProfile(
       });
     } else {
       dispatch({
-        type: INSTRUCTOR_SIGNUP_FAIL
+        type: INSTRUCTOR_SIGNUP_FAIL,
+        payload: response.data
       });
     }
   };
@@ -225,6 +238,7 @@ export function getMyProfile() {
         }
       } catch (err) {
         console.log('getMyProfile error: ', err);
+        alert('Cannot get user profile with error: ' + err);
       }
     }
   };

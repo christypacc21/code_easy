@@ -58,7 +58,7 @@ class Chatroom extends Component {
     return (
       <div className="jumbotron">
         <div className="container">
-          Live Chat here!!!
+          <h1>Live Chat!</h1>
           <br />
           {this.props.messages
             .filter(
@@ -68,8 +68,8 @@ class Chatroom extends Component {
             .map((message, i) => {
               console.log('chatroom message', message);
               return (
-                <div key={message.message + i}>
-                  {message.displayName}:{' '}
+                <div key={i}>
+                  <strong>{message.displayName}: </strong>
                   {message.role === 'instructor' ? (
                     <pre className="instructorSpeechBubble">
                       {message.message}

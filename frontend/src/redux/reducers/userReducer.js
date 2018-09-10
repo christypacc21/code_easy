@@ -1,8 +1,10 @@
 import {
   LOGIN,
+  LOGIN_FAIL,
   LOGOUT,
   INSTRUCTOR_SIGNUP,
-  AUTHENTICATED,
+  INSTRUCTOR_SIGNUP_FAIL,
+  // AUTHENTICATED,
   GET_MY_PROFILE
 } from './constants';
 
@@ -20,6 +22,12 @@ export default (state = initialState, action) => {
         profile: action.payload,
         authenticated: true
       };
+    case LOGIN_FAIL:
+      alert('Error: ' + action.payload.message);
+      return {
+        ...state,
+        authenticated: false
+      };
     case LOGOUT:
       return {
         profile: null,
@@ -30,6 +38,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         instructor: true
+      };
+    case INSTRUCTOR_SIGNUP_FAIL:
+      alert('Error: ' + action.payload.message);
+      return {
+        ...state,
+        authenticated: false
       };
     // case AUTHENTICATED:
     //   return {

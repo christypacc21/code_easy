@@ -18,6 +18,12 @@
     color: white;
 }
 
+.loading {
+    background-color: white;
+    height: 1300px;
+    color: black;
+}
+
 .bannerHow {
     background-color: #00b0af;
     height: 450px;

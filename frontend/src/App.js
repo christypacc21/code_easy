@@ -32,13 +32,24 @@ import { connect } from 'react-redux';
 import * as userActions from './redux/actions/userActions';
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getMyProfile();
-    // console.log('app.js - willMount - this.props', this.props);
+  }
+
+  componentWillReceiveProps() {
+    // for displaying instructor details after signing up
+    if (
+      this.props.authenticated &&
+      this.props.user.profile.role === 'instructor' &&
+      !this.props.user.profile.instructorInfo
+    ) {
+      this.props.getMyProfile();
+    }
   }
 
   render() {
-    if (this.props.authenticated) {
+    const authToken = localStorage.getItem('token');
+    if (authToken && this.props.authenticated) {
       return (
         <Router>
           <div>
@@ -83,6 +94,8 @@ class App extends Component {
           </div>
         </Router>
       );
+    } else if (authToken && !this.props.authenticated) {
+      return <div className="loading" />;
     } else {
       return (
         <Router>

@@ -19,7 +19,7 @@ module.exports = class AuthRouter {
 	async localLogin(req, res) {
 		try {
 			if (!req.body.email || !req.body.password) {
-				res.status(401).send('Invalid email address or password');
+				return res.status(401).send('Invalid email address or password');
 			}
 			const email = req.body.email;
 			const password = req.body.password;
@@ -73,32 +73,50 @@ module.exports = class AuthRouter {
 				req.body.email
 			);
 			if (duplicateEmail.length > 0) {
-				return res.status(401).send('That email address has already been used');
+				return res.json({
+					success: false,
+					message: 'That email address has already been used'
+				});
 			}
 			const hash = await bcrypt.hashPassword(req.body.password);
-			const newUser = await this.authService.localSignUp(
-				req.body.displayName,
-				req.body.email,
-				hash,
-				req.body.role
-			);
-			const userInfo = await this.authService.getUserInfoById(newUser[0]);
-			const payload = {
-				id: newUser[0],
-				role: userInfo[0].role
-			};
-			const token = jwt.encode(payload, process.env.JWT_SECRET);
+			const newUser = await this.authService
+				.localSignUp(req.body.displayName, req.body.email, hash, req.body.role)
+				.catch(err => {
+					console.log('localSignUp - err', err.detail);
+					return res.json({
+						success: false,
+						message: 'That username has already been used'
+					});
+				});
 
-			return res.json({
-				success: true,
-				id: newUser[0],
-				displayName: userInfo[0].display_name,
-				role: userInfo[0].role,
-				token
-			});
+			if (newUser[0]) {
+				const userInfo = await this.authService.getUserInfoById(newUser[0]);
+				const payload = {
+					id: newUser[0],
+					role: userInfo[0].role
+				};
+				const token = jwt.encode(payload, process.env.JWT_SECRET);
+
+				return res.json({
+					success: true,
+					id: newUser[0],
+					displayName: userInfo[0].display_name,
+					email: userInfo[0].email,
+					profilePic: userInfo[0].profilePic,
+					role: userInfo[0].role,
+					sQuestionCredit: userInfo[0].s_questionsCanAsk,
+					iBalance: userInfo[0].i_balance,
+					iEducation: userInfo[0].i_education,
+					iYearOfCodeExp: userInfo[0].i_year_codeExp,
+					iIntroduction: userInfo[0].i_introduction,
+					iNumRating: userInfo[0].i_num_rating,
+					iTotalRating: userInfo[0].i_total_rating,
+					token
+				});
+			}
 		} catch (err) {
-			// console.error(err);
-			return res.status(401).json({
+			console.error('err.message', err.message);
+			return res.json({
 				success: false,
 				message: err.message,
 				error: err

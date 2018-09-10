@@ -35,9 +35,7 @@ module.exports = class SocketRouter {
 				if (payload.actionType === 'SEND_MESSAGE') {
 					// allMessages = [...allMessages, payload];
 					// console.log('socket-allMessages: ', allMessages);
-
 					this.onMessageReceived(socket, payload);
-
 					this.io.emit('SOCKET_ON', {
 						actionType: 'NEW_MESSAGE',
 						payload
@@ -148,66 +146,57 @@ module.exports = class SocketRouter {
 	}
 
 	onDisconnect(socket, user) {
-		return (
-			this.knex(CHATROOOMS)
-				.update('active', false)
-				.where('id', user.chatId)
-			// .returning('question_id')
-			// .then(questionId => {
-			// 	console.log('chat - questionId', questionId[0]);
-			// 	return this.knex(QUESTIONS)
-			// 		.update('active', false)
-			// 		.where('id', questionId[0]);
-			// })
-				.catch(err => {
-					console.log(err);
-					socket.emit('SOCKET_ON', {
-						actionType: 'CHAT_ERROR',
-						payload: err
-					});
-					return;
-				})
-		);
+		return this.knex(CHATROOOMS)
+			.update('active', false)
+			.where('id', user.chatId)
+			.catch(err => {
+				console.log(err);
+				socket.emit('SOCKET_ON', {
+					actionType: 'CHAT_ERROR',
+					payload: err
+				});
+				return;
+			});
 	}
-
-	// getAllMessage1(socket, msg) {
-	// 	return this.knex
-	// 		.select()
-	// 		.from(MESSAGES)
-	// 		.where('chatroom_id', msg.chatId)
-	// 		.then(allMessages => {
-	// 			const messageListInfo = allMessages.map(message => {
-	// 				// console.log('message', message);
-	// 				return this.knex
-	// 					.select('display_name')
-	// 					.from(USERS)
-	// 					.where('id', message.sender_id)
-	// 					.then(displayName => {
-	// 						// console.log('displayName', displayName[0].display_name);
-	// 						const messageInfo = {
-	// 							chatId: message.chatroom_id,
-	// 							userId: message.sender_id,
-	// 							displayName: displayName[0].display_name,
-	// 							message: message.text,
-	// 							type: message.type
-	// 						};
-	// 						// console.log('messageInfo', messageInfo);
-	// 						return messageInfo;
-	// 					});
-	// 			});
-	// 			console.log('messageListInfo', messageListInfo);
-	// 			return messageListInfo;
-	// 		})
-	// 		.catch(err => {
-	// 			// console.log(err);
-	// 			socket.emit('SOCKET_ON', {
-	// 				actionType: 'CHAT_ERROR',
-	// 				payload: err
-	// 			});
-	// 			return;
-	// 		});
-	// }
 };
+
+// getAllMessage1(socket, msg) {
+// 	return this.knex
+// 		.select()
+// 		.from(MESSAGES)
+// 		.where('chatroom_id', msg.chatId)
+// 		.then(allMessages => {
+// 			const messageListInfo = allMessages.map(message => {
+// 				// console.log('message', message);
+// 				return this.knex
+// 					.select('display_name')
+// 					.from(USERS)
+// 					.where('id', message.sender_id)
+// 					.then(displayName => {
+// 						// console.log('displayName', displayName[0].display_name);
+// 						const messageInfo = {
+// 							chatId: message.chatroom_id,
+// 							userId: message.sender_id,
+// 							displayName: displayName[0].display_name,
+// 							message: message.text,
+// 							type: message.type
+// 						};
+// 						// console.log('messageInfo', messageInfo);
+// 						return messageInfo;
+// 					});
+// 			});
+// 			console.log('messageListInfo', messageListInfo);
+// 			return messageListInfo;
+// 		})
+// 		.catch(err => {
+// 			// console.log(err);
+// 			socket.emit('SOCKET_ON', {
+// 				actionType: 'CHAT_ERROR',
+// 				payload: err
+// 			});
+// 			return;
+// 		});
+// }
 
 // onLoadMore(socket, count) {
 // 	console.log(-count - 20, -count);
