@@ -39,7 +39,7 @@ module.exports = class ForumService {
   //ok, can createPost to db with authenToken
   createPost(user_id, title, content, image_path) {
     const data = {
-      // user_id,
+      user_id,
       title,
       content,
       image_path
@@ -61,7 +61,7 @@ module.exports = class ForumService {
           .select('*')
           .from('forumComments')
           .where('forumComments.post_id', post_id)
-          .join('users', 'users.id', '=', 'forumComments.user_id')
+          .leftJoin('users', 'users.id', '=', 'forumComments.user_id')
           .then(comments => {
             return {
               postDetails: postDetails[0],
@@ -75,7 +75,7 @@ module.exports = class ForumService {
   //ok, can createComments to db with authenToken
   postComments(user_id, post_id, content, image_path) {
     const data = {
-      // user_id,
+      user_id,
       post_id,
       content,
       image_path
@@ -119,65 +119,3 @@ module.exports = class ForumService {
       .where('user_id', user_id);
   }
 };
-
-//----------three services about forum posts----------
-// getPosts() {
-//   return this.knex
-//     .select('*')
-//     .from('users')
-//     .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id')
-//     .then(posts => {
-//       console.log(posts);
-//       return this.knex
-//         .count('forumComments.post_id')
-//         .column('forumPosts.id')
-//         .from('forumPosts')
-//         .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
-//         .groupBy('forumPosts.id')
-//         .orderBy('forumPosts.id', 'aesc')
-//         .then(count => {
-//           return { posts, count };
-//         });
-//     });
-// }
-
-// getPosts() {
-//   return this.knex
-//     .select('*')
-//     .from('users')
-//     .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id')
-//     .then(posts => {
-//       return this.knex
-//         .count('forumComments.post_id')
-//         .column('forumPosts.id')
-//         .from('forumPosts')
-//         .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
-//         .groupBy('forumPosts.id')
-//         .orderBy('forumPosts.id', 'aesc')
-//         .then(count => {
-//           return posts.map((ele, idx) => {
-//             return { ...ele, count: count[idx]['count'] };
-//           });
-//           // return { posts, count };
-//         });
-//     });
-// }
-
-// async getPost() {
-//   const posts = await this.knex
-//     .select('*')
-//     .from('users')
-//     .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id');
-//   const count = await this.knex
-//     .count('forumComments.post_id')
-//     .column('forumPosts.id')
-//     .from('forumPosts')
-//     .leftJoin('forumComments', 'forumComments.post_id', 'forumPosts.id')
-//     .groupBy('forumPosts.id')
-//     .orderBy('forumPosts.id', 'aesc');
-//   console.log(posts, count);
-//   return Promise.all([posts, count]).then(data => data);
-//   // catch {
-//   //   err => err;
-//   // }
-// }
