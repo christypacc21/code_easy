@@ -19,22 +19,19 @@ class MyPostList extends Component {
         </div>
       );
     } else {
-      console.log('renderPostList got data :' + this.props.postData);
-      return this.props.postData.map((ele, i) => {
-        let post = ele.post;
-        let count = ele.count;
+      console.log('renderPostList got data :');
+      console.log(this.props.postData);
+      return this.props.postData.map((post, i) => {
         return (
           <div className="card col-sm-4" key={i}>
             <MyPostCard
               // key={i}
               postId={post.id}
-              propicPath={post.profilePic}
-              username={post.display_name}
               dateTime={post.created_at}
               postTitle={post.title}
               postContent={post.content}
               postImagePath={post.image_path}
-              count={count}
+              count={post.count}
             />
           </div>
         );

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 const MyPostCard = ({
   // key,
   postId,
-  propicPath,
-  username,
   dateTime,
   postTitle,
   postContent,
@@ -27,31 +25,6 @@ const MyPostCard = ({
               PostID:
               {postId}
             </p>
-            <p
-              className="card-text"
-              style={{ display: 'inline-block', marginRight: '2vw' }}
-            >
-              Created by: {username}
-            </p>
-            {!propicPath ? (
-              // <p style={{ display: 'inline-block', marginRight: '2vw' }}>
-              //   [[[This user has no pro pic]]]
-              // </p>
-              <p />
-            ) : (
-              <div>
-                <img
-                  className="card"
-                  style={{
-                    maxHeight: '10em',
-                    display: 'inline-block',
-                    marginRight: '2vw'
-                  }}
-                  alt="(Failed to show Post file )"
-                  src={`${process.env.REACT_APP_API_SERVER}/${propicPath}`}
-                />
-              </div>
-            )}
             <p className="card-text" style={{ fontSize: '20px' }}>
               {dateTime}
             </p>
@@ -75,23 +48,12 @@ const MyPostCard = ({
               />
             </div>
           )}
-          {/* <p>(No. of comments): {count}</p> */}
-          {/* <a className="btn btn-primary" href="/postDetails"> */}
-          {/* <a className="btn btn-primary" href="/api/forum/posts/">
-          Press into Post Details
-        </a> */}
           <br />
           <p className="card-text">No. of comments {count}</p>
         </div>
-        {!postId ? (
-          <Link className="btn btn-info btn-block" to={`/login`}>
-            Login to see post details and comments
-          </Link>
-        ) : (
-          <Link className="btn btn-info btn-block" to={`/posts/${postId}`}>
-            Press into details
-          </Link>
-        )}
+        <Link className="btn btn-info btn-block" to={`/posts/${postId}`}>
+          Press into details
+        </Link>
       </div>
     </div>
   );

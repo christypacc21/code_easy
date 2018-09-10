@@ -67,7 +67,7 @@ export const requestPostDetails = (
 const initialStateMyPosts = {
   isPending: false,
   data: {
-    posts: []
+    myposts: []
   },
   error: ''
 };
@@ -76,7 +76,7 @@ export const requestMyPosts = (state = initialStateMyPosts, action = {}) => {
     case REQUEST_MYPOSTS_PENDING:
       return { ...state, isPending: true };
     case REQUEST_MYPOSTS_SUCCESS:
-      console.log('request myposts success reducer');
+      console.log('request myposts success - reducer');
       return { ...state, data: action.payload, isPending: false };
     case REQUEST_MYPOSTS_FAILED:
       return { ...state, error: action.payload, isPending: false };

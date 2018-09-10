@@ -5,10 +5,8 @@ import MyPostList from './myPostList';
 class MyPostsPage extends Component {
   render() {
     return (
-      <div>
-        <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
-          <MyPostList />
-        </div>
+      <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
+        <MyPostList />
       </div>
     );
   }

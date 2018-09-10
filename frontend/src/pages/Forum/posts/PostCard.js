@@ -12,8 +12,6 @@ const PostCard = ({
   postImagePath,
   count
 }) => {
-  // console.log('postId' + postId);
-  // const postImagePath = `"${postImage}"`
   if (!postId) {
     return <h1>Loading posts</h1>;
   }
@@ -78,11 +76,6 @@ const PostCard = ({
               />
             </div>
           )}
-          {/* <p>(No. of comments): {count}</p> */}
-          {/* <a className="btn btn-primary" href="/postDetails"> */}
-          {/* <a className="btn btn-primary" href="/api/forum/posts/">
-          Press into Post Details
-        </a> */}
           <br />
           <p className="card-text">No. of comments {count}</p>
         </div>
