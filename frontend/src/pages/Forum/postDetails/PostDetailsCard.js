@@ -1,7 +1,5 @@
 // func component wif redux
 import React from 'react';
-// import { connect } from 'react-redux';
-// import { requestPostDetails } from '../../../redux/actions/forumActions';
 
 const PostDetailsCard = ({
   postId,
@@ -14,7 +12,8 @@ const PostDetailsCard = ({
   role,
   count
 }) => {
-  // console.log('hahawewaerawer' + propicPath);
+  console.log('post image path:::::');
+  console.log(postImagePath);
   return (
     <div className="card">
       <div className="card-body">
@@ -26,7 +25,7 @@ const PostDetailsCard = ({
           {' ' + postId}
         </p>
         {
-          (propicPath = `${process.env.REACT_APP_API_SERVER}/${propicPath}` ? (
+          (propicPath = `${process.env.REACT_APP_API_SERVER}/null` ? (
             // <p style={{ display: 'inline-block', marginRight: '3vw' }}>
             //   [[[This user has no pro pic]]]
             // </p>
@@ -40,7 +39,7 @@ const PostDetailsCard = ({
                   display: 'inline-block',
                   marginRight: '3vw'
                 }}
-                alt="(Failed to show Post file )"
+                alt="(Failed to show propic)"
                 src={propicPath}
               />
             </div>
@@ -68,18 +67,20 @@ const PostDetailsCard = ({
           <strong>Post Title: {postTitle}</strong>
         </h3>
         <p className="card-text">Post Content: {postContent}</p>
-        {!postImagePath ? (
-          <p>[[[This post has no image]]]</p>
-        ) : (
-          <div>
-            <img
-              className="card"
-              style={{ maxWidth: '60vw' }}
-              alt="(Failed to show Post file )"
-              src={postImagePath}
-            />
-          </div>
-        )}
+        {
+          (postImagePath = `${process.env.REACT_APP_API_SERVER}/null` ? (
+            <p>[[[This post has no image]]]</p>
+          ) : (
+            <div>
+              <img
+                className="card"
+                style={{ maxWidth: '60vw' }}
+                alt="(Failed to show Post file)"
+                src={postImagePath}
+              />
+            </div>
+          ))
+        }
         <p>No. of comments: {count}</p>
         <br />
       </div>
