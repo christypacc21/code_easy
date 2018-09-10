@@ -11,20 +11,20 @@ class Chatroom extends Component {
 
   componentDidMount() {
     console.log('did-this.props', this.props);
-    setTimeout(() => {
-      if (this.props.user) {
-        this.props.userStartSession(
-          this.props.match.params.chatId,
-          this.props.user.id,
-          this.props.user.role
-        );
-        this.props.getAllMessages(
-          this.props.match.params.chatId,
-          this.props.user.id,
-          this.props.user.role
-        );
-      }
-    }, 500);
+    // setTimeout(() => {
+    if (this.props.user) {
+      this.props.userStartSession(
+        this.props.match.params.chatId,
+        this.props.user.id,
+        this.props.user.role
+      );
+      this.props.getAllMessages(
+        this.props.match.params.chatId,
+        this.props.user.id,
+        this.props.user.role
+      );
+    }
+    // }, 500);
   }
 
   sendMessage = () => {
@@ -33,6 +33,7 @@ class Chatroom extends Component {
       this.state.inputMessage,
       this.props.user.id,
       this.props.user.displayName,
+      this.props.user.role,
       this.props.match.params.chatId
     );
     this.setState({ inputMessage: '' });
@@ -65,11 +66,17 @@ class Chatroom extends Component {
                 String(message.chatId) === this.props.match.params.chatId
             )
             .map((message, i) => {
-              console.log('message123', message);
+              console.log('chatroom message', message);
               return (
                 <div key={message.message + i}>
                   {message.displayName}:{' '}
-                  <pre className="speechBubble">{message.message}</pre>
+                  {message.role === 'instructor' ? (
+                    <pre className="instructorSpeechBubble">
+                      {message.message}
+                    </pre>
+                  ) : (
+                    <pre className="studentSpeechBubble">{message.message}</pre>
+                  )}
                 </div>
               );
             })}

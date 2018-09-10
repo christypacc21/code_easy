@@ -112,7 +112,7 @@ module.exports = class SocketRouter {
 			const messageListInfo = allMessages.map(message => {
 				// console.log('message', message);
 				return this.knex
-					.select('display_name')
+					.select('display_name', 'role')
 					.from(USERS)
 					.where('id', message.sender_id)
 					.then(displayName => {
@@ -121,6 +121,7 @@ module.exports = class SocketRouter {
 							chatId: message.chatroom_id,
 							userId: message.sender_id,
 							displayName: displayName[0].display_name,
+							role: displayName[0].role,
 							message: message.text,
 							type: message.type
 						};
