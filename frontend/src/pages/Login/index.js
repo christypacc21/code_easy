@@ -43,6 +43,8 @@ class PureLogin extends React.Component {
   responseFacebook = userInfo => {
     if (userInfo.accessToken) {
       console.log('fb response: ', userInfo);
+      console.log('fb this.props.history: ', this.props.history);
+
       this.props.loginByFacebook(
         userInfo.accessToken,
         null,

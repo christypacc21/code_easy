@@ -46,5 +46,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  userActions
+  null
 )(instructorProfile);

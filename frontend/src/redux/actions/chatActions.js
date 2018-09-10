@@ -6,8 +6,8 @@ import {
   START_SESSION,
   END_SESSION
 } from '../reducers/constants';
-import axios from 'axios';
-const SERVER_URL = process.env.REACT_APP_API_SERVER;
+// import axios from 'axios';
+// const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function sendChatMessage(message, userId, displayName, chatId) {
   return async dispatch => {

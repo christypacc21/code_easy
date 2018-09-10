@@ -6,7 +6,7 @@ import {
   LOGOUT,
   INSTRUCTOR_SIGNUP,
   INSTRUCTOR_SIGNUP_FAIL,
-  AUTHENTICATED,
+  // AUTHENTICATED,
   GET_MY_PROFILE
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
@@ -24,12 +24,12 @@ export function localSignup(displayName, email, password, role) {
     if (response.data) {
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED
-      });
-      dispatch({
         type: LOGIN,
         payload: response.data
       });
+      // dispatch({
+      //   type: AUTHENTICATED
+      // });
     } else {
       dispatch({
         type: LOGIN_FAIL
@@ -48,12 +48,12 @@ export function loginByEmail(email, password, history) {
       console.log('local login res: ', response.data);
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED
-      });
-      dispatch({
         type: LOGIN,
         payload: response.data
       });
+      // dispatch({
+      //   type: AUTHENTICATED
+      // });
       if (response.data.role === 'student') {
         history.push('/CreateQuestion');
       } else {
@@ -79,12 +79,14 @@ export function loginByFacebook(access_token, role, history) {
       console.log('facebook login res: ', response.data);
       localStorage.setItem('token', response.data.token);
       dispatch({
-        type: AUTHENTICATED
-      });
-      dispatch({
         type: LOGIN,
         payload: response.data
       });
+      // dispatch({
+      //   type: AUTHENTICATED
+      // });
+      console.log('facebook login history: ', history);
+
       if (history) {
         if (response.data.role === 'student') {
           history.push('/CreateQuestion');
@@ -217,6 +219,9 @@ export function getMyProfile() {
             type: GET_MY_PROFILE,
             payload: response.data.profile
           });
+          // dispatch({
+          //   type: AUTHENTICATED
+          // });
         }
       } catch (err) {
         console.log('getMyProfile error: ', err);

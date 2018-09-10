@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   profile: null,
-  instructor: false
+  instructor: false,
+  authenticated: false
 };
 
 export default (state = initialState, action) => {
@@ -16,28 +17,30 @@ export default (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        profile: action.payload
+        profile: action.payload,
+        authenticated: true
       };
     case LOGOUT:
       return {
-        authenticated: false,
         profile: null,
-        instructor: false
+        instructor: false,
+        authenticated: false
       };
     case INSTRUCTOR_SIGNUP:
       return {
         ...state,
         instructor: true
       };
-    case AUTHENTICATED:
-      return {
-        ...state,
-        authenticated: true
-      };
+    // case AUTHENTICATED:
+    //   return {
+    //     ...state,
+    //     authenticated: true
+    //   };
     case GET_MY_PROFILE:
       return {
         ...state,
-        profile: action.payload
+        profile: action.payload,
+        authenticated: true
       };
     default:
       return state;

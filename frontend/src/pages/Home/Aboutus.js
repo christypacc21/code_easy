@@ -10,8 +10,8 @@ class AboutUs extends React.Component {
         style={{ margin: 0 }}
       >
         <div className="container">
-          <div class="row justify-content-md-center">
-            <div class="col">
+          <div className="row justify-content-md-center">
+            <div className="col">
               <h1 className="display-4" style={{ color: '#ffffff' }}>
                 About Us
               </h1>
@@ -21,7 +21,7 @@ class AboutUs extends React.Component {
                 students' learning experience.
               </h4>
             </div>
-            <div class="col">
+            <div className="col">
               {/* <img
                 className="about"
                 style={{ width: '50%' }}

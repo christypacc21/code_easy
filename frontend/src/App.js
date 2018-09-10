@@ -33,17 +33,12 @@ import * as userActions from './redux/actions/userActions';
 
 class App extends Component {
   componentWillMount() {
-    console.log('app.js - this.props.authenticated', this.props.authenticated);
-    if (!this.props.user.profile && this.props.authenticated) {
-      this.props.getMyProfile();
-      console.log(
-        'app.js - willMount - this.props.authenticated',
-        this.props.authenticated
-      );
-    }
+    this.props.getMyProfile();
+    // console.log('app.js - willMount - this.props', this.props);
   }
+
   render() {
-    if (this.props.user.profile && this.props.authenticated) {
+    if (this.props.authenticated) {
       return (
         <Router>
           <div>
@@ -88,69 +83,6 @@ class App extends Component {
           </div>
         </Router>
       );
-    } else if (!this.props.user.profile && this.props.authenticated) {
-      return setTimeout(() => {
-        return (
-          <Router>
-            <div>
-              <Nav />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
-                <Route exact path="/posts" component={PostsPage} />
-                <Route exact path="/posts/new" component={CreatePost} />
-                <Route exact path="/posts/:id" component={PostDetails} />
-                <Route exact path="/myposts" component={MyPostsPage} />
-                <Route exact path="/pricing" component={Pricing} />
-                <Route exact path="/contact" component={Contact} />
-                <Route exact path="/AskQuestion" component={AskQuestion} />
-                <Route
-                  exact
-                  path="/CreateQuestion"
-                  component={CreateQuestion}
-                />
-                <Route path="/chatroom/:chatId" component={Chatroom} />
-                <Route
-                  exact
-                  path="/instructor-profileForm"
-                  component={InstructorProfileForm}
-                />
-                <Route exact path="/user-signup" component={UserSignup} />
-                <Route
-                  exact
-                  path="/instuctor-signup"
-                  component={InstructorSignup}
-                />
-                <Route
-                  exact
-                  path="/MultipleSelect"
-                  component={MultipleSelect}
-                />
-                <Route exact path="/TakeQuestions" component={TakeQuestions} />
-                <Route
-                  exact
-                  path="/my-questions/ongoing"
-                  component={MyOngoing}
-                />
-                <Route
-                  exact
-                  path="/my-questions/history"
-                  component={MyHistory}
-                />
-                <Route exact path="/profile" component={Profile} />
-                <Route
-                  exact
-                  path="/instructorProfile"
-                  component={instructorProfile}
-                />
-                <Route exact path="/userProfile" component={userProfile} />
-              </Switch>
-              <Footer />
-            </div>
-          </Router>
-        );
-      }, 500);
     } else {
       return (
         <Router>
