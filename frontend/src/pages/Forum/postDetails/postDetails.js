@@ -44,7 +44,7 @@ class PostDetails extends Component {
                 postDetailsData.image_path
               }`}
               role={postDetailsData.role}
-              // count={data.count[i].count}
+              count={this.props.comments.length}
             />
           </div>
         </div>

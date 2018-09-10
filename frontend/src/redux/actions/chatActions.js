@@ -6,6 +6,8 @@ import {
   START_SESSION,
   END_SESSION
 } from '../reducers/constants';
+import axios from 'axios';
+const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function sendChatMessage(message, userId, displayName, chatId) {
   return async dispatch => {
@@ -69,3 +71,26 @@ export function userEndSession(chatId, userId, role) {
     });
   };
 }
+
+// //--------- rating action --------//
+// export function rating(chatroomId, studentId, instructorId, rating) {
+//   return async dispatch => {
+//     try {
+//       const data = new FormData();
+//       data.append('rating', rating);
+//       const token = localStorage.getItem('token');
+//       const response = await axios({
+//         method: 'post',
+//         url: SERVER_URL + '/api/', //??? shd use wht api route???
+//         headers: {
+//           Authorization: 'Bearer ' + token,
+//           'Content-Type': 'multipart/form-data'
+//         },
+//         data
+//       });
+//       console.log('createRating res: ', response);
+//     } catch (err) {
+//       console.log('createRating err: ', err);
+//     }
+//   };
+// }

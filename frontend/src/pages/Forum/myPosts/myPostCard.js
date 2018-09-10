@@ -1,7 +1,7 @@
 // func component
 import React from 'react';
 import { Link } from 'react-router-dom';
-const PostCard = ({
+const MyPostCard = ({
   // key,
   postId,
   propicPath,
@@ -12,13 +12,10 @@ const PostCard = ({
   postImagePath,
   count
 }) => {
-  // console.log('postId' + postId);
-  // const postImagePath = `"${postImage}"`
   if (!postId) {
     return <h1>Loading posts</h1>;
   }
   return (
-    // <div id={key}>
     <div>
       <div style={{ height: '580px' }}>
         <div className="card-body" style={{ height: '510px' }}>
@@ -100,4 +97,4 @@ const PostCard = ({
   );
 };
 
-export default PostCard;
+export default MyPostCard;

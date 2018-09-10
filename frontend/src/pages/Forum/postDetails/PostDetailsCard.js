@@ -11,8 +11,8 @@ const PostDetailsCard = ({
   postTitle,
   postContent,
   postImagePath,
-  role
-  //count
+  role,
+  count
 }) => {
   // console.log('hahawewaerawer' + propicPath);
   return (
@@ -80,7 +80,7 @@ const PostDetailsCard = ({
             />
           </div>
         )}
-        {/* <p>(No. of comments): {count}</p> */}
+        <p>No. of comments: {count}</p>
         <br />
       </div>
     </div>

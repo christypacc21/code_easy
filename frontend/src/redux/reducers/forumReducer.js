@@ -4,7 +4,10 @@ import {
   REQUEST_POSTS_FAILED,
   REQUEST_POSTDETAILS_PENDING,
   REQUEST_POSTDETAILS_SUCCESS,
-  REQUEST_POSTDETAILS_FAILED
+  REQUEST_POSTDETAILS_FAILED,
+  REQUEST_MYPOSTS_PENDING,
+  REQUEST_MYPOSTS_SUCCESS,
+  REQUEST_MYPOSTS_FAILED
   // CREATE_POST
   // CREATE_COMMENT,
   // DELETE_COMMENT,
@@ -60,24 +63,29 @@ export const requestPostDetails = (
   }
 };
 
-//----------- reducer -  create post-----------//
-// const initialStateCreatePost = {
-//   postTitle: '',
-//   postContent: '',
-//   filePath: []
-// }
-// export default (state = initialState, action) => {
-//   switch (action.type) {
-//     case CREATE_POST:
-//       return {};
-//   }
-// };
-//-----------reducer - create comment-----------//
+//-----------reducer - get myPosts-----------//
+const initialStateMyPosts = {
+  isPending: false,
+  data: {
+    posts: []
+  },
+  error: ''
+};
+export const requestMyPosts = (state = initialStateMyPosts, action = {}) => {
+  switch (action.type) {
+    case REQUEST_MYPOSTS_PENDING:
+      return { ...state, isPending: true };
+    case REQUEST_MYPOSTS_SUCCESS:
+      console.log('request myposts success reducer');
+      return { ...state, data: action.payload, isPending: false };
+    case REQUEST_MYPOSTS_FAILED:
+      return { ...state, error: action.payload, isPending: false };
+    default:
+      return state;
+  }
+};
+//-----------reducer - get myComments-----------//
 
 //--------reducer - search--------//
 
 //-----------reducer - delete comment-----------//
-
-//-----------reducer - get myPosts-----------//
-
-//-----------reducer - get myComments-----------//

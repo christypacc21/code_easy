@@ -5,7 +5,10 @@ import {
   REQUEST_POSTS_FAILED,
   REQUEST_POSTDETAILS_PENDING,
   REQUEST_POSTDETAILS_SUCCESS,
-  REQUEST_POSTDETAILS_FAILED
+  REQUEST_POSTDETAILS_FAILED,
+  REQUEST_MYPOSTS_PENDING,
+  REQUEST_MYPOSTS_SUCCESS,
+  REQUEST_MYPOSTS_FAILED
   // CREATE_POST,
   // CREATE_COMMENT,
   // DELETE_COMMENT,
@@ -112,7 +115,7 @@ export function createComment(content, filePath, id) {
       });
       console.log('createComment res: ', response);
     } catch (err) {
-      console.log('createComment res: ', err);
+      console.log('createComment err: ', err);
     }
   };
 }
@@ -122,5 +125,25 @@ export function createComment(content, filePath, id) {
 //-----------action - delete comment-----------//
 
 //-----------action - get myPosts-----------//
+export function requestMyPosts() {
+  return async dispatch => {
+    dispatch({ type: REQUEST_MYPOSTS_PENDING });
+
+    const token = localStorage.getItem('token');
+
+    const response = await axios({
+      method: 'get',
+      url: SERVER_URL + '/api/forum/myposts',
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
+    if (response.status === 200) {
+      dispatch({ type: REQUEST_MYPOSTS_SUCCESS, payload: response.data });
+    } else {
+      dispatch({ type: REQUEST_MYPOSTS_FAILED });
+    }
+  };
+}
 
 //-----------action - get myComments-----------//

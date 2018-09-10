@@ -1,5 +1,3 @@
-// test db
-// how to link to frontend
 // frontend how mui gor react page/componentneeda use redux / async redux thunk???
 const express = require('express');
 // const NODE_ENV = process.env.NODE_ENV || 'development';

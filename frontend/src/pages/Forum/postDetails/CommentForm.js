@@ -15,7 +15,6 @@ class CommentForm extends Component {
     };
   }
 
-  //?
   onDrop = (acceptedFiles, rejectedFiles) => {
     this.setState({
       filePath: acceptedFiles
@@ -34,7 +33,6 @@ class CommentForm extends Component {
           <h2 style={{ color: 'Black', paddingTop: '10px' }}>Your comments:</h2>
           <form>
             <div className="form-group" />
-            {/* <label htmlFor="exampleFormControlTextarea1">My reply:</label> */}
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -79,26 +77,20 @@ class CommentForm extends Component {
                 </ul>
               </aside>
             </div>
-            {/* <input
-              type="submit"
-              class="btn btn-primary btn-sm btn-block"
-              value="send"
-            /> */}
           </form>
 
           <br />
 
           <button
-            // type="submit"
             className="btn btn-dark btn-lg btn-block"
             onClick={() => {
               this.props.createComment(
                 commentContent,
                 filePath,
                 this.props.paramsId
+                //the params' names do i need to refer to somewhere?(ying goy not)
               );
               this.setState({ commentContent: '', filePath: [] });
-              //the params' names do i need to refer to somewhere?(ying goy not)
               window.location.reload();
             }}
           >

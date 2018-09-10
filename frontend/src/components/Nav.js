@@ -188,7 +188,15 @@ class Nav extends React.Component {
                 Profile
               </Link>
             </li> */}
-
+            <li className="nav-item ">
+              <Link
+                className="nav-link "
+                style={{ color: '#FFFFFF' }}
+                to="/myPosts"
+              >
+                MyPosts
+              </Link>
+            </li>
             <li className="nav-item ">
               <Link
                 className="nav-link "
