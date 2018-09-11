@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PostCard from './PostCard';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { requestPosts } from '../../../redux/actions/forumActions';
 
 class PostCardList extends Component {
@@ -22,6 +23,7 @@ class PostCardList extends Component {
       );
     } else {
       console.log('renderPostList got data :' + this.props.postData);
+
       return this.props.postData.map((ele, i) => {
         // console.log('about to render post list' + post);
         let post = ele.post;
@@ -33,7 +35,7 @@ class PostCardList extends Component {
               postId={post.id}
               propicPath={post.profilePic}
               username={post.display_name}
-              dateTime={post.created_at}
+              dateTime={moment(post.created_at).format('lll')}
               postTitle={post.title}
               postContent={post.content}
               postImagePath={post.image_path}

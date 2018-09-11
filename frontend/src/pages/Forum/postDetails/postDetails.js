@@ -5,6 +5,7 @@ import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { requestPostDetails } from '../../../redux/actions/forumActions';
 
 class PostDetails extends Component {
@@ -14,15 +15,19 @@ class PostDetails extends Component {
     this.props.onRequestPostDetails(id);
   }
 
-  reload() {
-    // [CODE REVIEW]
-    const id = this.props.match.params.id;
-    console.log('haha2' + id);
-    this.props.onRequestPostDetails(id);
-  }
+  // reload() {
+  //   // [CODE REVIEW]
+  //   const id = this.props.match.params.id;
+  //   console.log('reloadzzzzzz' + id);
+  //   this.props.onRequestPostDetails(id);
+  // }
 
   render() {
     const postDetailsData = this.props.postDetails;
+    // console.log('zzzzzzzzz');
+    // console.log(postDetailsData.created_at);
+    // console.log(moment(postDetailsData.created_at).format('lll'));
+    const dateTime = moment(postDetailsData.created_at).format('lll');
     return (
       <div>
         <div
@@ -44,7 +49,7 @@ class PostDetails extends Component {
               }`}
               // /images/forumPosts/8_1536084354220_postIMG.jpg
               username={postDetailsData.display_name}
-              dateTime={postDetailsData.created_at}
+              dateTime={dateTime}
               postTitle={postDetailsData.title}
               postContent={postDetailsData.content}
               postImagePath={`${process.env.REACT_APP_API_SERVER}/${
@@ -58,11 +63,17 @@ class PostDetails extends Component {
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           <CommentForm
-            onCommentSubmit={this.reload /* [CODE REVIEW] */}
+            // onCommentSubmit={this.reload /* [CODE REVIEW] */}
             paramsId={this.props.match.params.id}
           />
           {/* <p>GET and show CommentList here:</p> */}
-          <CommentList comments={this.props.comments} />
+          <CommentList
+            comments={this.props.comments}
+            dateTime={moment(this.props.comments.created_at).format(
+              'MMMM Do YYYY, h:mm a'
+            )}
+          />
+
           {/* <CommentForm /> */}
           <br />
           <Link className="btn btn-primary btn-lg" to="/posts">

@@ -52,15 +52,17 @@ const PostCard = ({
                 </div>
               ))
             }
-            <p className="card-text" style={{ fontSize: '20px' }}>
-              {moment({ dateTime }).format('lll')}
-              {/* {moment({ dateTime }).canlendar()} */}
+            <p
+              className="card-text"
+              style={{ fontSize: '20px', color: 'lightgrey' }}
+            >
+              {dateTime} ({moment({ dateTime }).fromNow()})
             </p>
             <div style={{ matginBottom: '10px' }} />
           </div>
           <h5 className="card-title">Title: {postTitle}</h5>
           {postContent.length > 50 ? (
-            (postContent = 'Too many words, press in toread more detials')
+            (postContent = 'Too many words, press in to read more detials')
           ) : (
             <p className="card-text">Content: {postContent}</p>
           )}

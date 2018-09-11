@@ -38,9 +38,7 @@ const CommentCard = ({
           </h5>
 
           {
-            (propicPath = `${
-              process.env.REACT_APP_API_SERVER
-            }/${propicPath}` ? (
+            (propicPath = `${process.env.REACT_APP_API_SERVER}/null` ? (
               // <p style={{ display: 'inline-block', marginRight: '3vw' }}>
               //   [[[This user has no pro pic]]]
               // </p>
@@ -77,7 +75,11 @@ const CommentCard = ({
             className="card-text"
             style={{ display: 'inline-block', marginRight: '3vw' }}
           >
-            Created at: {moment({ dateTime }).format('lll')}
+            Created at:
+            <span style={{ paddingLeft: '15px' }} />
+            {/* {dateTime} */}
+            {moment({ dateTime }).format('lll')} (
+            {moment({ dateTime }).fromNow()})
           </p>
         </div>
         <div className="jumbotron">

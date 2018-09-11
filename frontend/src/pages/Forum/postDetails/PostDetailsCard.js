@@ -62,7 +62,7 @@ const PostDetailsCard = ({
           className="card-text"
           style={{ display: 'inline-block', marginRight: '3vw' }}
         >
-          Created at: {moment({ dateTime }).format('lll')}
+          Created at: {dateTime} ({moment({ dateTime }).fromNow()})
         </p>
         <h3 className="card-title">
           <strong>Post Title: {postTitle}</strong>

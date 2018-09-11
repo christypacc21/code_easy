@@ -65,7 +65,8 @@ class CommentForm extends Component {
                 <ul>
                   {this.state.filePath.map(f => (
                     <li key={f.name}>
-                      {f.name} - {f.size} bytes
+                      {f.name}
+                      {/* - {f.size} bytes */}
                       <button
                         className="btn btn-danger"
                         onClick={() => this.setState({ filePath: [] })}
@@ -92,6 +93,7 @@ class CommentForm extends Component {
               );
               this.setState({ commentContent: '', filePath: [] });
               window.location.reload();
+              // this.props.onCommentSubmit();
             }}
           >
             Send !
