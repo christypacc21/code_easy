@@ -90,7 +90,7 @@ class TakeQuestions extends React.Component {
                   <div className="col-md-4">
                     <h5 className="card-title">Question</h5>
                     <p className="card-text">{question.questionInfo.content}</p>
-                    {!question.chatInfo.id ? (
+                    {!question.chatInfo ? (
                       <div>Loading Chatroom</div>
                     ) : (
                       <Link
@@ -149,6 +149,8 @@ class TakeQuestions extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('zzzzzzzzzzzzzzzz check chatInfo');
+  console.log(state.questions.all);
   return {
     questions: state.questions.all
   };

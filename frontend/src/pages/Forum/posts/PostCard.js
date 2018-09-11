@@ -34,25 +34,27 @@ const PostCard = ({
             >
               Created by: {username}
             </p>
-            {!propicPath ? (
-              // <p style={{ display: 'inline-block', marginRight: '2vw' }}>
-              //   [[[This user has no pro pic]]]
-              // </p>
-              <p />
-            ) : (
-              <div>
-                <img
-                  className="card"
-                  style={{
-                    maxHeight: '10em',
-                    display: 'inline-block',
-                    marginRight: '2vw'
-                  }}
-                  alt="(Failed to show Post file )"
-                  src={`${process.env.REACT_APP_API_SERVER}/${propicPath}`}
-                />
-              </div>
-            )}
+            {
+              (propicPath = `${process.env.REACT_APP_API_SERVER}/null}` ? (
+                // <p style={{ display: 'inline-block', marginRight: '2vw' }}>
+                //   [[[This user has no pro pic]]]
+                // </p>
+                <p />
+              ) : (
+                <div>
+                  <img
+                    className="card"
+                    style={{
+                      maxHeight: '10em',
+                      display: 'inline-block',
+                      marginRight: '2vw'
+                    }}
+                    alt="(Failed to show Post file )"
+                    src={`${process.env.REACT_APP_API_SERVER}/${propicPath}`}
+                  />
+                </div>
+              ))
+            }
             <p className="card-text" style={{ fontSize: '20px' }}>
               {dateTime}
             </p>

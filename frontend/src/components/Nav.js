@@ -126,6 +126,22 @@ class Nav extends React.Component {
     }
   };
 
+  myPosts = () => {
+    if (this.props.authenticated) {
+      return (
+        <li className="nav-item ">
+          <Link
+            className="nav-link "
+            style={{ color: '#FFFFFF' }}
+            to="/myPosts"
+          >
+            MyPosts
+          </Link>
+        </li>
+      );
+    }
+  };
+
   render() {
     return (
       <nav
@@ -188,15 +204,7 @@ class Nav extends React.Component {
                 Profile
               </Link>
             </li> */}
-            <li className="nav-item ">
-              <Link
-                className="nav-link "
-                style={{ color: '#FFFFFF' }}
-                to="/myPosts"
-              >
-                MyPosts
-              </Link>
-            </li>
+            {this.myPosts()}
             <li className="nav-item ">
               <Link
                 className="nav-link "
