@@ -1,5 +1,6 @@
 // func component
 import React from 'react';
+import moment from 'moment';
 
 const CommentCard = ({
   // commentId,
@@ -76,7 +77,7 @@ const CommentCard = ({
             className="card-text"
             style={{ display: 'inline-block', marginRight: '3vw' }}
           >
-            Created at: {dateTime}
+            Created at: {moment({ dateTime }).format('lll')}
           </p>
         </div>
         <div className="jumbotron">

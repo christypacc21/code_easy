@@ -1,6 +1,7 @@
 // func component
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const HistoryCard = ({ dateTime, content, imagePath }) => {
   // if (!postId) {
@@ -26,7 +27,7 @@ const HistoryCard = ({ dateTime, content, imagePath }) => {
             className="card-text"
             style={{ display: 'inline-block', marginRight: '2vw' }}
           >
-            {dateTime}
+            {moment({ dateTime }).format('lll')}
           </p>
           <h5 className="card-title">
             Content:

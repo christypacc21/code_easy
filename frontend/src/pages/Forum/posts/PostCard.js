@@ -1,6 +1,7 @@
 // func component
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 const PostCard = ({
   // key,
   postId,
@@ -16,7 +17,6 @@ const PostCard = ({
     return <h1>Loading posts</h1>;
   }
   return (
-    // <div id={key}>
     <div>
       <div style={{ height: '580px' }}>
         <div className="card-body" style={{ height: '510px' }}>
@@ -36,9 +36,6 @@ const PostCard = ({
             </p>
             {
               (propicPath = `${process.env.REACT_APP_API_SERVER}/null}` ? (
-                // <p style={{ display: 'inline-block', marginRight: '2vw' }}>
-                //   [[[This user has no pro pic]]]
-                // </p>
                 <p />
               ) : (
                 <div>
@@ -56,7 +53,8 @@ const PostCard = ({
               ))
             }
             <p className="card-text" style={{ fontSize: '20px' }}>
-              {dateTime}
+              {moment({ dateTime }).format('lll')}
+              {/* {moment({ dateTime }).canlendar()} */}
             </p>
             <div style={{ matginBottom: '10px' }} />
           </div>

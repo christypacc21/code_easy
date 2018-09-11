@@ -1,5 +1,6 @@
 // func component wif redux
 import React from 'react';
+import moment from 'moment';
 
 const PostDetailsCard = ({
   postId,
@@ -61,7 +62,7 @@ const PostDetailsCard = ({
           className="card-text"
           style={{ display: 'inline-block', marginRight: '3vw' }}
         >
-          Created at: {dateTime}
+          Created at: {moment({ dateTime }).format('lll')}
         </p>
         <h3 className="card-title">
           <strong>Post Title: {postTitle}</strong>
