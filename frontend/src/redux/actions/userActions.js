@@ -6,7 +6,6 @@ import {
   LOGOUT,
   INSTRUCTOR_SIGNUP,
   INSTRUCTOR_SIGNUP_FAIL,
-  // AUTHENTICATED,
   GET_MY_PROFILE
 } from '../reducers/constants';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
@@ -28,21 +27,18 @@ export function localSignup(displayName, email, password, role) {
           type: LOGIN,
           payload: response.data
         });
-        // dispatch({
-        //   type: AUTHENTICATED
-        // });
       } else {
-        console.log('LOGIN_FAIL - response.data', response.data);
+        console.log('localSignup - LOGIN_FAIL - response.data', response.data);
         dispatch({
           type: LOGIN_FAIL,
-          payload: response.data
+          payload: response.data.message
         });
       }
     } catch (err) {
-      console.log('LOGIN_FAIL - err', err.data);
+      console.log('localSignup - LOGIN_FAIL - err', err.response);
       dispatch({
         type: LOGIN_FAIL,
-        payload: err
+        payload: err.response.data
       });
     }
   };
@@ -50,30 +46,35 @@ export function localSignup(displayName, email, password, role) {
 
 export function loginByEmail(email, password, history) {
   return async dispatch => {
-    const response = await axios.post(SERVER_URL + '/api/auth/login', {
-      email,
-      password
-    });
-    if (response.data.success) {
-      console.log('local login res: ', response.data);
-      localStorage.setItem('token', response.data.token);
-      dispatch({
-        type: LOGIN,
-        payload: response.data
+    try {
+      const response = await axios.post(SERVER_URL + '/api/auth/login', {
+        email,
+        password
       });
-      // dispatch({
-      //   type: AUTHENTICATED
-      // });
-      if (response.data.role === 'student') {
-        history.push('/CreateQuestion');
+      if (response.data.success) {
+        console.log('local login res: ', response.data);
+        localStorage.setItem('token', response.data.token);
+        dispatch({
+          type: LOGIN,
+          payload: response.data
+        });
+        if (response.data.role === 'student') {
+          history.push('/CreateQuestion');
+        } else {
+          history.push('/TakeQuestions');
+        }
       } else {
-        history.push('/TakeQuestions');
+        console.log('local login err: ', response.data);
+        dispatch({
+          type: LOGIN_FAIL,
+          payload: response.data.message
+        });
       }
-      // dispatch(getMyProfile());
-    } else {
+    } catch (err) {
+      console.log('localLogin - LOGIN_FAIL - err', err.response);
       dispatch({
         type: LOGIN_FAIL,
-        payload: response.data
+        payload: err.response.data
       });
     }
   };
@@ -81,35 +82,42 @@ export function loginByEmail(email, password, history) {
 
 export function loginByFacebook(access_token, role, history) {
   return async dispatch => {
-    const response = await axios.post(SERVER_URL + '/api/auth/login/facebook', {
-      access_token,
-      role
-    });
-
-    if (response.data.success) {
-      console.log('facebook login res: ', response.data);
-      localStorage.setItem('token', response.data.token);
-      dispatch({
-        type: LOGIN,
-        payload: response.data
-      });
-      // dispatch({
-      //   type: AUTHENTICATED
-      // });
-      console.log('facebook login history: ', history);
-
-      if (history) {
-        if (response.data.role === 'student') {
-          history.push('/CreateQuestion');
-        } else {
-          history.push('/TakeQuestions');
+    try {
+      const response = await axios.post(
+        SERVER_URL + '/api/auth/login/facebook',
+        {
+          access_token,
+          role
         }
+      );
+
+      if (response.data.success) {
+        console.log('facebook login res: ', response.data);
+        localStorage.setItem('token', response.data.token);
+        dispatch({
+          type: LOGIN,
+          payload: response.data
+        });
+        console.log('facebook login history: ', history);
+
+        if (history) {
+          if (response.data.role === 'student') {
+            history.push('/CreateQuestion');
+          } else {
+            history.push('/TakeQuestions');
+          }
+        }
+      } else {
+        dispatch({
+          type: LOGIN_FAIL,
+          payload: response.data.message
+        });
       }
-      // dispatch(getMyProfile());
-    } else {
+    } catch (err) {
+      console.log('facebookLogin - LOGIN_FAIL - err', err.response);
       dispatch({
         type: LOGIN_FAIL,
-        payload: response.data
+        payload: err.response.data
       });
     }
   };
@@ -232,9 +240,6 @@ export function getMyProfile() {
             type: GET_MY_PROFILE,
             payload: response.data.profile
           });
-          // dispatch({
-          //   type: AUTHENTICATED
-          // });
         }
       } catch (err) {
         console.log('getMyProfile error: ', err);

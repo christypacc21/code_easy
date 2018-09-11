@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         authenticated: true
       };
     case LOGIN_FAIL:
-      alert('Error: ' + action.payload.message);
+      alert('Error: ' + action.payload);
       return {
         ...state,
         authenticated: false
@@ -40,16 +40,11 @@ export default (state = initialState, action) => {
         instructor: true
       };
     case INSTRUCTOR_SIGNUP_FAIL:
-      alert('Error: ' + action.payload.message);
+      alert('Error: ' + action.payload);
       return {
         ...state,
         authenticated: false
       };
-    // case AUTHENTICATED:
-    //   return {
-    //     ...state,
-    //     authenticated: true
-    //   };
     case GET_MY_PROFILE:
       return {
         ...state,

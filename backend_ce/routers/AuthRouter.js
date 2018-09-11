@@ -73,20 +73,14 @@ module.exports = class AuthRouter {
 				req.body.email
 			);
 			if (duplicateEmail.length > 0) {
-				return res.json({
-					success: false,
-					message: 'That email address has already been used'
-				});
+				return res.status(401).send('That email address has already been used');
 			}
 			const hash = await bcrypt.hashPassword(req.body.password);
 			const newUser = await this.authService
 				.localSignUp(req.body.displayName, req.body.email, hash, req.body.role)
 				.catch(err => {
 					console.log('localSignUp - err', err.detail);
-					return res.json({
-						success: false,
-						message: 'That username has already been used'
-					});
+					return res.status(401).send('That username has already been used');
 				});
 
 			if (newUser[0]) {

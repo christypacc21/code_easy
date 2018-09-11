@@ -1,3 +1,5 @@
+// should call the options from backend database
+
 export const options = [
   { value: 'blockchain', label: 'Blockchain' },
   { value: 'python', label: 'Python' },
