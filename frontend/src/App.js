@@ -32,7 +32,7 @@ import { connect } from 'react-redux';
 import * as userActions from './redux/actions/userActions';
 
 class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getMyProfile();
   }
 

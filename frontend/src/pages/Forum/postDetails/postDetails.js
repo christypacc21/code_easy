@@ -14,6 +14,13 @@ class PostDetails extends Component {
     this.props.onRequestPostDetails(id);
   }
 
+  reload() {
+    // [CODE REVIEW]
+    const id = this.props.match.params.id;
+    console.log('haha2' + id);
+    this.props.onRequestPostDetails(id);
+  }
+
   render() {
     const postDetailsData = this.props.postDetails;
     return (
@@ -50,7 +57,10 @@ class PostDetails extends Component {
         </div>
 
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
-          <CommentForm paramsId={this.props.match.params.id} />
+          <CommentForm
+            onCommentSubmit={this.reload /* [CODE REVIEW] */}
+            paramsId={this.props.match.params.id}
+          />
           {/* <p>GET and show CommentList here:</p> */}
           <CommentList comments={this.props.comments} />
           {/* <CommentForm /> */}

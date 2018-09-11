@@ -1,9 +1,10 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 class Pricing extends React.Component {
   onToken = token => {
-    fetch('/save-stripe-token', {
+    fetch(SERVER_URL + '/api/payment/charge', {
       method: 'POST',
       body: JSON.stringify(token)
     }).then(response => {

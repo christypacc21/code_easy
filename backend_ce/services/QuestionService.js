@@ -105,53 +105,56 @@ module.exports = class QuestionService {
 
 	listQuestion(id) {
 		// Checking instructor before listing questions
-		return this.knex
-			.select()
-			.from(USERS)
-			.where('id', id)
-			.andWhere('role', 'instructor')
-			.then(instructor => {
-				if (!instructor) {
-					throw new Error('Instructor not found');
-				} else {
-					return this.knex
-						.select()
-						.from(QUESTIONS)
-						.where('active', true)
-						.then(questionList => {
-							const getQuestionListInfo = questionList.map(question => {
-								// console.log('question', question);
-								const getQuestionSkills = this.knex
-									.select('skill')
-									.from(CODINGSKILLS)
-									.join(QUESTIONS_SKILLS, 'codingSkill_id', 'codingSkills.id')
-									.where('question_id', question.id);
+		return (
+			this.knex
+				.select()
+				.from(USERS)
+				.where('id', id)
+				.andWhere('role', 'instructor')
+				.then(instructor => {
+					if (!instructor) {
+						throw new Error('Instructor not found');
+					} else {
+						return this.knex
+							.select()
+							.from(QUESTIONS)
+							.where('active', true);
+					}
+				})
+			// [CODE REVIEW]
+				.then(questionList => {
+					const getQuestionListInfo = questionList.map(question => {
+						// console.log('question', question);
+						const getQuestionSkills = this.knex
+							.select('skill')
+							.from(CODINGSKILLS)
+							.join(QUESTIONS_SKILLS, 'codingSkill_id', 'codingSkills.id')
+							.where('question_id', question.id);
 
-								const getChatId = this.knex
-									.select('id')
-									.from(CHATROOOMS)
-									.where('question_id', question.id);
+						const getChatId = this.knex
+							.select('id')
+							.from(CHATROOOMS)
+							.where('question_id', question.id);
 
-								return Promise.all([getQuestionSkills, getChatId]).then(
-									skillChatInfo => {
-										// console.log('skillChatInfo', skillChatInfo);
-										const questionListInfo = {
-											questionInfo: question,
-											skillInfo: skillChatInfo[0],
-											chatInfo: skillChatInfo[1][0]
-										};
-										return questionListInfo;
-									}
-								);
-							});
-							return Promise.all(getQuestionListInfo).then(questionListInfo => {
+						return Promise.all([getQuestionSkills, getChatId]).then(
+							skillChatInfo => {
+								// console.log('skillChatInfo', skillChatInfo);
+								const questionListInfo = {
+									questionInfo: question,
+									skillInfo: skillChatInfo[0],
+									chatInfo: skillChatInfo[1][0]
+								};
 								return questionListInfo;
-							});
-						});
-				}
-			})
-			.catch(err => {
-				throw err;
-			});
+							}
+						);
+					});
+					return Promise.all(getQuestionListInfo).then(questionListInfo => {
+						return questionListInfo;
+					});
+				})
+				.catch(err => {
+					throw err;
+				})
+		);
 	}
 };
