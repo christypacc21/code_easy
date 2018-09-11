@@ -1,7 +1,8 @@
 // class component -redux
 import React, { Component } from 'react';
-import MyPostCard from './myPostCard';
+import moment from 'moment';
 import { connect } from 'react-redux';
+import MyPostCard from './myPostCard';
 import { requestMyPosts } from '../../../redux/actions/forumActions';
 
 class MyPostList extends Component {
@@ -22,12 +23,13 @@ class MyPostList extends Component {
       console.log('renderPostList got data :');
       console.log(this.props.postData);
       return this.props.postData.map((post, i) => {
+        const dateTime = moment(post.created_at).format('lll');
         return (
           <div className="card col-sm-4" key={i}>
             <MyPostCard
               // key={i}
               postId={post.id}
-              dateTime={post.created_at}
+              dateTime={dateTime}
               postTitle={post.title}
               postContent={post.content}
               postImagePath={post.image_path}
