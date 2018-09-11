@@ -7,9 +7,9 @@ module.exports = class UserRouter {
 
 	router() {
 		let router = express.Router();
-		router.post('/instructor/signup', this.instructorSignUp.bind(this));
-		router.get('/user/profile', this.getProfile.bind(this));
-		router.post('/user/profilePic', this.uploadProfilePic.bind(this));
+		router.post('/instructor/signUp', this.instructorSignUp.bind(this));
+		router.get('/profile', this.getProfile.bind(this));
+		router.post('/profilePic', this.uploadProfilePic.bind(this));
 		return router;
 	}
 

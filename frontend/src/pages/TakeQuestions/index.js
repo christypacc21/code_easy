@@ -115,8 +115,25 @@ class TakeQuestions extends React.Component {
   };
 
   render() {
-    if (!this.props.questions) {
-      return <h1>Waiting for more questions...</h1>;
+    console.log('this.props.questions-render', this.props.questions[0]);
+
+    if (!this.props.questions[0]) {
+      return (
+        <React.Fragment>
+          <div
+            className="jumbotron jumbotron-fluid"
+            style={{ margin: 0, background: '#00B0AF' }}
+          >
+            <div className="container py-3">
+              <div className="row">
+                <h2 style={{ color: 'white' }}>
+                  Waiting for more questions...
+                </h2>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      );
     } else {
       return (
         <React.Fragment>
@@ -149,7 +166,6 @@ class TakeQuestions extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('zzzzzzzzzzzzzzzz check chatInfo');
   console.log(state.questions.all);
   return {
     questions: state.questions.all

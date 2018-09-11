@@ -14,7 +14,7 @@ const SERVER_URL = process.env.REACT_APP_API_SERVER;
 export function localSignup(displayName, email, password, role) {
   return async dispatch => {
     try {
-      const response = await axios.post(SERVER_URL + '/api/signup', {
+      const response = await axios.post(SERVER_URL + '/api/auth/signup', {
         displayName,
         email,
         password,
@@ -50,7 +50,7 @@ export function localSignup(displayName, email, password, role) {
 
 export function loginByEmail(email, password, history) {
   return async dispatch => {
-    const response = await axios.post(SERVER_URL + '/api/login', {
+    const response = await axios.post(SERVER_URL + '/api/auth/login', {
       email,
       password
     });
@@ -81,7 +81,7 @@ export function loginByEmail(email, password, history) {
 
 export function loginByFacebook(access_token, role, history) {
   return async dispatch => {
-    const response = await axios.post(SERVER_URL + '/api/login/facebook', {
+    const response = await axios.post(SERVER_URL + '/api/auth/login/facebook', {
       access_token,
       role
     });
@@ -182,7 +182,7 @@ export function updateInstructorProfile(
 
     const response = await axios({
       method: 'post',
-      url: SERVER_URL + '/api/instructor/signup',
+      url: SERVER_URL + '/api/user/instructor/signUp',
       headers: {
         Authorization: 'Bearer ' + token,
         'Content-Type': 'multipart/form-data'
@@ -238,7 +238,7 @@ export function getMyProfile() {
         }
       } catch (err) {
         console.log('getMyProfile error: ', err);
-        alert('Cannot get user profile with error: ' + err);
+        alert('Failed to get user profile ' + err);
       }
     }
   };
