@@ -6,8 +6,8 @@ import { getHistory } from '../../redux/actions/historyActions';
 class HistoryList extends Component {
   componentWillMount() {
     this.props.onGetHistory();
-    // console.log('aaaaaa');
-    // console.log(this.props.postData);
+    console.log('aaaaaa');
+    console.log(this.props.historyData);
   }
 
   renderHistoryList() {
@@ -18,12 +18,19 @@ class HistoryList extends Component {
         return (
           <div key={i}>
             <HistoryCard
-              // skills={}
-              dateTime={history.message.created_at}
-              content={history.question.content}
-              imagePath={history.question.image_path}
+              skill={history.skill}
+              questionDateTime={history.questionDateTime}
+              chatroomStartTime={history.chatroomStartTime}
+              content={history.content}
+              imagePath={history.image_path}
               // username={}
-              // rating={}
+              instructorId={history.instructor_id}
+              studentId={history.student_id}
+              rating={history.s_rating}
+              duration={history.duration}
+              fee={history.fee}
+              chatroomId={history.chatroom_id}
+              questionId={history.question_id}
             />
           </div>
         );
@@ -34,8 +41,22 @@ class HistoryList extends Component {
   render() {
     return (
       <div>
-        <p>History list</p>
-        {this.renderHistoryList()}
+        {/* <React.Fragment> */}
+        <div
+          // className="jumbotron jumbotron-fluid"
+          className=""
+          style={{ margin: 0, background: '#00B0AF' }}
+        >
+          <div className="container py-3">
+            <h4 style={{ color: 'white' }}>
+              Chat History Here (Questions with ended chatroom)(Consultation
+              service finished)
+            </h4>
+            {this.renderHistoryList()}
+          </div>
+          <br />
+        </div>
+        {/* </React.Fragment> */}
       </div>
     );
   }

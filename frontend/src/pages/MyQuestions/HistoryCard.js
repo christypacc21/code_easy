@@ -1,67 +1,99 @@
 // func component
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
+// import Lightbox from 'react-images';
 
-const HistoryCard = ({ dateTime, content, imagePath }) => {
-  // if (!postId) {
-  //   return <h1>Loading posts</h1>;
-  // }
-  return (
-    // <div className="card" >
-    //   <p>
-    //     Skills dateTime 'titlse' image 'userpic / username' 'Link to chatroom
-    //     record' rating
-    //   </p>
-    // </div>
-    <div style={{ height: '580px' }} className="card col-sm-6">
-      <div className="card-body">
-        <div style={{ fontSize: '12px' }}>
-          {/* <p
-            className="card-text"
-            style={{ display: 'inline-block', marginRight: '2vw' }}
-          >
-            Skills
-          </p> */}
-          <p
-            className="card-text"
-            style={{ display: 'inline-block', marginRight: '2vw' }}
-          >
-            {moment({ dateTime }).format('lll')}
-          </p>
-          <h5 className="card-title">
-            Content:
-            {content}
-          </h5>
-          {/* <img
-            className="card"
+const HistoryCard = ({
+  skill,
+  questionDateTime,
+  chatroomStartTime,
+  content,
+  imagePath,
+  // username={}
+  instructorId,
+  studentId,
+  rating,
+  duration,
+  fee,
+  chatroomId,
+  questionId
+}) => {
+  if (!content) {
+    return <h1>You don't have any chat history</h1>;
+  } else {
+    return (
+      <div className="card">
+        <div className="card-header text-muted">
+          Related coding skills: | Chatroom Id [{chatroomId}] | Question Id [
+          {questionId}] | Question created at [
+          {moment({ questionDateTime }).format('lll')}(
+          {moment(questionDateTime).fromNow()}
+          )]
+          {/* {role == instructor
+            ? `InstuctorID [${instructorId}]`
+            : `StudentID [${studentId}]`} */}
+          <div
             style={{
-              maxHeight: '10em',
-              display: 'inline-block',
-              marginRight: '2vw'
+              marginTop: '4px',
+              display: 'flex',
+              flexDirection: 'row'
             }}
-            alt="(Failed to show question img )"
-            // src={`${process.env.REACT_APP_API_SERVER}/${propicPath}`}
-          /> */}
-          <p className="card-text">Username</p>
-          {!imagePath ? (
-            <p />
-          ) : (
-            <img
-              className="card"
-              style={{ maxHeight: '10em' }}
-              alt="(Failed to show question img )"
-              src={`${process.env.REACT_APP_API_SERVER}/${imagePath}`}
-            />
-          )}
+          >
+            <h3 style={{ margin: '0 3px' }}>
+              <span className="badge badge-pill badge-info">{skill}</span>
+            </h3>
+          </div>
         </div>
-        {/* <Link className="btn btn-info btn-block">Enter chat record</Link> */}
+
+        <div className="card-body">
+          <div className="row">
+            <div className="col-md-4">
+              {imagePath ? (
+                <img
+                  className="card-img-top codePhoto"
+                  style={{ width: 250, cursor: 'pointer' }}
+                  src={`${process.env.REACT_APP_API_SERVER}/${imagePath}`}
+                  alt={content}
+                  // onClick={() =>
+                  //   this.openLightbox(
+                  //     `${process.env.REACT_APP_API_SERVER}/${
+                  //       imagePath
+                  //     }`
+                  //   )
+                  // }
+                />
+              ) : (
+                <p>This question has no image</p>
+              )}
+            </div>
+
+            <div className="col-md-4">
+              <h5 className="card-title">Question</h5>
+              <p className="card-text">{content}</p>
+              {!content ? (
+                <div>Loading Chatroom</div>
+              ) : (
+                <Link
+                  to={`/chatroom/${chatroomId}`}
+                  className="btn btn-warning "
+                >
+                  Read Chat Record
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="card-footer text-muted">
+          Chatroom started at : {moment({ chatroomStartTime }).format('lll')}(
+          {moment(chatroomStartTime).fromNow()}) | Duration:
+          {duration} mins | Fee:hkd$
+          {fee} | Rating: {rating}
+        </div>
       </div>
-      <div>
-        <p className="card-text">Rating: </p>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default HistoryCard;
