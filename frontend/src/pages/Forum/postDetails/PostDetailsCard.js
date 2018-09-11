@@ -68,7 +68,9 @@ const PostDetailsCard = ({
         </h3>
         <p className="card-text">Post Content: {postContent}</p>
         {
-          (postImagePath = `${process.env.REACT_APP_API_SERVER}/null` ? (
+          (postImagePath = /* [CODE REVIEW] FIX IT. Single equal sign */ `${
+            process.env.REACT_APP_API_SERVER
+          }/null` ? (
             <p>[[[This post has no image]]]</p>
           ) : (
             <div>
