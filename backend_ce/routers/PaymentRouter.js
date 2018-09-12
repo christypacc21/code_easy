@@ -1,10 +1,7 @@
 require('dotenv').config();
-const keyPublishable = process.env.PUBLISHABLE_KEY;
-const keySecret = process.env.SECRET_KEY;
+const keySecret = process.env.STRIPE_SECRET_KEY;
 const express = require('express');
 const stripe = require('stripe')(keySecret);
-
-
 
 module.exports = class PaymentRouter {
 	constructor(paymentService) {
@@ -18,56 +15,41 @@ module.exports = class PaymentRouter {
 	}
 
 	postCharge(req, res) {
-		let amount = 500;
-
-		stripe.customers.create({
-			email: req.body.stripeEmail,
-			source: req.body.stripeToken
-		})
-			.then(customer =>
-				stripe.charges.create({
-					amount,
-					description: 'Sample Charge',
-					currency: 'usd',
-					customer: customer.id
-				}))
-			.then(charge => res.json(charge))
-			.catch(err => res.status(500).json({
-				success: false,
-				message: err.message,
-				error: err
-			}));
-	}
-
-	postQuestion(req, res) {
-		if (req.files != null) {
-			const inputFile = req.files.inputFile;
-			const filePath = 'images/question/' + inputFile.name;
-			inputFile.mv(__dirname + '/../' + filePath, (err) => {
-				if (err) return res.status(500).send(err);
+		console.log('payment req: ', req.body);
+		stripe.charges
+			.create({
+				currency: 'hkd',
+				amount: req.body.amount,
+				description: req.body.description,
+				source: req.body.token != null ? req.body.token.id : null
+			})
+			.then(charge => {
+				if (charge.paid) {
+					console.log('charge: ', charge);
+					return this.paymentService
+						.addCredit(
+							req.user.id,
+							charge.description,
+							charge.amount,
+							charge.id
+						)
+						.then(totalQuestionCredits => {
+							res.json({
+								success: true,
+								amount: charge.amount,
+								receipt: charge.id,
+								totalQuestionCredits: totalQuestionCredits[0]
+							});
+						});
+				}
+			})
+			.catch(err => {
+				console.log('payment 2 - err', err);
+				res.status(400).json({
+					success: false,
+					message: err.message,
+					error: err
+				});
 			});
-
-			return this.questionService.createQuestion(req.user.id, req.body.content, filePath, req.body.skills)
-				.then((questionInfo) => res.json({
-					success: true,
-					questionInfo
-				}))
-				.catch((err) => res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				}));
-		} else {
-			return this.questionService.createQuestion(req.user.id, req.body.content, null, req.body.skills)
-				.then((questionInfo) => res.json({
-					success: true,
-					questionInfo
-				}))
-				.catch((err) => res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				}));
-		}
 	}
 };

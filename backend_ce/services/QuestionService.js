@@ -18,7 +18,7 @@ module.exports = class QuestionService {
 			.andWhere('role', 'student')
 			.then(student => {
 				// console.log(student[0].s_questionsCanAsk);
-				if (!student) {
+				if (!student[0]) {
 					throw new Error('Student not found');
 				} else if (student[0].s_questionsCanAsk <= 0) {
 					throw new Error('You do not have enough credit to ask a question');
@@ -40,7 +40,7 @@ module.exports = class QuestionService {
 				.where('id', id)
 				.andWhere('role', 'student');
 
-			if (!student) {
+			if (!student[0]) {
 				throw new Error('Student not found');
 			}
 			if (student[0].s_questionsCanAsk <= 0) {
@@ -105,56 +105,53 @@ module.exports = class QuestionService {
 
 	listQuestion(id) {
 		// Checking instructor before listing questions
-		return (
-			this.knex
-				.select()
-				.from(USERS)
-				.where('id', id)
-				.andWhere('role', 'instructor')
-				.then(instructor => {
-					if (!instructor) {
-						throw new Error('Instructor not found');
-					} else {
-						return this.knex
-							.select()
-							.from(QUESTIONS)
-							.where('active', true);
-					}
-				})
-			// [CODE REVIEW]
-				.then(questionList => {
-					const getQuestionListInfo = questionList.map(question => {
-						// console.log('question', question);
-						const getQuestionSkills = this.knex
-							.select('skill')
-							.from(CODINGSKILLS)
-							.join(QUESTIONS_SKILLS, 'codingSkill_id', 'codingSkills.id')
-							.where('question_id', question.id);
+		return this.knex
+			.select()
+			.from(USERS)
+			.where('id', id)
+			.andWhere('role', 'instructor')
+			.then(instructor => {
+				if (!instructor[0]) {
+					throw new Error('Instructor not found');
+				} else {
+					return this.knex
+						.select()
+						.from(QUESTIONS)
+						.where('active', true);
+				}
+			})
+			.then(questionList => {
+				const getQuestionListInfo = questionList.map(question => {
+					// console.log('question', question);
+					const getQuestionSkills = this.knex
+						.select('skill')
+						.from(CODINGSKILLS)
+						.join(QUESTIONS_SKILLS, 'codingSkill_id', 'codingSkills.id')
+						.where('question_id', question.id);
 
-						const getChatId = this.knex
-							.select('id')
-							.from(CHATROOOMS)
-							.where('question_id', question.id);
+					const getChatId = this.knex
+						.select('id')
+						.from(CHATROOOMS)
+						.where('question_id', question.id);
 
-						return Promise.all([getQuestionSkills, getChatId]).then(
-							skillChatInfo => {
-								// console.log('skillChatInfo', skillChatInfo);
-								const questionListInfo = {
-									questionInfo: question,
-									skillInfo: skillChatInfo[0],
-									chatInfo: skillChatInfo[1][0]
-								};
-								return questionListInfo;
-							}
-						);
-					});
-					return Promise.all(getQuestionListInfo).then(questionListInfo => {
-						return questionListInfo;
-					});
-				})
-				.catch(err => {
-					throw err;
-				})
-		);
+					return Promise.all([getQuestionSkills, getChatId]).then(
+						skillChatInfo => {
+							// console.log('skillChatInfo', skillChatInfo);
+							const questionListInfo = {
+								questionInfo: question,
+								skillInfo: skillChatInfo[0],
+								chatInfo: skillChatInfo[1][0]
+							};
+							return questionListInfo;
+						}
+					);
+				});
+				return Promise.all(getQuestionListInfo).then(questionListInfo => {
+					return questionListInfo;
+				});
+			})
+			.catch(err => {
+				throw err;
+			});
 	}
 };

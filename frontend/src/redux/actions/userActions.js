@@ -229,8 +229,7 @@ export function getMyProfile() {
           method: 'get',
           url: SERVER_URL + '/api/user/profile',
           headers: {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'multipart/form-data'
+            Authorization: 'Bearer ' + token
           }
         });
 
