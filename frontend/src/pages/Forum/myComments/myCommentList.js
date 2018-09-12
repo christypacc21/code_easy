@@ -8,20 +8,20 @@ import { requestMyComments } from '../../../redux/actions/forumActions';
 class MyCommentList extends Component {
   componentWillMount() {
     this.props.onRequestMyComments();
-    console.log('ComponentWillMountdata :' + this.props.commentData);
+    // console.log('ComponentWillMountdata :' + this.props.commentData);
   }
 
   renderMyCommentList() {
     if (this.props.isPending) {
-      console.log('rendermycommentlist is pending');
+      // console.log('rendermycommentlist is pending');
       return (
         <div style={{ margin: 10 }}>
           <p>Loading...</p>
         </div>
       );
     } else {
-      console.log('renderCommentList got data :');
-      console.log(this.props.commentData);
+      // console.log('renderCommentList got data :');
+      // console.log(this.props.commentData);
       return this.props.commentData.map((comment, i) => {
         const commentTime = moment(comment.commentTime).format('lll');
         const postTime = moment(comment.postTime).format('lll');
@@ -58,10 +58,10 @@ class MyCommentList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('started MapStateToProps->');
-  console.log(state.requestMyComments);
-  console.log('MapStateToProps after return->');
-  console.log(state.requestMyComments);
+  // console.log('started MapStateToProps->');
+  // console.log(state.requestMyComments);
+  // console.log('MapStateToProps after return->');
+  // console.log(state.requestMyComments);
   return {
     isPending: state.requestMyComments.isPending,
     commentData: state.requestMyComments.data.mycomments,

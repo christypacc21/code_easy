@@ -8,20 +8,20 @@ import { requestMyPosts } from '../../../redux/actions/forumActions';
 class MyPostList extends Component {
   componentWillMount() {
     this.props.onRequestMyPosts();
-    console.log('ComponentWillMountdata :' + this.props.postData);
+    // console.log('ComponentWillMountdata :' + this.props.postData);
   }
 
   renderMyPostList() {
     if (this.props.isPending) {
-      console.log('rendermypostlist is pending');
+      // console.log('rendermypostlist is pending');
       return (
         <div style={{ margin: 10 }}>
           <p>Loading...</p>
         </div>
       );
     } else {
-      console.log('renderPostList got data :');
-      console.log(this.props.postData);
+      // console.log('renderPostList got data :');
+      // console.log(this.props.postData);
       return this.props.postData.map((post, i) => {
         const dateTime = moment(post.created_at).format('lll');
         return (
@@ -56,10 +56,10 @@ class MyPostList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('started MapStateToProps->');
-  console.log(state.requestMyPosts);
-  console.log('MapStateToProps after return->');
-  console.log(state.requestMyPosts);
+  // console.log('started MapStateToProps->');
+  // console.log(state.requestMyPosts);
+  // console.log('MapStateToProps after return->');
+  // console.log(state.requestMyPosts);
   return {
     isPending: state.requestMyPosts.isPending,
     postData: state.requestMyPosts.data.myposts,
