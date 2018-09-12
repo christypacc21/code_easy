@@ -8,7 +8,10 @@ import {
   REQUEST_POSTDETAILS_FAILED,
   REQUEST_MYPOSTS_PENDING,
   REQUEST_MYPOSTS_SUCCESS,
-  REQUEST_MYPOSTS_FAILED
+  REQUEST_MYPOSTS_FAILED,
+  REQUEST_MYCOMMENTS_PENDING,
+  REQUEST_MYCOMMENTS_SUCCESS,
+  REQUEST_MYCOMMENTS_FAILED
   // CREATE_POST,
   // CREATE_COMMENT,
   // DELETE_COMMENT,
@@ -147,3 +150,23 @@ export function requestMyPosts() {
 }
 
 //-----------action - get myComments-----------//
+export function requestMyComments() {
+  return async dispatch => {
+    dispatch({ type: REQUEST_MYCOMMENTS_PENDING });
+
+    const token = localStorage.getItem('token');
+
+    const response = await axios({
+      method: 'get',
+      url: SERVER_URL + '/api/forum/mycomments',
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
+    if (response.status === 200) {
+      dispatch({ type: REQUEST_MYCOMMENTS_SUCCESS, payload: response.data });
+    } else {
+      dispatch({ type: REQUEST_MYCOMMENTS_FAILED });
+    }
+  };
+}

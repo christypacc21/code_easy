@@ -7,7 +7,10 @@ import {
   REQUEST_POSTDETAILS_FAILED,
   REQUEST_MYPOSTS_PENDING,
   REQUEST_MYPOSTS_SUCCESS,
-  REQUEST_MYPOSTS_FAILED
+  REQUEST_MYPOSTS_FAILED,
+  REQUEST_MYCOMMENTS_PENDING,
+  REQUEST_MYCOMMENTS_SUCCESS,
+  REQUEST_MYCOMMENTS_FAILED
   // CREATE_POST
   // CREATE_COMMENT,
   // DELETE_COMMENT,
@@ -85,7 +88,29 @@ export const requestMyPosts = (state = initialStateMyPosts, action = {}) => {
   }
 };
 //-----------reducer - get myComments-----------//
-
+const initialStateMyComments = {
+  isPending: false,
+  data: {
+    mycomments: []
+  },
+  error: ''
+};
+export const requestMyComments = (
+  state = initialStateMyComments,
+  action = {}
+) => {
+  switch (action.type) {
+    case REQUEST_MYCOMMENTS_PENDING:
+      return { ...state, isPending: true };
+    case REQUEST_MYCOMMENTS_SUCCESS:
+      console.log('request myposts success - reducer');
+      return { ...state, data: action.payload, isPending: false };
+    case REQUEST_MYCOMMENTS_FAILED:
+      return { ...state, error: action.payload, isPending: false };
+    default:
+      return state;
+  }
+};
 //--------reducer - search--------//
 
 //-----------reducer - delete comment-----------//

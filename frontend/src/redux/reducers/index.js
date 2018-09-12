@@ -6,6 +6,7 @@ import { requestPosts } from './forumReducer';
 import { requestPostDetails } from './forumReducer';
 import { requestMyPosts } from './forumReducer';
 import { getHistory } from './historyReducer';
+import { requestMyComments } from './forumReducer';
 
 const rootReducer = combineReducers({
   user,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   requestPosts,
   requestPostDetails,
   requestMyPosts,
-  getHistory
+  getHistory,
+  requestMyComments
 });
 
 export default rootReducer;

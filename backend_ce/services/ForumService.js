@@ -114,8 +114,19 @@ module.exports = class ForumService {
   //ok, can getMyComments from db with authenToken
   getMyComments(user_id) {
     return this.knex
-      .select()
+      .select(
+        'forumComments.id as commentId',
+        'forumComments.user_id as userId',
+        'forumComments.post_id as postId',
+        'forumComments.image_path as commentImagePath',
+        'forumComments.content as commentContent',
+        'forumPosts.content as postContent',
+        'forumPosts.title as postTitle',
+        'forumComments.created_at as commentTime',
+        'forumPosts.created_at as postTime'
+      )
       .from('forumComments')
-      .where('user_id', user_id);
+      .where('forumComments.user_id', user_id)
+      .leftJoin('forumPosts', 'forumPosts.id', 'forumComments.post_id');
   }
 };

@@ -28,6 +28,7 @@ import Profile from './pages/Profile';
 import instructorProfile from './pages/Profile/instructorProfile';
 import userProfile from './pages/Profile/userProfile';
 import MyPostsPage from './pages/Forum/myPosts/myPostsPage';
+import MyCommentsPage from './pages/Forum/myComments/myCommentsPage';
 
 import { connect } from 'react-redux';
 import * as userActions from './redux/actions/userActions';
@@ -63,6 +64,7 @@ class App extends Component {
               <Route exact path="/posts/new" component={CreatePost} />
               <Route exact path="/posts/:id" component={PostDetails} />
               <Route exact path="/myposts" component={MyPostsPage} />
+              <Route exact path="/mycomments" component={MyCommentsPage} />
               <Route exact path="/pricing" component={Pricing} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/AskQuestion" component={AskQuestion} />
@@ -108,6 +110,7 @@ class App extends Component {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/posts" component={PostsPage} />
               <Route exact path="/myposts" component={MyPostsPage} />
+              <Route exact path="/mycomments" component={MyCommentsPage} />
               <Route exact path="/posts/:id" component={PostDetails} />
               <Route exact path="/pricing" component={Pricing} />
               <Route exact path="/contact" component={Contact} />
