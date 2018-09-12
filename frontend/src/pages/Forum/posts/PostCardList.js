@@ -37,6 +37,7 @@ class PostCardList extends Component {
               propicPath={post.profilePic}
               username={post.display_name}
               dateTime={moment(post.created_at).format('lll')}
+              dateTimeFromNow={moment(post.created_at).fromNow()}
               postTitle={post.title}
               postContent={post.content}
               postImagePath={post.image_path}

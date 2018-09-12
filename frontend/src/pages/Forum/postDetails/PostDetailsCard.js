@@ -13,8 +13,8 @@ const PostDetailsCard = ({
   role,
   count
 }) => {
-  console.log('post image path:::::');
-  console.log(postImagePath);
+  // console.log('post image path-->');
+  // console.log(postImagePath);
   return (
     <div className="card">
       <div className="card-body">

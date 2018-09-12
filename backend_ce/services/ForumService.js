@@ -58,10 +58,11 @@ module.exports = class ForumService {
 
       .then(postDetails => {
         return this.knex
-          .select('*')
+          .select('*', 'forumComments.created_at as commentTime')
           .from('forumComments')
           .where('forumComments.post_id', post_id)
           .leftJoin('users', 'users.id', '=', 'forumComments.user_id')
+          .orderBy('commentTime', 'aesc')
           .then(comments => {
             return {
               postDetails: postDetails[0],

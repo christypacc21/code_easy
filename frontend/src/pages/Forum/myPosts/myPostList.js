@@ -24,12 +24,16 @@ class MyPostList extends Component {
       // console.log(this.props.postData);
       return this.props.postData.map((post, i) => {
         const dateTime = moment(post.created_at).format('lll');
+        const dateTimeFromNow = moment(post.created_at).fromNow();
+        // console.log('asdfas');
+        // console.log(dateTime);
         return (
           <div className="card col-sm-4" key={i}>
             <MyPostCard
               // key={i}
               postId={post.id}
               dateTime={dateTime}
+              dateTimeFromNow={dateTimeFromNow}
               postTitle={post.title}
               postContent={post.content}
               postImagePath={post.image_path}

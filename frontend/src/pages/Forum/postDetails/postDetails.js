@@ -12,7 +12,7 @@ import ForumTab from './ForumTab';
 class PostDetails extends Component {
   componentWillMount() {
     const id = this.props.match.params.id;
-    console.log('haha' + id);
+    // console.log('haha' + id);
     this.props.onRequestPostDetails(id);
   }
 
@@ -69,12 +69,7 @@ class PostDetails extends Component {
             paramsId={this.props.match.params.id}
           />
           {/* <p>GET and show CommentList here:</p> */}
-          <CommentList
-            comments={this.props.comments}
-            dateTime={moment(this.props.comments.created_at).format(
-              'MMMM Do YYYY, h:mm a'
-            )}
-          />
+          <CommentList comments={this.props.comments} />
 
           {/* <CommentForm /> */}
           <br />
@@ -88,7 +83,7 @@ class PostDetails extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.requestPostDetails.data.postDetails);
+  // console.log(state.requestPostDetails.data.postDetails);
   return {
     isPending: state.requestPostDetails.isPending,
     postDetails: state.requestPostDetails.data.postDetails,

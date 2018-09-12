@@ -1,6 +1,5 @@
 // func component
 import React from 'react';
-import moment from 'moment';
 
 const CommentCard = ({
   // commentId,
@@ -8,9 +7,10 @@ const CommentCard = ({
   propicPath,
   role,
   username,
-  dateTime,
+  commentTime,
   commentContent,
-  commentImagePath
+  commentImagePath,
+  commentTimeFromNow
 }) => {
   // if (!commentNum) {
   //   return (
@@ -77,9 +77,7 @@ const CommentCard = ({
           >
             Created at:
             <span style={{ paddingLeft: '15px' }} />
-            {/* {dateTime} */}
-            {moment({ dateTime }).format('lll')} (
-            {moment({ dateTime }).fromNow()})
+            {commentTime} ({commentTimeFromNow})
           </p>
         </div>
         <div className="jumbotron">

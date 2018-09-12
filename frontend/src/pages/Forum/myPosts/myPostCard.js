@@ -1,11 +1,11 @@
 // func component
 import React from 'react';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 const MyPostCard = ({
   // key,
   postId,
   dateTime,
+  dateTimeFromNow,
   postTitle,
   postContent,
   postImagePath,
@@ -30,7 +30,7 @@ const MyPostCard = ({
               className="card-text"
               style={{ fontSize: '20px', color: 'lightgrey' }}
             >
-              {dateTime} ({moment({ dateTime }).fromNow()})
+              {dateTime} ({dateTimeFromNow})
             </p>
             <div style={{ matginBottom: '10px' }} />
           </div>
