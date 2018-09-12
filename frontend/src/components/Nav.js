@@ -126,38 +126,6 @@ class Nav extends React.Component {
     }
   };
 
-  myPosts = () => {
-    if (this.props.authenticated) {
-      return (
-        <li className="nav-item ">
-          <Link
-            className="nav-link "
-            style={{ color: '#FFFFFF' }}
-            to="/myPosts"
-          >
-            MyPosts
-          </Link>
-        </li>
-      );
-    }
-  };
-
-  myComments = () => {
-    if (this.props.authenticated) {
-      return (
-        <li className="nav-item ">
-          <Link
-            className="nav-link "
-            style={{ color: '#FFFFFF' }}
-            to="/myComments"
-          >
-            MyComments
-          </Link>
-        </li>
-      );
-    }
-  };
-
   render() {
     return (
       <nav
@@ -214,8 +182,6 @@ class Nav extends React.Component {
                 Coding Community
               </Link>
             </li>
-            {this.myPosts()}
-            {this.myComments()}
             {this.userProfileOrInstructorProfile()}
             {/* <li className="nav-item">
               <Link className="nav-link" to="/profile">

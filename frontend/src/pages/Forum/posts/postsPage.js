@@ -1,6 +1,7 @@
 // class component
 import React, { Component } from 'react';
 import PostCardList from './PostCardList';
+import ForumTab from './ForumTab';
 // import SearchBar from './SearchBar';
 // import { setSearchField } from '.././redux/actions/forumActions';
 
@@ -9,6 +10,7 @@ class PostsPage extends Component {
     console.log('props' + this.props);
     return (
       <div>
+        <ForumTab />
         {/* <SearchBar /> */}
         {/* <div style={{ margin: 10 }}>
           {isPending ? (

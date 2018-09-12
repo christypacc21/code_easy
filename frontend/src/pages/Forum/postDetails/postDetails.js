@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { requestPostDetails } from '../../../redux/actions/forumActions';
+import ForumTab from './ForumTab';
 
 class PostDetails extends Component {
   componentWillMount() {
@@ -30,6 +31,7 @@ class PostDetails extends Component {
     const dateTime = moment(postDetailsData.created_at).format('lll');
     return (
       <div>
+        <ForumTab />
         <div
           className="jumbotron postDetails col-sm-12"
           style={{ margin: 0, background: '#D3D3D3' }}

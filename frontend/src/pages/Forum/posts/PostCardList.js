@@ -17,7 +17,8 @@ class PostCardList extends Component {
       return (
         <div style={{ margin: 10 }}>
           <a className="btn btn-secondary btn-lg btn-block" href="/login">
-            Sign Up or Sign In to Create Post for Free!
+            {/* Sign Up or Sign In to Create Post for Free! */}
+            Loading Posts...
           </a>
         </div>
       );
@@ -50,15 +51,17 @@ class PostCardList extends Component {
   render() {
     return this.props.isPending ? (
       <div>
-        {/* <h1>Loading</h1> */}
-        <h1>Signup or Sign in to visit the dynamic coding community !!!</h1>
+        <h1>Loading Posts...</h1>
+        {/* <h1>
+          Signup or Sign in to visit the dynamic coding community !!! 
+        </h1> */}
       </div>
     ) : (
       <div>
         <div style={{ margin: 10 }}>
           <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
             Press to Create Post for Free!
-          </a>{' '}
+          </a>
         </div>
         <div className="PostCardList" />
         <div className="row">{this.renderPostList()}</div>

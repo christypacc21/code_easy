@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
 import Dropzone from 'react-dropzone';
 import { Link, withRouter } from 'react-router-dom';
+import ForumTab from './ForumTab';
 
 class CreatePost extends Component {
   state = {
@@ -25,13 +26,12 @@ class CreatePost extends Component {
 
     return (
       <div>
-        <Link className="btn btn-primary btn-lg" to="/posts">
-          Go back to posts
-        </Link>
-        <div
-          className="jumbotron jumbotron-fluid"
-          style={{ margin: 0, background: '#00B0AF' }}
-        >
+        <ForumTab />
+        <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
+          <Link className="btn btn-secondary btn-lg" to="/posts">
+            Go back to posts
+          </Link>
+          <p />
           <div className="container">
             <div className="row">
               <h2 style={{ color: 'white' }}>Create a Forum Post!</h2>
@@ -112,17 +112,14 @@ class CreatePost extends Component {
             </form>
 
             <br />
-            {/* whts the dif between using a , button and input here? */}
             <button
-              // type="submit"
               className="btn btn-secondary btn-lg btn-block"
-              onClick={
-                () =>
-                  this.props
-                    .createPost(postTitle, postContent, filePath)
-                    .then(() => {
-                      this.props.history.goBack();
-                    }) //the params' names do i need to refer to somewhere?(ying goy not)
+              onClick={() =>
+                this.props
+                  .createPost(postTitle, postContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
+                  .then(() => {
+                    this.props.history.goBack();
+                  })
               }
             >
               Post to forum!
