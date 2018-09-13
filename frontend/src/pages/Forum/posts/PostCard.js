@@ -13,9 +13,6 @@ const PostCard = ({
   postImagePath,
   count
 }) => {
-  if (!postId) {
-    return <h1>Loading posts</h1>;
-  }
   return (
     <div>
       <div style={{ height: '580px' }}>

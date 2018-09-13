@@ -1,75 +1,74 @@
 @import url('https://fonts.googleapis.com/css?family=Lato" rel="stylesheet');
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
 }
 
 .App-header {
-    background-color: #9bccd0;
-    background-image: url('./assets/bannerBG.jpeg');
-    background-position: center;
-    background-size: cover;
-    height: 500px;
-    padding: 120px;
-    color: white;
+  background-color: #9bccd0;
+  background-image: url('./assets/bannerBG.jpeg');
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+  padding: 120px;
+  color: white;
 }
 
 .loading {
-    background-color: white;
-    height: 1300px;
-    color: black;
+  background-color: white;
+  height: 1300px;
+  color: black;
 }
 
 .bannerHow {
-    background-color: #00b0af;
-    height: 450px;
-    padding: 120px;
-    color: white;
+  background-color: #00b0af;
+  height: 450px;
+  padding: 120px;
+  color: white;
 }
 
 .aboutbanner {
-    background-color: #72d9dd;
-    height: 450px;
-    padding: 120px;
-    color: white;
+  background-color: #72d9dd;
+  height: 450px;
+  padding: 120px;
+  color: white;
 }
 
 .comBanner {
-    background-color: #ffffff;
-    height: 1300px;
-    padding: 120px;
-    color: white;
+  background-color: #ffffff;
+  height: 1300px;
+  padding: 120px;
+  color: white;
 }
 
 .App-title {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .App-intro {
-    font-size: large;
+  font-size: large;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 body {
-    font-family: 'Lato';
+  font-family: 'Lato';
 }
 
 .codeLogo {
-    font-family: 'Lato', bold;
+  font-family: 'Lato', bold;
 }
-
 
 /* 
 .postCard {
@@ -82,13 +81,67 @@ body {
 } */
 
 .instructorSpeechBubble {
-    padding: 10px 12px 8px 12px;
-    background: #ffc6dd;
-    border-radius: 0.4em;
+  padding: 10px 12px 8px 12px;
+  background: #ffc6dd;
+  border-radius: 0.4em;
 }
 
 .studentSpeechBubble {
-    padding: 10px 12px 8px 12px;
-    background: #c2effd;
-    border-radius: 0.4em;
+  padding: 10px 12px 8px 12px;
+  background: #c2effd;
+  border-radius: 0.4em;
+}
+
+.LandingPagePost {
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 0.4em;
+  margin: 0px 0px 30px 0px;
+  padding: 0;
+  color: black;
+  background: rgb(246, 246, 246);
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.LandingPagePostHeader {
+  background-color: lightgrey;
+  border-radius: 0.4em;
+  padding: 10px 30px 10px 30px;
+  margin: 1px 0px 0px 1px;
+  color: black;
+}
+
+.LandingPagePostContent {
+  padding: 20px 10px 34px 20px;
+  color: rgb(114, 106, 106);
+}
+
+.imageBox {
+  height: 70px;
+  width: 70px;
+  /* border: 2px solid black; */
+  border-radius: 5em;
+  margin: 10px 10px 10px 10px;
+}
+
+.contentBox {
+  display: flex;
+}
+
+.contentBoxChild {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commuPostImage {
+  max-height: 120px;
+  max-width: 120px;
+  /* border: 2px solid black; */
+  border-radius: 0.5em;
+  margin: 10px 10px 10px 10px;
 }
