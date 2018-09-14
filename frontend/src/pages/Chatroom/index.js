@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChatTab from '../MyQuestions/ChatTab';
+import InstructorInfo from './InstructorInfo';
 import '../../App.css';
 
 import * as ChatActions from '../../redux/actions/chatActions';
@@ -56,9 +57,33 @@ class Chatroom extends Component {
   render() {
     console.log(this.state.imputMessage);
     // console.log(this.props.match);
+    const {
+      displayName,
+      email,
+      iEducation,
+      iIntroduction,
+      iNumRating,
+      iTotalRating,
+      iYearOfCodeExp,
+      id,
+      profilePic,
+      role
+    } = this.props.user;
     return (
       <div>
         <ChatTab />
+        <InstructorInfo
+          name={displayName}
+          email={email}
+          edu={iEducation}
+          intro={iIntroduction}
+          numRate={iNumRating}
+          totalRate={iTotalRating}
+          codeExp={iYearOfCodeExp}
+          id={id}
+          proPic={profilePic}
+          role={role}
+        />
         <div className="jumbotron">
           <div className="container">
             <h1>Live Chat!</h1>
@@ -112,6 +137,8 @@ class Chatroom extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log('statehahahahaha');
+  console.log(state);
   return {
     user: state.user.profile,
     messages: state.chat.messages
