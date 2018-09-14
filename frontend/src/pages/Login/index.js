@@ -25,17 +25,6 @@ class PureLogin extends React.Component {
   //   }
   // }
 
-  // componentDidUpdate() {
-  //   console.log('this.props-didUpdate', this.props);
-  //   if (this.props.authenticated) {
-  //     if (this.props.role === 'student') {
-  //       this.props.history.push('/CreateQuestion');
-  //     } else {
-  //       this.props.history.push('/TakeQuestions'); //instructor after sign up>TakeQuestions
-  //     }
-  //   }
-  // }
-
   componentClicked() {
     return null;
   }
@@ -63,7 +52,7 @@ class PureLogin extends React.Component {
   render() {
     // console.log('fb id: ', process.env.REACT_APP_FACEBOOK_APP_ID);
     return (
-      <div>
+      <div className="loginForm">
         <br />
         <h3 className="text-center"> Login Form </h3>{' '}
         <div className="container">

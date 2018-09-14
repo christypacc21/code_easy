@@ -60,9 +60,11 @@ class Commun extends React.Component {
         <div style={{ margin: 50 }}>
           <div className="row ">
             <h3 className="display-4 wording" style={{ color: '#00b0af' }}>
-              Newest Questions
+              Latest Posts
             </h3>
           </div>
+          <br />
+
           {this.renderPostList()}
           <br />
           {!this.params === undefined ? (

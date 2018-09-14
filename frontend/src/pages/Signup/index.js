@@ -6,20 +6,27 @@ class Signup extends Component {
     return (
       <div
         className="jumbotron jumbotron-fluid"
-        style={{ margin: 0, background: '#00B0AF' }}
+        style={{
+          height: '65vh',
+          margin: 0,
+          paddingLeft: 15,
+          paddingRight: 15,
+          background: '#00B0AF'
+        }}
       >
         <div className="container">
           <div className="row">
-            <h2 style={{ color: 'white' }}>Sign up now!</h2>
+            <h1 style={{ color: 'white' }}>Sign up now!</h1>
           </div>
+          <br />
           <div className="row">
-            <h6 style={{ color: 'white' }}>Choose your role first!</h6>
+            <h5 style={{ color: 'white' }}>Choose your role first!</h5>
           </div>
-
+          <br />
           <div className="row">
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
-                <h5 className="card-title">Student</h5>
+                <h4 className="card-title">Student</h4>
                 <Link className="btn btn-primary " to="/user-signup">
                   Sign up now
                 </Link>
@@ -28,7 +35,7 @@ class Signup extends Component {
 
             <div className="card col-sm-4" style={{}}>
               <div className="card-body">
-                <h5 className="card-title">Instructor</h5>
+                <h4 className="card-title">Instructor</h4>
                 <Link className="btn btn-primary " to="/instuctor-signup">
                   Sign up now
                 </Link>

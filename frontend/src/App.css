@@ -20,7 +20,7 @@
 
 .loading {
     background-color: white;
-    height: 600px;
+    height: 100vh;
     color: black;
 }
 
@@ -145,4 +145,10 @@ body {
     /* border: 2px solid black; */
     border-radius: 0.5em;
     margin: 10px 10px 10px 10px;
+}
+
+.loginForm {
+    background: rgb(246, 246, 246);
+    padding-top: 5vh;
+    height: 65vh;
 }
