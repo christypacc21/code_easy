@@ -19,7 +19,7 @@ module.exports = class HistoryService {
         )
         .from('chatrooms')
         .leftJoin('questions', 'chatrooms.question_id', 'questions.id')
-        .where('chatrooms.active', false) // to check whether the chat is ended(active=false)(gone to history) or not
+        // .where('chatrooms.active', false) // to check whether the chat is ended(active=false)(gone to history) or not
         .where('chatrooms.student_id', user_id)
         .orWhere('chatrooms.instructor_id', user_id)
         .rightJoin(

@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-const HistoryCard = ({
+const OngoingCard = ({
   skill,
   questionDateTime,
   chatroomStartTime,
@@ -70,7 +70,7 @@ const HistoryCard = ({
             {!content ? (
               <div>Loading Chatroom</div>
             ) : (
-              <Link to={`/chatroom/${chatroomId}`} className="btn btn-warning ">
+              <Link to={`/chatroom/${chatroomId}`} className="btn btn-warning">
                 Read Chat Record
               </Link>
             )}
@@ -88,4 +88,4 @@ const HistoryCard = ({
   );
 };
 
-export default HistoryCard;
+export default OngoingCard;

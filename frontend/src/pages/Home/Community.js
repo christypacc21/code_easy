@@ -1,63 +1,100 @@
 import React from 'react';
-import codePhoto from '../../img/code.jpg';
-
-const CARDS = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6'];
+// import codePhoto from '../../img/code.jpg';
+import { connect } from 'react-redux';
+import { requestPosts } from '../../redux/actions/forumActions';
+import { Link } from 'react-router-dom';
+import CommuPostCard from './CommuPostCard';
+import moment from 'moment';
 
 class Commun extends React.Component {
+  componentDidMount() {
+    this.props.onRequestPosts();
+    console.log('ComponentDidMountdata :' + this.props.postData);
+  }
+
+  renderPostList() {
+    if (this.props.isPending) {
+      console.log('renderpostlist is pending');
+      return <div style={{ margin: 10 }}>{/* Loading Posts... */}</div>;
+    } else {
+      console.log('renderPostList got data :' + this.props.postData);
+
+      return this.props.postData
+        .reverse()
+        .slice(0, 10)
+        .map((posts, i) => {
+          const {
+            id,
+            profilePic,
+            display_name,
+            created_at,
+            title,
+            content,
+            image_path
+          } = posts.post;
+          const count = posts.count;
+          // console.log('ppppp');
+          // console.log(count);
+          return (
+            <div key={i}>
+              <CommuPostCard
+                postId={id}
+                propicPath={profilePic}
+                username={display_name}
+                dateTime={moment(created_at).format('lll')}
+                dateTimeFromNow={moment(created_at).fromNow()}
+                postTitle={title}
+                postContent={content}
+                postImagePath={image_path}
+                count={count}
+              />
+            </div>
+          );
+        });
+    }
+  }
+
   render() {
     return (
-      <div
-        className="jumbotron jumbotron-fluid comBanner"
-        style={{ margin: 0 }}
-      >
-        <div className="container">
+      <div className="jumbotron jumno " style={{ margin: 0 }}>
+        <div style={{ margin: 50 }}>
           <div className="row ">
             <h3 className="display-4 wording" style={{ color: '#00b0af' }}>
-              Top Questions
+              Newest Questions
             </h3>
           </div>
-
-          <div className="row">
-            {CARDS.map(card => (
-              <div key={card} className="col-sm-4">
-                <div className="card">
-                  <img
-                    className="card-img-top codePhoto"
-                    style={{}}
-                    src={codePhoto}
-                    alt="Code"
-                  />
-
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: '#161515' }}>
-                      How to define a Diagrams backend that combines several
-                      primitive backends
-                    </h5>
-                    <p className="card-text" style={{ color: '#161515' }}>
-                      I would like to make the same program use two different
-                      Diagrams backends, notably diagrams-rasterific to generate
-                      PNGs...
-                    </p>
-                    <p className="card-text">
-                      <small className="text-muted">
-                        Last updated 3 mins ago
-                      </small>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
+          {this.renderPostList()}
           <br />
-
-          <button type="button" className="btn btn-outline-info buttonAc">
-            Go To Coding Community
-          </button>
+          {!this.params === undefined ? (
+            <Link className="btn btn-outline-info buttonAc" to={`/login`}>
+              Go To Coding Community To See More Posts (Signup or Signin)
+            </Link>
+          ) : (
+            <Link className="btn btn-outline-info buttonAc" to={`/posts`}>
+              Go To Coding Community To See More Posts
+            </Link>
+          )}
         </div>
       </div>
     );
   }
 }
 
-export default Commun;
+function mapStateToProps(state) {
+  return {
+    isPending: state.requestPosts.isPending,
+    postData: state.requestPosts.data.posts,
+    error: state.requestPosts.error
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onRequestPosts: () => dispatch(requestPosts())
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Commun);

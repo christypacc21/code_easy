@@ -15,7 +15,7 @@ class Howitwork extends React.Component {
           <p className="lead " style={{ color: '#ffffff' }}>
             We believe student queries should be answered in a timely manner to
             prevent snow-balling. CodeEasy is filling that gap in students'
-            learning experience.
+            learning experience. ~ Pay to save time | Teach to earn ~
           </p>
         </div>
 

@@ -92,3 +92,57 @@ body {
     background: #c2effd;
     border-radius: 0.4em;
 }
+
+.LandingPagePost {
+    height: 300px;
+    border: 2px solid black;
+    border-radius: 0.4em;
+    margin: 0px 0px 30px 0px;
+    padding: 0;
+    color: black;
+    background: rgb(246, 246, 246);
+}
+
+.link:hover {
+    text-decoration: none;
+}
+
+.LandingPagePostHeader {
+    background-color: lightgrey;
+    border-radius: 0.4em;
+    padding: 10px 30px 10px 30px;
+    margin: 1px 0px 0px 1px;
+    color: black;
+}
+
+.LandingPagePostContent {
+    padding: 20px 10px 34px 20px;
+    color: rgb(114, 106, 106);
+}
+
+.imageBox {
+    height: 70px;
+    width: 70px;
+    /* border: 2px solid black; */
+    border-radius: 5em;
+    margin: 10px 10px 10px 10px;
+}
+
+.contentBox {
+    display: flex;
+}
+
+.contentBoxChild {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.commuPostImage {
+    max-height: 120px;
+    max-width: 120px;
+    /* border: 2px solid black; */
+    border-radius: 0.5em;
+    margin: 10px 10px 10px 10px;
+}
