@@ -6,7 +6,6 @@ import ThankYou from './ThankYou';
 
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 const STRIPE_PUBLISHABLE_KEY = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
-const jwtToken = localStorage.getItem('token');
 
 class Pricing extends React.Component {
   state = {
@@ -15,6 +14,7 @@ class Pricing extends React.Component {
   };
 
   onToken = (description, amount) => token => {
+    const jwtToken = localStorage.getItem('token');
     console.log('description+amount+token: ', description, amount, token);
     fetch(SERVER_URL + '/api/payment/charge', {
       method: 'POST',

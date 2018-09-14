@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import * as userActions from '../../redux/actions/userActions';
 import ReactLoading from 'react-loading';
 
-class ThankYou extends React.Component {
+class StudentRating extends React.Component {
   constructor(props) {
     super(props);
-    // console.log('this.props - thank you', this.props);
+    // console.log('this.props - StudentRating', this.props);
   }
 
   render() {
-    if (this.props.profile && this.props.paymentResponse) {
+    if (this.props.profile && this.props) {
       return (
         <div style={{ padding: 100, background: '#00B0AF', color: 'white' }}>
           <div className="row">
