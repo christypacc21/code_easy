@@ -85,12 +85,12 @@ class UserSignup extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="inputDisplay">Username</label>
+              <label htmlFor="inputDisplay">Display Name</label>
               <input
                 type="name"
                 className="form-control"
                 id="inputDisplay"
-                placeholder="Username"
+                placeholder="Display Name"
                 value={displayName}
                 onChange={e => this.setState({ displayName: e.target.value })}
               />

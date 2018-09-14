@@ -164,15 +164,17 @@ class Nav extends React.Component {
         >
           <ul className="navbar-nav mr-auto">
             {this.orderOrQuestion()}
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                style={{ color: '#FFFFFF' }}
-                to="/pricing"
-              >
-                Pricing
-              </Link>
-            </li>
+            {!this.props.authenticated || this.props.role === 'student' ? (
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  style={{ color: '#FFFFFF' }}
+                  to="/pricing"
+                >
+                  Pricing
+                </Link>
+              </li>
+            ) : null}
             <li className="nav-item">
               <Link
                 className="nav-link "

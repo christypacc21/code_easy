@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -98,7 +99,18 @@ class App extends Component {
         </Router>
       );
     } else if (authToken && !this.props.authenticated) {
-      return <div className="loading" />;
+      return (
+        <div
+          className="loading"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <ReactLoading type="spin" color="#black" height={100} width={100} />
+        </div>
+      );
     } else {
       return (
         <Router>

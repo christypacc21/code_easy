@@ -12,6 +12,7 @@
     "react-facebook-login": "^4.0.1",
     "react-images": "^0.5.19",
     "react-images-upload": "^1.2.2",
+    "react-loading": "^2.0.3",
     "react-medium-image-zoom": "^3.0.13",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

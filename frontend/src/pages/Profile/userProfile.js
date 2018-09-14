@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as userActions from '../../redux/actions/userActions';
 
 class userProfile extends React.Component {
   render() {
@@ -35,11 +34,11 @@ class userProfile extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    profile: state.user.profile,
+    profile: state.user.profile
   };
 }
 
 export default connect(
   mapStateToProps,
-  userActions,
+  null
 )(userProfile);
