@@ -12,7 +12,6 @@ class Chatroom extends Component {
 
   componentDidMount() {
     console.log('did-this.props', this.props);
-    // setTimeout(() => {
     if (this.props.user) {
       this.props.userStartSession(
         this.props.match.params.chatId,
@@ -25,7 +24,6 @@ class Chatroom extends Component {
         this.props.user.role
       );
     }
-    // }, 500);
   }
 
   sendMessage = () => {
@@ -59,7 +57,7 @@ class Chatroom extends Component {
     return (
       <div>
         <ChatTab />
-        <div className="jumbotron">
+        <div className="jumbotron" style={{ margin: 0 }}>
           <div className="container">
             <h1>Live Chat!</h1>
             <br />

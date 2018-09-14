@@ -50,7 +50,7 @@ class Nav extends React.Component {
                 style={{ color: '#FFFFFF' }}
                 to="/my-questions/ongoing"
               >
-                My Questions
+                My Answers
               </Link>
             </li>
           </React.Fragment>
