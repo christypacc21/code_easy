@@ -1,22 +1,24 @@
 const express = require('express');
 
 module.exports = class UserRouter {
-	constructor(userService) {
-		this.userService = userService;
-	}
+  constructor(userService) {
+    this.userService = userService;
+  }
 
-	router() {
-		let router = express.Router();
-		router.post('/instructor/signUp', this.instructorSignUp.bind(this));
-		router.get('/profile', this.getProfile.bind(this));
-		router.post('/profilePic', this.uploadProfilePic.bind(this));
-		return router;
-	}
+  router() {
+    let router = express.Router();
+    router.post('/instructor/signUp', this.instructorSignUp.bind(this));
+    router.get('/profile', this.getProfile.bind(this));
+    router.post('/profilePic', this.uploadProfilePic.bind(this));
+    // router.get('/chatIInfo', this.getChatInstructorInfo.bind(this));
 
-	instructorSignUp(req, res) {
-		if (req.files != null) {
-			const inputFile = req.files.inputFile;
-			const filePath =
+    return router;
+  }
+
+  instructorSignUp(req, res) {
+    if (req.files != null) {
+      const inputFile = req.files.inputFile;
+      const filePath =
         'images/instructor/' +
         req.user.id +
         '_' +
@@ -24,90 +26,108 @@ module.exports = class UserRouter {
         '_' +
         inputFile.name +
         '.jpg';
-			inputFile.mv(__dirname + '/../public/' + filePath, err => {
-				if (err) return res.status(500).send(err);
-			});
-			return this.userService
-				.instructorSignUp(
-					req.body.education,
-					req.body.yearCodeExp,
-					req.body.introduction,
-					filePath,
-					req.body.skills,
-					req.user.id
-				)
-				.then(data =>
-					res.json({
-						success: true,
-						instructorInfo: data
-					})
-				)
-				.catch(err =>
-					res.status(500).json({
-						success: false,
-						message: err.message,
-						error: err
-					})
-				);
-		} else {
-			return this.userService
-				.instructorSignUp(
-					req.body.education,
-					req.body.yearCodeExp,
-					req.body.introduction,
-					null,
-					req.body.skills,
-					req.user.id
-				)
-				.then(data =>
-					res.json({
-						success: true,
-						instructorInfo: data
-					})
-				)
-				.catch(err =>
-					res.status(500).json({
-						success: false,
-						message: err.message,
-						error: err
-					})
-				);
-		}
-	}
+      inputFile.mv(__dirname + '/../public/' + filePath, err => {
+        if (err) return res.status(500).send(err);
+      });
+      return this.userService
+        .instructorSignUp(
+          req.body.education,
+          req.body.yearCodeExp,
+          req.body.introduction,
+          filePath,
+          req.body.skills,
+          req.user.id
+        )
+        .then(data =>
+          res.json({
+            success: true,
+            instructorInfo: data
+          })
+        )
+        .catch(err =>
+          res.status(500).json({
+            success: false,
+            message: err.message,
+            error: err
+          })
+        );
+    } else {
+      return this.userService
+        .instructorSignUp(
+          req.body.education,
+          req.body.yearCodeExp,
+          req.body.introduction,
+          null,
+          req.body.skills,
+          req.user.id
+        )
+        .then(data =>
+          res.json({
+            success: true,
+            instructorInfo: data
+          })
+        )
+        .catch(err =>
+          res.status(500).json({
+            success: false,
+            message: err.message,
+            error: err
+          })
+        );
+    }
+  }
 
-	getProfile(req, res) {
-		return this.userService
-			.getProfile(req.user.id)
-			.then(data =>
-				res.json({
-					success: true,
-					profile: data
-				})
-			)
-			.catch(err =>
-				res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				})
-			);
-	}
+  getProfile(req, res) {
+    return this.userService
+      .getProfile(req.user.id)
+      .then(data =>
+        res.json({
+          success: true,
+          profile: data
+        })
+      )
+      .catch(err =>
+        res.status(500).json({
+          success: false,
+          message: err.message,
+          error: err
+        })
+      );
+  }
 
-	uploadProfilePic(req, res) {
-		return this.userService
-			.uploadProfilePic(req.user.id, req.body)
-			.then(data =>
-				res.json({
-					success: true,
-					profilePic: data[0]
-				})
-			)
-			.catch(err =>
-				res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				})
-			);
-	}
+  uploadProfilePic(req, res) {
+    return this.userService
+      .uploadProfilePic(req.user.id, req.body)
+      .then(data =>
+        res.json({
+          success: true,
+          profilePic: data[0]
+        })
+      )
+      .catch(err =>
+        res.status(500).json({
+          success: false,
+          message: err.message,
+          error: err
+        })
+      );
+  }
+
+  // getChatInstructorInfo(req, res) {
+  //   return this.userService
+  //     .getChatInstructorInfo() // shd pass chatroom's instructor_id here? How to get it from frontend to here?
+  //     .then(data =>
+  //       res.json({
+  //         success: true,
+  //         profile: data
+  //       })
+  //     )
+  //     .catch(err =>
+  //       res.status(500).json({
+  //         success: false,
+  //         message: err.message,
+  //         error: err
+  //       })
+  //     );
+  // }
 };
