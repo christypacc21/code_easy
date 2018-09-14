@@ -19,35 +19,38 @@ class Commun extends React.Component {
     } else {
       console.log('renderPostList got data :' + this.props.postData);
 
-      return this.props.postData.slice(0, 10).map((posts, i) => {
-        const {
-          id,
-          profilePic,
-          display_name,
-          created_at,
-          title,
-          content,
-          image_path
-        } = posts.post;
-        const count = posts.count;
-        // console.log('ppppp');
-        // console.log(count);
-        return (
-          <div key={i}>
-            <CommuPostCard
-              postId={id}
-              propicPath={profilePic}
-              username={display_name}
-              dateTime={moment(created_at).format('lll')}
-              dateTimeFromNow={moment(created_at).fromNow()}
-              postTitle={title}
-              postContent={content}
-              postImagePath={image_path}
-              count={count}
-            />
-          </div>
-        );
-      });
+      return this.props.postData
+        .reverse()
+        .slice(0, 10)
+        .map((posts, i) => {
+          const {
+            id,
+            profilePic,
+            display_name,
+            created_at,
+            title,
+            content,
+            image_path
+          } = posts.post;
+          const count = posts.count;
+          // console.log('ppppp');
+          // console.log(count);
+          return (
+            <div key={i}>
+              <CommuPostCard
+                postId={id}
+                propicPath={profilePic}
+                username={display_name}
+                dateTime={moment(created_at).format('lll')}
+                dateTimeFromNow={moment(created_at).fromNow()}
+                postTitle={title}
+                postContent={content}
+                postImagePath={image_path}
+                count={count}
+              />
+            </div>
+          );
+        });
     }
   }
 

@@ -21,7 +21,12 @@ const CommentCard = ({
   // } else {
   return (
     <div>
-      <div className="card-body">
+      <div
+        className="card-body"
+        // style={{
+        //   borderRadius: '1em'
+        // }}
+      >
         {/* <p className="card-text">
             CommentID:
             {commentId}

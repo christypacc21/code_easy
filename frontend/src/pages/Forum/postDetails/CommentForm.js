@@ -29,8 +29,11 @@ class CommentForm extends Component {
         className="jumbotron jumbotron-fluid"
         style={{ margin: 0, background: '#00B0AF' }}
       >
-        <div className="container" style={{ background: '#D3D3D3' }}>
-          <h2 style={{ color: 'Black', paddingTop: '10px' }}>Your comments:</h2>
+        <div
+          className="container"
+          style={{ background: '#D3D3D3', borderRadius: '0.8em' }}
+        >
+          <h2 style={{ color: 'Black', paddingTop: '15px' }}>Your comments:</h2>
           <form>
             <div className="form-group" />
             <textarea
