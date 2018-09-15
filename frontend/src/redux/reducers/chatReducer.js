@@ -1,7 +1,8 @@
 import {
   NEW_MESSAGE,
   GET_ALL_MESSAGES,
-  GET_INSTRUCTOR_INFO
+  GET_INSTRUCTOR_INFO,
+  GET_STUDENT_INFO
 } from './constants';
 
 const initialState = {
@@ -25,6 +26,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         instructorInfo: action.payload
+      };
+    case GET_STUDENT_INFO:
+      return {
+        ...state,
+        studentInfo: action.payload
       };
     default:
       return state;

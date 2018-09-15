@@ -160,7 +160,10 @@ export function uploadQuestion(content, filePath, skills, history) {
         history.push('/chatroom/' + response.data.questionInfo.chatId);
       }
     } catch (err) {
-      alert('Not enough credit');
+      // need to handle different errors from backend
+
+      // alert('Error: Not enough credit');
+      alert('Error: Please contact us!');
     }
   };
 }

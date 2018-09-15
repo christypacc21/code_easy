@@ -10,6 +10,7 @@ module.exports = class QuestionRouter {
 		router.get('/credit/check', this.getCreditBalance.bind(this));
 		router.post('/create', this.postQuestion.bind(this));
 		router.get('/list', this.getQuestion.bind(this));
+		router.post('/rating', this.postRating.bind(this));
 		return router;
 	}
 
@@ -93,6 +94,24 @@ module.exports = class QuestionRouter {
 				res.json({
 					success: true,
 					questionList
+				});
+			})
+			.catch(err =>
+				res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				})
+			);
+	}
+
+	postRating(req, res) {
+		console.log('postRating - req', req.body);
+		return this.questionService
+			.createRating(req.body.chatId, req.body.rating, req.body.feedback)
+			.then(() => {
+				res.json({
+					success: true
 				});
 			})
 			.catch(err =>

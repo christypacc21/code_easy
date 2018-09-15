@@ -30,8 +30,16 @@ module.exports = class SocketRouter {
 						} has connected to chatroom ${payload.chatId}`
 					);
 					if (payload.role === 'instructor') {
-						this.onInstructorConnect(socket, payload).then(instructorInfo => {
-							console.log('instructorInfo', instructorInfo);
+						this.onInstructorConnect(socket, payload).then(studentInfo => {
+							console.log('studentInfo - for instructor', studentInfo);
+							this.io.emit('SOCKET_ON', {
+								actionType: 'GET_STUDENT_INFO',
+								payload: studentInfo
+							});
+						});
+					} else {
+						this.getInstructorInfo(socket, payload).then(instructorInfo => {
+							console.log('instructorInfo - for student', instructorInfo);
 							this.io.emit('SOCKET_ON', {
 								actionType: 'GET_INSTRUCTOR_INFO',
 								payload: instructorInfo
@@ -68,6 +76,8 @@ module.exports = class SocketRouter {
 	}
 
 	onInstructorConnect(socket, instructor) {
+		//should check whether there is already an instructor in the chatroom
+
 		return this.knex(CHATROOOMS)
 			.update('instructor_id', instructor.userId)
 			.where('id', instructor.chatId)
@@ -76,47 +86,71 @@ module.exports = class SocketRouter {
 				console.log('chat - questionId', questionId[0]);
 				return this.knex(QUESTIONS)
 					.update('active', false)
-					.where('id', questionId[0]);
+					.where('id', questionId[0])
+					.returning('student_id');
 			})
-			.then(() => {
+			.then(studentId => {
 				return this.knex
-					.select(
-						'*',
-						'users.id as userId',
-						'instructors_skills.id as instructorSkillId',
-						'codingSkills.id as codingSkillId'
-					)
+					.select('id', 'display_name', 'profilePic', 'role')
 					.from(USERS)
-					.where('users.id', instructor.userId)
-					.join(
-						'instructors_skills',
-						'users.id',
-						'instructors_skills.instructor_id'
-					)
-					.join(
-						'codingSkills',
-						'instructors_skills.codingSkill_id',
-						'codingSkills.id'
-					);
+					.where('users.id', studentId[0]);
 			})
-			.then(instructorInfoList => {
-				const skillInfoList = instructorInfoList.map(instructorInfo => {
-					return instructorInfo.skill;
+			.catch(err => {
+				console.log(err);
+				socket.emit('SOCKET_ON', {
+					actionType: 'CHAT_ERROR',
+					payload: err
 				});
-				return {
-					instructorId: instructorInfoList[0].userId,
-					displayName: instructorInfoList[0].display_name,
-					email: instructorInfoList[0].email,
-					profilePic: instructorInfoList[0].profilePic,
-					role: instructorInfoList[0].role,
-					iBalance: instructorInfoList[0].i_balance,
-					iEducation: instructorInfoList[0].i_education,
-					iYearOfCodeExp: instructorInfoList[0].i_year_codeExp,
-					iIntroduction: instructorInfoList[0].i_introduction,
-					iNumRating: instructorInfoList[0].i_num_rating,
-					iTotalRating: instructorInfoList[0].i_total_rating,
-					skillInfo: skillInfoList
-				};
+				return;
+			});
+	}
+
+	getInstructorInfo(socket, user) {
+		return this.knex(CHATROOOMS)
+			.select('instructor_id')
+			.where('id', user.chatId)
+			.then(instructorId => {
+				console.log('chat - instructorId', instructorId[0].instructor_id);
+				if (instructorId[0].instructor_id) {
+					return this.knex
+						.select(
+							'*',
+							'users.id as userId',
+							'instructors_skills.id as instructorSkillId',
+							'codingSkills.id as codingSkillId'
+						)
+						.from(USERS)
+						.where('users.id', instructorId[0].instructor_id)
+						.join(
+							'instructors_skills',
+							'users.id',
+							'instructors_skills.instructor_id'
+						)
+						.join(
+							'codingSkills',
+							'instructors_skills.codingSkill_id',
+							'codingSkills.id'
+						)
+						.then(instructorInfoList => {
+							const skillInfoList = instructorInfoList.map(instructorInfo => {
+								return instructorInfo.skill;
+							});
+							return {
+								instructorId: instructorInfoList[0].userId,
+								displayName: instructorInfoList[0].display_name,
+								profilePic: instructorInfoList[0].profilePic,
+								role: instructorInfoList[0].role,
+								iEducation: instructorInfoList[0].i_education,
+								iYearOfCodeExp: instructorInfoList[0].i_year_codeExp,
+								iIntroduction: instructorInfoList[0].i_introduction,
+								iNumRating: instructorInfoList[0].i_num_rating,
+								iTotalRating: instructorInfoList[0].i_total_rating,
+								skillInfo: skillInfoList
+							};
+						});
+				} else {
+					return null;
+				}
 			})
 			.catch(err => {
 				console.log(err);

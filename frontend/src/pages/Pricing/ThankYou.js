@@ -1,14 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as userActions from '../../redux/actions/userActions';
 import ReactLoading from 'react-loading';
 
 class ThankYou extends React.Component {
-  constructor(props) {
-    super(props);
-    // console.log('this.props - thank you', this.props);
-  }
+  // console.log('this.props - thank you', this.props);
 
   render() {
     if (this.props.profile && this.props.paymentResponse) {
@@ -92,5 +88,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  userActions
+  null
 )(ThankYou);

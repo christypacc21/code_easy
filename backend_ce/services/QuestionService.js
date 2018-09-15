@@ -154,4 +154,22 @@ module.exports = class QuestionService {
 				throw err;
 			});
 	}
+
+	createRating(chatId, rating, feedback) {
+		return this.knex(CHATROOOMS)
+			.update({ s_rating: rating, s_feedback: feedback })
+			.where('id', chatId)
+			.returning('instructor_id')
+			.then(instructorId => {
+				return this.knex(USERS)
+					.increment('i_total_rating', rating)
+					.where('id', instructorId[0])
+					.returning('id');
+			})
+			.then(instructorId => {
+				return this.knex(USERS)
+					.increment('i_num_rating', 1)
+					.where('id', instructorId[0]);
+			});
+	}
 };

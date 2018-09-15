@@ -15,6 +15,7 @@ export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
 export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';
 export const GET_MY_PROFILE = 'GET_MY_PROFILE';
 export const GET_INSTRUCTOR_INFO = 'GET_INSTRUCTOR_INFO';
+export const GET_STUDENT_INFO = 'GET_STUDENT_INFO';
 
 //about Forum
 export const CREATE_POST = 'CREATE_POST';

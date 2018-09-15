@@ -12,7 +12,11 @@ class StudentRating extends React.Component {
     rating: 0,
     feedback: ''
   };
-  // console.log('this.props - StudentRating', this.props);
+
+  handleRatingChange = rating => {
+    console.log('rating', rating);
+    this.setState({ rating });
+  };
 
   render() {
     if (this.props.user && this.props.instructorInfo) {
@@ -36,7 +40,7 @@ class StudentRating extends React.Component {
               <Rating
                 style={{ width: 500 }}
                 initialRating={this.state.rating}
-                stop={5}
+                onChange={this.handleRatingChange.bind(this)}
                 emptySymbol={
                   <FontAwesomeIcon
                     style={{ paddingRight: 10 }}
@@ -56,7 +60,7 @@ class StudentRating extends React.Component {
               />
             </div>
 
-            <form className="form-group" className="col-sm-8">
+            <form className="form-group col-sm-8">
               <br />
               <h4>Please write your feedback here:</h4>
               <br />
@@ -69,7 +73,23 @@ class StudentRating extends React.Component {
                 }}
               />
               <br />
-              <Link to={`/my-questions/history`} className="btn btn-primary ">
+              <Link
+                to={`/my-questions/history`}
+                className="btn btn-primary "
+                onClick={() => {
+                  console.log(
+                    'rating submit',
+                    this.props.match.params.chatId,
+                    this.state.rating,
+                    this.state.feedback
+                  );
+                  this.props.createRating(
+                    this.props.match.params.chatId,
+                    this.state.rating,
+                    this.state.feedback
+                  );
+                }}
+              >
                 Submit
               </Link>
             </form>

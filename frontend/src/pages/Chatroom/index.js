@@ -43,6 +43,9 @@ class Chatroom extends Component {
     //step 1: action creator to change status
     //step 2: redirect to next page (History)
     //otherwise, will keep in on-going page
+
+    //should also insert fee of the chatroom and add to instructor balance
+
     this.props.userEndSession(
       this.props.match.params.chatId,
       this.props.user.id,
