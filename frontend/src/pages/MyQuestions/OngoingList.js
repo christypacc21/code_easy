@@ -15,7 +15,7 @@ class OngoingList extends Component {
       return <p>Loading History List ...</p>;
     } else {
       const FArray = this.props.historyData.filter(his => {
-        return his.chatroom_active === true;
+        return his.question.chatroom_active === true;
       });
       // console.log(FArray);
       if (FArray.length === 0) {
@@ -24,22 +24,23 @@ class OngoingList extends Component {
         );
       } else {
         return FArray.map((history, i) => {
+          const question = history.question;
           return (
             <div key={i}>
               <HistoryCard
-                skill={history.skill}
-                questionDateTime={history.questionDateTime}
-                chatroomStartTime={history.chatroomStartTime}
-                content={history.content}
-                imagePath={history.image_path}
+                skills={history.skills}
+                questionDateTime={question.questionDateTime}
+                chatroomStartTime={question.chatroomStartTime}
+                content={question.content}
+                imagePath={question.image_path}
                 // username={}
-                instructorId={history.instructor_id}
-                studentId={history.student_id}
-                rating={history.s_rating}
-                duration={history.duration}
-                fee={history.fee}
-                chatroomId={history.chatroom_id}
-                questionId={history.question_id}
+                instructorId={question.instructor_id}
+                studentId={question.student_id}
+                rating={question.s_rating}
+                duration={question.duration}
+                fee={question.fee}
+                chatroomId={question.chatroom_id}
+                questionId={question.question_id}
               />
             </div>
           );

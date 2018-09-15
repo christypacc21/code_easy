@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChatTab from '../MyQuestions/ChatTab';
-import InstructorInfo from './InstructorInfo';
+// import InstructorInfo from './InstructorInfo';
 import '../../App.css';
 
 import * as ChatActions from '../../redux/actions/chatActions';
@@ -55,22 +55,22 @@ class Chatroom extends Component {
   render() {
     console.log(this.state.imputMessage);
     // console.log(this.props.match);
-    const {
-      displayName,
-      email,
-      iEducation,
-      iIntroduction,
-      iNumRating,
-      iTotalRating,
-      iYearOfCodeExp,
-      id,
-      profilePic,
-      role
-    } = this.props.user;
+    // const {
+    //   displayName,
+    //   email,
+    //   iEducation,
+    //   iIntroduction,
+    //   iNumRating,
+    //   iTotalRating,
+    //   iYearOfCodeExp,
+    //   id,
+    //   profilePic,
+    //   role
+    // } = this.props.user;
     return (
       <div>
         <ChatTab />
-        <InstructorInfo
+        {/* <InstructorInfo
           name={displayName}
           email={email}
           edu={iEducation}
@@ -81,7 +81,7 @@ class Chatroom extends Component {
           id={id}
           proPic={profilePic}
           role={role}
-        />
+        /> */}
         <div className="jumbotron" style={{ margin: 0 }}>
           <div className="container">
             <h1>Live Chat!</h1>

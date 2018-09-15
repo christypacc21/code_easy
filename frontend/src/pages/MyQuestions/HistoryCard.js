@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 const HistoryCard = ({
-  skill,
+  skills,
   questionDateTime,
   chatroomStartTime,
   content,
@@ -36,9 +36,11 @@ const HistoryCard = ({
             flexDirection: 'row'
           }}
         >
-          <h3 style={{ margin: '0 3px' }}>
-            <span className="badge badge-pill badge-info">{skill}</span>
-          </h3>
+          {skills.map((skill, j) => (
+            <h3 style={{ margin: '0 3px' }} key={j}>
+              <span className="badge badge-pill badge-info">{skill.skill}</span>
+            </h3>
+          ))}
         </div>
       </div>
 
