@@ -59,7 +59,7 @@ export function loginByEmail(email, password, history) {
           payload: response.data
         });
         if (response.data.role === 'student') {
-          history.push('/CreateQuestion');
+          history.push('/my-questions/ongoing');
         } else {
           history.push('/TakeQuestions');
         }
@@ -102,7 +102,7 @@ export function loginByFacebook(access_token, role, history) {
 
         if (history) {
           if (response.data.role === 'student') {
-            history.push('/CreateQuestion');
+            history.push('/my-questions/ongoing');
           } else {
             history.push('/TakeQuestions');
           }

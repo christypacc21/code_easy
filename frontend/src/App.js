@@ -19,7 +19,7 @@ import MultipleSelect from './pages/Signup/MultipleSelect';
 import CreatePost from './pages/Forum/createPost/createPost';
 import PostDetails from './pages/Forum/postDetails/postDetails';
 import PostsPage from './pages/Forum/posts/postsPage';
-import CreateQuestion from './pages/CreateQuestion/home';
+// import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeQuestions from './pages/TakeQuestions';
 import Chatroom from './pages/Chatroom';
@@ -70,7 +70,7 @@ class App extends Component {
               <Route exact path="/pricing" component={Pricing} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/AskQuestion" component={AskQuestion} />
-              <Route exact path="/CreateQuestion" component={CreateQuestion} />
+              {/* <Route exact path="/CreateQuestion" component={CreateQuestion} /> */}
               <Route exact path="/chatroom/:chatId" component={Chatroom} />
               <Route
                 exact
