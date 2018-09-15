@@ -43,13 +43,17 @@ class Chatroom extends Component {
     //step 1: action creator to change status
     //step 2: redirect to next page (History)
     //otherwise, will keep in on-going page
-
-    this.props.history.push('/my-questions/history');
     this.props.userEndSession(
       this.props.match.params.chatId,
       this.props.user.id,
       this.props.user.role
     );
+
+    if (this.props.user.role === 'student') {
+      this.props.history.push(`${this.props.match.url}/StudentRating`);
+    } else {
+      this.props.history.push('/my-questions/history');
+    }
   };
 
   render() {

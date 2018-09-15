@@ -13,7 +13,10 @@ class ThankYou extends React.Component {
   render() {
     if (this.props.profile && this.props.paymentResponse) {
       return (
-        <div style={{ padding: 100, background: '#00B0AF', color: 'white' }}>
+        <div
+          class="container-fluid"
+          style={{ padding: 80, background: '#00B0AF', color: 'white' }}
+        >
           <div className="row">
             <div className="col-12">
               <h1>Thank you!</h1>

@@ -30,6 +30,7 @@ import instructorProfile from './pages/Profile/instructorProfile';
 import userProfile from './pages/Profile/userProfile';
 import MyPostsPage from './pages/Forum/myPosts/myPostsPage';
 import MyCommentsPage from './pages/Forum/myComments/myCommentsPage';
+import StudentRating from './pages/Chatroom/StudentRating';
 
 import { connect } from 'react-redux';
 import * as userActions from './redux/actions/userActions';
@@ -70,7 +71,12 @@ class App extends Component {
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/AskQuestion" component={AskQuestion} />
               <Route exact path="/CreateQuestion" component={CreateQuestion} />
-              <Route path="/chatroom/:chatId" component={Chatroom} />
+              <Route exact path="/chatroom/:chatId" component={Chatroom} />
+              <Route
+                exact
+                path="/chatroom/:chatId/StudentRating"
+                component={StudentRating}
+              />
               <Route
                 exact
                 path="/instructor-profileForm"
