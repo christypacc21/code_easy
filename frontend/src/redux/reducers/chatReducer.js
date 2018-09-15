@@ -1,4 +1,8 @@
-import { NEW_MESSAGE, GET_ALL_MESSAGES } from './constants';
+import {
+  NEW_MESSAGE,
+  GET_ALL_MESSAGES,
+  GET_INSTRUCTOR_INFO
+} from './constants';
 
 const initialState = {
   messages: []
@@ -16,6 +20,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         messages: [...state.messages, action.payload]
+      };
+    case GET_INSTRUCTOR_INFO:
+      return {
+        ...state,
+        instructorInfo: action.payload
       };
     default:
       return state;

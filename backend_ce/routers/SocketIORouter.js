@@ -29,7 +29,15 @@ module.exports = class SocketRouter {
 							payload.userId
 						} has connected to chatroom ${payload.chatId}`
 					);
-					this.onConnect(socket, payload);
+					if (payload.role === 'instructor') {
+						this.onInstructorConnect(socket, payload).then(instructorInfo => {
+							console.log('instructorInfo', instructorInfo);
+							this.io.emit('SOCKET_ON', {
+								actionType: 'GET_INSTRUCTOR_INFO',
+								payload: instructorInfo
+							});
+						});
+					}
 				}
 
 				if (payload.actionType === 'SEND_MESSAGE') {
@@ -59,27 +67,65 @@ module.exports = class SocketRouter {
 		});
 	}
 
-	onConnect(socket, user) {
-		if (user.role === 'instructor') {
-			return this.knex(CHATROOOMS)
-				.update('instructor_id', user.userId)
-				.where('id', user.chatId)
-				.returning('question_id')
-				.then(questionId => {
-					console.log('chat - questionId', questionId[0]);
-					return this.knex(QUESTIONS)
-						.update('active', false)
-						.where('id', questionId[0]);
-				})
-				.catch(err => {
-					console.log(err);
-					socket.emit('SOCKET_ON', {
-						actionType: 'CHAT_ERROR',
-						payload: err
-					});
-					return;
+	onInstructorConnect(socket, instructor) {
+		return this.knex(CHATROOOMS)
+			.update('instructor_id', instructor.userId)
+			.where('id', instructor.chatId)
+			.returning('question_id')
+			.then(questionId => {
+				console.log('chat - questionId', questionId[0]);
+				return this.knex(QUESTIONS)
+					.update('active', false)
+					.where('id', questionId[0]);
+			})
+			.then(() => {
+				return this.knex
+					.select(
+						'*',
+						'users.id as userId',
+						'instructors_skills.id as instructorSkillId',
+						'codingSkills.id as codingSkillId'
+					)
+					.from(USERS)
+					.where('users.id', instructor.userId)
+					.join(
+						'instructors_skills',
+						'users.id',
+						'instructors_skills.instructor_id'
+					)
+					.join(
+						'codingSkills',
+						'instructors_skills.codingSkill_id',
+						'codingSkills.id'
+					);
+			})
+			.then(instructorInfoList => {
+				const skillInfoList = instructorInfoList.map(instructorInfo => {
+					return instructorInfo.skill;
 				});
-		}
+				return {
+					instructorId: instructorInfoList[0].userId,
+					displayName: instructorInfoList[0].display_name,
+					email: instructorInfoList[0].email,
+					profilePic: instructorInfoList[0].profilePic,
+					role: instructorInfoList[0].role,
+					iBalance: instructorInfoList[0].i_balance,
+					iEducation: instructorInfoList[0].i_education,
+					iYearOfCodeExp: instructorInfoList[0].i_year_codeExp,
+					iIntroduction: instructorInfoList[0].i_introduction,
+					iNumRating: instructorInfoList[0].i_num_rating,
+					iTotalRating: instructorInfoList[0].i_total_rating,
+					skillInfo: skillInfoList
+				};
+			})
+			.catch(err => {
+				console.log(err);
+				socket.emit('SOCKET_ON', {
+					actionType: 'CHAT_ERROR',
+					payload: err
+				});
+				return;
+			});
 	}
 
 	onMessageReceived(socket, msg) {
