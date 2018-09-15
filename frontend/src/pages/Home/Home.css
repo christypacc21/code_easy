@@ -1,0 +1,251 @@
+/* bigheader css */
+.bigHeader {
+  padding: 120px;
+  font-size: 65px;
+}
+.App-header {
+  padding: 0;
+}
+
+/* How it works CSS */
+.howItWorks {
+  padding: 90px;
+  background-color: rgb(0, 167, 166);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.howItWorksHead {
+  font-size: 70px;
+}
+
+.howItWorksContent {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CommuPostCard css */
+.LandingMomDiv {
+  background-color: rgb(230, 233, 237);
+  padding: 50px 90px 90px 90px;
+}
+
+.LandingPagePost {
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 0.4em;
+  margin: 0px 0px 30px 0px;
+  padding: 0;
+  color: black;
+  background: rgb(246, 246, 246);
+}
+
+.link:hover {
+  text-decoration: none;
+}
+.postHeadWord {
+  padding-left: 15px;
+  font-size: 50px;
+  color: #00b0af;
+}
+.LandingPagePostHeader {
+  background-color: lightgrey;
+  border-radius: 0.4em;
+  padding: 10px 30px 10px 30px;
+  margin: 1px 0px 0px 1px;
+  color: black;
+}
+
+.LandingPagePostHeader p {
+  font-size: 18px;
+  margin: 0px;
+}
+
+.LandingPagePostContent {
+  padding: 20px 10px 34px 20px;
+  color: rgb(114, 106, 106);
+}
+
+.imageBox {
+  height: 70px;
+  width: 70px;
+  /* border: 2px solid black; */
+  border-radius: 5em;
+  margin: 10px 10px 10px 10px;
+}
+
+.contentBox {
+  display: flex;
+}
+
+.contentBoxChild {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commuPostImage {
+  max-height: 120px;
+  max-width: 120px;
+  /* border: 2px solid black; */
+  border-radius: 0.5em;
+  margin: 10px 10px 10px 10px;
+}
+
+/* AboutUs css */
+.aboutUsDiv {
+  background-color: rgb(103, 212, 216);
+  padding: 90px;
+  color: #ffffff;
+}
+
+.headings {
+  font-size: 70px;
+}
+
+.abtUsContent {
+  font-size: 27px;
+}
+
+.aboutUsImg {
+  width: 530px;
+  height: 330px;
+}
+
+.flexA {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Our Team css */
+.teamImg {
+  width: 300px;
+  height: 300px;
+  border-radius: 3em;
+}
+.teamMember {
+  /* background-color: rgb(230, 233, 237); */
+  background-color: rgb(103, 212, 216);
+  padding: 0px 90px 90px 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.memberitem {
+  color: rgb(39, 39, 39);
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1050px) {
+  /* AboutUs */
+  .aboutUsDiv {
+    padding: 35px 25px 35px 25px;
+  }
+  .headings {
+    font-size: 40px;
+  }
+  .abtUsContent {
+    font-size: 18px;
+  }
+  .flexA {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .aboutUsImg {
+    width: 310px;
+    height: 190px;
+  }
+  /* How it works */
+  .howItWorks {
+    padding: 35px 25px 35px 25px;
+  }
+  .howItWorksHead {
+    font-size: 40px;
+  }
+  .howItWorksContent {
+    font-size: 15px;
+  }
+  /* Our Team */
+  .teamMember {
+    padding: 35px 25px 35px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .teamImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 1em;
+  }
+  .memberitem {
+    font-size: 20px;
+  }
+  /* CommuPostCard */
+  .LandingMomDiv {
+    padding: 25px 10px 25px 10px;
+  }
+  .postHeadWord p {
+    padding-left: 15px;
+    font-size: 30px;
+  }
+  .postTitle {
+    font-size: 20px;
+  }
+  .userNameDiv {
+    height: 40px;
+    font-size: 14px;
+  }
+  .LandingPagePostHeader p {
+    font-size: 13px;
+  }
+  .LandingPagePost {
+    height: 350px;
+    /* margin: 0px 0px 30px 0px;
+  padding: 0; */
+  }
+  .LandingPagePostContentFlex {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  /* BigHeader */
+  .App-header {
+    height: 350px;
+  }
+  .bigHeader {
+    padding: 50px 35px 50px 35px;
+    font-size: 40px;
+  }
+  .lead {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  /* BigHeader */
+  .App-header {
+    height: 320px;
+  }
+  .bigHeader {
+    padding: 30px 15px 10px 15px;
+    font-size: 30px;
+  }
+  .lead {
+    font-size: 20px;
+  }
+}

@@ -1,32 +1,32 @@
 import React from 'react';
-// import workPhoto from '../../img/asset1.png';
+import './Home.css';
 
-class Howitwork extends React.Component {
+class Footer extends React.Component {
   render() {
     return (
-      <div
-        className="jumbotron jumbotron-fluid bannerHow "
-        style={{ margin: 0 }}
-      >
-        <div className="container ">
-          <h1 className="display-4 " style={{ color: '#ffffff' }}>
-            How it Works?
-          </h1>
-          <p className="lead " style={{ color: '#ffffff' }}>
-            We believe student queries should be answered in a timely manner to
-            prevent snow-balling. CodeEasy is filling that gap in students'
-            learning experience. ~ Pay to save time | Teach to earn ~
-          </p>
+      <div className="howItWorks ">
+        <div>
+          <p className="howItWorksHead">How it Works?</p>
         </div>
-
-        {/* <img
-            className="work"
-            style={{ width: '35%' }}
-            src={workPhoto}
-            alt="How it works?"
-          /> */}
+        <div className="howItWorksContent">
+          <div>
+            <p>
+              1-1 Live Chat : Price Plan, instant and interative tutors'
+              consulatation.
+            </p>
+          </div>
+          <div>
+            <p>
+              Forum : A completely FREE community that allows knowledge exchange
+              between coders.
+            </p>
+          </div>
+          <div>
+            <p>~ Teach to gain | Exchange knowledge to grow ~</p>
+          </div>
+        </div>
       </div>
     );
   }
 }
-export default Howitwork;
+export default Footer;

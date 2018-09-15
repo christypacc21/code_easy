@@ -21,7 +21,7 @@ class Commun extends React.Component {
 
       return this.props.postData
         .reverse()
-        .slice(0, 10)
+        .slice(0, 6)
         .map((posts, i) => {
           const {
             id,
@@ -56,12 +56,12 @@ class Commun extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron jumno " style={{ margin: 0 }}>
-        <div style={{ margin: 50 }}>
-          <div className="row ">
-            <h3 className="display-4 wording" style={{ color: '#00b0af' }}>
-              Latest Posts
-            </h3>
+      <div className="LandingMomDiv">
+        <div>
+          <div className="row postHeadWord">
+            <p className="display-4 wording ">
+              <strong>Latest Posts</strong>
+            </p>
           </div>
           <br />
 
@@ -73,7 +73,8 @@ class Commun extends React.Component {
             </Link>
           ) : (
             <Link className="btn btn-outline-info buttonAc" to={`/posts`}>
-              Go To Coding Community To See More Posts
+              More Posts
+              {/* Go To Coding Community To See More Posts */}
             </Link>
           )}
         </div>
