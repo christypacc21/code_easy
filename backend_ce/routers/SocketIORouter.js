@@ -226,9 +226,16 @@ module.exports = class SocketRouter {
 	}
 
 	onDisconnect(socket, user) {
+		// will update instructor's balance after the student pressed end session
+		// only student press will trigger that action? Can have more logics/checkings here
 		return this.knex(CHATROOOMS)
 			.update('active', false)
 			.where('id', user.chatId)
+			.then(() => {
+				return this.knex(USERS)
+					.increment('i_balance', 6000)
+					.where('id', user.userId);
+			})
 			.catch(err => {
 				console.log(err);
 				socket.emit('SOCKET_ON', {

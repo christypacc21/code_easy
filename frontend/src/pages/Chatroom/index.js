@@ -129,7 +129,9 @@ class Chatroom extends Component {
                     String(message.chatId) === this.props.match.params.chatId
                 )
                 .map((message, i) => {
-                  console.log('chatroom message', message);
+                  {
+                    /* console.log('chatroom message', message); */
+                  }
                   return (
                     <div key={i}>
                       <strong>{message.displayName}: </strong>
