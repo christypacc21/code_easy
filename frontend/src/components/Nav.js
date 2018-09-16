@@ -41,26 +41,22 @@ class NavBar extends React.Component {
         return (
           <React.Fragment>
             <NavItem>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={{ color: '#FFFFFF' }}
-                  to="/AskQuestion"
-                >
-                  Create Question
-                </Link>
-              </li>
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/AskQuestion"
+              >
+                Create Question
+              </Link>
             </NavItem>
             <NavItem>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={{ color: '#FFFFFF' }}
-                  to="/my-questions/ongoing"
-                >
-                  My Questions
-                </Link>
-              </li>
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/my-questions/ongoing"
+              >
+                My Questions
+              </Link>
             </NavItem>
           </React.Fragment>
         );
@@ -68,26 +64,22 @@ class NavBar extends React.Component {
         return (
           <React.Fragment>
             <NavItem>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={{ color: '#FFFFFF' }}
-                  to="/TakeQuestions"
-                >
-                  Take Questions
-                </Link>
-              </li>
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/TakeQuestions"
+              >
+                Take Questions
+              </Link>
             </NavItem>
             <NavItem>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  style={{ color: '#FFFFFF' }}
-                  to="/my-questions/ongoing"
-                >
-                  My Answers
-                </Link>
-              </li>
+              <Link
+                className="nav-link"
+                style={{ color: '#FFFFFF' }}
+                to="/my-questions/ongoing"
+              >
+                My Answers
+              </Link>
             </NavItem>
           </React.Fragment>
         );
@@ -100,34 +92,29 @@ class NavBar extends React.Component {
     if (this.props.authenticated) {
       return (
         <NavItem>
-          <li className="nav-item">
-            <a
-              className=" btn btn-primary "
-              style={{ color: '#FFFFFF' }}
-              onClick={() => this.props.logout(this.props.history)}
-            >
-              Logout
-            </a>
-          </li>
+          <a
+            className=" btn btn-primary "
+            style={{ color: '#FFFFFF' }}
+            onClick={() => this.props.logout(this.props.history)}
+          >
+            Logout
+          </a>
         </NavItem>
       );
     }
     return (
       <React.Fragment>
-        <li className="nav-item">
-          <Link className="nav-link" style={{ color: '#FFFFFF' }} to="/login">
-            Login
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            className="btn btn btn-primary "
-            style={{ color: '#FFFFFF' }}
-            to="/signup"
-          >
-            Sign Up Now!
-          </Link>
-        </li>
+        <Link className="nav-link" style={{ color: '#FFFFFF' }} to="/login">
+          Login
+        </Link>
+
+        <Link
+          className="btn btn btn-primary "
+          style={{ color: '#FFFFFF' }}
+          to="/signup"
+        >
+          Sign Up Now!
+        </Link>
       </React.Fragment>
     );
   };
@@ -137,29 +124,25 @@ class NavBar extends React.Component {
       if (this.props.role === 'student') {
         return (
           <NavItem>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                style={{ color: '#FFFFFF' }}
-                to="/userProfile"
-              >
-                Profile
-              </Link>
-            </li>
+            <Link
+              className="nav-link"
+              style={{ color: '#FFFFFF' }}
+              to="/userProfile"
+            >
+              Profile
+            </Link>
           </NavItem>
         );
       } else {
         return (
           <NavItem>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                style={{ color: '#FFFFFF' }}
-                to="/instructorProfile"
-              >
-                Profile
-              </Link>
-            </li>
+            <Link
+              className="nav-link"
+              style={{ color: '#FFFFFF' }}
+              to="/instructorProfile"
+            >
+              Profile
+            </Link>
           </NavItem>
         );
       }

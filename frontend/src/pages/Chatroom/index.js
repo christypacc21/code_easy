@@ -9,10 +9,12 @@ import * as ChatActions from '../../redux/actions/chatActions';
 class Chatroom extends Component {
   state = {
     inputMessage: ''
+    // showInputBox: true
   };
 
   componentDidMount() {
     console.log('did-this.props', this.props);
+    // console.log('chatId', this.props.match.params.chatId);
     if (this.props.user) {
       this.props.userStartSession(
         this.props.match.params.chatId,
@@ -24,6 +26,7 @@ class Chatroom extends Component {
         this.props.user.id,
         this.props.user.role
       );
+      // this.props.getChatroomStatus(this.props.match.params.chatId);
     }
   }
 
@@ -53,8 +56,10 @@ class Chatroom extends Component {
     );
 
     if (this.props.user.role === 'student') {
+      // this.setState({ showInputBox: false });
       this.props.history.push(`${this.props.match.url}/StudentRating`);
     } else {
+      // this.setState({ showInputBox: false });
       this.props.history.push('/my-questions/history');
     }
   };
@@ -115,25 +120,32 @@ class Chatroom extends Component {
                   </div>
                 );
               })}
-            <textarea
-              className="form-control"
-              rows="1"
-              value={this.state.inputMessage}
-              onChange={e => this.setState({ inputMessage: e.target.value })}
-            />
-            <button
-              className="btn btn-info btn-lg btn-block"
-              onClick={this.sendMessage}
-            >
-              Submit
-            </button>
-            <br />
-            <button
-              className="btn btn-warning btn-lg"
-              onClick={this.endSession}
-            >
-              End Session
-            </button>
+
+            {/* {this.state.showInputBox ? ( */}
+            <div>
+              <textarea
+                className="form-control"
+                rows="1"
+                value={this.state.inputMessage}
+                onChange={e => this.setState({ inputMessage: e.target.value })}
+              />
+              <button
+                className="btn btn-info btn-lg btn-block"
+                onClick={this.sendMessage}
+              >
+                Submit
+              </button>
+              <br />
+              <button
+                className="btn btn-warning btn-lg"
+                onClick={this.endSession}
+              >
+                End Session
+              </button>
+            </div>
+            {/* ) : (
+              <p /> //if chatroom is no longer active, hide then input area.
+            )} */}
           </div>
         </div>
       </div>
@@ -143,6 +155,8 @@ class Chatroom extends Component {
 
 function mapStateToProps(state, ownProps) {
   console.log('mapStateToProps - chatroom', state);
+  // console.log("chatroomStatus's incoming state");
+  // console.log(state.chat.chatroomStatus);
   return {
     user: state.user.profile,
     messages: state.chat.messages,

@@ -5,6 +5,7 @@ import {
   GET_ALL_MESSAGES,
   START_SESSION,
   END_SESSION
+  // GET_CHATROOMSTATUS_SUCCESS
 } from '../reducers/constants';
 import axios from 'axios';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
@@ -93,3 +94,52 @@ export function createRating(chatId, rating, feedback) {
     }
   };
 }
+
+// export function getChatroomStatus(chatId) {
+//   console.log('chatidddddddd' + chatId); //works well
+//   return async dispatch => {
+//     // dispatch({ type: GET_CHATROOMSTATUS_PENDING });
+//     const token = localStorage.getItem('token');
+//     const response = await axios({
+//       method: 'get',
+//       url: SERVER_URL + `/api/history/chatroomStatus/${chatId}`,
+//       headers: {
+//         Authorization: 'Bearer ' + token,
+//         'Content-Type': 'application/json'
+//       }
+//       // data: { chatId }
+//     });
+//     if (response.status === 200) {
+//       console.log(response);
+//       dispatch({ type: GET_CHATROOMSTATUS_SUCCESS, payload: response.data });
+//     } else {
+//       console.log('getchatrooms err');
+//     }
+//   };
+// }
+
+// export function getChatroomStatus(chatId) {
+// 	console.log('chatidddddddd' + chatId); //works well
+// 	return async dispatch => {
+// 		// dispatch({ type: GET_CHATROOMSTATUS_PENDING });
+// 		try {
+// 			const token = localStorage.getItem('token');
+// 			const response = await axios({
+// 				method: 'get',
+// 				url: SERVER_URL + '/api/history/chatroomStatus',
+// 				headers: {
+// 					Authorization: 'Bearer ' + token,
+// 					'Content-Type': 'application/json'
+// 				},
+// 				data: { chatId }
+// 			});
+// 			console.log('qqqqqqqqqq' + response.data);
+// 			dispatch({
+// 				type: GET_CHATROOMSTATUS_SUCCESS,
+// 				payload: response.data
+// 			});
+// 		} catch (err) {
+// 			console.log('getChatroomStatus err' + err);
+// 		}
+// 	};
+// }
