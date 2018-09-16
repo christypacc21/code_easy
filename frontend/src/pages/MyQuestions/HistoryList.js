@@ -74,8 +74,7 @@ class HistoryList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('bbbbbbbbb');
-  console.log(state.getHistory.data.history);
+  console.log('state.getHistory.data.history', state.getHistory.data.history);
   return {
     isPending: state.getHistory.isPending,
     historyData: state.getHistory.data.history,
