@@ -13,6 +13,7 @@ module.exports = class ForumService {
       .select('*')
       .from('users')
       .rightJoin('forumPosts', 'users.id', 'forumPosts.user_id')
+      .orderBy('forumPosts.id', 'desc')
       .then(posts => {
         // console.log('posts', posts);
         const postInfoList = posts.map(post => {
