@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChatTab from '../MyQuestions/ChatTab';
-// import InstructorInfo from './InstructorInfo';
+import InstructorInfoTab from './InstructorInfoTab';
 import '../../App.css';
 
 import * as ChatActions from '../../redux/actions/chatActions';
@@ -60,35 +60,16 @@ class Chatroom extends Component {
   };
 
   render() {
-    console.log(this.state.imputMessage);
-    // console.log(this.props.match);
-    // const {
-    //   displayName,
-    //   email,
-    //   iEducation,
-    //   iIntroduction,
-    //   iNumRating,
-    //   iTotalRating,
-    //   iYearOfCodeExp,
-    //   id,
-    //   profilePic,
-    //   role
-    // } = this.props.user;
+    console.log('this.state.imputMessage', this.state.imputMessage);
+    // this.props.instructorInfo
+    //   ? console.log('this.props.instructorInfo', this.props.instructorInfo)
+    //   : null;
     return (
       <div>
         <ChatTab />
-        {/* <InstructorInfo
-          name={displayName}
-          email={email}
-          edu={iEducation}
-          intro={iIntroduction}
-          numRate={iNumRating}
-          totalRate={iTotalRating}
-          codeExp={iYearOfCodeExp}
-          id={id}
-          proPic={profilePic}
-          role={role}
-        /> */}
+        {this.props.instructorInfo && this.props.user.role === 'student' ? (
+          <InstructorInfoTab details={this.props.instructorInfo} />
+        ) : null}
         <div className="jumbotron" style={{ margin: 0 }}>
           <div className="container">
             <h1>Live Chat!</h1>
@@ -117,7 +98,8 @@ class Chatroom extends Component {
               })}
             <textarea
               className="form-control"
-              rows="1"
+              rows="5"
+              placeholder="type here..."
               value={this.state.inputMessage}
               onChange={e => this.setState({ inputMessage: e.target.value })}
             />
@@ -125,7 +107,7 @@ class Chatroom extends Component {
               className="btn btn-info btn-lg btn-block"
               onClick={this.sendMessage}
             >
-              Submit
+              Send
             </button>
             <br />
             <button
@@ -146,7 +128,8 @@ function mapStateToProps(state, ownProps) {
   return {
     user: state.user.profile,
     messages: state.chat.messages,
-    instructorInfo: state.chat.instructorInfo
+    instructorInfo: state.chat.instructorInfo,
+    studentInfo: state.chat.studentInfo
   };
 }
 

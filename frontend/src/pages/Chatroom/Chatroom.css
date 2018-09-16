@@ -1,0 +1,15 @@
+.nameTab {
+    display: flex;
+    flex-direction: row;
+}
+
+.infoTab {
+    display: flex;
+    flex-direction: column;
+}
+
+.profilePic {
+    width: 75px;
+    height: 75px;
+    border-radius: 3em;
+}

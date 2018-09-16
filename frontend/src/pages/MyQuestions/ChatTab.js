@@ -12,7 +12,7 @@ const ChatTab = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" to="/my-questions/history">
+            <Link className="nav-link" to="/my-questions/history">
               History
             </Link>
           </li>
