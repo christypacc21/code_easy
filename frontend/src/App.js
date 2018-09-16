@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
-import Nav from './components/Nav';
+import NavBar from './components/Nav';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -57,7 +57,7 @@ class App extends Component {
       return (
         <Router>
           <div>
-            <Nav />
+            <NavBar />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -121,7 +121,7 @@ class App extends Component {
       return (
         <Router>
           <div>
-            <Nav />
+            <NavBar />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />

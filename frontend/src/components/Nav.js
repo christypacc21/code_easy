@@ -9,8 +9,8 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
+  // NavLink
 } from 'reactstrap';
 
 class NavBar extends React.Component {
@@ -117,7 +117,7 @@ class NavBar extends React.Component {
     return (
       <React.Fragment>
         <li className="nav-item">
-          <Link className="nav-link" style={{ color: '#FFFFFF' }} href="/login">
+          <Link className="nav-link" style={{ color: '#FFFFFF' }} to="/login">
             Login
           </Link>
         </li>
@@ -125,7 +125,7 @@ class NavBar extends React.Component {
           <Link
             className="btn btn btn-primary "
             style={{ color: '#FFFFFF' }}
-            href="/signup"
+            to="/signup"
           >
             Sign Up Now!
           </Link>
@@ -180,8 +180,7 @@ class NavBar extends React.Component {
           <NavbarBrand
             className="navbar-brand"
             style={{ color: '#FFFFFF' }}
-            href="/"
-            className="mr-auto"
+            to="/"
           >
             <img
               src={logo}
@@ -200,39 +199,33 @@ class NavBar extends React.Component {
               {this.orderOrQuestion()}
               {!this.props.authenticated || this.props.role === 'student' ? (
                 <NavItem>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link"
-                      style={{ color: '#FFFFFF' }}
-                      to="/pricing"
-                    >
-                      Pricing
-                    </Link>
-                  </li>
+                  <Link
+                    className="nav-link"
+                    style={{ color: '#FFFFFF' }}
+                    to="/pricing"
+                  >
+                    Pricing
+                  </Link>
                 </NavItem>
               ) : null}
               <NavItem>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link "
-                    style={{ color: '#FFFFFF' }}
-                    to="/posts"
-                  >
-                    Coding Community
-                  </Link>
-                </li>
+                <Link
+                  className="nav-link "
+                  style={{ color: '#FFFFFF' }}
+                  to="/posts"
+                >
+                  Coding Community
+                </Link>
               </NavItem>
               {this.userProfileOrInstructorProfile()}
               <NavItem>
-                <li className="nav-item ">
-                  <Link
-                    className="nav-link "
-                    style={{ color: '#FFFFFF' }}
-                    to="/contact"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
+                <Link
+                  className="nav-link "
+                  style={{ color: '#FFFFFF' }}
+                  to="/contact"
+                >
+                  Contact Us
+                </Link>
               </NavItem>
             </Nav>
             <Nav navbar className="ml-auto">
