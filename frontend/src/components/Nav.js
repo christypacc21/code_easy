@@ -10,7 +10,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem
-  // NavLink
 } from 'reactstrap';
 
 class NavBar extends React.Component {
@@ -47,7 +46,6 @@ class NavBar extends React.Component {
                   className="nav-link"
                   style={{ color: '#FFFFFF' }}
                   to="/AskQuestion"
-                  // onClick={() => this.props.history.push('/CreateQuestion')}
                 >
                   Create Question
                 </Link>
@@ -180,7 +178,7 @@ class NavBar extends React.Component {
           <NavbarBrand
             className="navbar-brand"
             style={{ color: '#FFFFFF' }}
-            to="/"
+            href="/"
           >
             <img
               src={logo}
