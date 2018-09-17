@@ -101,7 +101,6 @@ class PureLogin extends React.Component {
               callback={this.responseFacebook}
             />
             <br />
-            <br />
           </div>{' '}
         </div>{' '}
       </div>

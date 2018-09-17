@@ -232,6 +232,7 @@ module.exports = class SocketRouter {
 			.update('active', false)
 			.where('id', user.chatId)
 			.then(() => {
+				// instructor will earn a fixed amount of $60 after each session
 				return this.knex(USERS)
 					.increment('i_balance', 6000)
 					.where('id', user.userId);
