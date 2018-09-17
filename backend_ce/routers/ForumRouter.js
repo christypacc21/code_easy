@@ -13,9 +13,13 @@ module.exports = class ForumRouter {
 
   router() {
     let router = express.Router();
-    router.get('/posts', this.getPosts.bind(this)); //get all posts
+    router.get('/posts', this.getPosts.bind(this)); //get all postss
     router.post('/posts', auth.authenticate(), this.createPost.bind(this)); //create(post) a new post
-    router.get('/posts/:id', this.getPostDetails.bind(this)); //get individual posts and corresponding comments
+    router.get(
+      '/posts/:id',
+      auth.authenticate(),
+      this.getPostDetails.bind(this)
+    ); //get individual posts and corresponding comments
     router.post(
       '/posts/:id/comments',
       auth.authenticate(),

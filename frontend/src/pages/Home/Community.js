@@ -69,7 +69,7 @@ class Commun extends React.Component {
           {this.renderPostList()}
           <br />
           {this.props.user.authenticated === false ? (
-            <Link className="btn btn-outline-info buttonAc" to={`/login`}>
+            <Link className="btn btn-outline-info buttonAc" to={`/posts`}>
               Go To Coding Community To See More Posts
               {/* (Signup or Signin) */}
             </Link>

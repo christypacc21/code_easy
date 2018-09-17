@@ -11,7 +11,8 @@ const PostCard = ({
   postTitle,
   postContent,
   postImagePath,
-  count
+  count,
+  auth
 }) => {
   return (
     <div>
@@ -78,9 +79,13 @@ const PostCard = ({
           <br />
           <p className="card-text">No. of comments {count}</p>
         </div>
-        {!postId ? (
-          <Link className="btn btn-info btn-block" to={`/login`}>
-            Login to see post details and comments
+        {!auth ? (
+          <Link
+            className="btn btn-info btn-block"
+            style={{ fontSize: '17px' }}
+            to={`/login`}
+          >
+            Login to see details and comments
           </Link>
         ) : (
           <Link className="btn btn-info btn-block" to={`/posts/${postId}`}>

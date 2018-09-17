@@ -42,6 +42,7 @@ class PostCardList extends Component {
               postContent={post.content}
               postImagePath={post.image_path}
               count={count}
+              auth={this.props.user.authenticated}
             />
           </div>
         );
@@ -60,16 +61,29 @@ class PostCardList extends Component {
     ) : (
       <div>
         <div style={{ margin: 10 }}>
-          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
-            Press to Create Post for Free!
-          </a>
+          {this.props.user.authenticated ? (
+            <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+              Press to Create Post for Free!
+            </a>
+          ) : (
+            <a className="btn btn-secondary btn-lg btn-block" href="/login">
+              Login or Signup to Create Post for Free!
+            </a>
+          )}
         </div>
         <div className="PostCardList" />
         <div className="row">{this.renderPostList()}</div>
+        <br />
         <div style={{ margin: 10 }}>
-          <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
-            Press to Create Post for Free!
-          </a>
+          {this.props.user.authenticated ? (
+            <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+              Press to Create Post for Free!
+            </a>
+          ) : (
+            <a className="btn btn-secondary btn-lg btn-block" href="/login">
+              Login or Signup to Create Post for Free!
+            </a>
+          )}
         </div>
       </div>
     );
@@ -83,7 +97,8 @@ function mapStateToProps(state) {
   return {
     isPending: state.requestPosts.isPending,
     postData: state.requestPosts.data.posts,
-    error: state.requestPosts.error
+    error: state.requestPosts.error,
+    user: state.user
   };
 }
 

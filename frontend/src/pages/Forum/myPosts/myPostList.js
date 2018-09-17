@@ -38,6 +38,7 @@ class MyPostList extends Component {
               postContent={post.content}
               postImagePath={post.image_path}
               count={post.count}
+              status={this.props.user.authenticated}
             />
           </div>
         );
@@ -67,7 +68,8 @@ function mapStateToProps(state) {
   return {
     isPending: state.requestMyPosts.isPending,
     postData: state.requestMyPosts.data.myposts,
-    error: state.requestMyPosts.error
+    error: state.requestMyPosts.error,
+    user: state.user
   };
 }
 
