@@ -1,7 +1,6 @@
 // func component
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './Home.css';
 import 'tachyons';
 const CommuPostCard = ({
