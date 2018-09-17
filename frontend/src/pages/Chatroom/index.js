@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
 import ChatTab from '../MyQuestions/ChatTab';
 import InstructorInfoTab from './InstructorInfoTab';
+import EndSessionBar from './EndSessionBar';
 import '../../App.css';
 
 import {
@@ -119,8 +120,9 @@ class Chatroom extends Component {
           {this.props.instructorInfo && this.props.user.role === 'student' ? (
             <InstructorInfoTab details={this.props.instructorInfo} />
           ) : null}
+          <EndSessionBar />
           <div className="jumbotron" style={{ margin: 0 }}>
-            <div className="container">
+            <div className="container chatFont">
               <h1>Live Chat!</h1>
               <br />
               {this.props.messages
