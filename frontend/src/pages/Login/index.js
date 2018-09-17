@@ -60,7 +60,7 @@ class PureLogin extends React.Component {
             <div className="form-group">
               <label> Email </label>{' '}
               <input
-                type="text"
+                type="email"
                 name="email"
                 className="form-control"
                 onChange={e => {

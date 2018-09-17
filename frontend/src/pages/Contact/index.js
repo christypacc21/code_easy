@@ -13,6 +13,12 @@ class Contact extends Component {
     const { username, message } = this.state;
 
     alert(`Hello ${username}! We have recieved your message: ${message}`);
+    this.setState({
+      username: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
   };
 
   render() {
@@ -73,18 +79,7 @@ class Contact extends Component {
               onChange={e => this.setState({ message: e.target.value })}
             />
             <br />
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={() => {
-                this.setState({
-                  username: '',
-                  email: '',
-                  phone: '',
-                  message: ''
-                });
-              }}
-            >
+            <button type="submit" className="btn btn-primary">
               Send
             </button>
           </form>

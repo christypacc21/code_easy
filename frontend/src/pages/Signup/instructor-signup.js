@@ -98,7 +98,7 @@ class UserSignup extends Component {
           </form>
 
           <br />
-          <a
+          <button
             type="submit"
             className="btn btn-primary"
             onClick={() =>
@@ -106,7 +106,7 @@ class UserSignup extends Component {
             }
           >
             Submit
-          </a>
+          </button>
         </div>
       </div>
     );
