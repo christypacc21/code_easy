@@ -4,7 +4,7 @@ import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-class instructorProfile extends React.Component {
+class InstructorProfile extends React.Component {
   render() {
     const { profile } = this.props;
     const codeExpOptions = [
@@ -89,8 +89,6 @@ class instructorProfile extends React.Component {
   }
 }
 
-// export default instructorProfile;
-
 function mapStateToProps(state) {
   return {
     profile: state.user.profile
@@ -100,4 +98,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   null
-)(instructorProfile);
+)(InstructorProfile);

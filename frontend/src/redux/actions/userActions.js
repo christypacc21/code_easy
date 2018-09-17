@@ -6,7 +6,8 @@ import {
   LOGOUT,
   INSTRUCTOR_SIGNUP,
   INSTRUCTOR_SIGNUP_FAIL,
-  GET_MY_PROFILE
+  GET_MY_PROFILE,
+  GET_PURCHASE_RECORD
 } from '../reducers/constants';
 import { sendChatMessage } from './chatActions';
 
@@ -261,6 +262,34 @@ export function getMyProfile() {
       } catch (err) {
         console.log('getMyProfile error: ', err);
         alert('Failed to get user profile ' + err);
+      }
+    }
+  };
+}
+
+export function getPurchaseRecord() {
+  return async dispatch => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const response = await axios({
+          method: 'get',
+          url: SERVER_URL + '/api/payment/student',
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        });
+
+        if (response.data.success) {
+          console.log('response.data: ', response.data);
+          dispatch({
+            type: GET_PURCHASE_RECORD,
+            payload: response.data.purchaseRecord
+          });
+        }
+      } catch (err) {
+        console.log('getPurchaseRecord error: ', err);
+        alert('Failed to get purchase record ' + err);
       }
     }
   };

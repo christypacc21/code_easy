@@ -3,6 +3,10 @@
 .bigHeader {
     padding: 120px;
     font-size: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .App-header {
@@ -160,7 +164,7 @@
     align-items: center;
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1090px) {
     /* AboutUs */
     .aboutUsDiv {
         padding: 35px 25px 35px 25px;

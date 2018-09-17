@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InstructorProfile from './instructorProfile';
-import UserProfile from './userProfile';
+import InstructorProfile from './InstructorProfile';
+import UserProfile from './UserProfile';
 
 class Profile extends Component {
   render() {

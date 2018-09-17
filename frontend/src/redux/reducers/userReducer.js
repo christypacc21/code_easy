@@ -4,8 +4,8 @@ import {
   LOGOUT,
   INSTRUCTOR_SIGNUP,
   INSTRUCTOR_SIGNUP_FAIL,
-  // AUTHENTICATED,
-  GET_MY_PROFILE
+  GET_MY_PROFILE,
+  GET_PURCHASE_RECORD
 } from './constants';
 
 const initialState = {
@@ -49,6 +49,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         profile: action.payload,
+        authenticated: true
+      };
+    case GET_PURCHASE_RECORD:
+      return {
+        ...state,
+        purchaseRecord: action.payload,
         authenticated: true
       };
     default:

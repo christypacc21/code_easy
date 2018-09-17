@@ -54,6 +54,8 @@ module.exports = class PaymentService {
 	}
 
 	getRecord(studentId) {
-		return this.knex(PURCHASERECORDS).where('student_id', studentId);
+		return this.knex(PURCHASERECORDS)
+			.where('student_id', studentId)
+			.orderBy('created_at', 'desc');
 	}
 };

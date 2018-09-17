@@ -26,8 +26,9 @@ import Chatroom from './pages/Chatroom';
 import MyHistory from './pages/MyQuestions/History';
 import MyOngoing from './pages/MyQuestions/Ongoing';
 import Profile from './pages/Profile';
-import instructorProfile from './pages/Profile/instructorProfile';
-import userProfile from './pages/Profile/userProfile';
+import InstructorProfile from './pages/Profile/InstructorProfile';
+import UserProfile from './pages/Profile/UserProfile';
+import PurchaseRecord from './pages/Profile/PurchaseRecord';
 import MyPostsPage from './pages/Forum/myPosts/myPostsPage';
 import MyCommentsPage from './pages/Forum/myComments/myCommentsPage';
 import StudentRating from './pages/Chatroom/StudentRating';
@@ -96,9 +97,10 @@ class App extends Component {
               <Route
                 exact
                 path="/instructorProfile"
-                component={instructorProfile}
+                component={InstructorProfile}
               />
-              <Route exact path="/userProfile" component={userProfile} />
+              <Route exact path="/userProfile" component={UserProfile} />
+              <Route exact path="/purchaseRecord" component={PurchaseRecord} />
             </Switch>
             <Footer />
           </div>
