@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HistoryCard from './HistoryCard';
 import { connect } from 'react-redux';
 import { getHistory } from '../../redux/actions/historyActions';
+import moment from 'moment';
 
 class HistoryList extends Component {
   componentWillMount() {
@@ -29,8 +30,14 @@ class HistoryList extends Component {
             <div key={i}>
               <HistoryCard
                 skills={history.skills}
-                questionDateTime={question.questionDateTime}
-                chatroomStartTime={question.chatroomStartTime}
+                questionDateTime={moment(question.questionDateTime).format(
+                  'lll'
+                )}
+                questionFromNow={moment(question.questionDateTime).fromNow()}
+                chatroomStartTime={moment(question.chatroomStartTime).format(
+                  'lll'
+                )}
+                chatroomFromNow={moment(question.chatroomStartTime).fromNow()}
                 content={question.content}
                 imagePath={question.image_path}
                 // username={}

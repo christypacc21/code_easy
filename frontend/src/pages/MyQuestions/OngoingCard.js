@@ -1,13 +1,14 @@
 // func component
 import React from 'react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import './MyQ.css';
 
 const OngoingCard = ({
   skills,
   questionDateTime,
+  questionFromNow,
   chatroomStartTime,
+  chatroomFromNow,
   content,
   imagePath,
   // username={}
@@ -23,9 +24,8 @@ const OngoingCard = ({
     <div className="card">
       <div className="card-header text-muted">
         Related coding skills: | Chatroom Id [{chatroomId}] | Question Id [
-        {questionId}] | Question created at [
-        {moment({ questionDateTime }).format('lll')}(
-        {moment(questionDateTime).fromNow()}
+        {questionId}] | Question created at [{questionDateTime}(
+        {questionFromNow}
         )]
         {/* {role == instructor
             ? `InstuctorID [${instructorId}]`
@@ -76,8 +76,7 @@ const OngoingCard = ({
       </div>
 
       <div className="card-footer text-muted">
-        Chatroom started at : {moment({ chatroomStartTime }).format('lll')}(
-        {moment(chatroomStartTime).fromNow()}) | Duration:
+        Chatroom started at : {chatroomStartTime}({chatroomFromNow}) | Duration:
         {duration} mins | Fee:hkd$
         {fee} | Rating: {rating}
       </div>

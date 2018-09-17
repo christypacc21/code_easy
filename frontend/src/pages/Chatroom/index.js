@@ -4,6 +4,7 @@ import ReactLoading from 'react-loading';
 import ChatTab from './ChatTab';
 import InstructorInfoTab from './InstructorInfoTab';
 import EndSessionBar from './EndSessionBar';
+import QuestionDiv from './QuestionDiv';
 import '../../App.css';
 
 import {
@@ -84,6 +85,7 @@ class Chatroom extends Component {
             <InstructorInfoTab details={this.props.instructorInfo} />
           ) : null}
           <EndSessionBar />
+          <QuestionDiv />
           <div className="jumbotron" style={{ margin: 0 }}>
             <div className="container chatFont">
               <h1>Live Chat!</h1>
@@ -160,12 +162,14 @@ class Chatroom extends Component {
 
 function mapStateToProps(state, ownProps) {
   console.log('mapStateToProps - chatroom', state);
+  console.log('questionindooooo', state.questions.all);
   return {
     user: state.user.profile,
     messages: state.chat.messages,
     instructorInfo: state.chat.instructorInfo,
     studentInfo: state.chat.studentInfo,
-    chatroomStatus: state.chat.chatroomStatus
+    chatroomStatus: state.chat.chatroomStatus,
+    questionInfo: state.questions
   };
 }
 
