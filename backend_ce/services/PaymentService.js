@@ -52,4 +52,8 @@ module.exports = class PaymentService {
 				throw err;
 			});
 	}
+
+	getRecord(studentId) {
+		return this.knex(PURCHASERECORDS).where('student_id', studentId);
+	}
 };

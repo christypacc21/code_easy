@@ -9,7 +9,7 @@ class userProfile extends React.Component {
         <div className="jumbotron jumbotron-fluid" style={{ margin: 0 }}>
           <div className="container">
             <h1 className="display-4">User Profile</h1>
-
+            <br />
             <div>
               <h4>Display Name:</h4>
               <p>{profile.displayName}</p>

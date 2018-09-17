@@ -40,6 +40,14 @@ const InstructorInfoTab = details => {
           <strong>Coding Experience :</strong>{' '}
           {codeExpOptions[details.details.iYearOfCodeExp]}
         </p>
+        <strong>Coding Skill(s) :</strong>{' '}
+        <div className="skills">
+          {details.details.skillInfo.map((skill, i) => (
+            <h4 key={i}>
+              <span className="badge badge-pill badge-info">{skill}</span>
+            </h4>
+          ))}
+        </div>
         <div className="ratingQ">
           {details.details.iNumRating ? (
             <p>

@@ -11,6 +11,7 @@ module.exports = class PaymentRouter {
 	router() {
 		let router = express.Router();
 		router.post('/charge', this.postCharge.bind(this));
+		router.get('/student', this.getRecord.bind(this));
 		return router;
 	}
 
@@ -51,5 +52,23 @@ module.exports = class PaymentRouter {
 					error: err
 				});
 			});
+	}
+
+	getRecord(req, res) {
+		return this.paymentService
+			.getRecord(req.user.id)
+			.then(data =>
+				res.json({
+					success: true,
+					purchaseRecord: data
+				})
+			)
+			.catch(err =>
+				res.status(500).json({
+					success: false,
+					message: err.message,
+					error: err
+				})
+			);
 	}
 };

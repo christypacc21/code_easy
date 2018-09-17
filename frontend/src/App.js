@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   componentWillReceiveProps() {
-    // for displaying instructor details after signing up
+    // for displaying instructor profile details after signing up
     if (
       this.props.authenticated &&
       this.props.user.profile.role === 'instructor' &&
