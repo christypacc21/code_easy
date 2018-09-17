@@ -8,6 +8,8 @@ import {
   INSTRUCTOR_SIGNUP_FAIL,
   GET_MY_PROFILE
 } from '../reducers/constants';
+import { sendChatMessage } from './chatActions';
+
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function localSignup(displayName, email, password, role) {
@@ -157,6 +159,19 @@ export function uploadQuestion(content, filePath, skills, history) {
 
       console.log('question res: ', response);
       if (response.data.success) {
+        console.log(
+          'response.data.questionInfo - after create question',
+          response.data.questionInfo
+        );
+        dispatch(
+          sendChatMessage(
+            response.data.questionInfo.content,
+            response.data.questionInfo.studentId,
+            'Question',
+            'student',
+            response.data.questionInfo.chatId
+          )
+        );
         history.push('/chatroom/' + response.data.questionInfo.chatId);
       }
     } catch (err) {

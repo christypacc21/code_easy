@@ -33,7 +33,7 @@ const InstructorInfoTab = details => {
           {details.details.iEducation}
         </p>
         <p>
-          <strong>Coding experience :</strong>{' '}
+          <strong>Coding Experience :</strong>{' '}
           {codeExpOptions[details.details.iYearOfCodeExp]}
         </p>
         <div className="ratingQ">

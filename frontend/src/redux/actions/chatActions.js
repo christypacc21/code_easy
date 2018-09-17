@@ -11,6 +11,14 @@ import axios from 'axios';
 const SERVER_URL = process.env.REACT_APP_API_SERVER;
 
 export function sendChatMessage(message, userId, displayName, role, chatId) {
+  console.log(
+    'aaaa aaaaaaaa chatAction - sendChatMessage',
+    message,
+    userId,
+    displayName,
+    role,
+    chatId
+  );
   return async dispatch => {
     dispatch({
       type: SOCKET,
