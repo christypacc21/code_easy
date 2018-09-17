@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import OngoingList from './OngoingList';
 
 class Ongoing extends Component {
   render() {
     return (
       <div>
-        <div style={{ paddingLeft: 80, margin: 0, background: '#00B0AF' }}>
+        <div
+          style={{
+            paddingLeft: 80,
+            paddingBottom: 60,
+            margin: 0,
+            background: '#00B0AF'
+          }}
+        >
           <br />
           <h1 className="display-4" style={{ margin: 0 }}>
-            My Question
+            {this.props.role === 'instructor' ? 'My Answer' : 'My Question'}
           </h1>
           <br />
-          <Link className="btn btn-primary " to="/AskQuestion">
-            Ask Question Now!
-          </Link>
-          <br />
-          <br />
+          {this.props.role === 'instructor' ? (
+            <div />
+          ) : (
+            <Link className="btn btn-primary " to="/AskQuestion">
+              Ask Question Now!
+            </Link>
+          )}
         </div>
+
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="nav nav-pills">
             <li className="nav-item">
@@ -38,4 +49,12 @@ class Ongoing extends Component {
   }
 }
 
-export default Ongoing;
+function mapStateToProps(state) {
+  return {
+    role: state.user.profile.role
+  };
+}
+export default connect(
+  mapStateToProps,
+  null
+)(Ongoing);
