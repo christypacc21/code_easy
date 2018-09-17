@@ -47,6 +47,7 @@ class Commun extends React.Component {
                 postContent={content}
                 postImagePath={image_path}
                 count={count}
+                auth={this.props.user.authenticated}
               />
             </div>
           );
@@ -67,9 +68,10 @@ class Commun extends React.Component {
 
           {this.renderPostList()}
           <br />
-          {!this.params === undefined ? (
+          {this.props.user.authenticated === false ? (
             <Link className="btn btn-outline-info buttonAc" to={`/login`}>
-              Go To Coding Community To See More Posts (Signup or Signin)
+              Go To Coding Community To See More Posts
+              {/* (Signup or Signin) */}
             </Link>
           ) : (
             <Link className="btn btn-outline-info buttonAc" to={`/posts`}>
@@ -87,7 +89,8 @@ function mapStateToProps(state) {
   return {
     isPending: state.requestPosts.isPending,
     postData: state.requestPosts.data.posts,
-    error: state.requestPosts.error
+    error: state.requestPosts.error,
+    user: state.user
   };
 }
 
