@@ -1,4 +1,7 @@
 import React from 'react';
+import Rating from 'react-rating';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './Chatroom.css';
 
 const InstructorInfoTab = details => {
@@ -41,8 +44,18 @@ const InstructorInfoTab = details => {
           {details.details.iNumRating ? (
             <p>
               <strong>Rating : </strong>
-              {details.details.iTotalRating / details.details.iNumRating}
-              /5
+              <Rating
+                initialRating={
+                  details.details.iTotalRating / details.details.iNumRating
+                }
+                emptySymbol={
+                  <FontAwesomeIcon icon={faStar} size="1x" color="grey" />
+                }
+                fullSymbol={
+                  <FontAwesomeIcon icon={faStar} size="1x" color="gold" />
+                }
+                readonly
+              />
             </p>
           ) : (
             <p>

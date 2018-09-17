@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Rating from 'react-rating';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 class instructorProfile extends React.Component {
   render() {
@@ -48,6 +51,22 @@ class instructorProfile extends React.Component {
             <p>
               HK$
               {profile.iBalance / 100}
+            </p>
+          </div>
+
+          <div>
+            <p>
+              <h4>Rating :</h4>
+              <Rating
+                initialRating={profile.iTotalRating / profile.iNumRating}
+                emptySymbol={
+                  <FontAwesomeIcon icon={faStar} size="1x" color="grey" />
+                }
+                fullSymbol={
+                  <FontAwesomeIcon icon={faStar} size="1x" color="gold" />
+                }
+                readonly
+              />
             </p>
           </div>
         </div>
