@@ -5,7 +5,7 @@ class Contact extends Component {
     username: '',
     email: '',
     phone: '',
-    message: '',
+    message: ''
   };
 
   sendForm = e => {
@@ -37,7 +37,6 @@ class Contact extends Component {
                 type="name"
                 className="form-control"
                 id="inputDisplay"
-                placeholder="Username"
                 value={username}
                 onChange={e => this.setState({ username: e.target.value })}
               />
@@ -74,7 +73,18 @@ class Contact extends Component {
               onChange={e => this.setState({ message: e.target.value })}
             />
             <br />
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={() => {
+                this.setState({
+                  username: '',
+                  email: '',
+                  phone: '',
+                  message: ''
+                });
+              }}
+            >
               Send
             </button>
           </form>
