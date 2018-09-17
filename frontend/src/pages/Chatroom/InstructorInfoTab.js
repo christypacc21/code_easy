@@ -2,26 +2,42 @@ import React from 'react';
 import './Chatroom.css';
 
 const InstructorInfoTab = details => {
-  console.log('details', details.details);
+  // console.log('details', details.details);
   return (
-    <div>
-      <div className="nameTab container">
+    <div className="InstructorInfoDiv">
+      <div className="InstructorImgName col-lg-3">
         <img
           className="profilePic"
           src={details.details.profilePic}
           alt="Instructor Pic"
         />
-        <br />
-        <h1>{details.details.displayName}</h1>
+
+        <p>{details.details.displayName}</p>
       </div>
-      <div className="infoTab container">
-        <p>Intro : {details.details.iIntroduction}</p>
-        <p>Education : {details.details.iEducation}</p>
-        <p>Year of coding experience : {details.details.iYearOfCodeExp}</p>
+
+      <div className="InfoDiv col-lg-10">
         <p>
-          Rating : {details.details.iTotalRating / details.details.iNumRating}
-          /5
+          <strong>Intro :</strong> {details.details.iIntroduction}
         </p>
+        <p>
+          <strong>Education : </strong>
+          {details.details.iEducation}
+        </p>
+        <p>
+          <strong>Coding experience :</strong> {details.details.iYearOfCodeExp}{' '}
+          (yr)
+        </p>
+        <div className="ratingQ">
+          <p>
+            <strong>Rating : </strong>
+            {details.details.iTotalRating / details.details.iNumRating}
+            /5
+          </p>
+          <span />
+          <p>
+            <strong>QuestionAnswered </strong>
+          </p>
+        </div>
       </div>
     </div>
   );

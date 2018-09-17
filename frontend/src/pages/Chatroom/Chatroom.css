@@ -1,15 +1,55 @@
-.nameTab {
-    display: flex;
-    flex-direction: row;
+.InstructorInfoDiv {
+  background-color: rgb(119, 206, 206);
+  padding: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
 }
 
-.infoTab {
-    display: flex;
-    flex-direction: column;
+.InfoDiv {
+  padding-top: 20px;
+}
+
+.InstructorImgName {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .profilePic {
-    width: 75px;
-    height: 75px;
-    border-radius: 3em;
+  width: 100px;
+  height: 100px;
+  border-radius: 3em;
+  margin: 30px 0 30px 0;
+}
+
+.ratingQ {
+  display: flex;
+  justify-content: flex-start;
+}
+.ratingQ span {
+  padding-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .InstructorInfoDiv {
+    padding: 30px 2px 10px 2px;
+    display: flex;
+    flex-direction: column;
+  }
+  .InstructorInfoDiv p {
+    font-size: 15px;
+  }
+  .profilePic {
+    width: 70px;
+    height: 70px;
+    border-radius: 0.2em;
+    margin: 0;
+  }
+  .ratingQ {
+    display: flex;
+    flex-direction: column;
+  }
 }
