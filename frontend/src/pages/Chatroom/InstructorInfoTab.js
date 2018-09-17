@@ -15,6 +15,7 @@ const InstructorInfoTab = details => {
   return (
     <div className="InstructorInfoDiv">
       <div className="InstructorImgName col-lg-3">
+        <b>Your Instructor Profile:</b>
         <img
           className="profilePic"
           src={details.details.profilePic}
@@ -24,7 +25,7 @@ const InstructorInfoTab = details => {
         <p>{details.details.displayName}</p>
       </div>
 
-      <div className="InfoDiv col-lg-10">
+      <div className="InfoDiv col-lg-6">
         <p>
           <strong>Intro :</strong> {details.details.iIntroduction}
         </p>

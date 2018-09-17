@@ -1,85 +1,91 @@
 /* Instructorinfo css */
+
 .InstructorInfoDiv {
-  background-color: rgb(119, 206, 206);
-  padding: 30px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: white;
+    background-color: rgb(119, 206, 206);
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
 }
 
 .InfoDiv {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .InstructorImgName {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .profilePic {
-  width: 100px;
-  height: 100px;
-  border-radius: 3em;
-  margin: 30px 0 30px 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 3em;
+    margin: 30px 0 30px 0;
 }
 
 .ratingQ {
-  display: flex;
-  justify-content: flex-start;
+    display: flex;
+    justify-content: flex-start;
 }
+
 .ratingQ span {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 @media only screen and (max-width: 600px) {
-  /* Instructorinfo css */
-  .InstructorInfoDiv {
-    padding: 30px 2px 10px 2px;
-    display: flex;
-    flex-direction: column;
-  }
-  .InstructorInfoDiv p {
-    font-size: 15px;
-  }
-  .profilePic {
-    width: 70px;
-    height: 70px;
-    border-radius: 0.2em;
-    margin: 0;
-  }
-  .InfoDiv {
-    padding-top: 0px;
-  }
-  .ratingQ {
-    display: flex;
-    flex-direction: column;
-  }
-  /* chatarea css */
-  .jumbotron {
-    padding: 3px 1px 3px 1px;
-  }
-  .chatFont {
-    padding: 0px 8px 0px 8px;
-  }
-  .chatFont pre {
-    font-size: 13px;
-  }
-  .chatFont h2 {
-    font-size: 15px;
-  }
-  .chatFont h1 {
-    margin: 20px 5px 0 5px;
-    font-size: 25px;
-  }
-  .instructorSpeechBubble {
-    padding: 0px 5px 0px 5px;
-    margin-bottom: 8px;
-  }
-  .studentSpeechBubble {
-    padding: 0px 5px 0px 5px;
-    margin-bottom: 8px;
-  }
+    /* Instructorinfo css */
+    .InstructorInfoDiv {
+        padding: 30px 2px 10px 2px;
+        display: flex;
+        flex-direction: column;
+    }
+    .InstructorInfoDiv p {
+        font-size: 15px;
+    }
+    .profilePic {
+        width: 80px;
+        height: 80px;
+        border-radius: 3em;
+        margin: 0;
+    }
+    .InfoDiv {
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .ratingQ {
+        display: flex;
+        flex-direction: column;
+    }
+    /* Chatarea css */
+    .jumbotron {
+        padding: 3px 1px 3px 1px;
+    }
+    .chatFont {
+        padding: 0px 8px 0px 8px;
+    }
+    .chatFont pre {
+        font-size: 13px;
+    }
+    .chatFont h2 {
+        font-size: 15px;
+    }
+    .chatFont h1 {
+        margin: 20px 5px 0 5px;
+        font-size: 25px;
+    }
+    .instructorSpeechBubble {
+        padding: 0px 5px 0px 5px;
+        margin-bottom: 8px;
+    }
+    .studentSpeechBubble {
+        padding: 0px 5px 0px 5px;
+        margin-bottom: 8px;
+    }
 }
