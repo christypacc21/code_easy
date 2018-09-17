@@ -3,8 +3,6 @@ const MESSAGES = require('../services/tables').MESSAGES;
 const QUESTIONS = require('../services/tables').QUESTIONS;
 const USERS = require('../services/tables').USERS;
 
-// let allMessages = [];
-
 module.exports = class SocketRouter {
 	constructor(io, knex) {
 		this.io = io;
@@ -55,6 +53,13 @@ module.exports = class SocketRouter {
 					this.io.emit('SOCKET_ON', {
 						actionType: 'NEW_MESSAGE',
 						payload
+					});
+					this.getInstructorInfo(socket, payload).then(instructorInfo => {
+						console.log('instructorInfo - for student', instructorInfo);
+						this.io.emit('SOCKET_ON', {
+							actionType: 'GET_INSTRUCTOR_INFO',
+							payload: instructorInfo
+						});
 					});
 				}
 
@@ -132,6 +137,7 @@ module.exports = class SocketRouter {
 							'codingSkills.id'
 						)
 						.then(instructorInfoList => {
+							console.log('chat - instructorInfoList', instructorInfoList);
 							const skillInfoList = instructorInfoList.map(instructorInfo => {
 								return instructorInfo.skill;
 							});
@@ -232,7 +238,7 @@ module.exports = class SocketRouter {
 			.update('active', false)
 			.where('id', user.chatId)
 			.then(() => {
-				// instructor will earn a fixed amount of $60 after each session
+				// instructor will earn a fixed amount of $60 after each session now
 				return this.knex(USERS)
 					.increment('i_balance', 6000)
 					.where('id', user.userId);

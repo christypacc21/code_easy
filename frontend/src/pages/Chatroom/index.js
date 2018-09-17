@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
-import ChatTab from '../MyQuestions/ChatTab';
+import ChatTab from './ChatTab';
 import InstructorInfoTab from './InstructorInfoTab';
 import EndSessionBar from './EndSessionBar';
 import '../../App.css';
@@ -75,14 +75,11 @@ class Chatroom extends Component {
   render() {
     console.log('this.state.imputMessage', this.state.imputMessage);
     console.log('this.props.chatroomStatus', this.props.chatroomStatus);
-    // this.props.instructorInfo
-    //   ? console.log('this.props.instructorInfo', this.props.instructorInfo)
-    //   : null;
-    // if (this.props.chatInfo && this.state.showInputBox !== null) {
+    console.log('this.props.instructorInfo', this.props.instructorInfo);
     if (this.props.chatroomStatus) {
       return (
         <div>
-          <ChatTab />
+          <ChatTab status={this.props.chatroomStatus} />
           {this.props.instructorInfo && this.props.user.role === 'student' ? (
             <InstructorInfoTab details={this.props.instructorInfo} />
           ) : null}

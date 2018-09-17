@@ -28,7 +28,7 @@ module.exports = class HistoryRouter {
 	}
 
 	getChatroomActive(req, res) {
-		console.log('pppppppp' + req.params.id);
+		console.log('chatroomId - getChatroomActive' + req.params.id);
 		return (
 			this.historyService
 			// .getChatroomActive(req.body.chatId) //?

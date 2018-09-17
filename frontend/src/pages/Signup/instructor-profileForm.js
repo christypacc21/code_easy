@@ -94,11 +94,11 @@ class InstructorProfileForm extends Component {
               onChange={e => this.setState({ yearCodeExp: e.target.value })}
             >
               <option value="0">&lt; 1</option>
-              <option value="1">1 - 3 Years</option>
-              <option value="2">4 - 6 Years</option>
-              <option value="3">7 - 10 Years</option>
-              <option value="4">10 - 13 Years</option>
-              <option value="5">More than 13 years</option>
+              <option value="1">1 - 3 years</option>
+              <option value="2">4 - 6 years</option>
+              <option value="3">7 - 9 years</option>
+              <option value="4">10 - 12 years</option>
+              <option value="5">More than 12 years</option>
             </select>
             <div className="form-group" />
             <label htmlFor="exampleFormControlSelect2">Coding Skills</label>

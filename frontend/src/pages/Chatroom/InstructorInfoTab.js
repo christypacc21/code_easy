@@ -3,6 +3,15 @@ import './Chatroom.css';
 
 const InstructorInfoTab = details => {
   // console.log('details', details.details);
+  const codeExpOptions = [
+    '< 1',
+    '1 - 3 years',
+    '4 - 6 years',
+    '7 - 9 years',
+    '9 - 12 years',
+    'More than 12 years'
+  ];
+
   return (
     <div className="InstructorInfoDiv">
       <div className="InstructorImgName col-lg-3">
@@ -24,19 +33,26 @@ const InstructorInfoTab = details => {
           {details.details.iEducation}
         </p>
         <p>
-          <strong>Coding experience :</strong> {details.details.iYearOfCodeExp}{' '}
-          (yr)
+          <strong>Coding experience :</strong>{' '}
+          {codeExpOptions[details.details.iYearOfCodeExp]}
         </p>
         <div className="ratingQ">
-          <p>
-            <strong>Rating : </strong>
-            {details.details.iTotalRating / details.details.iNumRating}
-            /5
-          </p>
+          {details.details.iNumRating ? (
+            <p>
+              <strong>Rating : </strong>
+              {details.details.iTotalRating / details.details.iNumRating}
+              /5
+            </p>
+          ) : (
+            <p>
+              <strong>Rating : </strong>
+              n/a
+            </p>
+          )}
           <span />
-          <p>
+          {/* <p>
             <strong>QuestionAnswered </strong>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

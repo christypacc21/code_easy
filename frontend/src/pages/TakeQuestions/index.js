@@ -90,7 +90,7 @@ class TakeQuestions extends React.Component {
                     ) : (
                       <Link
                         to={`/chatroom/${question.chatInfo.id}`}
-                        className="btn btn-primary "
+                        className="btn btn-primary"
                       >
                         Answer
                       </Link>
