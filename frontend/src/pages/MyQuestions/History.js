@@ -2,29 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HistoryList from './HistoryList';
-// import * as userActions from '../../redux/actions/userActions';
+import './MyQ.css';
 
 class Ongoing extends Component {
   render() {
     return (
       <div>
-        <div
-          style={{
-            paddingLeft: 80,
-            paddingBottom: 60,
-            margin: 0,
-            background: '#00B0AF'
-          }}
-        >
+        <div className="pageHeadDiv">
           <br />
-          <h1 className="display-4" style={{ margin: 0 }}>
+          <h1 className="display-4">
             {this.props.role === 'instructor' ? 'My Answer' : 'My Question'}
           </h1>
           <br />
           {this.props.role === 'instructor' ? (
             <div />
           ) : (
-            <Link className="btn btn-primary " to="/AskQuestion">
+            <Link className="btn btn-primary" to="/AskQuestion">
               Ask Question Now!
             </Link>
           )}
@@ -54,12 +47,6 @@ function mapStateToProps(state) {
     role: state.user.profile.role
   };
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     user: state.user.profile.role
-//   };
-// }
 
 export default connect(
   mapStateToProps,

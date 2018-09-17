@@ -2,21 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import OngoingList from './OngoingList';
+import './MyQ.css';
 
 class Ongoing extends Component {
   render() {
     return (
       <div>
-        <div
-          style={{
-            paddingLeft: 80,
-            paddingBottom: 60,
-            margin: 0,
-            background: '#00B0AF'
-          }}
-        >
+        <div className="pageHeadDiv">
           <br />
-          <h1 className="display-4" style={{ margin: 0 }}>
+          <h1 className="display-4">
             {this.props.role === 'instructor' ? 'My Answer' : 'My Question'}
           </h1>
           <br />

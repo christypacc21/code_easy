@@ -1,0 +1,33 @@
+.pageHeadDiv {
+  padding: 0 0 40px 80px;
+  margin: 0;
+  background: #00b0af;
+}
+
+.display-4 {
+  margin: 0;
+}
+.skills {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+}
+.skills h3 {
+  margin: 0 3px;
+}
+
+@media only screen and (max-width: 650px) {
+  .pageHeadDiv {
+    padding: 0 0 15px 15px;
+  }
+  .pageHeadDiv h1 {
+    font-size: 40px;
+  }
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .skills h3 {
+    font-size: 18px;
+  }
+}

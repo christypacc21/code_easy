@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import './MyQ.css';
 
 const OngoingCard = ({
   skills,
@@ -29,15 +30,9 @@ const OngoingCard = ({
         {/* {role == instructor
             ? `InstuctorID [${instructorId}]`
             : `StudentID [${studentId}]`} */}
-        <div
-          style={{
-            marginTop: '4px',
-            display: 'flex',
-            flexDirection: 'row'
-          }}
-        >
+        <div className="skills">
           {skills.map((skill, j) => (
-            <h3 style={{ margin: '0 3px' }} key={j}>
+            <h3 key={j}>
               <span className="badge badge-pill badge-info">{skill.skill}</span>
             </h3>
           ))}

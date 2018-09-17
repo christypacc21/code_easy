@@ -4,6 +4,7 @@ import moment from 'moment';
 import * as QuestionActions from '../../redux/actions/questionAction';
 import Lightbox from 'react-images';
 import { Link } from 'react-router-dom';
+import './takeQ.css';
 
 class TakeQuestions extends React.Component {
   state = {
@@ -46,15 +47,9 @@ class TakeQuestions extends React.Component {
             <div className="card">
               <div className="card-header">
                 Related coding skills:
-                <div
-                  style={{
-                    marginTop: '4px',
-                    display: 'flex',
-                    flexDirection: 'row'
-                  }}
-                >
+                <div className="skills">
                   {question.skillInfo.map((skill, j) => (
-                    <h3 style={{ margin: '0 3px' }} key={j}>
+                    <h3 key={j}>
                       <span className="badge badge-pill badge-info">
                         {skill.skill}
                       </span>
@@ -142,8 +137,8 @@ class TakeQuestions extends React.Component {
             style={{ margin: 0, background: '#00B0AF' }}
           >
             <div className="container py-3">
-              <div className="row">
-                <h2 style={{ color: 'white' }}>Start Taking Questions!</h2>
+              <div className="row header">
+                <h2>Start Taking Questions!</h2>
               </div>
               <br />
               {this.renderQuestions()}

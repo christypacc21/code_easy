@@ -1,0 +1,30 @@
+.header {
+  padding-left: 15px;
+}
+.header h2 {
+  color: white;
+}
+.display-4 {
+  margin: 0;
+}
+.skills {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+}
+.skills h3 {
+  margin: 0 3px;
+}
+
+@media only screen and (max-width: 650px) {
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .skills h3 {
+    font-size: 18px;
+  }
+  .header h2 {
+    font-size: 30px;
+  }
+}
