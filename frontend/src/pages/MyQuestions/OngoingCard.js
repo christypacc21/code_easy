@@ -12,11 +12,11 @@ const OngoingCard = ({
   content,
   imagePath,
   // username={}
-  instructorId,
-  studentId,
+  // instructorId,
+  // studentId,
   rating,
-  duration,
-  fee,
+  // duration,
+  // fee,
   chatroomId,
   questionId
 }) => {
