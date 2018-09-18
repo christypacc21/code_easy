@@ -1,112 +1,112 @@
 @import url('https://fonts.googleapis.com/css?family=Lato" rel="stylesheet');
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
 }
 
 .App-header {
-    background-color: #9bccd0;
-    background-image: url('./assets/bannerBG.jpeg');
-    background-position: center;
-    background-size: cover;
-    height: 500px;
-    padding: 120px;
-    color: white;
+  background-color: #9bccd0;
+  background-image: url('./assets/bannerBG.jpeg');
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+  padding: 120px;
+  color: white;
 }
 
 .loading {
-    background-color: white;
-    height: 70vh;
-    color: black;
+  background-color: white;
+  height: 70vh;
+  color: black;
 }
 
 .bannerHow {
-    background-color: #00b0af;
-    height: 450px;
-    padding: 120px;
-    color: white;
+  background-color: #00b0af;
+  height: 450px;
+  padding: 120px;
+  color: white;
 }
 
 .aboutbanner {
-    background-color: #72d9dd;
-    height: 450px;
-    padding: 120px;
-    color: white;
+  background-color: #72d9dd;
+  height: 450px;
+  padding: 120px;
+  color: white;
 }
 
 .comBanner {
-    background-color: #ffffff;
-    height: 1300px;
-    padding: 120px;
-    color: white;
+  background-color: #ffffff;
+  height: 1300px;
+  padding: 120px;
+  color: white;
 }
 
 .App-title {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .App-intro {
-    font-size: large;
+  font-size: large;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 body {
-    font-family: 'Lato';
+  font-family: 'Lato';
 }
 
 .codeLogo {
-    font-family: 'Lato', bold;
+  font-family: 'Lato', bold;
 }
 
 .instructorSpeechBubble {
-    padding: 10px 12px 8px 12px;
-    background: #fffec6;
-    border-radius: 0.4em;
+  padding: 10px 12px 8px 12px;
+  background: #fffec6;
+  border-radius: 0.4em;
 }
 
 .studentSpeechBubble {
-    padding: 10px 12px 8px 12px;
-    background: #c2effd;
-    border-radius: 0.4em;
+  padding: 10px 12px 8px 12px;
+  background: #c2effd;
+  border-radius: 0.4em;
 }
 
 .loginForm {
-    background: rgb(246, 246, 246);
-    padding-top: 5vh;
-    height: 500px;
+  background: rgb(246, 246, 246);
+  padding-top: 5vh;
+  height: 600px;
 }
 
 .footer {
-    padding: 90px;
-    background-color: #2e2f2f;
-    color: white;
+  padding: 90px;
+  background-color: #2e2f2f;
+  color: white;
 }
 
 .footer p {
-    font-size: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1000px) {
-    .footer {
-        padding: 35px 25px 35px 25px;
-    }
-    .footer p {
-        font-size: 18px;
-    }
+  .footer {
+    padding: 35px 25px 35px 25px;
+  }
+  .footer p {
+    font-size: 18px;
+  }
 }
