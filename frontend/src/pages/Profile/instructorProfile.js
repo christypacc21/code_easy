@@ -48,15 +48,19 @@ class InstructorProfile extends React.Component {
 
           <div>
             <h4>Coding Skill(s) :</h4>
-            <div className="skills">
-              {profile.instructorInfo.map((skill, i) => (
-                <h3 key={i}>
-                  <span className="badge badge-pill badge-info">
-                    {skill.skill}
-                  </span>
-                </h3>
-              ))}
-            </div>
+            {profile.instructorInfo ? (
+              <div className="skills">
+                {profile.instructorInfo.map((skill, i) => (
+                  <h3 key={i}>
+                    <span className="badge badge-pill badge-info">
+                      {skill.skill}
+                    </span>
+                  </h3>
+                ))}
+              </div>
+            ) : (
+              <p>n/a</p>
+            )}
             <br />
           </div>
 
