@@ -162,14 +162,12 @@ class Chatroom extends Component {
 
 function mapStateToProps(state, ownProps) {
   console.log('mapStateToProps - chatroom', state);
-  console.log('questionindooooo', state.questions.all);
   return {
     user: state.user.profile,
     messages: state.chat.messages,
     instructorInfo: state.chat.instructorInfo,
     studentInfo: state.chat.studentInfo,
-    chatroomStatus: state.chat.chatroomStatus,
-    questionInfo: state.questions
+    chatroomStatus: state.chat.chatroomStatus
   };
 }
 

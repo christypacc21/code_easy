@@ -69,8 +69,8 @@ class InstructorProfile extends React.Component {
           </div>
 
           <div>
+            <h4>Rating :</h4>
             <p>
-              <h4>Rating :</h4>
               <Rating
                 initialRating={profile.iTotalRating / profile.iNumRating}
                 emptySymbol={

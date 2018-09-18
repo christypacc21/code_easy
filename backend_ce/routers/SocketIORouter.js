@@ -74,7 +74,15 @@ module.exports = class SocketRouter {
 							payload.chatId
 						}`
 					);
-					this.onDisconnect(socket, payload);
+					this.onDisconnect(socket, payload).then(() => {
+						const res = { success: true, active: false };
+						// probably need to emit to a specific chatroom, will try it after deploy
+						this.io.emit('SOCKET_ON', {
+							actionType: 'UPDATE_END_SESSION',
+							payload: res
+						});
+						return;
+					});
 				}
 			});
 		});
@@ -237,11 +245,13 @@ module.exports = class SocketRouter {
 		return this.knex(CHATROOOMS)
 			.update('active', false)
 			.where('id', user.chatId)
-			.then(() => {
+			.returning('instructor_id')
+			.then(instructorId => {
 				// instructor will earn a fixed amount of $60 after each session now
+				// maybe use transaction to prevent duplicant actions?
 				return this.knex(USERS)
 					.increment('i_balance', 6000)
-					.where('id', user.userId);
+					.where('id', instructorId[0]);
 			})
 			.catch(err => {
 				console.log(err);

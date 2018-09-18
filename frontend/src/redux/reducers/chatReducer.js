@@ -3,7 +3,8 @@ import {
   GET_ALL_MESSAGES,
   GET_INSTRUCTOR_INFO,
   GET_STUDENT_INFO,
-  GET_CHATROOMSTATUS_SUCCESS
+  GET_CHATROOMSTATUS_SUCCESS,
+  UPDATE_END_SESSION
 } from './constants';
 
 const initialState = {
@@ -34,6 +35,11 @@ export default (state = initialState, action) => {
         studentInfo: action.payload
       };
     case GET_CHATROOMSTATUS_SUCCESS:
+      return {
+        ...state,
+        chatroomStatus: action.payload
+      };
+    case UPDATE_END_SESSION:
       return {
         ...state,
         chatroomStatus: action.payload
