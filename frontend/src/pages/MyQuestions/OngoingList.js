@@ -68,14 +68,19 @@ class OngoingList extends Component {
             <h4 style={{ color: 'white' }}>
               Onging Chatroom Here (Questions with unfinished chatroom)
             </h4>
-            <p>
-              To end the chat session,please press the "End session" button
-              inside the unfinished chatroom. After chatroom session is ended,
-              one question quota will be deducted from your account. Once the
-              chatroom session is ended. The chatroom will be closed and
-              deactived while you can still read the chat history in the
-              'History' Tab. Enjoy!
-            </p>
+            {this.props.role === 'student' ? (
+              <p>
+                To end the chat session,please press the "End session" button
+                inside the unfinished chatroom. After a chatroom question is
+                created, one question quota(1 credit) will be deducted from your
+                account. Once the chatroom session is ended. The chatroom will
+                be closed and deactived while you can still read the chat
+                history in the 'History' Tab. Enjoy!
+              </p>
+            ) : (
+              <p />
+            )}
+
             {this.renderOngoingList()}
           </div>
           <br />
@@ -92,7 +97,8 @@ function mapStateToProps(state) {
   return {
     isPending: state.getHistory.isPending,
     historyData: state.getHistory.data.history,
-    error: state.getHistory.error
+    error: state.getHistory.error,
+    role: state.user.profile.role
   };
 }
 

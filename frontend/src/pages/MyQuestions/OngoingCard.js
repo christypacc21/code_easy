@@ -76,9 +76,8 @@ const OngoingCard = ({
       </div>
 
       <div className="card-footer text-muted">
-        Chatroom started at : {chatroomStartTime}({chatroomFromNow}) | Duration:
-        {duration} mins | Fee:hkd$
-        {fee} | Rating: {rating}
+        Chatroom started at : {chatroomStartTime}({chatroomFromNow})
+        {/* | Duration: {duration} mins | Fee:hkd${fee}  */} | Rating: {rating}
       </div>
     </div>
   );
