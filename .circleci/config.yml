@@ -12,7 +12,7 @@ jobs:
     working_directory: ~/repo/frontend
 
     steps:
-      - checkout
+      - checkout:
     path: ~/repo
 
       # - run: ls -l ~/repo
@@ -28,7 +28,7 @@ jobs:
 
       - save_cache:
           paths:
-            ~/repo
+            - node_modules
           key: v1-dependencies-{{ checksum "frontend/package.json" }}
 
       - run: yarn build
