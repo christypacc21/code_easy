@@ -38,7 +38,7 @@ class Contact extends Component {
           </div>
           <form onSubmit={this.sendForm}>
             <div className="form-group">
-              <label htmlFor="inputDisplay">User Name</label>
+              <label htmlFor="inputDisplay">Name</label>
               <input
                 type="name"
                 className="form-control"

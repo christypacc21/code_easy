@@ -178,8 +178,8 @@ export function uploadQuestion(content, filePath, skills, history) {
     } catch (err) {
       // need to handle different errors from backend
 
-      // alert('Error: Not enough credit');
-      alert('Error: Please contact us!');
+      alert('Error: Not enough credit');
+      // alert('Error: Please contact us!');
     }
   };
 }
