@@ -27,14 +27,16 @@ class ThankYou extends React.Component {
                 <br />
                 <div className="col-sm-12">
                   <p>{this.props.description}</p>
-                  <p>Invoice Number: {this.props.paymentResponse.receipt}</p>
+                  <p>
+                    Payment Reference : {this.props.paymentResponse.receipt}
+                  </p>
                   <p>Description: {this.props.packageType}</p>
                   <p>
-                    Amount Paid: HK$
+                    Amount Paid : HK$
                     {this.props.paymentResponse.amount / 100}
                   </p>
                   <p>
-                    Remaining Question Credit(s):{' '}
+                    Remaining Question Credit(s) :{' '}
                     {this.props.paymentResponse.totalQuestionCredits}
                   </p>
                   <br />

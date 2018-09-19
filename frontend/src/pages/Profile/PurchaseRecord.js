@@ -23,7 +23,7 @@ class PurchaseRecord extends React.Component {
                 <div className="card-header">
                   <div className="row">
                     <div className="col-12">
-                      <h6>Invoice Number : {record.payment_id}</h6>
+                      <h6>Payment Reference : {record.payment_id}</h6>
                     </div>
                     {/* <div className="col-md-6">
                       <h6>Date : {moment(record.created_at).format('llll')}</h6>

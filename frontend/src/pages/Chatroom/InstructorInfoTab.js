@@ -22,7 +22,7 @@ const InstructorInfoTab = details => {
         <img
           className="profilePic"
           src={details.details.profilePic}
-          alt="Instructor Pic"
+          alt="instructor-pic"
         />
 
         <p>{details.details.displayName}</p>
