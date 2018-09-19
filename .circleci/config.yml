@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:10
 
-    working_directory: ~/repo
+    working_directory: ~/repo/frontend
 
     steps:
       - checkout
@@ -19,7 +19,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "frontend/package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -28,6 +28,6 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "frontend/package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn build
