@@ -13,6 +13,7 @@ jobs:
 
     steps:
       - checkout
+    path: ~/repo
 
       # - run: ls -l ~/repo
 
@@ -26,7 +27,8 @@ jobs:
       - run: yarn install
 
       - save_cache:
-          paths: ~/repo
+          paths:
+            ~/repo
           key: v1-dependencies-{{ checksum "frontend/package.json" }}
 
       - run: yarn build
