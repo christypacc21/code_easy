@@ -12,9 +12,9 @@ jobs:
     working_directory: ~/repo/frontend
 
     steps:
-      - checkout: ~/repo
+      - checkout: path: ~/repo
 
-      # - run: ls -l ~/repo
+      - run: ls -l ~/repo
 
       # Download and cache dependencies
       - restore_cache:
