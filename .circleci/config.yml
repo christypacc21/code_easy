@@ -9,11 +9,11 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:10
 
-    working_directory: ~/repo/frontend
+    - working_directory: ~/repo/frontend
 
     steps:
       - checkout: 
-    - path: ~/repo
+     path: ~/repo
 
       # - run: ls -l ~/repo
 
