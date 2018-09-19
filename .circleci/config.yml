@@ -12,7 +12,7 @@ jobs:
     working_directory: ~/repo/frontend
 
     steps:
-      - checkout: path: ~/repo
+      - checkout: ~/repo
 
       - run: ls -l ~/repo
 
