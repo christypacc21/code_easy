@@ -21,7 +21,9 @@ class OngoingList extends Component {
       // console.log(FArray);
       if (FArray.length === 0) {
         return (
-          <h1 style={{ color: 'white' }}>You Don't Have Any Unfinished Chat</h1>
+          <h1 style={{ color: 'white' }}>
+            You Don't Have Any Unfinished Chatrooms
+          </h1>
         );
       } else {
         return FArray.map((history, i) => {
@@ -65,16 +67,14 @@ class OngoingList extends Component {
           style={{ margin: 0, background: '#00B0AF', minHeight: '1000px' }}
         >
           <div className="container py-3">
-            <h4 style={{ color: 'white' }}>
-              Onging Chatroom Here (Questions with unfinished chatroom)
-            </h4>
+            <h4 style={{ color: 'white' }}>Ongoing Chatroom Here</h4>
             {this.props.role === 'student' ? (
               <p>
-                To end the chat session,please press the "End session" button
-                inside the unfinished chatroom. After a chatroom question is
-                created, one question quota(1 credit) will be deducted from your
-                account. Once the chatroom session is ended. The chatroom will
-                be closed and deactived while you can still read the chat
+                To end the chatroom session, please press the "End Session"
+                button inside the unfinished chatroom. After a chatroom question
+                is created, one question quota (1 credit) will be deducted from
+                your account. Once the chatroom session is ended. The chatroom
+                will be closed and deactived while you can still read the chat
                 history in the 'History' Tab. Enjoy!
               </p>
             ) : (

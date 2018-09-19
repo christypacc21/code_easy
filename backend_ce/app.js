@@ -35,7 +35,6 @@ let questionService = new QuestionService(knex);
 let paymentService = new PaymentService(knex);
 let historyService = new HistoryService(knex);
 
-// app.use('/api/forum', new ForumRouter(forumService).router());
 app.use('/api/auth', new AuthRouter(authService).router());
 app.use('/api/user', auth.authenticate(), new UserRouter(userService).router());
 app.use(

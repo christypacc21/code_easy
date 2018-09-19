@@ -22,10 +22,10 @@ const HistoryCard = ({
 }) => {
   return (
     <div className="card">
-      <div className="card-header text-muted">
-        Related coding skills: | Chatroom Id [{chatroomId}] | Question Id [
-        {questionId}] | Created at [{questionDateTime}({questionFromNow}
-        )]
+      <div className="card-header">
+        Related coding skills:
+        {/* | Chatroom id [{chatroomId}] | Question id [
+        {questionId}] */}
         {/* {role == instructor
             ? `InstuctorID [${instructorId}]`
             : `StudentID [${studentId}]`} */}
@@ -75,8 +75,9 @@ const HistoryCard = ({
       </div>
 
       <div className="card-footer text-muted">
-        Chatroom started at : {chatroomStartTime}({chatroomFromNow})
-        {/* | Duration: {duration} mins | Fee:hkd${fee}  */} | Rating: {rating}
+        Chatroom started at : {chatroomStartTime} ({chatroomFromNow})
+        {/* | Duration: {duration} mins | Fee:hkd${fee}  */} | Rating:{' '}
+        {rating ? rating : 'n/a'}
       </div>
     </div>
   );

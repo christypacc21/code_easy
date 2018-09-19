@@ -21,7 +21,9 @@ class HistoryList extends Component {
 
       if (FArray.length === 0) {
         return (
-          <h1 style={{ color: 'white' }}>You Don't Have Any Finished Chat</h1>
+          <h1 style={{ color: 'white' }}>
+            You Don't Have Any Finished Chatrooms
+          </h1>
         );
       } else {
         return FArray.map((history, i) => {
@@ -67,8 +69,7 @@ class HistoryList extends Component {
         >
           <div className="container py-3">
             <h4 style={{ color: 'white' }}>
-              Chat History Here (Questions with ended chatroom)(Consultation
-              service finished)
+              Chatroom History Here (finished consultation service)
             </h4>
             {this.renderHistoryList()}
           </div>
