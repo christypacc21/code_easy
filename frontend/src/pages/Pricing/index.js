@@ -74,9 +74,9 @@ class Pricing extends React.Component {
                 <div className="card-body">
                   <h4 className="card-title">Get Started Pack</h4>
                   <div style={{ marginBottom: 50, marginTop: 50 }}>
-                    <h2 className="card-text">
+                    <h3 className="card-text">
                       1 Question <br />
-                    </h2>
+                    </h3>
                     <h5 className="card-text">
                       ~ 15 minutes <br />
                     </h5>
@@ -109,9 +109,9 @@ class Pricing extends React.Component {
                 <div className="card-body">
                   <h4 className="card-title">Standard Pack</h4>
                   <div style={{ marginBottom: 50, marginTop: 50 }}>
-                    <h2 className="card-text">
+                    <h3 className="card-text">
                       3 Questions <br />
-                    </h2>
+                    </h3>
                     <h5 className="card-text">
                       ~ 45 minutes <br />
                     </h5>
@@ -144,9 +144,9 @@ class Pricing extends React.Component {
                 <div className="card-body">
                   <h4 className="card-title">Advanced Pack</h4>
                   <div style={{ marginBottom: 50, marginTop: 50 }}>
-                    <h2 className="card-text">
+                    <h3 className="card-text">
                       10 Questions <br />
-                    </h2>
+                    </h3>
                     <h5 className="card-text">
                       ~ 150 minutes <br />
                     </h5>

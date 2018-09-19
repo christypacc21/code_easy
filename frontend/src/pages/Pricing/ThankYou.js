@@ -10,7 +10,7 @@ class ThankYou extends React.Component {
     if (this.props.profile && this.props.paymentResponse) {
       return (
         <div
-          class="container-fluid"
+          className="container-fluid"
           style={{ padding: 80, background: '#00B0AF', color: 'white' }}
         >
           <div className="row">
