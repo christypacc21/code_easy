@@ -14,6 +14,8 @@ jobs:
     steps:
       - checkout
 
+      - run: ls -l ~/repo
+
       # Download and cache dependencies
       - restore_cache:
           keys:
