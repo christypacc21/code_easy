@@ -4,6 +4,7 @@ import PostCard from './PostCard';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { requestPosts } from '../../../redux/actions/forumActions';
+import { Link } from 'react-router-dom';
 
 class PostCardList extends Component {
   componentDidMount() {
@@ -16,10 +17,10 @@ class PostCardList extends Component {
       console.log('renderpostlist is pending');
       return (
         <div style={{ margin: 10 }}>
-          <a className="btn btn-secondary btn-lg btn-block" href="/login">
+          <Link className="btn btn-secondary btn-lg btn-block" to="/login">
             {/* Sign Up or Sign In to Create Post for Free! */}
             Loading Posts...
-          </a>
+          </Link>
         </div>
       );
     } else {
@@ -62,13 +63,16 @@ class PostCardList extends Component {
       <div>
         <div style={{ margin: 10 }}>
           {this.props.user.authenticated ? (
-            <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+            <Link
+              className="btn btn-secondary btn-lg btn-block"
+              to="/posts/new"
+            >
               Press to Create Post for Free!
-            </a>
+            </Link>
           ) : (
-            <a className="btn btn-secondary btn-lg btn-block" href="/login">
+            <Link className="btn btn-secondary btn-lg btn-block" to="/login">
               Login or Signup to Create Post for Free!
-            </a>
+            </Link>
           )}
         </div>
         <div className="PostCardList" />
@@ -76,13 +80,16 @@ class PostCardList extends Component {
         <br />
         <div style={{ margin: 10 }}>
           {this.props.user.authenticated ? (
-            <a className="btn btn-secondary btn-lg btn-block" href="/posts/new">
+            <Link
+              className="btn btn-secondary btn-lg btn-block"
+              to="/posts/new"
+            >
               Press to Create Post for Free!
-            </a>
+            </Link>
           ) : (
-            <a className="btn btn-secondary btn-lg btn-block" href="/login">
+            <Link className="btn btn-secondary btn-lg btn-block" to="/login">
               Login or Signup to Create Post for Free!
-            </a>
+            </Link>
           )}
         </div>
       </div>
