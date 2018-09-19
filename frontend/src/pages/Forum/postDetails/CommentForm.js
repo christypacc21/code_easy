@@ -95,8 +95,8 @@ class CommentForm extends Component {
                 //the params' names do i need to refer to somewhere?(ying goy not)
               );
               this.setState({ commentContent: '', filePath: [] });
-              alert('Comment posted successfully!');
-              // window.location.reload();
+              // alert('Comment posted successfully!');
+              window.location.reload();
               // this.props.onCommentSubmit();
             }}
           >

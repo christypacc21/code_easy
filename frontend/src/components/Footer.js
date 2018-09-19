@@ -6,7 +6,7 @@ class Footer extends React.Component {
     return (
       <div className="footer">
         <div>
-          <p>Contact Us: CodeEasy@gmail.com</p>
+          <p>Contact Us: codeeasypro@gmail.com</p>
         </div>
         <div>
           <p> © Copyright 2018 CodeEasy. All Rights Reserved.</p>
