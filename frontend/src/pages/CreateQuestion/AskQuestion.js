@@ -20,7 +20,7 @@ class AskQuestion extends Component {
   };
 
   render() {
-    if (this.props.user && this.props.user.ibalance >= 1) {
+    if (this.props.user && this.props.user.sQuestionCredit >= 1) {
       const { content, filePath, skills } = this.state;
       return (
         <div
