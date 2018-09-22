@@ -60,8 +60,8 @@ class Pricing extends React.Component {
         >
           <div className="container">
             <div className="row">
-              <h2 style={{ color: 'white' }}>Pricing</h2>
-              <h5>
+              <h2 style={{ color: 'white', paddingLeft: '10px' }}>Pricing</h2>
+              <h5 style={{ paddingLeft: '10px', paddingRight: '10px' }}>
                 We believe student queries should be answered in a timely manner
                 to prevent snow-balling. CodeEasy is filling that gap in
                 students' learning experience. For fairness, each question's

@@ -12,7 +12,7 @@ class Footer extends React.Component {
           <div>
             <p>
               1-1 Live Chat : Price plan, instant and interative instructors'
-              consulatation.
+              consultation.
             </p>
           </div>
           <div>
