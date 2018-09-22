@@ -34,3 +34,9 @@ yarn\.lock
 # images
 backend_ce/public/
 *.jpg
+
+#circleci
+.circleci
+
+#vscode
+.vscode
