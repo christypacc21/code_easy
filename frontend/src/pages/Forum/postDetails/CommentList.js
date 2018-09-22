@@ -3,12 +3,12 @@ import CommentCard from './CommentCard';
 import moment from 'moment';
 
 const CommentList = ({ comments }) => {
-  return comments.map((comment, i) => {
+  return comments.reverse().map((comment, i) => {
     return (
       <div className="card col-sm-12" key={i}>
         <CommentCard
           // commentId={comment.id}
-          commentNum={i + 1}
+          commentNum={comments.length - i}
           propicPath={comment.profilePic}
           role={comment.role}
           username={comment.display_name}

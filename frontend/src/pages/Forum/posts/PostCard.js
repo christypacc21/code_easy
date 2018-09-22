@@ -16,8 +16,8 @@ const PostCard = ({
 }) => {
   return (
     <div>
-      <div style={{ height: '580px' }}>
-        <div className="card-body" style={{ height: '510px' }}>
+      <div style={{ height: '600px' }}>
+        <div className="card-body" style={{ height: '540px' }}>
           <div style={{ fontSize: '12px' }}>
             <p
               className="card-text"

@@ -15,6 +15,12 @@ class CommentForm extends Component {
     };
   }
 
+  reload() {
+    // const id = this.props.match.params.id;
+    // console.log('reloadzzzzzz' + id);
+    this.props.onRequestPostDetails(this.props.paramsId);
+  }
+
   onDrop = (acceptedFiles, rejectedFiles) => {
     this.setState({
       filePath: acceptedFiles
@@ -94,10 +100,11 @@ class CommentForm extends Component {
                 this.props.paramsId
                 //the params' names do i need to refer to somewhere?(ying goy not)
               );
+              // window.location.reload();
+              // this.props.onCommentSubmit(this.props.paramsId);
               this.setState({ commentContent: '', filePath: [] });
-              // alert('Comment posted successfully!');
-              window.location.reload();
-              // this.props.onCommentSubmit();
+              alert('Comment posted successfully!');
+              this.reload();
             }}
           >
             Send !
