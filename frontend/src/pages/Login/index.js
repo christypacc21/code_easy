@@ -36,7 +36,7 @@ class PureLogin extends React.Component {
 
       this.props.loginByFacebook(
         userInfo.accessToken,
-        null,
+        'student', //default login role if did not sign up before
         this.props.history
       );
     }
