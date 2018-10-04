@@ -34,7 +34,7 @@ Approximately 4 weeks (2018/8/18-2018-9-20)
 ---
 
 - Mindmap as a brainstorming tool
-- Wireframing and prototyping
+- Zeplin as wireframing and UI/UX prototyping tool
 - LucidChart as database designing tool
 
 ## Built With

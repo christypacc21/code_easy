@@ -9,9 +9,8 @@ module.exports = class UserRouter {
 		let router = express.Router();
 		router.post('/instructor/signUp', this.instructorSignUp.bind(this));
 		router.get('/profile', this.getProfile.bind(this));
-		router.post('/profilePic', this.uploadProfilePic.bind(this));
+		// router.post('/profilePic', this.uploadProfilePic.bind(this));
 		// router.get('/chatIInfo', this.getChatInstructorInfo.bind(this));
-
 		return router;
 	}
 
@@ -94,40 +93,39 @@ module.exports = class UserRouter {
 				})
 			);
 	}
-
-	uploadProfilePic(req, res) {
-		return this.userService
-			.uploadProfilePic(req.user.id, req.body)
-			.then(data =>
-				res.json({
-					success: true,
-					profilePic: data[0]
-				})
-			)
-			.catch(err =>
-				res.status(500).json({
-					success: false,
-					message: err.message,
-					error: err
-				})
-			);
-	}
-
-	// getChatInstructorInfo(req, res) {
-	//   return this.userService
-	//     .getChatInstructorInfo() // shd pass chatroom's instructor_id here? How to get it from frontend to here?
-	//     .then(data =>
-	//       res.json({
-	//         success: true,
-	//         profile: data
-	//       })
-	//     )
-	//     .catch(err =>
-	//       res.status(500).json({
-	//         success: false,
-	//         message: err.message,
-	//         error: err
-	//       })
-	//     );
-	// }
 };
+
+// uploadProfilePic(req, res) {
+// 	return this.userService
+// 		.uploadProfilePic(req.user.id, req.body)
+// 		.then(data =>
+// 			res.json({
+// 				success: true,
+// 				profilePic: data[0]
+// 			})
+// 		)
+// 		.catch(err =>
+// 			res.status(500).json({
+// 				success: false,
+// 				message: err.message,
+// 				error: err
+// 			})
+// 		);
+
+// getChatInstructorInfo(req, res) {
+//   return this.userService
+//     .getChatInstructorInfo() // shd pass chatroom's instructor_id here? How to get it from frontend to here?
+//     .then(data =>
+//       res.json({
+//         success: true,
+//         profile: data
+//       })
+//     )
+//     .catch(err =>
+//       res.status(500).json({
+//         success: false,
+//         message: err.message,
+//         error: err
+//       })
+//     );
+// }

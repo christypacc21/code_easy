@@ -105,12 +105,12 @@ module.exports = class UserService {
 		}
 	}
 
-	uploadProfilePic(id, url) {
-		return this.knex(USERS)
-			.where('id', id)
-			.update('profilePic', url)
-			.returning('profilePic');
-	}
+	// uploadProfilePic(id, url) {
+	// 	return this.knex(USERS)
+	// 		.where('id', id)
+	// 		.update('profilePic', url)
+	// 		.returning('profilePic');
+	// }
 
 	// getChatInstructorInfo() {
 	//   return (
