@@ -68,22 +68,18 @@ const PostDetailsCard = ({
           <strong>Post Title: {postTitle}</strong>
         </h3>
         <p className="card-text">Post Content: {postContent}</p>
-        {
-          (postImagePath = /* [CODE REVIEW] FIX IT. Single equal sign */ `${
-            process.env.REACT_APP_API_SERVER
-          }/null` ? (
-            <p>[[[This post has no image]]]</p>
-          ) : (
-            <div>
-              <img
-                className="card"
-                style={{ maxWidth: '60vw' }}
-                alt="(Failed to show Post file)"
-                src={postImagePath}
-              />
-            </div>
-          ))
-        }
+        {postImagePath === `${process.env.REACT_APP_API_SERVER}/null` ? (
+          <p>[[[This post has no image]]]</p>
+        ) : (
+          <div>
+            <img
+              className="card"
+              style={{ maxWidth: '60vw' }}
+              alt="(Failed to show Post file)"
+              src={postImagePath}
+            />
+          </div>
+        )}
         <p>No. of comments: {count}</p>
         <br />
       </div>
