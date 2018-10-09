@@ -1,6 +1,8 @@
 // func component
 import React from 'react';
 import { Link } from 'react-router-dom';
+import iconComments from '../../../assets/comments.png';
+
 const PostCard = ({
   postId,
   propicPath,
@@ -15,8 +17,8 @@ const PostCard = ({
 }) => {
   return (
     <div>
-      <div style={{ height: '600px' }}>
-        <div className="card-body" style={{ height: '490px' }}>
+      <div style={{ height: '530px' }}>
+        <div className="card-body" style={{ height: '460px' }}>
           <div style={{ fontSize: '12px' }}>
             <p
               className="card-text"
@@ -39,6 +41,23 @@ const PostCard = ({
             >
               Created by: {username}
             </p>
+            <p
+              style={{
+                float: 'right',
+                color: 'darkgrey',
+                margin: '0',
+                fontSize: '20px'
+              }}
+            >
+              <img
+                src={iconComments}
+                alt="Number of Comments"
+                className={iconComments}
+                style={{ height: '25px', width: '25px' }}
+              />{' '}
+              {count}
+            </p>
+
             {
               (propicPath = `${process.env.REACT_APP_API_SERVER}/null` ? (
                 <p />
@@ -66,17 +85,19 @@ const PostCard = ({
             <div style={{ marginBottom: '10px' }} />
           </div>
           <h5 className="card-title">Title: {postTitle}</h5>
-          {postContent.length > 50 ? (
-            (postContent = postContent
-              .split(' ')
-              .splice(0, 7)
-              .join(' ')
-              .concat('...'))
+          {postContent.length > 30 ? (
+            (postContent =
+              '"' +
+              postContent
+                .split(' ')
+                .splice(0, 7)
+                .join(' ')
+                .concat('...'))
           ) : (
-            <p className="card-text">Content: {postContent}</p>
+            <p className="card-text">"{postContent}"</p>
           )}
           {!postImagePath ? (
-            <p>[[[This post has no image]]]</p>
+            <p style={{ color: 'lightgrey' }}>[[[This post has no image]]]</p>
           ) : (
             <div>
               <img
@@ -89,12 +110,7 @@ const PostCard = ({
           )}
           <br />
         </div>
-        <p
-          className="card-text"
-          style={{ fontSize: '15px', color: 'lightgrey', marginLeft: 10 }}
-        >
-          No. of comments {count}
-        </p>
+
         {!auth ? (
           <Link
             className="btn btn-info btn-block"

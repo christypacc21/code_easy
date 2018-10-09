@@ -30,8 +30,14 @@ const MyCommentCard = ({
             </p>
             <div className="break-c" />
           </div>
-          {commentContent.length > 50 ? (
-            (commentContent = 'Too many words, press in toread more detials')
+          {commentContent.length > 30 ? (
+            (commentContent =
+              '"' +
+              commentContent
+                .split(' ')
+                .splice(0, 8)
+                .join(' ')
+                .concat('...'))
           ) : (
             <p className="card-text-c">"{commentContent}"</p>
           )}

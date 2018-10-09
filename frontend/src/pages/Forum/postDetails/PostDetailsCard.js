@@ -1,6 +1,7 @@
 // func component wif redux
 import React from 'react';
 import moment from 'moment';
+import iconComments from '../../../assets/comments.png';
 
 const PostDetailsCard = ({
   postId,
@@ -45,7 +46,7 @@ const PostDetailsCard = ({
           className="card-text"
           style={{ display: 'inline-block', marginRight: '3vw' }}
         >
-          Created by :{username}
+          Created by: {username}
         </p>
         <p
           className="card-text"
@@ -75,7 +76,15 @@ const PostDetailsCard = ({
             />
           </div>
         )}
-        <p>No. of comments: {count}</p>
+        <p style={{ margin: '20px 0px 0px 0px' }}>
+          <img
+            src={iconComments}
+            alt="Number of Comments"
+            className={iconComments}
+            style={{ height: '40px', width: '40px' }}
+          />{' '}
+          {count}
+        </p>
         <br />
       </div>
     </div>
