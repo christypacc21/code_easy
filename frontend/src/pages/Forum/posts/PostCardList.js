@@ -29,7 +29,7 @@ class PostCardList extends Component {
         let post = ele.post;
         let count = ele.count;
         return (
-          <div className="card col-sm-4" key={i}>
+          <div className="card col-lg-4 col-md-6 col-sm-12" key={i}>
             <PostCard
               postId={post.id}
               propicPath={post.profilePic}
@@ -61,7 +61,7 @@ class PostCardList extends Component {
               className="btn btn-secondary btn-lg btn-block"
               to="/posts/new"
             >
-              Press to Create Post for Free!
+              Create Post for Free!
             </Link>
           ) : (
             <Link className="btn btn-secondary btn-lg btn-block" to="/login">
@@ -78,7 +78,7 @@ class PostCardList extends Component {
               className="btn btn-secondary btn-lg btn-block"
               to="/posts/new"
             >
-              Press to Create Post for Free!
+              Create Post for Free!
             </Link>
           ) : (
             <Link className="btn btn-secondary btn-lg btn-block" to="/login">

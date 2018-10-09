@@ -1,0 +1,83 @@
+/* myCommentPage */
+.jumbotron-c {
+  padding-top: 20px;
+  background: #00b0af;
+}
+.jumbotron h1 {
+  color: white;
+}
+
+/* myCommmentList */
+.loading {
+  margin: 10;
+}
+
+/* myCommentCard */
+.height-c {
+  height: 580px;
+}
+.card-body-c {
+  height: 510px;
+}
+.card-selfhead-c {
+  font-size: 12px;
+}
+.card-text-c {
+  display: inline-block;
+  margin-right: 2vw;
+}
+
+.card-time-c {
+  font-size: 20px;
+  color: grey;
+}
+
+.break-c {
+  margin-bottom: 10px;
+}
+
+.image-text-c {
+  font-size: 15px;
+  color: lightgrey;
+}
+
+.card-image-c {
+  max-height: 10em;
+}
+
+@media only screen and (max-width: 1000px) {
+  .jumbotron h1 {
+    font-size: 25px;
+    margin: 5px 5px 0px 5px;
+  }
+  .card-time-c {
+    font-size: 15px;
+  }
+  .height-c {
+    height: 500px;
+  }
+  .card-body-c {
+    height: 440px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .height-c {
+    height: 485px;
+  }
+  .card-body-c {
+    height: 420px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .card-body-c {
+    padding: 15px 8px 0px 8px;
+  }
+  .height-c {
+    height: 426px;
+  }
+  .card-body-c {
+    height: 360px;
+  }
+}

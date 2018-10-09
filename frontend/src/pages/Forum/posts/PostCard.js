@@ -16,23 +16,31 @@ const PostCard = ({
   return (
     <div>
       <div style={{ height: '600px' }}>
-        <div className="card-body" style={{ height: '540px' }}>
+        <div className="card-body" style={{ height: '490px' }}>
           <div style={{ fontSize: '12px' }}>
             <p
               className="card-text"
-              style={{ display: 'inline-block', marginRight: '2vw' }}
+              style={{
+                display: 'inline-block',
+                marginRight: '2vw',
+                marginBottom: 0
+              }}
             >
               PostID:
               {postId}
             </p>
             <p
               className="card-text"
-              style={{ display: 'inline-block', marginRight: '2vw' }}
+              style={{
+                display: 'inline-block',
+                marginRight: '2vw',
+                marginBottom: 0
+              }}
             >
               Created by: {username}
             </p>
             {
-              (propicPath = `${process.env.REACT_APP_API_SERVER}/null}` ? (
+              (propicPath = `${process.env.REACT_APP_API_SERVER}/null` ? (
                 <p />
               ) : (
                 <div>
@@ -51,15 +59,19 @@ const PostCard = ({
             }
             <p
               className="card-text"
-              style={{ fontSize: '20px', color: 'lightgrey' }}
+              style={{ fontSize: '15px', color: 'lightgrey' }}
             >
               {dateTime} ({dateTimeFromNow})
             </p>
-            <div style={{ matginBottom: '10px' }} />
+            <div style={{ marginBottom: '10px' }} />
           </div>
           <h5 className="card-title">Title: {postTitle}</h5>
           {postContent.length > 50 ? (
-            (postContent = 'Too many words, press in to read more detials')
+            (postContent = postContent
+              .split(' ')
+              .splice(0, 7)
+              .join(' ')
+              .concat('...'))
           ) : (
             <p className="card-text">Content: {postContent}</p>
           )}
@@ -76,8 +88,13 @@ const PostCard = ({
             </div>
           )}
           <br />
-          <p className="card-text">No. of comments {count}</p>
         </div>
+        <p
+          className="card-text"
+          style={{ fontSize: '15px', color: 'lightgrey', marginLeft: 10 }}
+        >
+          No. of comments {count}
+        </p>
         {!auth ? (
           <Link
             className="btn btn-info btn-block"

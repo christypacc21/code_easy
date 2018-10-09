@@ -4,6 +4,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import MyCommentCard from './myCommentCard';
 import { requestMyComments } from '../../../redux/actions/forumActions';
+import './myComments.css';
 
 class MyCommentList extends Component {
   componentWillMount() {
@@ -13,7 +14,7 @@ class MyCommentList extends Component {
   renderMyCommentList() {
     if (this.props.isPending) {
       return (
-        <div style={{ margin: 10 }}>
+        <div className="loading">
           <p>Loading...</p>
         </div>
       );
@@ -22,7 +23,7 @@ class MyCommentList extends Component {
         const commentTime = moment(comment.commentTime).format('lll');
         const postTime = moment(comment.postTime).format('lll');
         return (
-          <div className="card col-sm-4" key={i}>
+          <div className="card col-lg-4 col-md-6 col-sm-12" key={i}>
             <MyCommentCard
               commentId={comment.commentId}
               postId={comment.postId}
@@ -30,7 +31,7 @@ class MyCommentList extends Component {
               postTime={postTime}
               postTitle={comment.postTitle}
               commentContent={comment.commentContent}
-              commentImagePath={comment.commentImage_path}
+              commentImagePath={comment.commentImagePath}
             />
           </div>
         );

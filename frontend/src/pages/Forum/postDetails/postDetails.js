@@ -41,9 +41,7 @@ class PostDetails extends Component {
               dateTime={dateTime}
               postTitle={postDetailsData.title}
               postContent={postDetailsData.content}
-              postImagePath={`${process.env.REACT_APP_API_SERVER}/${
-                postDetailsData.image_path
-              }`}
+              postImagePath={postDetailsData.image_path}
               role={postDetailsData.role}
               count={this.props.comments.length}
             />

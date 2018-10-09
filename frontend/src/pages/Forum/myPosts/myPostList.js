@@ -24,7 +24,6 @@ class MyPostList extends Component {
         return (
           <div className="card col-sm-4" key={i}>
             <MyPostCard
-              // key={i}
               postId={post.id}
               dateTime={dateTime}
               dateTimeFromNow={dateTimeFromNow}

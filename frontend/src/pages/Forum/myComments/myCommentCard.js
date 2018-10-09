@@ -3,7 +3,6 @@ import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 const MyCommentCard = ({
-  // key,
   commentId,
   postId,
   commentTime,
@@ -17,45 +16,31 @@ const MyCommentCard = ({
   }
   return (
     <div>
-      <div style={{ height: '580px' }}>
-        <div className="card-body" style={{ height: '510px' }}>
-          <div style={{ fontSize: '12px' }}>
-            <p
-              className="card-text"
-              style={{ display: 'inline-block', marginRight: '2vw' }}
-            >
+      <div className="height-c">
+        <div className="card-body card-body-c">
+          <div className="card-selfhead-c">
+            <p className="card-text-c">
               CommentID:
               {commentId} (for PostID:
               {postId} which was created at {postTime})
             </p>
-            <p
-              className="card-text"
-              style={{ display: 'inline-block', marginRight: '2vw' }}
-            >
-              Ref Post : "{postTitle}"
-            </p>
-            <p
-              className="card-text"
-              style={{ fontSize: '20px', color: 'grey' }}
-            >
+            <p className="card-text-c">Ref Post : "{postTitle}"</p>
+            <p className="card-time-c">
               {commentTime} ({moment({ commentTime }).fromNow()})
             </p>
-            <div style={{ matginBottom: '10px' }} />
+            <div className="break-c" />
           </div>
           {commentContent.length > 50 ? (
             (commentContent = 'Too many words, press in toread more detials')
           ) : (
-            <p className="card-text">"{commentContent}"</p>
+            <p className="card-text-c">"{commentContent}"</p>
           )}
           {!commentImagePath ? (
-            <p style={{ fontSize: '15px', color: 'lightgrey' }}>
-              [[[This comment has no image]]]
-            </p>
+            <p className="image-text-c">[[[This comment has no image]]]</p>
           ) : (
             <div>
               <img
-                className="card"
-                style={{ maxHeight: '10em' }}
+                className="card-image-c"
                 alt="(Failed to show Comment file )"
                 src={`${process.env.REACT_APP_API_SERVER}/${commentImagePath}`}
               />
