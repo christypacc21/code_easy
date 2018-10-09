@@ -1,5 +1,4 @@
 import React from 'react';
-// import aboutPhoto from '../../img/asset2.png';
 import Howell from '../../img/Howell.jpeg';
 import Christy from '../../img/Christy.jpeg';
 import Lea from '../../img/Lea.jpeg';

@@ -2,7 +2,7 @@
 // version 2 can add select skills option
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
+import * as ForumActions from '../../../redux/actions/forumActions';
 import Dropzone from 'react-dropzone';
 import { Link, withRouter } from 'react-router-dom';
 import ForumTab from './ForumTab';
@@ -14,7 +14,6 @@ class CreatePost extends Component {
     filePath: []
   };
 
-  //?
   onDrop = (acceptedFiles, rejectedFiles) => {
     this.setState({
       filePath: acceptedFiles
@@ -116,7 +115,7 @@ class CreatePost extends Component {
               className="btn btn-secondary btn-lg btn-block"
               onClick={() =>
                 this.props
-                  .createPost(postTitle, postContent, filePath) //the params' names do i need to refer to somewhere?(ying goy not)
+                  .createPost(postTitle, postContent, filePath)
                   .then(() => {
                     this.props.history.goBack();
                   })

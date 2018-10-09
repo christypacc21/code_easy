@@ -19,7 +19,6 @@ import MultipleSelect from './pages/Signup/MultipleSelect';
 import CreatePost from './pages/Forum/createPost/createPost';
 import PostDetails from './pages/Forum/postDetails/postDetails';
 import PostsPage from './pages/Forum/posts/postsPage';
-// import CreateQuestion from './pages/CreateQuestion/home';
 import AskQuestion from './pages/CreateQuestion/AskQuestion';
 import TakeQuestions from './pages/TakeQuestions';
 import Chatroom from './pages/Chatroom';

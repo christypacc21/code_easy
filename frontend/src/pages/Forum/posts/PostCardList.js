@@ -18,7 +18,6 @@ class PostCardList extends Component {
       return (
         <div style={{ margin: 10 }}>
           <Link className="btn btn-secondary btn-lg btn-block" to="/login">
-            {/* Sign Up or Sign In to Create Post for Free! */}
             Loading Posts...
           </Link>
         </div>
@@ -27,13 +26,11 @@ class PostCardList extends Component {
       console.log('renderPostList got data :' + this.props.postData);
 
       return this.props.postData.map((ele, i) => {
-        // console.log('about to render post list' + post);
         let post = ele.post;
         let count = ele.count;
         return (
           <div className="card col-sm-4" key={i}>
             <PostCard
-              // key={i}
               postId={post.id}
               propicPath={post.profilePic}
               username={post.display_name}
@@ -55,9 +52,6 @@ class PostCardList extends Component {
     return this.props.isPending ? (
       <div>
         <h1>Loading Posts...</h1>
-        {/* <h1>
-          Signup or Sign in to visit the dynamic coding community !!! 
-        </h1> */}
       </div>
     ) : (
       <div>
@@ -98,7 +92,6 @@ class PostCardList extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('state:' + state);
   console.log('started MapStateToProps->' + state.requestPosts.data);
   console.log('MapStateToProps after return->' + state.requestPosts.data);
   return {

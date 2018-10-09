@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as ForumActions from '../../../redux/actions/forumActions'; //?why not import the corresponding action only?
+import * as ForumActions from '../../../redux/actions/forumActions';
 import Dropzone from 'react-dropzone';
 import { withRouter } from 'react-router-dom';
 
@@ -16,8 +16,6 @@ class CommentForm extends Component {
   }
 
   reload() {
-    // const id = this.props.match.params.id;
-    // console.log('reloadzzzzzz' + id);
     this.props.onRequestPostDetails(this.props.paramsId);
   }
 
@@ -75,7 +73,6 @@ class CommentForm extends Component {
                   {this.state.filePath.map(f => (
                     <li key={f.name}>
                       {f.name}
-                      {/* - {f.size} bytes */}
                       <button
                         className="btn btn-danger"
                         onClick={() => this.setState({ filePath: [] })}
@@ -98,10 +95,7 @@ class CommentForm extends Component {
                 commentContent,
                 filePath,
                 this.props.paramsId
-                //the params' names do i need to refer to somewhere?(ying goy not)
               );
-              // window.location.reload();
-              // this.props.onCommentSubmit(this.props.paramsId);
               this.setState({ commentContent: '', filePath: [] });
               alert('Comment posted successfully!');
               this.reload();

@@ -2,7 +2,6 @@
 import React from 'react';
 
 const CommentCard = ({
-  // commentId,
   commentNum,
   propicPath,
   role,
@@ -12,25 +11,9 @@ const CommentCard = ({
   commentImagePath,
   commentTimeFromNow
 }) => {
-  // if (!commentNum) {
-  //   return (
-  //     <div className="jumbotron">
-  //       <h1>This Post has no comment! Wanna add one?</h1>
-  //     </div>
-  //   );
-  // } else {
   return (
     <div>
-      <div
-        className="card-body"
-        // style={{
-        //   borderRadius: '1em'
-        // }}
-      >
-        {/* <p className="card-text">
-            CommentID:
-            {commentId}
-          </p> */}
+      <div className="card-body">
         <div>
           <h5
             className="card-text"
@@ -44,9 +27,6 @@ const CommentCard = ({
 
           {
             (propicPath = `${process.env.REACT_APP_API_SERVER}/null` ? (
-              // <p style={{ display: 'inline-block', marginRight: '3vw' }}>
-              //   [[[This user has no pro pic]]]
-              // </p>
               <p style={{ display: 'inline-block' }} />
             ) : (
               <div>
@@ -102,17 +82,7 @@ const CommentCard = ({
         </div>
       </div>
     </div>
-    // <div>
-    //   <form
-    //       action="/posts/{{post_id}}/comments/{{id}}?_method=DELETE"
-    //       method="post"
-    //       style="float:right"
-    //     >
-    //   <button class="btn btn-danger btn-sm">Delete comment</button>
-    //   </form>
-    // </div>
   );
 };
-// };
 
 export default CommentCard;

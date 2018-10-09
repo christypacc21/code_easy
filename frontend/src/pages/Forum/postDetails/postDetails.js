@@ -12,22 +12,11 @@ import ForumTab from './ForumTab';
 class PostDetails extends Component {
   componentWillMount() {
     const id = this.props.match.params.id;
-    // console.log('haha' + id);
     this.props.onRequestPostDetails(id);
   }
 
-  // reload() {
-  // // reload(id) {
-  //   // const id = this.props.match.params.id;
-  //   // console.log('reloadzzzzzz' + id);
-  //   this.props.onRequestPostDetails(id);
-  // }
-
   render() {
     const postDetailsData = this.props.postDetails;
-    // console.log('zzzzzzzzz');
-    // console.log(postDetailsData.created_at);
-    // console.log(moment(postDetailsData.created_at).format('lll'));
     const dateTime = moment(postDetailsData.created_at).format('lll');
     return (
       <div>
@@ -42,14 +31,12 @@ class PostDetails extends Component {
             </Link>
             <div style={{ marginTop: '30px' }} />
           </div>
-          {/* <p>GET and Show individual post details card here</p> */}
           <div>
             <PostDetailsCard
               postId={postDetailsData.id}
               propicPath={`${process.env.REACT_APP_API_SERVER}/${
                 postDetailsData.profilePic
               }`}
-              // /images/forumPosts/8_1536084354220_postIMG.jpg
               username={postDetailsData.display_name}
               dateTime={dateTime}
               postTitle={postDetailsData.title}
@@ -66,13 +53,9 @@ class PostDetails extends Component {
         <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
           <CommentForm
             paramsId={this.props.match.params.id}
-            // onCommentSubmit={this.reload}
             onRequestPostDetails={this.props.onRequestPostDetails}
           />
-          {/* <p>GET and show CommentList here:</p> */}
           <CommentList comments={this.props.comments} />
-
-          {/* <CommentForm /> */}
           <br />
           <Link className="btn btn-primary btn-lg" to="/posts">
             Back to forum(posts)
@@ -84,7 +67,6 @@ class PostDetails extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state.requestPostDetails.data.postDetails);
   return {
     isPending: state.requestPostDetails.isPending,
     postDetails: state.requestPostDetails.data.postDetails,

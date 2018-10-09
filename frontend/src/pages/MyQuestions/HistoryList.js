@@ -42,7 +42,6 @@ class HistoryList extends Component {
                 chatroomFromNow={moment(question.chatroomStartTime).fromNow()}
                 content={question.content}
                 imagePath={question.image_path}
-                // username={}
                 instructorId={question.instructor_id}
                 studentId={question.student_id}
                 rating={question.s_rating}
@@ -61,9 +60,7 @@ class HistoryList extends Component {
   render() {
     return (
       <div>
-        {/* <React.Fragment> */}
         <div
-          // className="jumbotron jumbotron-fluid"
           className=""
           style={{ margin: 0, background: '#00B0AF', minHeight: '1000px' }}
         >
@@ -75,7 +72,6 @@ class HistoryList extends Component {
           </div>
           <br />
         </div>
-        {/* </React.Fragment> */}
       </div>
     );
   }

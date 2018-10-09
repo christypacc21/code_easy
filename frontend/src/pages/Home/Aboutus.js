@@ -1,5 +1,4 @@
 import React from 'react';
-// import aboutPhoto from '../../img/asset2.png';
 import workPhoto from '../../img/asset1.png';
 import './Home.css';
 

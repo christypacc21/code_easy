@@ -1,5 +1,4 @@
 import React from 'react';
-// import codePhoto from '../../img/code.jpg';
 import { connect } from 'react-redux';
 import { requestPosts } from '../../redux/actions/forumActions';
 import { Link } from 'react-router-dom';
@@ -19,41 +18,34 @@ class Commun extends React.Component {
     } else {
       console.log('renderPostList got data :' + this.props.postData);
 
-      return (
-        this.props.postData
-          // .reverse()
-          .slice(0, 6)
-          .map((posts, i) => {
-            const {
-              id,
-              profilePic,
-              display_name,
-              created_at,
-              title,
-              content,
-              image_path
-            } = posts.post;
-            const count = posts.count;
-            // console.log('ppppp');
-            // console.log(count);
-            return (
-              <div key={i}>
-                <CommuPostCard
-                  postId={id}
-                  propicPath={profilePic}
-                  username={display_name}
-                  dateTime={moment(created_at).format('lll')}
-                  dateTimeFromNow={moment(created_at).fromNow()}
-                  postTitle={title}
-                  postContent={content}
-                  postImagePath={image_path}
-                  count={count}
-                  auth={this.props.user.authenticated}
-                />
-              </div>
-            );
-          })
-      );
+      return this.props.postData.slice(0, 6).map((posts, i) => {
+        const {
+          id,
+          profilePic,
+          display_name,
+          created_at,
+          title,
+          content,
+          image_path
+        } = posts.post;
+        const count = posts.count;
+        return (
+          <div key={i}>
+            <CommuPostCard
+              postId={id}
+              propicPath={profilePic}
+              username={display_name}
+              dateTime={moment(created_at).format('lll')}
+              dateTimeFromNow={moment(created_at).fromNow()}
+              postTitle={title}
+              postContent={content}
+              postImagePath={image_path}
+              count={count}
+              auth={this.props.user.authenticated}
+            />
+          </div>
+        );
+      });
     }
   }
 
@@ -73,12 +65,10 @@ class Commun extends React.Component {
           {this.props.user.authenticated === false ? (
             <Link className="btn btn-outline-info buttonAc" to={`/posts`}>
               Go To Coding Community To See More Posts
-              {/* (Signup or Signin) */}
             </Link>
           ) : (
             <Link className="btn btn-outline-info buttonAc" to={`/posts`}>
               More Posts
-              {/* Go To Coding Community To See More Posts */}
             </Link>
           )}
         </div>

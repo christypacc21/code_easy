@@ -18,7 +18,6 @@ class OngoingList extends Component {
       const FArray = this.props.historyData.filter(his => {
         return his.question.chatroom_active === true;
       });
-      // console.log(FArray);
       if (FArray.length === 0) {
         return (
           <h1 style={{ color: 'white' }}>
@@ -42,7 +41,6 @@ class OngoingList extends Component {
                 chatroomFromNow={moment(question.chatroomStartTime).fromNow()}
                 content={question.content}
                 imagePath={question.image_path}
-                // username={}
                 instructorId={question.instructor_id}
                 studentId={question.student_id}
                 rating={question.s_rating}
@@ -61,11 +59,7 @@ class OngoingList extends Component {
   render() {
     return (
       <div>
-        {/* <React.Fragment> */}
-        <div
-          // className="jumbotron jumbotron-fluid"
-          style={{ margin: 0, background: '#00B0AF', minHeight: '1000px' }}
-        >
+        <div style={{ margin: 0, background: '#00B0AF', minHeight: '1000px' }}>
           <div className="container py-3">
             <h4 style={{ color: 'white' }}>Ongoing Chatroom Here</h4>
             {this.props.role === 'student' ? (
@@ -85,7 +79,6 @@ class OngoingList extends Component {
           </div>
           <br />
         </div>
-        {/* </React.Fragment> */}
       </div>
     );
   }
