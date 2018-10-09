@@ -2,8 +2,10 @@
 .jumbotron-c {
   padding-top: 20px;
   background: #00b0af;
+  margin: 0;
+  min-height: 400px;
 }
-.jumbotron h1 {
+.MyCommentsH1 {
   color: white;
 }
 
@@ -46,7 +48,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .jumbotron h1 {
+  .MyCommentsH1 {
     font-size: 25px;
     margin: 5px 5px 0px 5px;
   }

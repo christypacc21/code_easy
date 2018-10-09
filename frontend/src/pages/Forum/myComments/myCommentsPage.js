@@ -10,7 +10,9 @@ class MyCommentsPage extends Component {
       <div>
         <ForumTab />
         <div className="jumbotron jumbotron-c">
-          <h1>My Comments - Comments that I have created</h1>
+          <h1 className="MyCommentsH1">
+            My Comments - Comments that I have created
+          </h1>
           <MyCommentList />
         </div>
       </div>

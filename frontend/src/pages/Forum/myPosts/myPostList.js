@@ -11,11 +11,11 @@ class MyPostList extends Component {
   }
 
   renderMyPostList() {
-    if (this.props.isPending) {
+    if (this.props.postData.length === 0) {
       return (
-        <div style={{ margin: 10 }}>
-          <p>Loading...</p>
-        </div>
+        <h5 style={{ marginLeft: '15px' }}>
+          You haven't created any posts yet.
+        </h5>
       );
     } else {
       return this.props.postData.map((post, i) => {

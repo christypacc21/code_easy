@@ -8,10 +8,8 @@ class MyPostsPage extends Component {
     return (
       <div>
         <ForumTab />
-        <div className="jumbotron" style={{ margin: 0, background: '#00B0AF' }}>
-          <h1 style={{ color: 'white' }}>
-            My Posts - Posts that I have created
-          </h1>
+        <div className="jumbotron jumbotron-c">
+          <h1 className="MyCommentsH1">My Posts - Posts that I have created</h1>
           <MyPostList />
         </div>
       </div>

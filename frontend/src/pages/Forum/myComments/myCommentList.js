@@ -12,11 +12,11 @@ class MyCommentList extends Component {
   }
 
   renderMyCommentList() {
-    if (this.props.isPending) {
+    if (this.props.commentData.length === 0) {
       return (
-        <div className="loading">
-          <p>Loading...</p>
-        </div>
+        <h5 style={{ marginLeft: '15px' }}>
+          You haven't created any comments yet.
+        </h5>
       );
     } else {
       return this.props.commentData.map((comment, i) => {
