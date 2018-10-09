@@ -19,7 +19,7 @@ class MyCommentList extends Component {
         </h5>
       );
     } else {
-      return this.props.commentData.map((comment, i) => {
+      return this.props.commentData.reverse().map((comment, i) => {
         const commentTime = moment(comment.commentTime).format('lll');
         const postTime = moment(comment.postTime).format('lll');
         return (

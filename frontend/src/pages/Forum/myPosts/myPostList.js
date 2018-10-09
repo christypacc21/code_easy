@@ -18,7 +18,7 @@ class MyPostList extends Component {
         </h5>
       );
     } else {
-      return this.props.postData.map((post, i) => {
+      return this.props.postData.reverse().map((post, i) => {
         const dateTime = moment(post.created_at).format('lll');
         const dateTimeFromNow = moment(post.created_at).fromNow();
         return (
