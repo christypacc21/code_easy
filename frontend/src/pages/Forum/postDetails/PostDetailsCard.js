@@ -1,6 +1,5 @@
 // func component wif redux
 import React from 'react';
-import moment from 'moment';
 import iconComments from '../../../assets/comments.png';
 
 const PostDetailsCard = ({
@@ -8,6 +7,7 @@ const PostDetailsCard = ({
   propicPath,
   username,
   dateTime,
+  dateTimeFromNow,
   postTitle,
   postContent,
   postImagePath,
@@ -58,12 +58,13 @@ const PostDetailsCard = ({
           className="card-text"
           style={{ display: 'inline-block', marginRight: '3vw' }}
         >
-          Created at: {dateTime} ({moment({ dateTime }).fromNow()})
+          Created at: {dateTime} ({dateTimeFromNow})
         </p>
+
         <h3 className="card-title">
-          <strong>Post Title: {postTitle}</strong>
+          <strong>{postTitle}</strong>
         </h3>
-        <p className="card-text">Post Content: {postContent}</p>
+        <p className="card-text">"{postContent}"</p>
         {!postImagePath ? (
           <p>[[[This post has no image]]]</p>
         ) : (
@@ -76,11 +77,15 @@ const PostDetailsCard = ({
             />
           </div>
         )}
-        <p style={{ margin: '20px 0px 0px 0px' }}>
+        <p
+          style={{
+            margin: '20px 0px 0px 0px'
+          }}
+        >
           <img
             src={iconComments}
             alt="Number of Comments"
-            className={iconComments}
+            className="iconComments"
             style={{ height: '40px', width: '40px' }}
           />{' '}
           {count}

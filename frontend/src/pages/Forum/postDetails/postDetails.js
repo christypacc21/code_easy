@@ -18,6 +18,7 @@ class PostDetails extends Component {
   render() {
     const postDetailsData = this.props.postDetails;
     const dateTime = moment(postDetailsData.created_at).format('lll');
+    const dateTimeFromNow = moment(postDetailsData.created_at).fromNow();
     return (
       <div>
         <ForumTab />
@@ -39,6 +40,7 @@ class PostDetails extends Component {
               }`}
               username={postDetailsData.display_name}
               dateTime={dateTime}
+              dateTimeFromNow={dateTimeFromNow}
               postTitle={postDetailsData.title}
               postContent={postDetailsData.content}
               postImagePath={postDetailsData.image_path}
